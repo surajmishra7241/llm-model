@@ -70,6 +70,14 @@ class Settings(BaseSettings):
         "all-minilm",
         "mxbai-embed-large"
     ]
+
+    # Voice settings
+    ENABLE_WHISPER: bool = True
+    WHISPER_MODEL: str = "base"  # or "small", "medium", "large"
+    ENABLE_TTS: bool = True
+    TTS_ENGINE: str = "coqui"  # or "pyttsx3"
+    TTS_MODEL: str = "tts_models/en/ljspeech/glow-tts"
+    TTS_VOICE: str = "female"
     
     # Document Processing
     DEFAULT_CHUNK_SIZE: conint(gt=0) = 1000

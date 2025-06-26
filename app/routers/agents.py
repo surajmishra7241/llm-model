@@ -5,12 +5,16 @@ from app.models.agent_model import AgentCreate, AgentUpdate, AgentResponse
 from app.services.agent_service import AgentService
 from app.dependencies import get_db, get_current_user
 from typing import List
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.models.agent_model import AgentCreate, AgentUpdate, AgentResponse
+
 
 router = APIRouter(prefix="/agents", tags=["agents"])
 
 @router.post("", response_model=AgentResponse, status_code=status.HTTP_201_CREATED)
 async def create_agent(
-    agent_data: AgentCreate,
+    agent_data: "AgentCreate",
     db: AsyncSession = Depends(get_db),
     user: dict = Depends(get_current_user)
 ):

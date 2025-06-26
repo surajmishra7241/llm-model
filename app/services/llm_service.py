@@ -7,6 +7,7 @@ import asyncio
 import aiohttp
 import hashlib
 import numpy as np
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -19,57 +20,106 @@ class OllamaService:
         self.embedding_model = getattr(settings, 'EMBEDDING_MODEL', 'deepseek-r1:1.5b')
 
     async def _make_request_async(self, endpoint: str, payload: dict) -> dict:
-        """Make async HTTP request to Ollama"""
+        """Make async request to Ollama with proper error handling"""
         try:
             url = f"{self.base_url}{endpoint}"
-            logger.debug(f"Making request to: {url}")
-            logger.debug(f"Payload: {payload}")
+            logger.debug(f"Making async request to: {url}")
+            logger.debug(f"Payload: {json.dumps(payload, indent=2)}")
+        
+            timeout = aiohttp.ClientTimeout(total=self.timeout)
             
-            async with aiohttp.ClientSession() as session:
-                async with session.post(
-                    url,
-                    json=payload,
-                    timeout=aiohttp.ClientTimeout(total=self.timeout)
-                ) as response:
-                    response_text = await response.text()
-                    logger.debug(f"Response status: {response.status}")
-                    logger.debug(f"Response: {response_text[:500]}...")
+            async with aiohttp.ClientSession(
+                timeout=timeout,
+                connector=aiohttp.TCPConnector(limit=10)
+            ) as session:
+                try:
+                    async with session.post(
+                        url,
+                        json=payload,
+                        headers={
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    ) as response:
+                        logger.debug(f"Response status: {response.status}")
+                        
+                        if response.status == 404:
+                            # Check if it's really a 404 or a model not found issue
+                            error_text = await response.text()
+                            if "model" in error_text.lower() and "not found" in error_text.lower():
+                                raise ValueError(f"Model '{payload.get('model')}' not found. Please pull the model first.")
+                            else:
+                                raise ValueError(f"Ollama endpoint not found at {url}. Is Ollama running and accessible?")
+                        
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.error(f"HTTP {response.status}: {error_text}")
+                            raise ValueError(f"HTTP {response.status}: {error_text}")
+                        
+                        response_text = await response.text()
+                        logger.debug(f"Response text: {response_text[:500]}...")
+                        
+                        try:
+                            return json.loads(response_text)
+                        except json.JSONDecodeError as e:
+                            logger.error(f"Failed to parse JSON response: {response_text}")
+                            raise ValueError(f"Invalid JSON response from Ollama: {str(e)}")
                     
-                    if response.status == 405:
-                        logger.error(f"Method not allowed for {url}. Available methods might be different.")
-                        raise requests.exceptions.HTTPError(f"405 Client Error: Method Not Allowed for url: {url}")
-                    
-                    response.raise_for_status()
-                    return await response.json()
-                    
-        except aiohttp.ClientError as e:
-            logger.error(f"HTTP Client Error calling Ollama: {str(e)}")
-            raise
+                except aiohttp.ClientConnectorError as e:
+                    logger.error(f"Connection error: {str(e)}")
+                    raise ConnectionError(f"Could not connect to Ollama at {url}. Please ensure Ollama is running and accessible.")
+                except asyncio.TimeoutError:
+                    logger.error(f"Request timeout after {self.timeout} seconds")
+                    raise TimeoutError(f"Request to Ollama timed out after {self.timeout} seconds")
+                
         except Exception as e:
-            logger.error(f"Error calling Ollama: {str(e)}")
-            raise
+            logger.error(f"Error calling Ollama async: {str(e)}")
+            raise RuntimeError(f"Failed to communicate with Ollama: {str(e)}")
 
-    async def _make_request(self, endpoint: str, payload: dict) -> dict:
-        """Fallback sync request method"""
+    def _make_request_sync_wrapper(self, endpoint: str, payload: dict) -> dict:
+        """Synchronous wrapper for use with run_in_executor"""
         try:
             url = f"{self.base_url}{endpoint}"
             logger.debug(f"Making sync request to: {url}")
+            logger.debug(f"Payload: {json.dumps(payload, indent=2)}")
             
             response = requests.post(
                 url,
                 json=payload,
+                headers={
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 timeout=self.timeout
             )
             
             logger.debug(f"Response status: {response.status_code}")
-            logger.debug(f"Response: {response.text[:500]}...")
+            logger.debug(f"Response text: {response.text[:500]}...")
+            
+            if response.status_code == 404:
+                # Check if it's really a 404 or a model not found issue
+                if "model" in response.text.lower() and "not found" in response.text.lower():
+                    raise ValueError(f"Model '{payload.get('model')}' not found. Please pull the model first.")
+                else:
+                    raise ValueError(f"Ollama endpoint not found at {url}. Is Ollama running and accessible?")
             
             response.raise_for_status()
-            return response.json()
             
+            try:
+                return response.json()
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to parse JSON response: {response.text}")
+                raise ValueError(f"Invalid JSON response from Ollama: {str(e)}")
+            
+        except requests.exceptions.ConnectionError as e:
+            logger.error(f"Connection error: {str(e)}")
+            raise ConnectionError(f"Could not connect to Ollama at {url}. Please ensure Ollama is running and accessible.")
+        except requests.exceptions.Timeout:
+            logger.error(f"Request timeout after {self.timeout} seconds")
+            raise TimeoutError(f"Request to Ollama timed out after {self.timeout} seconds")
         except Exception as e:
-            logger.error(f"Error calling Ollama: {str(e)}")
-            raise
+            logger.error(f"Error calling Ollama sync: {str(e)}")
+            raise RuntimeError(f"Failed to communicate with Ollama: {str(e)}")
 
     async def check_ollama_status(self) -> Dict[str, Any]:
         """Check if Ollama is running and accessible"""
@@ -105,12 +155,15 @@ class OllamaService:
         template: Optional[str] = None,
         context: Optional[list] = None
     ) -> Dict[str, Any]:
+        """Generate text using Ollama with proper payload structure"""
         payload = {
             "model": model or self.default_model,
             "prompt": prompt,
             "stream": False,
             "options": options or {},
         }
+        
+        # Add optional parameters only if they exist
         if system: 
             payload["system"] = system
         if template: 
@@ -118,11 +171,27 @@ class OllamaService:
         if context: 
             payload["context"] = context
         
+        # First check if the model is available
+        if not await self.check_model_availability(payload["model"]):
+            logger.warning(f"Model {payload['model']} not available, attempting to pull...")
+            success = await self.pull_model(payload["model"])
+            if not success:
+                raise ValueError(f"Model {payload['model']} is not available and could not be pulled")
+        
+        # Try async first, then fallback to sync
         try:
+            logger.info(f"Attempting async generate request with model: {payload['model']}")
             return await self._make_request_async("/api/generate", payload)
         except Exception as e:
-            logger.warning(f"Async request failed, trying sync: {str(e)}")
-            return await self._make_request("/api/generate", payload)
+            logger.warning(f"Async generate request failed: {str(e)}")
+            logger.info("Falling back to sync request")
+            try:
+                return await asyncio.get_event_loop().run_in_executor(
+                    None, lambda: self._make_request_sync_wrapper("/api/generate", payload)
+                )
+            except Exception as sync_e:
+                logger.error(f"Both async and sync generate requests failed. Async: {str(e)}, Sync: {str(sync_e)}")
+                raise RuntimeError(f"All generate request methods failed. Last error: {str(sync_e)}")
 
     async def chat(
         self,
@@ -130,6 +199,7 @@ class OllamaService:
         model: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
+        """Chat with Ollama using proper message format"""
         payload = {
             "model": model or self.default_model,
             "messages": messages,
@@ -137,33 +207,61 @@ class OllamaService:
             "options": options or {},
         }
         
+        # First check if the model is available
+        if not await self.check_model_availability(payload["model"]):
+            logger.warning(f"Model {payload['model']} not available, attempting to pull...")
+            success = await self.pull_model(payload["model"])
+            if not success:
+                raise ValueError(f"Model {payload['model']} is not available and could not be pulled")
+        
+        # Try async first, then fallback to sync
         try:
+            logger.info(f"Attempting async chat request with model: {payload['model']}")
             return await self._make_request_async("/api/chat", payload)
         except Exception as e:
-            logger.warning(f"Async request failed, trying sync: {str(e)}")
-            return await self._make_request("/api/chat", payload)
+            logger.warning(f"Async chat request failed: {str(e)}")
+            logger.info("Falling back to sync request")
+            try:
+                return await asyncio.get_event_loop().run_in_executor(
+                    None, lambda: self._make_request_sync_wrapper("/api/chat", payload)
+                )
+            except Exception as sync_e:
+                logger.error(f"Both async and sync chat requests failed. Async: {str(e)}, Sync: {str(sync_e)}")
+                raise RuntimeError(f"All chat request methods failed. Last error: {str(sync_e)}")
 
     async def list_models(self) -> list:
-        """List available models"""
+        """List available models with improved error handling"""
         try:
             # Try async first
             try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(
-                        f"{self.base_url}/api/tags",
-                        timeout=aiohttp.ClientTimeout(total=self.timeout)
-                    ) as response:
-                        response.raise_for_status()
+                url = f"{self.base_url}/api/tags"
+                timeout = aiohttp.ClientTimeout(total=10)  # Shorter timeout for listing
+                
+                async with aiohttp.ClientSession(timeout=timeout) as session:
+                    async with session.get(url) as response:
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.error(f"Failed to list models: HTTP {response.status}: {error_text}")
+                            raise ValueError(f"HTTP {response.status}: {error_text}")
+                        
                         result = await response.json()
-                        return result.get("models", [])
-            except:
+                        models = result.get("models", [])
+                        logger.info(f"Found {len(models)} models")
+                        return models
+                        
+            except Exception as async_error:
+                logger.warning(f"Async model listing failed: {str(async_error)}")
                 # Fallback to sync
                 response = requests.get(
                     f"{self.base_url}/api/tags",
-                    timeout=self.timeout
+                    timeout=10,
+                    headers={'Accept': 'application/json'}
                 )
                 response.raise_for_status()
-                return response.json().get("models", [])
+                result = response.json()
+                models = result.get("models", [])
+                logger.info(f"Found {len(models)} models (sync)")
+                return models
                 
         except Exception as e:
             logger.error(f"Error listing models: {str(e)}")
@@ -202,36 +300,40 @@ class OllamaService:
         return self._create_deterministic_embedding(text)
 
     async def _try_embeddings_endpoint(self, text: str, model: str) -> List[float]:
-        """Try the official embeddings endpoint"""
-        payload = {
-            "model": model,
-            "prompt": text  # Some versions use 'prompt' instead of 'input'
-        }
+        """Try the official embeddings endpoint with multiple payload formats"""
         
-        try:
-            # Try with 'prompt' first
-            result = await self._make_request_async("/api/embeddings", payload)
-        except:
-            # Try with 'input' 
-            payload["input"] = payload.pop("prompt")
-            try:
-                result = await self._make_request_async("/api/embeddings", payload)
-            except:
-                # Try the /api/embed endpoint
-                result = await self._make_request_async("/api/embed", payload)
+        # Try different payload formats
+        payload_formats = [
+            {"model": model, "prompt": text},
+            {"model": model, "input": text},  
+            {"name": model, "prompt": text},
+            {"name": model, "input": text}
+        ]
         
-        # Handle different response formats
-        if 'embeddings' in result:
-            embeddings = result['embeddings']
-            if embeddings and len(embeddings) > 0:
-                return embeddings[0] if isinstance(embeddings[0], list) else embeddings
-        elif 'embedding' in result:
-            return result['embedding']
-        elif 'data' in result:
-            # OpenAI-style response
-            return result['data'][0]['embedding']
+        endpoints = ["/api/embeddings", "/api/embed"]
         
-        raise ValueError("No embeddings found in response")
+        for endpoint in endpoints:
+            for payload in payload_formats:
+                try:
+                    logger.debug(f"Trying {endpoint} with payload format: {list(payload.keys())}")
+                    result = await self._make_request_async(endpoint, payload)
+                    
+                    # Handle different response formats
+                    if 'embeddings' in result:
+                        embeddings = result['embeddings']
+                        if embeddings and len(embeddings) > 0:
+                            return embeddings[0] if isinstance(embeddings[0], list) else embeddings
+                    elif 'embedding' in result:
+                        return result['embedding']
+                    elif 'data' in result:
+                        # OpenAI-style response
+                        return result['data'][0]['embedding']
+                    
+                except Exception as e:
+                    logger.debug(f"Failed {endpoint} with {list(payload.keys())}: {str(e)}")
+                    continue
+        
+        raise ValueError("No valid embeddings endpoint found")
 
     async def _create_embedding_via_generate(self, text: str, model: str) -> List[float]:
         """Create embedding using generate endpoint with special prompt"""
@@ -358,7 +460,8 @@ class OllamaService:
             available_models = [model.get('name', '') for model in models]
             is_available = model_name in available_models
             logger.info(f"Model {model_name} availability: {is_available}")
-            logger.info(f"Available models: {available_models}")
+            if not is_available:
+                logger.info(f"Available models: {available_models}")
             return is_available
         except Exception as e:
             logger.error(f"Error checking model availability: {str(e)}")
@@ -369,25 +472,35 @@ class OllamaService:
         try:
             payload = {"name": model_name}
             
+            logger.info(f"Attempting to pull model: {model_name}")
+            
             # Use longer timeout for model pulling
             try:
-                async with aiohttp.ClientSession() as session:
+                timeout = aiohttp.ClientTimeout(total=300)  # 5 minutes
+                async with aiohttp.ClientSession(timeout=timeout) as session:
                     async with session.post(
                         f"{self.base_url}/api/pull",
-                        json=payload,
-                        timeout=aiohttp.ClientTimeout(total=300)  # 5 minutes
+                        json=payload
                     ) as response:
-                        response.raise_for_status()
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.error(f"Failed to pull model: HTTP {response.status}: {error_text}")
+                            return False
+                        
                         logger.info(f"Successfully pulled model: {model_name}")
                         return True
-            except:
+            except Exception as async_error:
+                logger.warning(f"Async pull failed: {str(async_error)}")
                 # Fallback to sync
                 response = requests.post(
                     f"{self.base_url}/api/pull",
                     json=payload,
                     timeout=300
                 )
-                response.raise_for_status()
+                if response.status_code != 200:
+                    logger.error(f"Failed to pull model: HTTP {response.status_code}: {response.text}")
+                    return False
+                
                 logger.info(f"Successfully pulled model: {model_name}")
                 return True
                 

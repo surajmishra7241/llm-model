@@ -4800,3 +4800,451 @@ AttributeError: 'AsyncQdrantClient' object has no attribute 'recreate_collection
 2025-06-26 01:05:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
 2025-06-26 01:06:37 - app - INFO - Shutting down application...
 2025-06-26 01:06:37 - app.services.cache - INFO - Redis connection closed
+2025-06-27 00:01:17 - app - INFO - Logging configured successfully
+2025-06-27 00:01:17 - app - INFO - Starting application...
+2025-06-27 00:01:17 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 00:01:29 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-06-27 00:01:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-06-27 00:01:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-06-27 00:02:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-06-27 00:27:12 - app - INFO - Shutting down application...
+2025-06-27 00:27:12 - app.services.cache - INFO - Redis connection closed
+2025-06-27 00:27:15 - app - INFO - Logging configured successfully
+2025-06-27 00:27:15 - app - INFO - Starting application...
+2025-06-27 00:27:15 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 00:27:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-06-27 00:27:26 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-06-27 00:41:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-27 00:41:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-27 00:51:57 - app - INFO - Shutting down application...
+2025-06-27 00:51:57 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:00:09 - app - INFO - Logging configured successfully
+2025-06-27 01:11:51 - app - INFO - Logging configured successfully
+2025-06-27 01:11:51 - app - INFO - Starting application...
+2025-06-27 01:11:51 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:11:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-27 01:11:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-27 01:12:11 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-06-27 01:12:17 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 401
+2025-06-27 01:12:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-06-27 01:12:34 - app.services.voice_service - ERROR - Error in text-to-speech: 'NoneType' object is not subscriptable
+2025-06-27 01:12:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 500
+2025-06-27 01:12:48 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle
+2025-06-27 01:12:48 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle - Status: 401
+2025-06-27 01:12:52 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle
+2025-06-27 01:12:52 - app.routers.training - INFO - Listing jobs for user_id: nodejs_service, agent_id: The-Great-Backyard-Battle
+2025-06-27 01:12:52 - app.routers.training - INFO - Found 0 jobs for user: nodejs_service, agent: The-Great-Backyard-Battle
+2025-06-27 01:12:52 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle - Status: 200
+2025-06-27 01:13:01 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-06-27 01:13:01 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 550e8400-e29b-41d4-a716-446
+2025-06-27 01:13:01 - app.services.training_service - INFO - Created job 236bec65-c64d-41d1-a2b7-26d116454191 with 2 training items
+2025-06-27 01:13:01 - app.routers.training - INFO - Created enhanced job: 236bec65-c64d-41d1-a2b7-26d116454191 for user: nodejs_service, agent: 550e8400-e29b-41d4-a716-446
+2025-06-27 01:13:01 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-06-27 01:13:01 - app.services.training_service - INFO - Starting training pipeline for job 236bec65-c64d-41d1-a2b7-26d116454191
+2025-06-27 01:13:02 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data1.json: 404 Client Error: Not Found for url: https://example.com/data1.json
+2025-06-27 01:13:04 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data2.json: 404 Client Error: Not Found for url: https://example.com/data2.json
+2025-06-27 01:13:04 - app.services.training_service - INFO - Training completed for job 236bec65-c64d-41d1-a2b7-26d116454191 with 0 chunks
+2025-06-27 01:13:05 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle
+2025-06-27 01:13:05 - app.routers.training - INFO - Listing jobs for user_id: nodejs_service, agent_id: The-Great-Backyard-Battle
+2025-06-27 01:13:05 - app.routers.training - INFO - Found 0 jobs for user: nodejs_service, agent: The-Great-Backyard-Battle
+2025-06-27 01:13:05 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle - Status: 200
+2025-06-27 01:13:07 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle
+2025-06-27 01:13:07 - app.routers.training - INFO - Listing jobs for user_id: nodejs_service, agent_id: The-Great-Backyard-Battle
+2025-06-27 01:13:07 - app.routers.training - INFO - Found 0 jobs for user: nodejs_service, agent: The-Great-Backyard-Battle
+2025-06-27 01:13:07 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle - Status: 200
+2025-06-27 01:13:12 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-06-27 01:13:12 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 550e8400-e29b-41d4-a716-446
+2025-06-27 01:13:12 - app.services.training_service - INFO - Created job 67632b0a-f2a3-4acc-96e4-9bdc4c7978af with 2 training items
+2025-06-27 01:13:12 - app.routers.training - INFO - Created enhanced job: 67632b0a-f2a3-4acc-96e4-9bdc4c7978af for user: nodejs_service, agent: 550e8400-e29b-41d4-a716-446
+2025-06-27 01:13:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-06-27 01:13:12 - app.services.training_service - INFO - Starting training pipeline for job 67632b0a-f2a3-4acc-96e4-9bdc4c7978af
+2025-06-27 01:13:13 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data1.json: 404 Client Error: Not Found for url: https://example.com/data1.json
+2025-06-27 01:13:15 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data2.json: 404 Client Error: Not Found for url: https://example.com/data2.json
+2025-06-27 01:13:15 - app.services.training_service - INFO - Training completed for job 67632b0a-f2a3-4acc-96e4-9bdc4c7978af with 0 chunks
+2025-06-27 01:13:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-06-27 01:13:21 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 550e8400-e29b-41d4-a716-6
+2025-06-27 01:13:21 - app.services.training_service - INFO - Created job 7b5147c5-4502-423c-908a-154b1bb1ea9f with 2 training items
+2025-06-27 01:13:21 - app.routers.training - INFO - Created enhanced job: 7b5147c5-4502-423c-908a-154b1bb1ea9f for user: nodejs_service, agent: 550e8400-e29b-41d4-a716-6
+2025-06-27 01:13:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-06-27 01:13:21 - app.services.training_service - INFO - Starting training pipeline for job 7b5147c5-4502-423c-908a-154b1bb1ea9f
+2025-06-27 01:13:23 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data1.json: 404 Client Error: Not Found for url: https://example.com/data1.json
+2025-06-27 01:13:25 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data2.json: 404 Client Error: Not Found for url: https://example.com/data2.json
+2025-06-27 01:13:25 - app.services.training_service - INFO - Training completed for job 7b5147c5-4502-423c-908a-154b1bb1ea9f with 0 chunks
+2025-06-27 01:13:25 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle
+2025-06-27 01:13:25 - app.routers.training - INFO - Listing jobs for user_id: nodejs_service, agent_id: The-Great-Backyard-Battle
+2025-06-27 01:13:25 - app.routers.training - INFO - Found 0 jobs for user: nodejs_service, agent: The-Great-Backyard-Battle
+2025-06-27 01:13:25 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle - Status: 200
+2025-06-27 01:13:26 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle
+2025-06-27 01:13:26 - app.routers.training - INFO - Listing jobs for user_id: nodejs_service, agent_id: The-Great-Backyard-Battle
+2025-06-27 01:13:26 - app.routers.training - INFO - Found 0 jobs for user: nodejs_service, agent: The-Great-Backyard-Battle
+2025-06-27 01:13:26 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training?agent_id=The-Great-Backyard-Battle - Status: 200
+2025-06-27 01:13:35 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/debug/all-jobs
+2025-06-27 01:13:35 - app.routers.training - INFO - Debug: Getting all jobs for user: nodejs_service
+2025-06-27 01:13:35 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/debug/all-jobs - Status: 200
+2025-06-27 01:13:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-06-27 01:13:42 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:13:42 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:13:42 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:13:42 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:13:44 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:44 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Extracted text length: 2664
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Split text into 4 chunks with overlap
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Created 4 chunks
+2025-06-27 01:13:44 - app.services.rag_service - INFO - Generating embeddings...
+2025-06-27 01:13:45 - app.services.rag_service - INFO - Generated 4 embeddings
+2025-06-27 01:13:45 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:45 - app.utils.qdrant_async - INFO - Upserting 4 points in batches of 100
+2025-06-27 01:13:45 - app.utils.qdrant_async - INFO - Successfully upserted 4/4 points to documents
+2025-06-27 01:13:45 - app.services.rag_service - INFO - Successfully ingested document SurajMishraDevops.pdf with 4 chunks
+2025-06-27 01:13:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-06-27 01:13:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/query
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:13:48 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:48 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Processing query: Is this resume is job ready??
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:13:48 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Filtered 8 documents from 8
+2025-06-27 01:13:48 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:14:00 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/query - Status: 200
+2025-06-27 01:16:49 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/{agent_id}
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:16:51 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:16:51 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:16:51 - app.services.llm_service - ERROR - HTTP Client Error calling Ollama: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:16:51 - app.services.llm_service - WARNING - Async request failed, trying sync: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:16:51 - app.services.llm_service - ERROR - Error calling Ollama: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:16:51 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:16:51 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Processing query: your text
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:16:51 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:16:51 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:17:06 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/{agent_id} - Status: 200
+2025-06-27 01:18:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:18:04 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:18:04 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:18:04 - app.services.llm_service - ERROR - HTTP Client Error calling Ollama: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:18:04 - app.services.llm_service - WARNING - Async request failed, trying sync: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:18:04 - app.services.llm_service - ERROR - Error calling Ollama: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:18:04 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:18:04 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Processing query: your text
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:18:04 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:18:04 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:18:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:19:06 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:19:07 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:19:07 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:19:07 - app.services.llm_service - ERROR - HTTP Client Error calling Ollama: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:19:07 - app.services.llm_service - WARNING - Async request failed, trying sync: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:19:07 - app.services.llm_service - ERROR - Error calling Ollama: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:19:07 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:19:07 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:19:07 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:19:07 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:19:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:22:13 - app - INFO - Shutting down application...
+2025-06-27 01:22:13 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:22:58 - app - INFO - Logging configured successfully
+2025-06-27 01:22:58 - app - INFO - Starting application...
+2025-06-27 01:22:59 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:23:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:23:08 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:23:08 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:23:08 - app.services.llm_service - ERROR - HTTP Client Error calling Ollama: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:23:08 - app.services.llm_service - WARNING - Async request failed, trying sync: 404, message='Not Found', url='http://localhost:11434/api/generate'
+2025-06-27 01:23:08 - app.services.llm_service - ERROR - Error calling Ollama: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:23:08 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:23:08 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:23:08 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:23:08 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:23:09 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:23:09 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:23:09 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:23:09 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:23:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:29:18 - app - INFO - Shutting down application...
+2025-06-27 01:29:18 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:29:30 - app - INFO - Logging configured successfully
+2025-06-27 01:29:30 - app - INFO - Starting application...
+2025-06-27 01:29:30 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:30:59 - app - INFO - Shutting down application...
+2025-06-27 01:30:59 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:34:17 - app - INFO - Logging configured successfully
+2025-06-27 01:34:17 - app - INFO - Starting application...
+2025-06-27 01:34:17 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:34:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:34:25 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:34:25 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:34:25 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:34:25 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:34:26 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:34:26 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:34:26 - app.services.llm_service - ERROR - Error calling Ollama: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running?
+2025-06-27 01:34:26 - app.services.llm_service - WARNING - Async request failed, trying sync: Failed to communicate with Ollama: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running?. Please check if Ollama is installed and running.
+2025-06-27 01:34:26 - app.services.llm_service - ERROR - Error calling Ollama: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:34:26 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:34:26 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:34:26 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:34:26 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:34:46 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:35:49 - app - INFO - Shutting down application...
+2025-06-27 01:35:49 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:35:52 - app - INFO - Logging configured successfully
+2025-06-27 01:35:52 - app - INFO - Starting application...
+2025-06-27 01:35:52 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:35:54 - app - INFO - Shutting down application...
+2025-06-27 01:35:54 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:35:56 - app - INFO - Logging configured successfully
+2025-06-27 01:35:56 - app - INFO - Starting application...
+2025-06-27 01:35:56 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:37:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:37:52 - app.services.llm_service - ERROR - Error calling Ollama: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running?
+2025-06-27 01:37:52 - app.services.llm_service - WARNING - Async request failed, trying sync: Failed to communicate with Ollama: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running?. Please check if Ollama is installed and running.
+2025-06-27 01:37:52 - app.services.llm_service - ERROR - Error calling Ollama: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:37:52 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:37:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:37:52 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:38:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:40:54 - app - INFO - Shutting down application...
+2025-06-27 01:40:54 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:40:57 - app - INFO - Logging configured successfully
+2025-06-27 01:40:57 - app - INFO - Starting application...
+2025-06-27 01:40:57 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:41:00 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:41:05 - app.services.llm_service - INFO - Attempting async generate request with model: llama3
+2025-06-27 01:41:05 - app.services.llm_service - ERROR - Error calling Ollama async: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running and accessible?
+2025-06-27 01:41:05 - app.services.llm_service - WARNING - Async generate request failed: Failed to communicate with Ollama: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running and accessible?
+2025-06-27 01:41:05 - app.services.llm_service - INFO - Falling back to sync request
+2025-06-27 01:41:05 - app.services.llm_service - ERROR - Sync wrapper error: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:41:05 - app.services.llm_service - ERROR - Both async and sync generate requests failed. Async: Failed to communicate with Ollama: Ollama endpoint not found at http://localhost:11434/api/generate. Is Ollama running and accessible?, Sync: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:41:05 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: All generate request methods failed. Last error: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:41:05 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:41:05 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:41:05 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:41:10 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:41:23 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:44:45 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:44:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 404
+2025-06-27 01:45:31 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:45:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 401
+2025-06-27 01:45:45 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:45:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 422
+2025-06-27 01:48:38 - app - INFO - Shutting down application...
+2025-06-27 01:48:38 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:48:40 - app - INFO - Logging configured successfully
+2025-06-27 01:48:41 - app - INFO - Starting application...
+2025-06-27 01:48:41 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:48:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:48:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 422
+2025-06-27 01:50:45 - app - INFO - Shutting down application...
+2025-06-27 01:50:45 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:50:48 - app - INFO - Logging configured successfully
+2025-06-27 01:50:48 - app - INFO - Starting application...
+2025-06-27 01:50:48 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:51:03 - app - INFO - Shutting down application...
+2025-06-27 01:51:03 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:51:05 - app - INFO - Logging configured successfully
+2025-06-27 01:51:05 - app - INFO - Starting application...
+2025-06-27 01:51:05 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:51:58 - app - INFO - Shutting down application...
+2025-06-27 01:51:58 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:52:00 - app - INFO - Logging configured successfully
+2025-06-27 01:52:00 - app - INFO - Starting application...
+2025-06-27 01:52:00 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:52:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:52:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 422
+2025-06-27 01:52:04 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:52:04 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/voice/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 422
+2025-06-27 01:52:09 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:52:13 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:52:13 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:52:13 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:52:13 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:52:15 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:52:15 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Model llama3 availability: False
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Available models: ['deepseek-r1:1.5b']
+2025-06-27 01:52:15 - app.services.llm_service - WARNING - Model llama3 not available, attempting to pull...
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Attempting to pull model: llama3
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Successfully pulled model: llama3
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Attempting async generate request with model: llama3
+2025-06-27 01:52:15 - app.services.llm_service - ERROR - Error calling Ollama async: Model 'llama3' not found. Please pull the model first.
+2025-06-27 01:52:15 - app.services.llm_service - WARNING - Async generate request failed: Failed to communicate with Ollama: Model 'llama3' not found. Please pull the model first.
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Falling back to sync request
+2025-06-27 01:52:15 - app.services.llm_service - ERROR - Error calling Ollama sync: Model 'llama3' not found. Please pull the model first.
+2025-06-27 01:52:15 - app.services.llm_service - ERROR - Both async and sync generate requests failed. Async: Failed to communicate with Ollama: Model 'llama3' not found. Please pull the model first., Sync: Failed to communicate with Ollama: Model 'llama3' not found. Please pull the model first.
+2025-06-27 01:52:15 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: All generate request methods failed. Last error: Failed to communicate with Ollama: Model 'llama3' not found. Please pull the model first.
+2025-06-27 01:52:15 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:52:15 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:52:15 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:52:15 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:52:20 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:52:20 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:52:20 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:52:30 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:53:18 - app - INFO - Shutting down application...
+2025-06-27 01:53:18 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:53:22 - app - INFO - Logging configured successfully
+2025-06-27 01:53:22 - app - INFO - Starting application...
+2025-06-27 01:53:22 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:53:25 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:53:29 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:53:30 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:53:30 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:53:30 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:53:30 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:53:30 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:53:30 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:53:30 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:53:30 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:53:30 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:53:30 - app.services.llm_service - INFO - Attempting async generate request with model: deepseek-r1:1.5b
+2025-06-27 01:53:36 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-27 01:53:36 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:53:36 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:53:36 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:53:36 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:53:36 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:53:36 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:53:36 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:53:36 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:53:36 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:53:36 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:53:41 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:53:41 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:53:41 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:53:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:54:38 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/ollama
+2025-06-27 01:54:38 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/ollama - Status: 404
+2025-06-27 01:55:07 - app - INFO - Shutting down application...
+2025-06-27 01:55:07 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:55:56 - app - INFO - Logging configured successfully
+2025-06-27 01:55:56 - app - INFO - Starting application...
+2025-06-27 01:55:56 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:56:19 - app - INFO - Shutting down application...
+2025-06-27 01:56:19 - app.services.cache - INFO - Redis connection closed
+2025-06-27 01:56:21 - app - INFO - Logging configured successfully
+2025-06-27 01:56:21 - app - INFO - Starting application...
+2025-06-27 01:56:21 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-27 01:56:28 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/ollama
+2025-06-27 01:56:28 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:56:28 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/ollama - Status: 200
+2025-06-27 01:56:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-27 01:56:38 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-27 01:56:38 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-27 01:56:38 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-27 01:56:38 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:56:38 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:56:38 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:56:38 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:56:38 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:56:38 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:56:38 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:56:38 - app.services.llm_service - INFO - Attempting async generate request with model: deepseek-r1:1.5b
+2025-06-27 01:56:44 - app.services.agent_interaction_service - ERROR - Emotion analysis failed: Expecting value: line 1 column 1 (char 0)
+2025-06-27 01:56:44 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:56:44 - app.services.rag_service - INFO - Processing query: i have a fever
+2025-06-27 01:56:44 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-27 01:56:44 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-27 01:56:44 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:56:44 - app.services.rag_service - INFO - Filtered 2 documents from 2
+2025-06-27 01:56:44 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-27 01:56:44 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:56:44 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:56:44 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:56:47 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:56:47 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-27 01:56:47 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-27 01:56:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/interact/chat/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 200
+2025-06-27 01:57:14 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/models
+2025-06-27 01:57:14 - app.services.llm_service - INFO - Found 1 models
+2025-06-27 01:57:14 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/models - Status: 200
+2025-06-27 01:57:29 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/rag/documents
+2025-06-27 01:57:29 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-27 01:57:29 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:57:29 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:57:29 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-27 01:57:29 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-27 01:57:29 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/rag/documents - Status: 200
+2025-06-27 01:57:34 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-27 01:57:34 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-27 01:57:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-06-27 01:57:44 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 550e8400-e29b-41d4-a716-6
+2025-06-27 01:57:44 - app.services.training_service - INFO - Created job f8aa6efe-13b7-493e-bba4-4e4e60188ad3 with 2 training items
+2025-06-27 01:57:44 - app.routers.training - INFO - Created enhanced job: f8aa6efe-13b7-493e-bba4-4e4e60188ad3 for user: nodejs_service, agent: 550e8400-e29b-41d4-a716-6
+2025-06-27 01:57:44 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-06-27 01:57:44 - app.services.training_service - INFO - Starting training pipeline for job f8aa6efe-13b7-493e-bba4-4e4e60188ad3
+2025-06-27 01:57:45 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data1.json: 404 Client Error: Not Found for url: https://example.com/data1.json
+2025-06-27 01:57:47 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data2.json: 404 Client Error: Not Found for url: https://example.com/data2.json
+2025-06-27 01:57:47 - app.services.training_service - INFO - Training completed for job f8aa6efe-13b7-493e-bba4-4e4e60188ad3 with 0 chunks
+2025-06-27 01:57:52 - app - INFO - Shutting down application...
+2025-06-27 01:57:52 - app.services.cache - INFO - Redis connection closed

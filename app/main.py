@@ -1,13 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import agents, auth, chat, rag, training, voice
+from app.routers import agents, auth, chat, rag, training, voice, agent_interaction, health  # Add agent_interaction here
 from app.middleware.logging_middleware import LoggingMiddleware
 from app.middleware.metrics_middleware import metrics_middleware
 from app.utils.health_check import router as health_router
 from app.utils.logging import logger
 from app.services.cache import cache_service
 from contextlib import asynccontextmanager
+
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -41,6 +43,7 @@ def create_app() -> FastAPI:
     app.middleware("http")(metrics_middleware)
     
     # Routers
+    app.include_router(health.router, prefix="/api/v1")
     app.include_router(health_router)
     app.include_router(auth.router, prefix=settings.API_PREFIX)
     app.include_router(agents.router, prefix=settings.API_PREFIX)
@@ -48,6 +51,7 @@ def create_app() -> FastAPI:
     app.include_router(rag.router, prefix=settings.API_PREFIX)
     app.include_router(training.router, prefix=f"{settings.API_PREFIX}/training")
     app.include_router(voice.router, prefix=f"{settings.API_PREFIX}/voice")
+    app.include_router(agent_interaction.router, prefix=settings.API_PREFIX)
     
     @app.on_event("startup")
     async def startup():
