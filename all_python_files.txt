@@ -31,20 +31,84 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         expires_delta=timedelta(minutes=settings.JWT_ACCESS_TOKEN_EXPIRE_MINUTES)
     )
     return {"access_token": access_token, "token_type": "bearer"}
+===== ./app/routers/health.py =====
+# ./app/routers/health.py
+from fastapi import APIRouter, HTTPException
+from app.services.llm_service import OllamaService
+import logging
+
+router = APIRouter(prefix="/health", tags=["Health"])
+logger = logging.getLogger(__name__)
+
+@router.get("/ollama")
+async def check_ollama_health():
+    """Check Ollama service health and model availability"""
+    try:
+        service = OllamaService()
+        status = await service.check_ollama_status()
+        return status
+    except Exception as e:
+        logger.error(f"Health check failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/models")
+async def list_available_models():
+    """List all available models in Ollama"""
+    try:
+        service = OllamaService()
+        models = await service.list_models()
+        return {"models": models}
+    except Exception as e:
+        logger.error(f"Failed to list models: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/pull-model/{model_name}")
+async def pull_model(model_name: str):
+    """Pull a specific model"""
+    try:
+        service = OllamaService()
+        success = await service.pull_model(model_name)
+        if success:
+            return {"message": f"Model {model_name} pulled successfully"}
+        else:
+            raise HTTPException(status_code=500, detail=f"Failed to pull model {model_name}")
+    except Exception as e:
+        logger.error(f"Failed to pull model {model_name}: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 ===== ./app/routers/execute.py =====
-from fastapi import APIRouter, Depends
-from app.dependencies import get_current_user
-from app.services.agent_service import execute_agent
+# app/routers/execute.py
+from fastapi import APIRouter, Depends, HTTPException
+from app.dependencies import get_current_user, get_db
+from app.services.agent_execution_service import execute_agent
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/execute", tags=["Execution"])
 
 @router.post("/{agent_id}")
 async def execute_agent_endpoint(
     agent_id: str,
-    input_data: dict,
-    user: dict = Depends(get_current_user)
+    request_data: dict,
+    user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
-    return await execute_agent(agent_id, user["sub"], input_data)
+    try:
+        # Extract input and parameters from request_data
+        input_text = request_data.get("input", "")
+        parameters = request_data.get("parameters", {})
+        
+        # Create the input_data dict expected by execute_agent
+        input_data = {
+            "message": input_text,
+            "parameters": parameters
+        }
+        
+        result = await execute_agent(agent_id, user["sub"], input_data, db)
+        return result
+        
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Execution failed: {str(e)}")
 ===== ./app/routers/__init__.py =====
 # Empty file to make routers a package
 ===== ./app/routers/agents.py =====
@@ -760,12 +824,14 @@ async def get_training_job(
         )
 ===== ./app/routers/agent_interaction.py =====
 # ./app/routers/agent_interaction.py
-from fastapi import APIRouter, Depends, UploadFile, File, HTTPException
+from fastapi import APIRouter, Depends, UploadFile, File, HTTPException, Form
+from fastapi.responses import Response
 from app.services.agent_interaction_service import AgentInteractionService
 from app.dependencies import get_db, get_current_user
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 import logging
+import base64
 
 router = APIRouter(prefix="/interact", tags=["Agent Interaction"])
 logger = logging.getLogger(__name__)
@@ -805,9 +871,13 @@ async def voice_interaction(
     await service.initialize()
     
     try:
-        if not audio_file.content_type.startswith('audio/'):
+        # Validate audio file
+        if audio_file.content_type and not audio_file.content_type.startswith('audio/'):
             raise HTTPException(status_code=400, detail="File must be an audio file")
-            
+        
+        logger.info(f"Processing voice interaction for agent {agent_id}")
+        logger.info(f"Audio file: {audio_file.filename}, size: {audio_file.size if hasattr(audio_file, 'size') else 'unknown'}")
+        
         response = await service.process_input(
             agent_id=agent_id,
             user_id=user["sub"],
@@ -823,11 +893,42 @@ async def voice_interaction(
         
         return {
             "text": response["text_response"],
-            "audio": speech_response,
-            "emotion": response["emotional_state"]
+            "audio": base64.b64encode(speech_response).decode() if speech_response else None,
+            "emotion": response["emotional_state"],
+            "context_used": response.get("context_used", [])
         }
     except Exception as e:
         logger.error(f"Voice interaction failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/history/{agent_id}")
+async def get_conversation_history(
+    agent_id: str,
+    user: dict = Depends(get_current_user)
+):
+    """Get conversation history for a user with specific agent"""
+    service = AgentInteractionService()
+    
+    try:
+        history = await service.get_conversation_history(user["sub"])
+        return {"history": history}
+    except Exception as e:
+        logger.error(f"Failed to get conversation history: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.delete("/history/{agent_id}")
+async def clear_conversation_history(
+    agent_id: str,
+    user: dict = Depends(get_current_user)
+):
+    """Clear conversation history for a user with specific agent"""
+    service = AgentInteractionService()
+    
+    try:
+        await service.clear_memory(user["sub"])
+        return {"message": "Conversation history cleared"}
+    except Exception as e:
+        logger.error(f"Failed to clear conversation history: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 ===== ./app/middleware/logging_middleware.py =====
 from fastapi import Request, HTTPException
@@ -1190,9 +1291,9 @@ if "pytest" not in os.sys.modules and __name__ != "__main__":
         print(f"Warning: Configuration validation failed: {e}")
         # Don't raise in case this is being imported during setup
 ===== ./app/database.py =====
+# app/database.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy.pool import QueuePool
 from app.config import settings
 import logging
 
@@ -1205,9 +1306,8 @@ database_url = str(settings.DATABASE_URL).replace(
 )
 
 engine = create_async_engine(
-    database_url,  # Use the modified URL string
+    database_url,
     echo=settings.DEBUG,
-    poolclass=QueuePool,
     pool_size=20,
     max_overflow=10,
     pool_pre_ping=True,
@@ -1238,8 +1338,6 @@ async def get_db():
             logger.error(f"Database error: {str(e)}")
             await session.rollback()
             raise
-        finally:
-            await session.close()
 ===== ./app/__init__.py =====
 # Initialize application package
 from .config import settings
@@ -3473,13 +3571,15 @@ if __name__ == "__main__":
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import agents, auth, chat, rag, training, voice, agent_interaction  # Add agent_interaction here
+from app.routers import agents, auth, chat, rag, training, voice, agent_interaction, health, execute  # Add agent_interaction here
 from app.middleware.logging_middleware import LoggingMiddleware
 from app.middleware.metrics_middleware import metrics_middleware
 from app.utils.health_check import router as health_router
 from app.utils.logging import logger
 from app.services.cache import cache_service
 from contextlib import asynccontextmanager
+
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -3492,6 +3592,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 import uvicorn
 
+# In ./app/main.py, update the create_app() function:
 def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.APP_NAME,
@@ -3512,7 +3613,8 @@ def create_app() -> FastAPI:
     app.add_middleware(LoggingMiddleware)
     app.middleware("http")(metrics_middleware)
     
-    # Routers
+    # Routers - ADD THE EXECUTE ROUTER HERE
+    app.include_router(health.router, prefix="/api/v1")
     app.include_router(health_router)
     app.include_router(auth.router, prefix=settings.API_PREFIX)
     app.include_router(agents.router, prefix=settings.API_PREFIX)
@@ -3521,6 +3623,7 @@ def create_app() -> FastAPI:
     app.include_router(training.router, prefix=f"{settings.API_PREFIX}/training")
     app.include_router(voice.router, prefix=f"{settings.API_PREFIX}/voice")
     app.include_router(agent_interaction.router, prefix=settings.API_PREFIX)
+    app.include_router(execute.router, prefix=settings.API_PREFIX)  # Add this line
     
     @app.on_event("startup")
     async def startup():
@@ -3574,7 +3677,7 @@ class EmotionalAnalyzer:
         try:
             response = await self.ollama.generate(
                 prompt=prompt,
-                model="llama3",
+                model="deepseek-r1:1.5b",
                 options={"temperature": 0.2}
             )
             
@@ -4788,6 +4891,8 @@ from app.models.db_models import DBAgent
 from app.models.agent_model import AgentCreate, AgentUpdate
 from datetime import datetime
 from sqlalchemy import select, update, delete
+import httpx
+import json
 
 class AgentService:
     def __init__(self, db: AsyncSession):
@@ -4850,6 +4955,83 @@ class AgentService:
         )
         await self.db.commit()
         return result.rowcount > 0
+
+
+# Standalone execute_agent function
+async def execute_agent(agent_id: str, owner_id: str, input_data: dict):
+    """
+    Execute an agent with the given input data.
+    This function should be implemented based on your specific agent execution logic.
+    """
+    from app.database import get_async_session
+    
+    # Get database session
+    async with get_async_session() as db:
+        agent_service = AgentService(db)
+        
+        # Get the agent
+        agent = await agent_service.get_agent(agent_id, owner_id)
+        if not agent:
+            raise ValueError(f"Agent {agent_id} not found")
+        
+        # Extract message and parameters
+        message = input_data.get("message", "")
+        parameters = input_data.get("parameters", {})
+        
+        # Here you would implement your agent execution logic
+        # This is a placeholder implementation
+        try:
+            # Example: Call to Ollama or your AI service
+            response = await call_ai_service(
+                model=agent.model,
+                system_prompt=agent.system_prompt,
+                message=message,
+                parameters=parameters
+            )
+            
+            return {
+                "status": "success",
+                "response": response,
+                "agent_id": agent_id,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "status": "error",
+                "error": str(e),
+                "agent_id": agent_id,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+
+
+async def call_ai_service(model: str, system_prompt: str, message: str, parameters: dict):
+    """
+    Call your AI service (e.g., Ollama) to execute the agent.
+    Replace this with your actual AI service integration.
+    """
+    # Example implementation for Ollama
+    try:
+        async with httpx.AsyncClient() as client:
+            payload = {
+                "model": model,
+                "prompt": f"{system_prompt}\n\nUser: {message}",
+                "stream": False,
+                **parameters
+            }
+            
+            response = await client.post(
+                "http://localhost:11434/api/generate",  # Adjust URL as needed
+                json=payload,
+                timeout=30.0
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            return result.get("response", "No response generated")
+            
+    except Exception as e:
+        raise Exception(f"AI service call failed: {str(e)}")
 ===== ./app/services/cache.py =====
 from redis.asyncio import Redis
 from app.config import settings
@@ -4996,6 +5178,7 @@ import asyncio
 import aiohttp
 import hashlib
 import numpy as np
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -5008,57 +5191,106 @@ class OllamaService:
         self.embedding_model = getattr(settings, 'EMBEDDING_MODEL', 'deepseek-r1:1.5b')
 
     async def _make_request_async(self, endpoint: str, payload: dict) -> dict:
-        """Make async HTTP request to Ollama"""
+        """Make async request to Ollama with proper error handling"""
         try:
             url = f"{self.base_url}{endpoint}"
-            logger.debug(f"Making request to: {url}")
-            logger.debug(f"Payload: {payload}")
+            logger.debug(f"Making async request to: {url}")
+            logger.debug(f"Payload: {json.dumps(payload, indent=2)}")
+        
+            timeout = aiohttp.ClientTimeout(total=self.timeout)
             
-            async with aiohttp.ClientSession() as session:
-                async with session.post(
-                    url,
-                    json=payload,
-                    timeout=aiohttp.ClientTimeout(total=self.timeout)
-                ) as response:
-                    response_text = await response.text()
-                    logger.debug(f"Response status: {response.status}")
-                    logger.debug(f"Response: {response_text[:500]}...")
+            async with aiohttp.ClientSession(
+                timeout=timeout,
+                connector=aiohttp.TCPConnector(limit=10)
+            ) as session:
+                try:
+                    async with session.post(
+                        url,
+                        json=payload,
+                        headers={
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    ) as response:
+                        logger.debug(f"Response status: {response.status}")
+                        
+                        if response.status == 404:
+                            # Check if it's really a 404 or a model not found issue
+                            error_text = await response.text()
+                            if "model" in error_text.lower() and "not found" in error_text.lower():
+                                raise ValueError(f"Model '{payload.get('model')}' not found. Please pull the model first.")
+                            else:
+                                raise ValueError(f"Ollama endpoint not found at {url}. Is Ollama running and accessible?")
+                        
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.error(f"HTTP {response.status}: {error_text}")
+                            raise ValueError(f"HTTP {response.status}: {error_text}")
+                        
+                        response_text = await response.text()
+                        logger.debug(f"Response text: {response_text[:500]}...")
+                        
+                        try:
+                            return json.loads(response_text)
+                        except json.JSONDecodeError as e:
+                            logger.error(f"Failed to parse JSON response: {response_text}")
+                            raise ValueError(f"Invalid JSON response from Ollama: {str(e)}")
                     
-                    if response.status == 405:
-                        logger.error(f"Method not allowed for {url}. Available methods might be different.")
-                        raise requests.exceptions.HTTPError(f"405 Client Error: Method Not Allowed for url: {url}")
-                    
-                    response.raise_for_status()
-                    return await response.json()
-                    
-        except aiohttp.ClientError as e:
-            logger.error(f"HTTP Client Error calling Ollama: {str(e)}")
-            raise
+                except aiohttp.ClientConnectorError as e:
+                    logger.error(f"Connection error: {str(e)}")
+                    raise ConnectionError(f"Could not connect to Ollama at {url}. Please ensure Ollama is running and accessible.")
+                except asyncio.TimeoutError:
+                    logger.error(f"Request timeout after {self.timeout} seconds")
+                    raise TimeoutError(f"Request to Ollama timed out after {self.timeout} seconds")
+                
         except Exception as e:
-            logger.error(f"Error calling Ollama: {str(e)}")
-            raise
+            logger.error(f"Error calling Ollama async: {str(e)}")
+            raise RuntimeError(f"Failed to communicate with Ollama: {str(e)}")
 
-    async def _make_request(self, endpoint: str, payload: dict) -> dict:
-        """Fallback sync request method"""
+    def _make_request_sync_wrapper(self, endpoint: str, payload: dict) -> dict:
+        """Synchronous wrapper for use with run_in_executor"""
         try:
             url = f"{self.base_url}{endpoint}"
             logger.debug(f"Making sync request to: {url}")
+            logger.debug(f"Payload: {json.dumps(payload, indent=2)}")
             
             response = requests.post(
                 url,
                 json=payload,
+                headers={
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 timeout=self.timeout
             )
             
             logger.debug(f"Response status: {response.status_code}")
-            logger.debug(f"Response: {response.text[:500]}...")
+            logger.debug(f"Response text: {response.text[:500]}...")
+            
+            if response.status_code == 404:
+                # Check if it's really a 404 or a model not found issue
+                if "model" in response.text.lower() and "not found" in response.text.lower():
+                    raise ValueError(f"Model '{payload.get('model')}' not found. Please pull the model first.")
+                else:
+                    raise ValueError(f"Ollama endpoint not found at {url}. Is Ollama running and accessible?")
             
             response.raise_for_status()
-            return response.json()
             
+            try:
+                return response.json()
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to parse JSON response: {response.text}")
+                raise ValueError(f"Invalid JSON response from Ollama: {str(e)}")
+            
+        except requests.exceptions.ConnectionError as e:
+            logger.error(f"Connection error: {str(e)}")
+            raise ConnectionError(f"Could not connect to Ollama at {url}. Please ensure Ollama is running and accessible.")
+        except requests.exceptions.Timeout:
+            logger.error(f"Request timeout after {self.timeout} seconds")
+            raise TimeoutError(f"Request to Ollama timed out after {self.timeout} seconds")
         except Exception as e:
-            logger.error(f"Error calling Ollama: {str(e)}")
-            raise
+            logger.error(f"Error calling Ollama sync: {str(e)}")
+            raise RuntimeError(f"Failed to communicate with Ollama: {str(e)}")
 
     async def check_ollama_status(self) -> Dict[str, Any]:
         """Check if Ollama is running and accessible"""
@@ -5094,12 +5326,15 @@ class OllamaService:
         template: Optional[str] = None,
         context: Optional[list] = None
     ) -> Dict[str, Any]:
+        """Generate text using Ollama with proper payload structure"""
         payload = {
             "model": model or self.default_model,
             "prompt": prompt,
             "stream": False,
             "options": options or {},
         }
+        
+        # Add optional parameters only if they exist
         if system: 
             payload["system"] = system
         if template: 
@@ -5107,11 +5342,27 @@ class OllamaService:
         if context: 
             payload["context"] = context
         
+        # First check if the model is available
+        if not await self.check_model_availability(payload["model"]):
+            logger.warning(f"Model {payload['model']} not available, attempting to pull...")
+            success = await self.pull_model(payload["model"])
+            if not success:
+                raise ValueError(f"Model {payload['model']} is not available and could not be pulled")
+        
+        # Try async first, then fallback to sync
         try:
+            logger.info(f"Attempting async generate request with model: {payload['model']}")
             return await self._make_request_async("/api/generate", payload)
         except Exception as e:
-            logger.warning(f"Async request failed, trying sync: {str(e)}")
-            return await self._make_request("/api/generate", payload)
+            logger.warning(f"Async generate request failed: {str(e)}")
+            logger.info("Falling back to sync request")
+            try:
+                return await asyncio.get_event_loop().run_in_executor(
+                    None, lambda: self._make_request_sync_wrapper("/api/generate", payload)
+                )
+            except Exception as sync_e:
+                logger.error(f"Both async and sync generate requests failed. Async: {str(e)}, Sync: {str(sync_e)}")
+                raise RuntimeError(f"All generate request methods failed. Last error: {str(sync_e)}")
 
     async def chat(
         self,
@@ -5119,6 +5370,7 @@ class OllamaService:
         model: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None
     ) -> Dict[str, Any]:
+        """Chat with Ollama using proper message format"""
         payload = {
             "model": model or self.default_model,
             "messages": messages,
@@ -5126,33 +5378,61 @@ class OllamaService:
             "options": options or {},
         }
         
+        # First check if the model is available
+        if not await self.check_model_availability(payload["model"]):
+            logger.warning(f"Model {payload['model']} not available, attempting to pull...")
+            success = await self.pull_model(payload["model"])
+            if not success:
+                raise ValueError(f"Model {payload['model']} is not available and could not be pulled")
+        
+        # Try async first, then fallback to sync
         try:
+            logger.info(f"Attempting async chat request with model: {payload['model']}")
             return await self._make_request_async("/api/chat", payload)
         except Exception as e:
-            logger.warning(f"Async request failed, trying sync: {str(e)}")
-            return await self._make_request("/api/chat", payload)
+            logger.warning(f"Async chat request failed: {str(e)}")
+            logger.info("Falling back to sync request")
+            try:
+                return await asyncio.get_event_loop().run_in_executor(
+                    None, lambda: self._make_request_sync_wrapper("/api/chat", payload)
+                )
+            except Exception as sync_e:
+                logger.error(f"Both async and sync chat requests failed. Async: {str(e)}, Sync: {str(sync_e)}")
+                raise RuntimeError(f"All chat request methods failed. Last error: {str(sync_e)}")
 
     async def list_models(self) -> list:
-        """List available models"""
+        """List available models with improved error handling"""
         try:
             # Try async first
             try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(
-                        f"{self.base_url}/api/tags",
-                        timeout=aiohttp.ClientTimeout(total=self.timeout)
-                    ) as response:
-                        response.raise_for_status()
+                url = f"{self.base_url}/api/tags"
+                timeout = aiohttp.ClientTimeout(total=10)  # Shorter timeout for listing
+                
+                async with aiohttp.ClientSession(timeout=timeout) as session:
+                    async with session.get(url) as response:
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.error(f"Failed to list models: HTTP {response.status}: {error_text}")
+                            raise ValueError(f"HTTP {response.status}: {error_text}")
+                        
                         result = await response.json()
-                        return result.get("models", [])
-            except:
+                        models = result.get("models", [])
+                        logger.info(f"Found {len(models)} models")
+                        return models
+                        
+            except Exception as async_error:
+                logger.warning(f"Async model listing failed: {str(async_error)}")
                 # Fallback to sync
                 response = requests.get(
                     f"{self.base_url}/api/tags",
-                    timeout=self.timeout
+                    timeout=10,
+                    headers={'Accept': 'application/json'}
                 )
                 response.raise_for_status()
-                return response.json().get("models", [])
+                result = response.json()
+                models = result.get("models", [])
+                logger.info(f"Found {len(models)} models (sync)")
+                return models
                 
         except Exception as e:
             logger.error(f"Error listing models: {str(e)}")
@@ -5191,36 +5471,40 @@ class OllamaService:
         return self._create_deterministic_embedding(text)
 
     async def _try_embeddings_endpoint(self, text: str, model: str) -> List[float]:
-        """Try the official embeddings endpoint"""
-        payload = {
-            "model": model,
-            "prompt": text  # Some versions use 'prompt' instead of 'input'
-        }
+        """Try the official embeddings endpoint with multiple payload formats"""
         
-        try:
-            # Try with 'prompt' first
-            result = await self._make_request_async("/api/embeddings", payload)
-        except:
-            # Try with 'input' 
-            payload["input"] = payload.pop("prompt")
-            try:
-                result = await self._make_request_async("/api/embeddings", payload)
-            except:
-                # Try the /api/embed endpoint
-                result = await self._make_request_async("/api/embed", payload)
+        # Try different payload formats
+        payload_formats = [
+            {"model": model, "prompt": text},
+            {"model": model, "input": text},  
+            {"name": model, "prompt": text},
+            {"name": model, "input": text}
+        ]
         
-        # Handle different response formats
-        if 'embeddings' in result:
-            embeddings = result['embeddings']
-            if embeddings and len(embeddings) > 0:
-                return embeddings[0] if isinstance(embeddings[0], list) else embeddings
-        elif 'embedding' in result:
-            return result['embedding']
-        elif 'data' in result:
-            # OpenAI-style response
-            return result['data'][0]['embedding']
+        endpoints = ["/api/embeddings", "/api/embed"]
         
-        raise ValueError("No embeddings found in response")
+        for endpoint in endpoints:
+            for payload in payload_formats:
+                try:
+                    logger.debug(f"Trying {endpoint} with payload format: {list(payload.keys())}")
+                    result = await self._make_request_async(endpoint, payload)
+                    
+                    # Handle different response formats
+                    if 'embeddings' in result:
+                        embeddings = result['embeddings']
+                        if embeddings and len(embeddings) > 0:
+                            return embeddings[0] if isinstance(embeddings[0], list) else embeddings
+                    elif 'embedding' in result:
+                        return result['embedding']
+                    elif 'data' in result:
+                        # OpenAI-style response
+                        return result['data'][0]['embedding']
+                    
+                except Exception as e:
+                    logger.debug(f"Failed {endpoint} with {list(payload.keys())}: {str(e)}")
+                    continue
+        
+        raise ValueError("No valid embeddings endpoint found")
 
     async def _create_embedding_via_generate(self, text: str, model: str) -> List[float]:
         """Create embedding using generate endpoint with special prompt"""
@@ -5347,7 +5631,8 @@ class OllamaService:
             available_models = [model.get('name', '') for model in models]
             is_available = model_name in available_models
             logger.info(f"Model {model_name} availability: {is_available}")
-            logger.info(f"Available models: {available_models}")
+            if not is_available:
+                logger.info(f"Available models: {available_models}")
             return is_available
         except Exception as e:
             logger.error(f"Error checking model availability: {str(e)}")
@@ -5358,25 +5643,35 @@ class OllamaService:
         try:
             payload = {"name": model_name}
             
+            logger.info(f"Attempting to pull model: {model_name}")
+            
             # Use longer timeout for model pulling
             try:
-                async with aiohttp.ClientSession() as session:
+                timeout = aiohttp.ClientTimeout(total=300)  # 5 minutes
+                async with aiohttp.ClientSession(timeout=timeout) as session:
                     async with session.post(
                         f"{self.base_url}/api/pull",
-                        json=payload,
-                        timeout=aiohttp.ClientTimeout(total=300)  # 5 minutes
+                        json=payload
                     ) as response:
-                        response.raise_for_status()
+                        if response.status != 200:
+                            error_text = await response.text()
+                            logger.error(f"Failed to pull model: HTTP {response.status}: {error_text}")
+                            return False
+                        
                         logger.info(f"Successfully pulled model: {model_name}")
                         return True
-            except:
+            except Exception as async_error:
+                logger.warning(f"Async pull failed: {str(async_error)}")
                 # Fallback to sync
                 response = requests.post(
                     f"{self.base_url}/api/pull",
                     json=payload,
                     timeout=300
                 )
-                response.raise_for_status()
+                if response.status_code != 200:
+                    logger.error(f"Failed to pull model: HTTP {response.status_code}: {response.text}")
+                    return False
+                
                 logger.info(f"Successfully pulled model: {model_name}")
                 return True
                 
@@ -5413,6 +5708,101 @@ class OllamaService:
         except Exception as e:
             logger.error(f"Error ensuring embedding model: {str(e)}")
             return False
+===== ./app/services/agent_execution_service.py =====
+# app/services/agent_execution_service.py
+from datetime import datetime
+import httpx
+from app.services.agent_service import AgentService
+from sqlalchemy.ext.asyncio import AsyncSession
+import logging
+
+logger = logging.getLogger(__name__)
+
+async def call_ai_service(
+    model: str,
+    system_prompt: str,
+    message: str,
+    parameters: dict
+):
+    """Call your AI service (e.g., Ollama) to execute the agent"""
+    try:
+        async with httpx.AsyncClient() as client:
+            payload = {
+                "model": model,
+                "prompt": f"{system_prompt}\n\nUser: {message}",
+                "stream": False,
+                **parameters
+            }
+            
+            response = await client.post(
+                "http://localhost:11434/api/generate",  # Ollama endpoint
+                json=payload,
+                timeout=30.0
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            return result.get("response", "No response generated")
+            
+    except httpx.HTTPStatusError as e:
+        logger.error(f"HTTP error calling AI service: {str(e)}")
+        raise Exception(f"AI service returned HTTP error: {str(e)}")
+    except httpx.RequestError as e:
+        logger.error(f"Request error calling AI service: {str(e)}")
+        raise Exception(f"Failed to connect to AI service: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error calling AI service: {str(e)}")
+        raise Exception(f"AI service call failed: {str(e)}")
+
+async def execute_agent(
+    agent_id: str, 
+    owner_id: str, 
+    input_data: dict,
+    db: AsyncSession
+):
+    """
+    Execute an agent with the given input data.
+    """
+    agent_service = AgentService(db)
+    
+    try:
+        # Get the agent
+        agent = await agent_service.get_agent(agent_id, owner_id)
+        if not agent:
+            raise ValueError(f"Agent {agent_id} not found")
+        
+        # Extract message and parameters
+        message = input_data.get("message", "")
+        parameters = input_data.get("parameters", {})
+        
+        # Execute the agent
+        try:
+            response = await call_ai_service(
+                model=agent.model,
+                system_prompt=agent.system_prompt,
+                message=message,
+                parameters=parameters
+            )
+            
+            return {
+                "status": "success",
+                "response": response,
+                "agent_id": agent_id,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "status": "error",
+                "error": str(e),
+                "agent_id": agent_id,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+    except Exception as e:
+        await db.rollback()
+        raise
+    finally:
+        await db.close()
 ===== ./app/services/voice_service.py =====
 import logging
 from typing import Optional, Tuple

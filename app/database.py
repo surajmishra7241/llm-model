@@ -1,6 +1,6 @@
+# app/database.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy.pool import QueuePool
 from app.config import settings
 import logging
 
@@ -13,9 +13,8 @@ database_url = str(settings.DATABASE_URL).replace(
 )
 
 engine = create_async_engine(
-    database_url,  # Use the modified URL string
+    database_url,
     echo=settings.DEBUG,
-    poolclass=QueuePool,
     pool_size=20,
     max_overflow=10,
     pool_pre_ping=True,
@@ -46,5 +45,3 @@ async def get_db():
             logger.error(f"Database error: {str(e)}")
             await session.rollback()
             raise
-        finally:
-            await session.close()

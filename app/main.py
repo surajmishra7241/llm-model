@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import agents, auth, chat, rag, training, voice, agent_interaction, health  # Add agent_interaction here
+from app.routers import agents, auth, chat, rag, training, voice, agent_interaction, health, execute  # Add agent_interaction here
 from app.middleware.logging_middleware import LoggingMiddleware
 from app.middleware.metrics_middleware import metrics_middleware
 from app.utils.health_check import router as health_router
@@ -22,6 +22,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 import uvicorn
 
+# In ./app/main.py, update the create_app() function:
 def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.APP_NAME,
@@ -42,7 +43,7 @@ def create_app() -> FastAPI:
     app.add_middleware(LoggingMiddleware)
     app.middleware("http")(metrics_middleware)
     
-    # Routers
+    # Routers - ADD THE EXECUTE ROUTER HERE
     app.include_router(health.router, prefix="/api/v1")
     app.include_router(health_router)
     app.include_router(auth.router, prefix=settings.API_PREFIX)
@@ -52,6 +53,7 @@ def create_app() -> FastAPI:
     app.include_router(training.router, prefix=f"{settings.API_PREFIX}/training")
     app.include_router(voice.router, prefix=f"{settings.API_PREFIX}/voice")
     app.include_router(agent_interaction.router, prefix=settings.API_PREFIX)
+    app.include_router(execute.router, prefix=settings.API_PREFIX)  # Add this line
     
     @app.on_event("startup")
     async def startup():

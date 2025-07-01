@@ -4,6 +4,8 @@ from app.models.db_models import DBAgent
 from app.models.agent_model import AgentCreate, AgentUpdate
 from datetime import datetime
 from sqlalchemy import select, update, delete
+import httpx
+import json
 
 class AgentService:
     def __init__(self, db: AsyncSession):
@@ -66,3 +68,80 @@ class AgentService:
         )
         await self.db.commit()
         return result.rowcount > 0
+
+
+# Standalone execute_agent function
+async def execute_agent(agent_id: str, owner_id: str, input_data: dict):
+    """
+    Execute an agent with the given input data.
+    This function should be implemented based on your specific agent execution logic.
+    """
+    from app.database import get_async_session
+    
+    # Get database session
+    async with get_async_session() as db:
+        agent_service = AgentService(db)
+        
+        # Get the agent
+        agent = await agent_service.get_agent(agent_id, owner_id)
+        if not agent:
+            raise ValueError(f"Agent {agent_id} not found")
+        
+        # Extract message and parameters
+        message = input_data.get("message", "")
+        parameters = input_data.get("parameters", {})
+        
+        # Here you would implement your agent execution logic
+        # This is a placeholder implementation
+        try:
+            # Example: Call to Ollama or your AI service
+            response = await call_ai_service(
+                model=agent.model,
+                system_prompt=agent.system_prompt,
+                message=message,
+                parameters=parameters
+            )
+            
+            return {
+                "status": "success",
+                "response": response,
+                "agent_id": agent_id,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            
+        except Exception as e:
+            return {
+                "status": "error",
+                "error": str(e),
+                "agent_id": agent_id,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+
+
+async def call_ai_service(model: str, system_prompt: str, message: str, parameters: dict):
+    """
+    Call your AI service (e.g., Ollama) to execute the agent.
+    Replace this with your actual AI service integration.
+    """
+    # Example implementation for Ollama
+    try:
+        async with httpx.AsyncClient() as client:
+            payload = {
+                "model": model,
+                "prompt": f"{system_prompt}\n\nUser: {message}",
+                "stream": False,
+                **parameters
+            }
+            
+            response = await client.post(
+                "http://localhost:11434/api/generate",  # Adjust URL as needed
+                json=payload,
+                timeout=30.0
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            return result.get("response", "No response generated")
+            
+    except Exception as e:
+        raise Exception(f"AI service call failed: {str(e)}")

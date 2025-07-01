@@ -5248,3 +5248,1121 @@ AttributeError: 'AsyncQdrantClient' object has no attribute 'recreate_collection
 2025-06-27 01:57:47 - app.services.training_service - INFO - Training completed for job f8aa6efe-13b7-493e-bba4-4e4e60188ad3 with 0 chunks
 2025-06-27 01:57:52 - app - INFO - Shutting down application...
 2025-06-27 01:57:52 - app.services.cache - INFO - Redis connection closed
+2025-06-28 14:44:33 - app - INFO - Logging configured successfully
+2025-06-28 14:44:33 - app - INFO - Starting application...
+2025-06-28 14:44:33 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 15:07:06 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/auth/register
+2025-06-28 15:07:06 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/auth/register - Status: 404
+2025-06-28 16:08:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:08:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 401
+2025-06-28 16:08:45 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:08:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 401
+2025-06-28 16:09:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:09:44 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 401
+2025-06-28 16:10:40 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:10:40 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:12:43 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:12:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-28 16:13:12 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/b4530154-1ece-4ab0-9a3e-f633720f6502
+2025-06-28 16:13:12 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/b4530154-1ece-4ab0-9a3e-f633720f6502 - Status: 401
+2025-06-28 16:13:26 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/b4530154-1ece-4ab0-9a3e-f633720f6502
+2025-06-28 16:13:26 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/b4530154-1ece-4ab0-9a3e-f633720f6502 - Status: 204
+2025-06-28 16:13:30 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/b4530154-1ece-4ab0-9a3e-f633720f6502
+2025-06-28 16:13:30 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/b4530154-1ece-4ab0-9a3e-f633720f6502 - Status: 404
+2025-06-28 16:13:39 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:13:39 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:14:07 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/cb2038aa-b53d-4a1e-9709-f42ee0873d17
+2025-06-28 16:14:07 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/cb2038aa-b53d-4a1e-9709-f42ee0873d17 - Status: 204
+2025-06-28 16:14:11 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:14:11 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:14:22 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/ef9e6692-f2ac-4ec5-b14f-6622ae75996b
+2025-06-28 16:14:22 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/ef9e6692-f2ac-4ec5-b14f-6622ae75996b - Status: 204
+2025-06-28 16:14:25 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:14:25 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:14:37 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/30268671-ffe8-47a0-a4a9-aae610c272f1
+2025-06-28 16:14:37 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/30268671-ffe8-47a0-a4a9-aae610c272f1 - Status: 204
+2025-06-28 16:14:41 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:14:41 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:14:56 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/085b6303-85e3-45a3-9984-5aaa40411a92
+2025-06-28 16:14:56 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/085b6303-85e3-45a3-9984-5aaa40411a92 - Status: 204
+2025-06-28 16:14:59 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:14:59 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:15:10 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/1ffa25aa-144b-41d2-884f-c1fda170d305
+2025-06-28 16:15:10 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/1ffa25aa-144b-41d2-884f-c1fda170d305 - Status: 204
+2025-06-28 16:15:14 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:15:14 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:15:28 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/b452650e-b1da-4c39-a779-796158fb8b0b
+2025-06-28 16:15:28 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/b452650e-b1da-4c39-a779-796158fb8b0b - Status: 204
+2025-06-28 16:15:29 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/b452650e-b1da-4c39-a779-796158fb8b0b
+2025-06-28 16:15:29 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/b452650e-b1da-4c39-a779-796158fb8b0b - Status: 404
+2025-06-28 16:15:33 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:15:33 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:15:43 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/32e1dbbb-ff6e-4e36-8fae-d962774afe3b
+2025-06-28 16:15:43 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/32e1dbbb-ff6e-4e36-8fae-d962774afe3b - Status: 204
+2025-06-28 16:15:46 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:15:46 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:16:02 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/df0948b4-7c28-457c-902e-fbc6da7e5726
+2025-06-28 16:16:02 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/df0948b4-7c28-457c-902e-fbc6da7e5726 - Status: 204
+2025-06-28 16:16:04 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:16:04 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:16:15 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/9ef9189c-886f-487c-8fef-d83a914143ed
+2025-06-28 16:16:15 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/9ef9189c-886f-487c-8fef-d83a914143ed - Status: 204
+2025-06-28 16:16:18 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:16:18 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:16:27 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/836729bb-e440-4d57-926d-69f97464886f
+2025-06-28 16:16:27 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/836729bb-e440-4d57-926d-69f97464886f - Status: 204
+2025-06-28 16:16:31 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:16:31 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:16:42 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/d027341a-b259-4245-a982-0a0d39c2b795
+2025-06-28 16:16:42 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/d027341a-b259-4245-a982-0a0d39c2b795 - Status: 204
+2025-06-28 16:16:46 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:16:46 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:16:57 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/fb72a97b-0986-4482-a192-7c79b12894f4
+2025-06-28 16:16:57 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/fb72a97b-0986-4482-a192-7c79b12894f4 - Status: 204
+2025-06-28 16:17:03 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:17:03 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:18:29 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/undefined
+2025-06-28 16:18:29 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/undefined - Status: 401
+2025-06-28 16:20:43 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:20:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 401
+2025-06-28 16:21:06 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:21:06 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:21:08 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:21:08 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:22:28 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/undefined
+2025-06-28 16:22:28 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/undefined - Status: 404
+2025-06-28 16:22:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:22:42 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-28 16:24:33 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/5b282d2c-9634-4af0-bd9e-f4a6735f3fe8
+2025-06-28 16:24:33 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/5b282d2c-9634-4af0-bd9e-f4a6735f3fe8 - Status: 204
+2025-06-28 16:29:51 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 16:29:51 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 16:36:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 16:36:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-28 16:37:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute
+2025-06-28 16:37:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute - Status: 404
+2025-06-28 16:41:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-06-28 16:42:02 - app.services.voice_service - ERROR - Error in text-to-speech: 'NoneType' object is not subscriptable
+2025-06-28 16:42:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 500
+2025-06-28 16:42:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-06-28 16:42:03 - app.services.voice_service - ERROR - Error in text-to-speech: 'NoneType' object is not subscriptable
+2025-06-28 16:42:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 500
+2025-06-28 16:42:04 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-06-28 16:42:05 - app.services.voice_service - ERROR - Error in text-to-speech: 'NoneType' object is not subscriptable
+2025-06-28 16:42:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 500
+2025-06-28 16:42:06 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-06-28 16:42:06 - app.services.voice_service - ERROR - Error in text-to-speech: 'NoneType' object is not subscriptable
+2025-06-28 16:42:06 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 500
+2025-06-28 16:42:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-06-28 16:42:33 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-06-28 16:42:43 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-06-28 16:42:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-06-28 16:42:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/query
+2025-06-28 16:42:58 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-28 16:42:59 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-28 16:42:59 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-28 16:42:59 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-28 16:43:00 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 16:43:00 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Processing query: What are the key features of your product?
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-28 16:43:00 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Filtered 8 documents from 8
+2025-06-28 16:43:00 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-28 16:43:00 - app.services.llm_service - INFO - Found 1 models
+2025-06-28 16:43:00 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-28 16:43:00 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-28 16:43:15 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/query - Status: 200
+2025-06-28 16:43:56 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-06-28 16:43:56 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-28 16:43:56 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 16:43:56 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 16:43:56 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-28 16:43:56 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offerletter_2_1.pdf
+2025-06-28 16:43:56 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-06-28 16:43:56 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-06-28 16:43:56 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-06-28 16:43:56 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-06-28 16:45:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/demo-agent-id/execute
+2025-06-28 16:45:48 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/demo-agent-id/execute - Status: 404
+2025-06-28 16:46:15 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute
+2025-06-28 16:46:15 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute - Status: 404
+2025-06-28 16:47:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/550e8400-e29b-41d4-a716-446655440000
+2025-06-28 16:47:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/550e8400-e29b-41d4-a716-446655440000 - Status: 404
+2025-06-28 16:47:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/550e8400-e29b-41d4-a716-446655440000
+2025-06-28 16:47:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/550e8400-e29b-41d4-a716-446655440000 - Status: 404
+2025-06-28 17:06:55 - app.middleware.logging_middleware - INFO - Incoming request: PUT http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:06:55 - app.middleware.logging_middleware - INFO - Request completed: PUT http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:07:12 - app.middleware.logging_middleware - INFO - Incoming request: PUT http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:07:12 - app.middleware.logging_middleware - INFO - Request completed: PUT http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:08:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/demo-agent-id/execute
+2025-06-28 17:08:33 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/demo-agent-id/execute - Status: 404
+2025-06-28 17:10:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-06-28 17:10:49 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-28 17:10:49 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:10:49 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:10:49 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-28 17:10:49 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offerletter_2_1.pdf
+2025-06-28 17:10:49 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-06-28 17:10:49 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-06-28 17:10:49 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-06-28 17:10:49 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-06-28 17:11:08 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-06-28 17:11:08 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-06-28 17:11:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-28 17:11:48 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:11:48 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Extracted text length: 2664
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Split text into 4 chunks with overlap
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Created 4 chunks
+2025-06-28 17:11:48 - app.services.rag_service - INFO - Generating embeddings...
+2025-06-28 17:11:49 - app.services.rag_service - INFO - Generated 4 embeddings
+2025-06-28 17:11:49 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:11:49 - app.utils.qdrant_async - INFO - Upserting 4 points in batches of 100
+2025-06-28 17:11:49 - app.utils.qdrant_async - INFO - Successfully upserted 4/4 points to documents
+2025-06-28 17:11:49 - app.services.rag_service - INFO - Successfully ingested document SurajMishraDevops.pdf with 4 chunks
+2025-06-28 17:11:49 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-06-28 17:12:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-06-28 17:12:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 415
+2025-06-28 17:12:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-28 17:12:35 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:12:35 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Starting document ingestion for 236733_Form16_Signed (2).pdf
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Extracted text length: 16031
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Split text into 24 chunks with overlap
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Created 24 chunks
+2025-06-28 17:12:35 - app.services.rag_service - INFO - Generating embeddings...
+2025-06-28 17:12:44 - app.services.rag_service - INFO - Generated 24 embeddings
+2025-06-28 17:12:44 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-28 17:12:44 - app.utils.qdrant_async - INFO - Upserting 24 points in batches of 100
+2025-06-28 17:12:44 - app.utils.qdrant_async - INFO - Successfully upserted 24/24 points to documents
+2025-06-28 17:12:44 - app.services.rag_service - INFO - Successfully ingested document 236733_Form16_Signed (2).pdf with 24 chunks
+2025-06-28 17:12:44 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-06-28 17:13:20 - app - INFO - Shutting down application...
+2025-06-28 17:13:20 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:13:41 - app - INFO - Logging configured successfully
+2025-06-28 17:13:41 - app - INFO - Starting application...
+2025-06-28 17:13:41 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:14:43 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute
+2025-06-28 17:14:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute - Status: 404
+2025-06-28 17:16:59 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 17:16:59 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 17:17:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:17:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 404
+2025-06-28 17:18:34 - app - INFO - Shutting down application...
+2025-06-28 17:18:34 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:18:37 - app - INFO - Logging configured successfully
+2025-06-28 17:19:12 - app - INFO - Logging configured successfully
+2025-06-28 17:19:19 - app - INFO - Logging configured successfully
+2025-06-28 17:20:01 - app - INFO - Logging configured successfully
+2025-06-28 17:25:26 - app - INFO - Logging configured successfully
+2025-06-28 17:25:26 - app - INFO - Starting application...
+2025-06-28 17:25:26 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:25:31 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:25:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 404
+2025-06-28 17:25:56 - app - INFO - Shutting down application...
+2025-06-28 17:25:56 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:25:59 - app - INFO - Logging configured successfully
+2025-06-28 17:25:59 - app - INFO - Starting application...
+2025-06-28 17:25:59 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:26:06 - app - INFO - Shutting down application...
+2025-06-28 17:26:06 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:26:08 - app - INFO - Logging configured successfully
+2025-06-28 17:26:08 - app - INFO - Starting application...
+2025-06-28 17:26:08 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:26:17 - app - INFO - Shutting down application...
+2025-06-28 17:26:17 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:27:15 - app - INFO - Logging configured successfully
+2025-06-28 17:27:15 - app - INFO - Starting application...
+2025-06-28 17:27:15 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:27:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:27:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 404
+2025-06-28 17:28:36 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:28:36 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 401
+2025-06-28 17:28:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:28:56 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:29 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:30 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:40 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:44 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:29:55 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:55 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 404
+2025-06-28 17:29:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:29:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 404
+2025-06-28 17:30:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:30:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 401
+2025-06-28 17:30:26 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:30:26 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:30:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:30:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:33:20 - app - INFO - Shutting down application...
+2025-06-28 17:33:20 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:33:43 - app - INFO - Logging configured successfully
+2025-06-28 17:33:43 - app - INFO - Starting application...
+2025-06-28 17:33:43 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:35:47 - app - INFO - Shutting down application...
+2025-06-28 17:35:47 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:35:50 - app - INFO - Logging configured successfully
+2025-06-28 17:35:50 - app - INFO - Starting application...
+2025-06-28 17:35:50 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:35:58 - app - INFO - Shutting down application...
+2025-06-28 17:35:58 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:36:00 - app - INFO - Logging configured successfully
+2025-06-28 17:36:00 - app - INFO - Starting application...
+2025-06-28 17:36:00 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:36:12 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:36:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:36:23 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:36:23 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:36:50 - app - INFO - Shutting down application...
+2025-06-28 17:36:50 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:36:52 - app - INFO - Logging configured successfully
+2025-06-28 17:36:52 - app - INFO - Starting application...
+2025-06-28 17:36:52 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:36:53 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:36:53 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:36:55 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:36:55 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:37:12 - app - INFO - Shutting down application...
+2025-06-28 17:37:12 - app.services.cache - INFO - Redis connection closed
+2025-06-28 17:37:14 - app - INFO - Logging configured successfully
+2025-06-28 17:37:14 - app - INFO - Starting application...
+2025-06-28 17:37:14 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 17:37:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:37:17 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:38:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:39:11 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:40:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:40:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:41:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:42:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:42:45 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute
+2025-06-28 17:42:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/685fccce7e34161c61bf6b59/execute - Status: 404
+2025-06-28 17:49:08 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 17:49:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 17:50:56 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/685fccce7e34161c61bf6b59
+2025-06-28 17:50:56 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/685fccce7e34161c61bf6b59 - Status: 404
+2025-06-28 18:00:56 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 18:00:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 18:10:16 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 18:10:16 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb - Status: 200
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/2087f135-8f6c-4b43-bc45-4d7aa981775d
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/2087f135-8f6c-4b43-bc45-4d7aa981775d - Status: 200
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 200
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-06-28 18:15:07 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 204
+2025-06-28 18:15:26 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 18:15:26 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb - Status: 200
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/2087f135-8f6c-4b43-bc45-4d7aa981775d
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/2087f135-8f6c-4b43-bc45-4d7aa981775d - Status: 200
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 18:16:12 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb - Status: 200
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/2087f135-8f6c-4b43-bc45-4d7aa981775d
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/2087f135-8f6c-4b43-bc45-4d7aa981775d - Status: 200
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 18:16:34 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 18:16:42 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents
+2025-06-28 18:16:42 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents - Status: 200
+2025-06-28 18:17:26 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:17:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:17:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:17:33 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:18:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:18:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:18:11 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:18:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:19:00 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:19:01 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:19:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:19:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:19:10 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:19:11 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:19:46 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/demo-agent-id
+2025-06-28 18:19:46 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/demo-agent-id - Status: 404
+2025-06-28 18:20:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:20:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:21:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:21:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:21:16 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:21:17 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:21:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-28 18:21:25 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-28 18:22:03 - app - INFO - Shutting down application...
+2025-06-28 18:22:03 - app.services.cache - INFO - Redis connection closed
+2025-06-28 18:22:06 - app - INFO - Logging configured successfully
+2025-06-28 18:22:06 - app - INFO - Starting application...
+2025-06-28 18:22:06 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-28 19:33:41 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-06-28 19:33:41 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 422
+2025-06-28 19:34:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-06-28 19:34:44 - app.services.llm_service - INFO - Found 1 models
+2025-06-28 19:34:44 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-28 19:34:44 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-28 19:34:46 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-06-28 19:37:55 - app - INFO - Shutting down application...
+2025-06-28 19:37:55 - app.services.cache - INFO - Redis connection closed
+2025-06-29 10:28:56 - app - INFO - Logging configured successfully
+2025-06-29 10:28:56 - app - INFO - Starting application...
+2025-06-29 10:28:56 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-29 19:48:23 - app - INFO - Logging configured successfully
+2025-06-29 19:48:23 - app - INFO - Starting application...
+2025-06-29 19:48:23 - app.services.cache - WARNING - Redis connection failed, caching disabled: Error 61 connecting to localhost:6379. Connection refused.
+2025-06-29 19:49:26 - app - INFO - Shutting down application...
+2025-06-29 19:49:29 - app - INFO - Logging configured successfully
+2025-06-29 19:49:29 - app - INFO - Starting application...
+2025-06-29 19:49:29 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-29 22:37:01 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:37:01 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:37:01 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:37:01 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:41:43 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:41:43 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:41:43 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:41:43 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:41:45 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:41:45 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:41:45 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:41:45 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:42:03 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:42:03 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:42:03 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:42:03 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:42:42 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:42:42 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:42:42 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:42:42 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:43:00 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:43:00 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:43:00 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-06-29 22:43:00 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-06-29 22:44:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-29 22:44:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-29 22:45:10 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-06-29 22:45:11 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-06-29 23:36:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-06-29 23:36:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-06-29 23:36:51 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-06-29 23:36:53 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-06-29 23:39:53 - app - INFO - Shutting down application...
+2025-06-29 23:39:53 - app.services.cache - INFO - Redis connection closed
+2025-06-30 23:38:27 - app - INFO - Logging configured successfully
+2025-06-30 23:38:27 - app - INFO - Starting application...
+2025-06-30 23:38:27 - app.services.cache - WARNING - Redis connection failed, caching disabled: Error 61 connecting to localhost:6379. Connection refused.
+2025-06-30 23:39:17 - app - INFO - Shutting down application...
+2025-06-30 23:39:20 - app - INFO - Logging configured successfully
+2025-06-30 23:39:20 - app - INFO - Starting application...
+2025-06-30 23:39:20 - app.services.cache - INFO - Connected to Redis successfully
+2025-06-30 23:48:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-06-30 23:48:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-06-30 23:49:31 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/query
+2025-06-30 23:49:31 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-06-30 23:49:31 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-06-30 23:49:31 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-06-30 23:49:31 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-06-30 23:49:32 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-30 23:49:32 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Processing query: What are the key features of your product?
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Generating query embedding...
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-06-30 23:49:32 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Filtered 10 documents from 10
+2025-06-30 23:49:32 - app.services.rag_service - INFO - Generating LLM response...
+2025-06-30 23:49:32 - app.services.llm_service - INFO - Found 1 models
+2025-06-30 23:49:32 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-06-30 23:49:32 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-06-30 23:49:44 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/query - Status: 200
+2025-07-01 00:06:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:06:22 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:06:22 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:06:22 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:06:22 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:06:22 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offerletter_2_1.pdf
+2025-07-01 00:06:22 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 00:06:22 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:06:22 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:06:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 00:06:52 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:06:53 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:06:53 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:06:53 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:06:53 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:06:53 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-01 00:06:53 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 00:06:53 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:06:53 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:06:53 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 00:07:15 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:07:15 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:07:15 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:07:15 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:07:15 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:07:15 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-01 00:07:15 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 00:07:15 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:07:15 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:07:15 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 00:12:18 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:12:18 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:12:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:12:41 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:13:23 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047
+2025-07-01 00:13:23 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/09d3d17b-1209-49cc-85cb-70acdf4a5047 - Status: 404
+2025-07-01 00:13:40 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/0d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:13:40 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/0d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 404
+2025-07-01 00:14:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:14:06 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:14:28 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:14:38 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:15:44 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:15:44 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:17:37 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:17:38 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:19:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-01 00:19:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-01 00:25:48 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:25:48 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:27:47 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-07-01 00:27:47 - app.services.llm_service - INFO - Found 1 models
+2025-07-01 00:27:47 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-01 00:27:47 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-01 00:27:53 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-07-01 00:28:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:28:13 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:28:13 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Starting document ingestion for 236733_Form16_Signed (2).pdf
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Extracted text length: 16031
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Split text into 24 chunks with overlap
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Created 24 chunks
+2025-07-01 00:28:13 - app.services.rag_service - INFO - Generating embeddings...
+2025-07-01 00:28:22 - app.services.rag_service - INFO - Generated 24 embeddings
+2025-07-01 00:28:22 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:28:22 - app.utils.qdrant_async - INFO - Upserting 24 points in batches of 100
+2025-07-01 00:28:22 - app.utils.qdrant_async - INFO - Successfully upserted 24/24 points to documents
+2025-07-01 00:28:22 - app.services.rag_service - INFO - Successfully ingested document 236733_Form16_Signed (2).pdf with 24 chunks
+2025-07-01 00:28:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-07-01 00:28:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/query
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:28:33 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:28:33 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Processing query: Is this resume is job ready??
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Generating query embedding...
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Query embedding dimension: 1536
+2025-07-01 00:28:33 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Filtered 10 documents from 10
+2025-07-01 00:28:33 - app.services.rag_service - INFO - Generating LLM response...
+2025-07-01 00:28:33 - app.services.llm_service - INFO - Found 1 models
+2025-07-01 00:28:33 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-01 00:28:33 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-01 00:28:51 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/query - Status: 200
+2025-07-01 00:29:10 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/rag/documents
+2025-07-01 00:29:10 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:29:10 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:29:10 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:29:10 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:29:10 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:29:10 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/rag/documents - Status: 200
+2025-07-01 00:29:31 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 00:29:31 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 550e8400-e29b-41d4-a716-6
+2025-07-01 00:29:31 - app.services.training_service - INFO - Created job 33c62537-fda2-442c-8868-ab4b9ac34397 with 2 training items
+2025-07-01 00:29:31 - app.routers.training - INFO - Created enhanced job: 33c62537-fda2-442c-8868-ab4b9ac34397 for user: nodejs_service, agent: 550e8400-e29b-41d4-a716-6
+2025-07-01 00:29:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-01 00:29:31 - app.services.training_service - INFO - Starting training pipeline for job 33c62537-fda2-442c-8868-ab4b9ac34397
+2025-07-01 00:29:32 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data1.json: 404 Client Error: Not Found for url: https://example.com/data1.json
+2025-07-01 00:29:33 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data2.json: 404 Client Error: Not Found for url: https://example.com/data2.json
+2025-07-01 00:29:33 - app.services.training_service - INFO - Training completed for job 33c62537-fda2-442c-8868-ab4b9ac34397 with 0 chunks
+2025-07-01 00:30:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 00:30:02 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: The-Great-Backyard-Battle
+2025-07-01 00:30:02 - app.services.training_service - INFO - Created job a1c8f877-8cae-4827-9641-67a23eb1e5ba with 1 training items
+2025-07-01 00:30:02 - app.routers.training - INFO - Created enhanced job: a1c8f877-8cae-4827-9641-67a23eb1e5ba for user: nodejs_service, agent: The-Great-Backyard-Battle
+2025-07-01 00:30:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-01 00:30:02 - app.services.training_service - INFO - Starting training pipeline for job a1c8f877-8cae-4827-9641-67a23eb1e5ba
+2025-07-01 00:30:02 - app.services.training_service - INFO - Training completed for job a1c8f877-8cae-4827-9641-67a23eb1e5ba with 3 chunks
+2025-07-01 00:30:20 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/training
+2025-07-01 00:30:20 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/training - Status: 404
+2025-07-01 00:30:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 00:30:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 401
+2025-07-01 00:30:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 00:30:42 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: your-agent-id
+2025-07-01 00:30:42 - app.services.training_service - INFO - Created job 15f97111-8f13-493a-bb58-6f58cf499941 with 2 training items
+2025-07-01 00:30:42 - app.routers.training - INFO - Created enhanced job: 15f97111-8f13-493a-bb58-6f58cf499941 for user: nodejs_service, agent: your-agent-id
+2025-07-01 00:30:42 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-01 00:30:42 - app.services.training_service - INFO - Starting training pipeline for job 15f97111-8f13-493a-bb58-6f58cf499941
+2025-07-01 00:30:44 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/document.pdf: 404 Client Error: Not Found for url: https://example.com/document.pdf
+2025-07-01 00:30:44 - app.services.training_service - INFO - Training completed for job 15f97111-8f13-493a-bb58-6f58cf499941 with 1 chunks
+2025-07-01 00:31:06 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training/upload
+2025-07-01 00:31:06 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training/upload - Status: 401
+2025-07-01 00:31:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training/upload
+2025-07-01 00:31:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training/upload - Status: 422
+2025-07-01 00:31:46 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training/upload
+2025-07-01 00:31:46 - app.routers.training - INFO - Creating training job with files for user_id: nodejs_service, agent_id: your-agent-id
+2025-07-01 00:31:46 - app.services.training_service - INFO - Saved file SurajMishraDevops.pdf for user nodejs_service as eb6894fb-5a87-46bf-87ee-abd88d2a1aed
+2025-07-01 00:31:46 - app.services.training_service - INFO - Saved file Screenshot 2025-05-19 at 9.24.31 PM.png for user nodejs_service as 5c71c724-6105-4c8c-b6a4-07be7044fd6e
+2025-07-01 00:31:46 - app.services.training_service - INFO - Created job cb653f85-4073-4990-bd98-1b0c5fc95ac8 with 3 training items
+2025-07-01 00:31:46 - app.routers.training - INFO - Created file-based job: cb653f85-4073-4990-bd98-1b0c5fc95ac8 with 2 files
+2025-07-01 00:31:46 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training/upload - Status: 200
+2025-07-01 00:31:46 - app.services.training_service - INFO - Starting training pipeline for job cb653f85-4073-4990-bd98-1b0c5fc95ac8
+2025-07-01 00:31:47 - app.utils.file_processing - ERROR - Error processing image Screenshot 2025-05-19 at 9.24.31 PM.png: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-01 00:31:47 - app.services.training_service - INFO - Training completed for job cb653f85-4073-4990-bd98-1b0c5fc95ac8 with 5 chunks
+2025-07-01 00:31:47 - app.services.training_service - INFO - Cleaned up file: /var/folders/yg/hffghc2572z1xdmn1q8r75tm0000gn/T/training_uploads/nodejs_service/eb6894fb-5a87-46bf-87ee-abd88d2a1aed_SurajMishraDevops.pdf
+2025-07-01 00:31:47 - app.services.training_service - INFO - Cleaned up file: /var/folders/yg/hffghc2572z1xdmn1q8r75tm0000gn/T/training_uploads/nodejs_service/5c71c724-6105-4c8c-b6a4-07be7044fd6e_Screenshot 2025-05-19 at 9.24.31 PM.png
+2025-07-01 00:32:07 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 00:32:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 401
+2025-07-01 00:32:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 00:32:13 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: your-agent-id
+2025-07-01 00:32:13 - app.services.training_service - INFO - Created job 1cac2232-cd05-480e-81b9-ce3ff5895650 with 3 training items
+2025-07-01 00:32:13 - app.routers.training - INFO - Created enhanced job: 1cac2232-cd05-480e-81b9-ce3ff5895650 for user: nodejs_service, agent: your-agent-id
+2025-07-01 00:32:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-01 00:32:13 - app.services.training_service - INFO - Starting training pipeline for job 1cac2232-cd05-480e-81b9-ce3ff5895650
+2025-07-01 00:32:13 - app.services.training_service - ERROR - File not found: /path/to/local/file.txt
+2025-07-01 00:32:14 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data.json: 404 Client Error: Not Found for url: https://example.com/data.json
+2025-07-01 00:32:14 - app.services.training_service - INFO - Training completed for job 1cac2232-cd05-480e-81b9-ce3ff5895650 with 1 chunks
+2025-07-01 00:37:50 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:37:52 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:38:00 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:38:00 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:38:02 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:38:02 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:38:54 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:38:54 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:39:25 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:39:25 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:39:35 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:39:35 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:39:35 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:39:35 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:39:35 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:39:35 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-01 00:39:35 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 00:39:35 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:39:35 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:39:35 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 00:56:51 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:56:52 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:56:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:56:52 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:56:52 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:56:52 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-01 00:56:52 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 00:56:52 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:56:52 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:56:52 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 00:57:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:57:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:57:22 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:57:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:57:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 00:57:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 00:57:31 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:57:31 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:57:32 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history
+2025-07-01 00:57:32 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635/history - Status: 404
+2025-07-01 00:58:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training/upload
+2025-07-01 00:58:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training/upload - Status: 422
+2025-07-01 00:58:47 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-07-01 00:58:47 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-07-01 00:58:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-07-01 00:58:48 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-07-01 00:58:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 00:58:57 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 00:58:57 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:58:57 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 00:58:57 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 00:58:57 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-01 00:58:57 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 00:58:57 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:58:57 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 00:58:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 01:35:56 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 01:36:08 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 01:36:20 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 01:36:20 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 01:36:20 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 01:36:20 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 01:36:20 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 01:36:20 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-01 01:36:20 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 01:36:20 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 01:36:20 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 01:36:20 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 02:16:08 - app - INFO - Shutting down application...
+2025-07-01 02:16:08 - app.services.cache - INFO - Redis connection closed
+2025-07-01 20:45:27 - app - INFO - Logging configured successfully
+2025-07-01 20:45:27 - app - INFO - Starting application...
+2025-07-01 20:45:27 - app.services.cache - INFO - Connected to Redis successfully
+2025-07-01 21:19:19 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 21:19:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 401
+2025-07-01 21:22:51 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 21:22:51 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 401
+2025-07-01 21:24:40 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 21:24:40 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 401
+2025-07-01 21:24:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 21:24:48 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 401
+2025-07-01 21:24:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/auth/token
+2025-07-01 21:24:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/auth/token - Status: 404
+2025-07-01 21:25:32 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/auth/token
+2025-07-01 21:25:32 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/auth/token - Status: 404
+2025-07-01 21:25:37 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/auth/token
+2025-07-01 21:25:37 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/auth/token - Status: 404
+2025-07-01 21:28:56 - app - INFO - Shutting down application...
+2025-07-01 21:28:56 - app.services.cache - INFO - Redis connection closed
+2025-07-01 21:28:58 - app - INFO - Logging configured successfully
+2025-07-01 21:29:31 - app - INFO - Logging configured successfully
+2025-07-01 21:29:31 - app - INFO - Starting application...
+2025-07-01 21:29:31 - app.services.cache - INFO - Connected to Redis successfully
+2025-07-01 21:29:31 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/auth/token
+2025-07-01 21:29:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/auth/token - Status: 404
+2025-07-01 21:33:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/token
+2025-07-01 21:33:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/token - Status: 200
+2025-07-01 21:34:04 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 21:34:04 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 6c90dc97-ebcc-4af0-8a5b-08640a4f60bb
+2025-07-01 21:34:04 - app.services.training_service - INFO - Created job 2997f03a-844a-4402-8358-0c088426d630 with 2 training items
+2025-07-01 21:34:04 - app.routers.training - INFO - Created enhanced job: 2997f03a-844a-4402-8358-0c088426d630 for user: nodejs_service, agent: 6c90dc97-ebcc-4af0-8a5b-08640a4f60bb
+2025-07-01 21:34:04 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-01 21:34:04 - app.services.training_service - INFO - Starting training pipeline for job 2997f03a-844a-4402-8358-0c088426d630
+2025-07-01 21:34:05 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data: 404 Client Error: Not Found for url: https://example.com/data
+2025-07-01 21:34:05 - app.services.training_service - INFO - Training completed for job 2997f03a-844a-4402-8358-0c088426d630 with 1 chunks
+2025-07-01 21:34:47 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status
+2025-07-01 21:34:47 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status - Status: 404
+2025-07-01 21:34:52 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status
+2025-07-01 21:34:52 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status - Status: 404
+2025-07-01 21:34:53 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status
+2025-07-01 21:34:53 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status - Status: 404
+2025-07-01 21:35:23 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status
+2025-07-01 21:35:23 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status - Status: 404
+2025-07-01 21:37:43 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:37:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 401
+2025-07-01 21:39:40 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:39:40 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-07-01 21:39:40 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-07-01 21:39:40 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-07-01 21:39:40 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:39:41 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:39:41 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Extracted text length: 4048
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Split text into 6 chunks with overlap
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Created 6 chunks
+2025-07-01 21:39:41 - app.services.rag_service - INFO - Generating embeddings...
+2025-07-01 21:39:43 - app.services.rag_service - INFO - Generated 6 embeddings
+2025-07-01 21:39:43 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:39:43 - app.utils.qdrant_async - INFO - Upserting 6 points in batches of 100
+2025-07-01 21:39:43 - app.utils.qdrant_async - INFO - Successfully upserted 6/6 points to documents
+2025-07-01 21:39:43 - app.services.rag_service - INFO - Successfully ingested document Suraj_Offer letter_signed.pdf with 6 chunks
+2025-07-01 21:39:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-07-01 21:45:25 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:45:26 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:45:26 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:45:26 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:45:26 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:45:26 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:45:26 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 21:45:26 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:45:26 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:45:26 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 21:48:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:48:18 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:48:18 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:48:18 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:48:18 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:48:18 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:48:18 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 21:48:18 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:48:18 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:48:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 21:48:32 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:48:32 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:48:32 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:48:32 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:48:32 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:48:32 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:48:32 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 21:48:32 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:48:32 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:48:32 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 21:52:09 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:52:10 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:52:10 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:52:10 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:52:10 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:52:10 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:52:10 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 21:52:10 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:52:10 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:52:10 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 21:53:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:53:58 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:53:58 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:53:58 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:53:58 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:53:58 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:53:58 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 21:53:58 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:53:58 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 21:53:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 21:58:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:58:34 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:58:34 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:58:34 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:58:34 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:58:35 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:58:35 - app.services.rag_service - INFO - Extracted text length: 4048
+2025-07-01 21:58:35 - app.services.rag_service - INFO - Split text into 6 chunks with overlap
+2025-07-01 21:58:35 - app.services.rag_service - INFO - Created 6 chunks
+2025-07-01 21:58:35 - app.services.rag_service - INFO - Generating embeddings...
+2025-07-01 21:58:36 - app.services.rag_service - INFO - Generated 6 embeddings
+2025-07-01 21:58:36 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:58:36 - app.utils.qdrant_async - INFO - Upserting 6 points in batches of 100
+2025-07-01 21:58:36 - app.utils.qdrant_async - INFO - Successfully upserted 6/6 points to documents
+2025-07-01 21:58:36 - app.services.rag_service - INFO - Successfully ingested document Suraj_Offer letter_signed.pdf with 6 chunks
+2025-07-01 21:58:36 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-07-01 21:59:17 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 21:59:18 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:59:18 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Extracted text length: 4048
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Split text into 6 chunks with overlap
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Created 6 chunks
+2025-07-01 21:59:18 - app.services.rag_service - INFO - Generating embeddings...
+2025-07-01 21:59:19 - app.services.rag_service - INFO - Generated 6 embeddings
+2025-07-01 21:59:19 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 21:59:19 - app.utils.qdrant_async - INFO - Upserting 6 points in batches of 100
+2025-07-01 21:59:19 - app.utils.qdrant_async - INFO - Successfully upserted 6/6 points to documents
+2025-07-01 21:59:19 - app.services.rag_service - INFO - Successfully ingested document Suraj_Offer letter_signed.pdf with 6 chunks
+2025-07-01 21:59:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-07-01 22:01:07 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 22:01:07 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 22:01:07 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 22:01:07 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 22:01:07 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 22:01:07 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 22:01:07 - app.utils.file_processing - ERROR - Error extracting text from PDF: cannot open empty document
+2025-07-01 22:01:07 - app.services.rag_service - ERROR - Ingest failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 22:01:07 - app.routers.rag - ERROR - Document upload failed: No text extracted
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/routers/rag.py", line 56, in upload_document
+    doc_id = await rag_service.ingest_document(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/rag_service.py", line 291, in ingest_document
+    raise ValueError("No text extracted")
+ValueError: No text extracted
+2025-07-01 22:01:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 500
+2025-07-01 22:06:19 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-01 22:06:20 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 22:06:20 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Starting document ingestion for Suraj_Offer letter_signed.pdf
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Extracted text length: 4048
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Split text into 6 chunks with overlap
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Created 6 chunks
+2025-07-01 22:06:20 - app.services.rag_service - INFO - Generating embeddings...
+2025-07-01 22:06:21 - app.services.rag_service - INFO - Generated 6 embeddings
+2025-07-01 22:06:21 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-01 22:06:21 - app.utils.qdrant_async - INFO - Upserting 6 points in batches of 100
+2025-07-01 22:06:21 - app.utils.qdrant_async - INFO - Successfully upserted 6/6 points to documents
+2025-07-01 22:06:21 - app.services.rag_service - INFO - Successfully ingested document Suraj_Offer letter_signed.pdf with 6 chunks
+2025-07-01 22:06:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-07-01 22:06:41 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat/completions
+2025-07-01 22:06:41 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat/completions - Status: 404
+2025-07-01 22:07:20 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-07-01 22:07:20 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 401
+2025-07-01 22:07:28 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-07-01 22:07:28 - app.services.llm_service - INFO - Found 1 models
+2025-07-01 22:07:28 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-01 22:07:28 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-01 22:07:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-07-01 22:08:12 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/chat
+2025-07-01 22:08:12 - app.services.llm_service - INFO - Found 1 models
+2025-07-01 22:08:12 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-01 22:08:12 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-01 22:08:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/chat - Status: 200
+2025-07-01 22:09:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-01 22:09:02 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 22:09:02 - app.services.training_service - INFO - Created job faff6dac-79b3-4e9e-8a74-0e5864319643 with 2 training items
+2025-07-01 22:09:02 - app.routers.training - INFO - Created enhanced job: faff6dac-79b3-4e9e-8a74-0e5864319643 for user: nodejs_service, agent: d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 22:09:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-01 22:09:02 - app.services.training_service - INFO - Starting training pipeline for job faff6dac-79b3-4e9e-8a74-0e5864319643
+2025-07-01 22:09:03 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data: 404 Client Error: Not Found for url: https://example.com/data
+2025-07-01 22:09:03 - app.services.training_service - INFO - Training completed for job faff6dac-79b3-4e9e-8a74-0e5864319643 with 1 chunks
+2025-07-01 22:09:09 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 22:09:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 22:10:23 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-01 22:10:32 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 200
+2025-07-01 22:11:05 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb
+2025-07-01 22:11:05 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/6c90dc97-ebcc-4af0-8a5b-08640a4f60bb - Status: 204
+2025-07-01 22:19:55 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-01 22:19:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-01 22:20:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-01 22:20:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-01 22:22:12 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-07-01 22:22:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-07-01 22:41:32 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/8d8f800d-0e07-4dd3-8892-c4e5d7472f29
+2025-07-01 22:41:32 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/8d8f800d-0e07-4dd3-8892-c4e5d7472f29 - Status: 204
+2025-07-01 22:41:35 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-07-01 22:41:35 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-07-02 00:57:10 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status
+2025-07-02 00:57:10 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/2997f03a-844a-4402-8358-0c088426d630/status - Status: 404
+2025-07-02 01:03:23 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/1805e1f7-1e62-4a2b-981a-721af4d6b6ec
+2025-07-02 01:03:23 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/1805e1f7-1e62-4a2b-981a-721af4d6b6ec - Status: 204
+2025-07-02 01:06:32 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-02 01:06:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-02 01:06:45 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-02 01:06:45 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-02 01:07:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-02 01:07:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-02 01:08:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-02 01:08:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-02 01:09:50 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-02 01:09:52 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 200
+2025-07-02 01:13:59 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/e71fcf27-eefa-4257-a0dd-42ac4448b61a
+2025-07-02 01:13:59 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/e71fcf27-eefa-4257-a0dd-42ac4448b61a - Status: 204
+2025-07-02 01:14:55 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-07-02 01:14:55 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-07-02 01:15:54 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635
+2025-07-02 01:15:54 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/d7a23fd9-b981-4856-8e4c-cc70462a9635 - Status: 204
+2025-07-02 01:16:10 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/6c59d8a4-b7b8-41b5-b2a6-7423dfc91b2e
+2025-07-02 01:16:10 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/6c59d8a4-b7b8-41b5-b2a6-7423dfc91b2e - Status: 204
+2025-07-02 01:18:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-07-02 01:18:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-07-02 01:39:51 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/training
+2025-07-02 01:39:51 - app.routers.training - INFO - Creating training job for user_id: nodejs_service, agent_id: 5295a821-9ba1-44cf-aee5-59f95f49acca
+2025-07-02 01:39:51 - app.services.training_service - INFO - Created job 9b20036b-ee0c-46a8-b07c-73bcead86aeb with 2 training items
+2025-07-02 01:39:51 - app.routers.training - INFO - Created enhanced job: 9b20036b-ee0c-46a8-b07c-73bcead86aeb for user: nodejs_service, agent: 5295a821-9ba1-44cf-aee5-59f95f49acca
+2025-07-02 01:39:51 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/training - Status: 200
+2025-07-02 01:39:51 - app.services.training_service - INFO - Starting training pipeline for job 9b20036b-ee0c-46a8-b07c-73bcead86aeb
+2025-07-02 01:39:52 - app.utils.file_processing - ERROR - Error extracting text from URL https://example.com/data: 404 Client Error: Not Found for url: https://example.com/data
+2025-07-02 01:39:52 - app.services.training_service - INFO - Training completed for job 9b20036b-ee0c-46a8-b07c-73bcead86aeb with 1 chunks
+2025-07-02 01:40:01 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/9b20036b-ee0c-46a8-b07c-73bcead86aeb/status
+2025-07-02 01:40:01 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/9b20036b-ee0c-46a8-b07c-73bcead86aeb/status - Status: 404
+2025-07-02 01:40:39 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/training/9b20036b-ee0c-46a8-b07c-73bcead86aeb/status
+2025-07-02 01:40:39 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/training/9b20036b-ee0c-46a8-b07c-73bcead86aeb/status - Status: 404
+2025-07-02 01:50:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/5295a821-9ba1-44cf-aee5-59f95f49acca
+2025-07-02 01:50:34 - app.services.agent_execution_service - ERROR - HTTP error calling AI service: Client error '404 Not Found' for url 'http://localhost:11434/api/generate'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2025-07-02 01:50:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/5295a821-9ba1-44cf-aee5-59f95f49acca - Status: 200
+2025-07-02 01:51:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/rag/upload
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Detected embedding dimension: 1536
+2025-07-02 01:52:00 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-02 01:52:00 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Collection documents already exists with correct dimensions
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Starting document ingestion for SurajMishraDevops.pdf
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Extracted text length: 2664
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Split text into 4 chunks with overlap
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Created 4 chunks
+2025-07-02 01:52:00 - app.services.rag_service - INFO - Generating embeddings...
+2025-07-02 01:52:01 - app.services.rag_service - INFO - Generated 4 embeddings
+2025-07-02 01:52:01 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-07-02 01:52:01 - app.utils.qdrant_async - INFO - Upserting 4 points in batches of 100
+2025-07-02 01:52:01 - app.utils.qdrant_async - INFO - Successfully upserted 4/4 points to documents
+2025-07-02 01:52:01 - app.services.rag_service - INFO - Successfully ingested document SurajMishraDevops.pdf with 4 chunks
+2025-07-02 01:52:01 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/upload - Status: 201
+2025-07-02 02:09:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/5295a821-9ba1-44cf-aee5-59f95f49acca
+2025-07-02 02:09:24 - app.services.agent_execution_service - ERROR - HTTP error calling AI service: Client error '404 Not Found' for url 'http://localhost:11434/api/generate'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+2025-07-02 02:09:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/5295a821-9ba1-44cf-aee5-59f95f49acca - Status: 200
+2025-07-02 02:10:51 - app - INFO - Shutting down application...
+2025-07-02 02:10:51 - app.services.cache - INFO - Redis connection closed
