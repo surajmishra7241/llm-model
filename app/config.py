@@ -56,6 +56,27 @@ class Settings(BaseSettings):
     QDRANT_COLLECTION_NAME: str = "documents"
     QDRANT_BATCH_SIZE: conint(gt=0) = 100
     QDRANT_TIMEOUT: conint(gt=0) = 30
+
+    RATE_LIMITING_ENABLED: bool = True
+    RATE_LIMIT_MAX_REQUESTS: int = 100
+    RATE_LIMIT_TIME_WINDOW: int = 60  # seconds
+
+
+    HYBRID_SEARCH_ENABLED: bool = True
+    HYBRID_SPARSE_WEIGHT: float = Field(0.4, ge=0, le=1)
+    HYBRID_DENSE_WEIGHT: float = Field(0.6, ge=0, le=1)
+    
+    # Query Processing
+    QUERY_REWRITING_ENABLED: bool = True
+    QUERY_EXPANSION_ENABLED: bool = True
+    
+    # Re-ranking
+    RERANKING_ENABLED: bool = True
+    RERANKING_MODEL: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    
+    # Metadata Filtering
+    ENABLE_METADATA_FILTERING: bool = True
+    DEFAULT_METADATA_FIELDS: List[str] = ["source", "author", "date", "document_type"]
     
     # Embedding Model Configuration
     # Use the same model as default for embeddings initially

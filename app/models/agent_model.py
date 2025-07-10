@@ -4,6 +4,7 @@ from enum import Enum
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 
+
 class PersonalityTrait(str, Enum):
     FRIENDLY = "friendly"
     PROFESSIONAL = "professional"
@@ -36,7 +37,7 @@ class AgentBase(BaseModel):
     is_public: bool = Field(False)
     tools: List[str] = Field([])
     personality: AgentPersonality = Field(default_factory=AgentPersonality)
-    metadata: Dict[str, Any] = Field({}, alias="agent_metadata")
+    metadata: Optional[Dict[str, Any]] = Field(None, alias="agent_metadata")
 
 class AgentCreate(AgentBase):
     pass
@@ -51,6 +52,11 @@ class AgentUpdate(BaseModel):
     personality: Optional[AgentPersonality] = None
     metadata: Optional[Dict[str, Any]] = Field(None, alias="agent_metadata")
 
+class Agent(AgentBase):
+    id: str
+    owner_id: str
+    rag_enabled: bool = False
+
 class AgentResponse(AgentBase):
     id: str
     owner_id: str
@@ -60,3 +66,34 @@ class AgentResponse(AgentBase):
     class Config:
         from_attributes = True
         populate_by_name = True
+
+
+
+
+class AgentPermissions(str, Enum):
+    EXECUTE = "execute"
+    TRAIN = "train"
+    SHARE = "share"
+    MANAGE = "manage"
+
+class AgentVisibility(str, Enum):
+    PRIVATE = "private"
+    TEAM = "team"
+    ORGANIZATION = "organization"
+    PUBLIC = "public"
+
+class AgentRateLimit(BaseModel):
+    requests_per_minute: int = Field(100, gt=0)
+    concurrent_executions: int = Field(10, gt=0)
+
+class AgentDeploymentConfig(BaseModel):
+    gpu_required: bool = False
+    memory_requirements: str = "1Gi"
+    timeout_seconds: int = 300
+
+class EnterpriseAgentConfig(BaseModel):
+    visibility: AgentVisibility = AgentVisibility.PRIVATE
+    rate_limits: AgentRateLimit = Field(default_factory=AgentRateLimit)
+    deployment: AgentDeploymentConfig = Field(default_factory=AgentDeploymentConfig)
+    allowed_domains: List[str] = []
+    permissions: List[AgentPermissions] = [AgentPermissions.EXECUTE]

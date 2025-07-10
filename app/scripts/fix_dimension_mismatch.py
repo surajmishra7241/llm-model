@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from app.services.rag_service import RAGService
-from app.services.llm_service import OllamaService
+from app.services.llm_service import LLMService
 from app.config import settings
 
 logging.basicConfig(level=logging.INFO)
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 async def check_embedding_model():
     """Check what embedding dimension your current model produces"""
     try:
-        ollama = OllamaService()
+        ollama = LLMService()
         test_text = "This is a test sentence to check embedding dimensions."
         
         logger.info("Testing embedding model...")

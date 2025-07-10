@@ -1,4 +1,5 @@
 # Updated agent_service.py
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.db_models import DBAgent
 from app.models.agent_model import AgentCreate, AgentUpdate
@@ -6,9 +7,10 @@ from datetime import datetime
 from sqlalchemy import select, update, delete
 import httpx
 import json
+from app.dependencies import get_db_session
 
 class AgentService:
-    def __init__(self, db: AsyncSession):
+    def __init__(self, db: AsyncSession = Depends(get_db_session)):
         self.db = db
 
     async def create_agent(self, owner_id: str, agent_data: AgentCreate) -> DBAgent:

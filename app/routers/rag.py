@@ -29,6 +29,7 @@ def extract_user_id(user: dict) -> str:
 )
 async def upload_document(
     file: UploadFile = File(...),
+    agent_id: Optional[str] = None,
     rag_service: RAGService = Depends(),
     user: dict = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
@@ -57,7 +58,8 @@ async def upload_document(
             db=db,
             user_id=user_id,
             filename=file.filename,
-            content=contents
+            content=contents,
+            agent_id=agent_id
         )
 
         return DocumentResponse(
@@ -75,14 +77,16 @@ async def upload_document(
             detail="Failed to process document"
         )
 
+# rag.py
 @router.post("/query", response_model=RAGResponse)
 async def query_documents(
-    request: RAGQueryRequest,  # Changed from individual parameters to request model
+    request: RAGQueryRequest,
     rag_service: RAGService = Depends(),
     user: dict = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    agent_id: Optional[str] = None  # Add this parameter
 ):
-    """Query documents using RAG"""
+    """Enhanced query endpoint with hybrid search capabilities"""
     if not request.query or len(request.query.strip()) < 3:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -96,14 +100,21 @@ async def query_documents(
             db=db,
             user_id=user_id,
             query=request.query,
-            max_results=request.max_results
+            max_results=request.max_results,
+            filters=request.filters,
+            rewrite_query=request.rewrite_query,
+            use_reranking=request.use_reranking,
+            agent_id=agent_id  # Pass the agent_id
         )
         
         return RAGResponse(
             answer=results.get("answer", "No answer found"),
             documents=results.get("documents", []),
             context=results.get("context", []),
-            sources=results.get("sources", [])
+            sources=results.get("sources", []),
+            debug=results.get("debug_info", {}),
+            search_method=results.get("debug_info", {}).get("search_method"),
+            processed_query=results.get("debug_info", {}).get("processed_query")
         )
     except Exception as e:
         logger.error(f"Query failed: {str(e)}", exc_info=True)
@@ -114,6 +125,7 @@ async def query_documents(
 
 @router.get("/documents", response_model=List[DocumentResponse])
 async def list_documents(
+    agent_id: Optional[str] = None,  # Add this parameter
     page: int = 1,
     per_page: int = 10,
     rag_service: RAGService = Depends(),
@@ -132,6 +144,7 @@ async def list_documents(
 
         return await rag_service.list_documents(
             db=db,
+            agent_id=agent_id,
             user_id=user_id,
             page=page,
             per_page=per_page
@@ -149,7 +162,8 @@ async def delete_document(
     document_id: str,
     rag_service: RAGService = Depends(),
     user: dict = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db)
+    db: AsyncSession = Depends(get_db),
+    agent_id: Optional[str] = None
 ):
     """Delete a specific document"""
     try:
@@ -162,7 +176,8 @@ async def delete_document(
         success = await rag_service.delete_document(
             db=db,
             user_id=user_id,
-            document_id=document_id
+            document_id=document_id,
+            agent_id=agent_id
         )
         
         if not success:

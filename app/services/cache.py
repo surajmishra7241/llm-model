@@ -128,5 +128,48 @@ class CacheService:
             logger.warning(f"Redis health check failed: {str(e)}")
             return False
 
+    async def get_chat_history(self, user_id: str, agent_id: str) -> Optional[list]:
+        """Get chat history from cache"""
+        if not self.enabled or not self.redis:
+            return None
+            
+        try:
+            data = await self.redis.get(f"chat_history:{user_id}:{agent_id}")
+            if data is None:
+                return None
+            return json.loads(data)
+        except Exception as e:
+            logger.warning(f"Error getting chat history: {str(e)}")
+            return None
+
+    async def save_chat_history(self, user_id: str, agent_id: str, history: list) -> bool:
+        """Save chat history to cache"""
+        if not self.enabled or not self.redis:
+            return False
+            
+        try:
+            await self.redis.set(
+                f"chat_history:{user_id}:{agent_id}",
+                json.dumps(history),
+                ex=86400  # 24 hours TTL
+            )
+            return True
+        except Exception as e:
+            logger.warning(f"Error saving chat history: {str(e)}")
+            return False
+
+    async def clear_chat_history(self, user_id: str, agent_id: str) -> bool:
+        """Clear chat history from cache"""
+        if not self.enabled or not self.redis:
+            return False
+            
+        try:
+            await self.redis.delete(f"chat_history:{user_id}:{agent_id}")
+            return True
+        except Exception as e:
+            logger.warning(f"Error clearing chat history: {str(e)}")
+            return False
+
+
 # Global instance
 cache_service = CacheService()

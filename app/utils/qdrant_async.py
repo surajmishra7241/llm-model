@@ -12,7 +12,16 @@ from dataclasses import dataclass
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 from qdrant_client.http.exceptions import UnexpectedResponse, ResponseHandlingException
-from qdrant_client.http.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue
+from qdrant_client.http.models import (
+    Distance, 
+    VectorParams, 
+    PointStruct, 
+    Filter, 
+    FieldCondition, 
+    MatchValue,
+    MatchAny,
+    Range
+)
 from app.config import settings # Ensure this import path is correct based on your project structure
 
 logger = logging.getLogger(__name__)
@@ -528,16 +537,50 @@ async def qdrant_client_context():
         pass
 
 # Utility functions
-def create_user_filter(user_id: str) -> Filter:
-    """Create a filter for user documents"""
-    return Filter(
-        must=[
-            FieldCondition(
-                key="user_id",
-                match=MatchValue(value=user_id)
-            )
-        ]
-    )
+def create_user_filter(user_id: str, additional_filters: Optional[Dict] = None) -> Filter:
+    """Create a filter for user documents with optional additional filters"""
+    must = [
+        FieldCondition(
+            key="user_id",
+            match=MatchValue(value=user_id)
+        )
+    ]
+    
+    if additional_filters:
+        for key, value in additional_filters.items():
+            if isinstance(value, dict):
+                # Handle range filters like {"gte": 2020}
+                range_params = {}
+                for op, op_value in value.items():
+                    if op == "gte":
+                        range_params["gte"] = op_value
+                    elif op == "gt":
+                        range_params["gt"] = op_value
+                    elif op == "lte":
+                        range_params["lte"] = op_value
+                    elif op == "lt":
+                        range_params["lt"] = op_value
+                    elif op == "eq":
+                        range_params["gte"] = op_value
+                        range_params["lte"] = op_value
+                
+                if range_params:
+                    must.append(FieldCondition(
+                        key=key,
+                        range=Range(**range_params)
+                    ))
+            elif isinstance(value, list):
+                must.append(FieldCondition(
+                    key=key,
+                    match=MatchAny(any=value)
+                ))
+            else:
+                must.append(FieldCondition(
+                    key=key,
+                    match=MatchValue(value=value)
+                ))
+    
+    return Filter(must=must)
 
 def create_document_filter(user_id: str, doc_id: str) -> Filter:
     """Create a filter for specific document"""

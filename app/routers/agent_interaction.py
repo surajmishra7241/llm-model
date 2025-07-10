@@ -76,17 +76,17 @@ async def voice_interaction(
         logger.error(f"Voice interaction failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# Update the chat history endpoints in agent_interaction.py
+
 @router.get("/history/{agent_id}")
 async def get_conversation_history(
     agent_id: str,
     user: dict = Depends(get_current_user)
 ):
     """Get conversation history for a user with specific agent"""
-    service = AgentInteractionService()
-    
     try:
-        history = await service.get_conversation_history(user["sub"])
-        return {"history": history}
+        history = await cache_service.get_chat_history(user["sub"], agent_id)
+        return {"history": history or []}
     except Exception as e:
         logger.error(f"Failed to get conversation history: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -97,10 +97,10 @@ async def clear_conversation_history(
     user: dict = Depends(get_current_user)
 ):
     """Clear conversation history for a user with specific agent"""
-    service = AgentInteractionService()
-    
     try:
-        await service.clear_memory(user["sub"])
+        success = await cache_service.clear_chat_history(user["sub"], agent_id)
+        if not success:
+            raise HTTPException(status_code=500, detail="Failed to clear history")
         return {"message": "Conversation history cleared"}
     except Exception as e:
         logger.error(f"Failed to clear conversation history: {str(e)}")

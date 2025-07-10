@@ -27,7 +27,7 @@ class EmotionalAnalyzer:
             response = await self.ollama.generate(
                 prompt=prompt,
                 model="deepseek-r1:1.5b",
-                options={"temperature": 0.2}
+                options={"temperature": 0.7}
             )
             
             # Parse the JSON response

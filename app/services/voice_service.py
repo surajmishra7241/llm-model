@@ -6,6 +6,8 @@ import io
 import numpy as np
 import torch
 import torchaudio
+import tempfile
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -93,14 +95,32 @@ class VoiceService:
                 return output.getvalue()
                 
             elif settings.TTS_ENGINE == "pyttsx3":
-                # pyttsx3 TTS
-                output = io.BytesIO()
-                self.tts_model.save_to_file(text, output)
+                # pyttsx3 TTS - corrected implementation
+                with tempfile.NamedTemporaryFile(delete=False, suffix=f".{output_format}") as tmpfile:
+                    temp_filename = tmpfile.name
+                
+                self.tts_model.save_to_file(text, temp_filename)
                 self.tts_model.runAndWait()
-                return output.getvalue()
+                
+                with open(temp_filename, "rb") as f:
+                    audio_data = f.read()
+                
+                os.remove(temp_filename)
+                return audio_data
                 
             else:
                 raise ValueError("Unsupported TTS engine")
         except Exception as e:
             logger.error(f"Error in text-to-speech: {str(e)}")
             raise
+
+    def is_speaking(self) -> bool:
+        """Check if TTS is currently speaking (for pyttsx3)"""
+        if settings.TTS_ENGINE == "pyttsx3" and self.tts_model:
+            return self.tts_model.isBusy()
+        return False
+
+    def stop_speaking(self):
+        """Stop TTS from speaking (for pyttsx3)"""
+        if settings.TTS_ENGINE == "pyttsx3" and self.tts_model:
+            self.tts_model.stop()

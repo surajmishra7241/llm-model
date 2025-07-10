@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 async def check_ollama_health():
     """Check Ollama service health and model availability"""
     try:
-        service = OllamaService()
+        service = LLMService()
         status = await service.check_ollama_status()
         return status
     except Exception as e:
@@ -21,7 +21,7 @@ async def check_ollama_health():
 async def list_available_models():
     """List all available models in Ollama"""
     try:
-        service = OllamaService()
+        service = LLMService()
         models = await service.list_models()
         return {"models": models}
     except Exception as e:
@@ -32,7 +32,7 @@ async def list_available_models():
 async def pull_model(model_name: str):
     """Pull a specific model"""
     try:
-        service = OllamaService()
+        service = LLMService()
         success = await service.pull_model(model_name)
         if success:
             return {"message": f"Model {model_name} pulled successfully"}

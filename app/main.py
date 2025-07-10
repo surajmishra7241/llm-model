@@ -1,80 +1,48 @@
+# ./app/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import agents, auth, chat, rag, training, voice, agent_interaction, health, execute  # Add agent_interaction here
-from app.middleware.logging_middleware import LoggingMiddleware
-from app.middleware.metrics_middleware import metrics_middleware
+from app.routers import (
+    agents, auth, chat, rag,
+    training, voice, agent_interaction,
+    health, execute
+)
+from app.middleware import LoggingMiddleware, RateLimiterMiddleware
+import asyncio
+import logging
 from app.utils.health_check import router as health_router
-from app.utils.logging import logger
-from app.services.cache import cache_service
-from contextlib import asynccontextmanager
+
+app = FastAPI(
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION
+)
+
+# Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+app.add_middleware(LoggingMiddleware)
+
+if settings.RATE_LIMITING_ENABLED:
+    app.add_middleware(RateLimiterMiddleware)
+
+# Routers
+app.include_router(auth.router, prefix="/api/v1")
+app.include_router(agents.router, prefix="/api/v1")
+app.include_router(rag.router, prefix="/api/v1")
+app.include_router(execute.router, prefix="/api/v1")
+app.include_router(training.router, prefix="/api/v1/training")
+app.include_router(health_router)
+app.include_router(chat.router, prefix="/api/v1")
+app.include_router(voice.router, prefix="/api/v1/voice")
+app.include_router(agent_interaction.router, prefix="/api/v1")
 
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Startup
-    await cache_service.connect()
-    yield
-    # Shutdown
-    await cache_service.disconnect()
-
-app = FastAPI(lifespan=lifespan)
-import uvicorn
-
-# In ./app/main.py, update the create_app() function:
-def create_app() -> FastAPI:
-    app = FastAPI(
-        title=settings.APP_NAME,
-        description="Multi-tenant AI agent platform with Ollama integration",
-        version="1.0.0",
-        docs_url="/docs" if settings.DEBUG else None,
-        redoc_url="/redoc" if settings.DEBUG else None
-    )
-    
-    # Middleware
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=settings.CORS_ORIGINS,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-    app.add_middleware(LoggingMiddleware)
-    app.middleware("http")(metrics_middleware)
-    
-    # Routers - ADD THE EXECUTE ROUTER HERE
-    app.include_router(health.router, prefix="/api/v1")
-    app.include_router(health_router)
-    app.include_router(auth.router, prefix=settings.API_PREFIX)
-    app.include_router(agents.router, prefix=settings.API_PREFIX)
-    app.include_router(chat.router, prefix=settings.API_PREFIX)
-    app.include_router(rag.router, prefix=settings.API_PREFIX)
-    app.include_router(training.router, prefix=f"{settings.API_PREFIX}/training")
-    app.include_router(voice.router, prefix=f"{settings.API_PREFIX}/voice")
-    app.include_router(agent_interaction.router, prefix=settings.API_PREFIX)
-    app.include_router(execute.router, prefix=settings.API_PREFIX)  # Add this line
-    
-    @app.on_event("startup")
-    async def startup():
-        logger.info("Starting application...")
-        await cache_service.connect()
-        
-    @app.on_event("shutdown")
-    async def shutdown():
-        logger.info("Shutting down application...")
-        await cache_service.disconnect()
-    
-    return app
-
-app = create_app()
 
 if __name__ == "__main__":
-    uvicorn.run(
-        "app.main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=settings.DEBUG,
-        log_config=None,
-        access_log=False
-    )
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
