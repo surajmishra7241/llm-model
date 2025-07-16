@@ -964,6 +964,49 @@ Instructions:
                 "embedding_dimension": self._embedding_dim or 384
             }
 
+
+# rag_service.py
+    async def _get_agent_collection_name(agent_id: str) -> str:
+        return f"agent_{agent_id}_memory"
+
+    async def store_agent_memory(
+        self,
+        agent_id: str,
+        user_id: str,
+        memory_text: str,
+        memory_type: str = "conversation"
+    ):
+        """Store agent memory in Qdrant"""
+        collection_name = await self._get_agent_collection_name(agent_id)
+    
+    # Create collection if not exists
+        if not await self.client.collection_exists(collection_name):
+            await self.client.create_collection(
+                collection_name=collection_name,
+                vector_size=self._embedding_dim,
+                distance="Cosine"
+            )
+    
+    # Store memory point
+        embedding = await self.embedding_fn.generate_embeddings([memory_text])
+        point_id = str(uuid.uuid4())
+    
+        await self.client.upsert(
+            collection_name=collection_name,
+            points=[
+                PointStruct(
+                    id=point_id,
+                    vector=embedding[0],
+                    payload={
+                        "text": memory_text,
+                        "type": memory_type,
+                        "user_id": user_id,
+                        "timestamp": datetime.utcnow().isoformat()
+                    }
+                )
+            ]
+        )
+
     async def close(self):
         """Clean up resources"""
         if self.client:

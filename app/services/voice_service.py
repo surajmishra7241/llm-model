@@ -73,40 +73,33 @@ class VoiceService:
             logger.error(f"Error in speech-to-text: {str(e)}")
             raise
 
+    # voice_service.py
+# Fix the TTS implementation
     async def text_to_speech(
         self,
         text: str,
         output_format: str = "wav"
-    ) -> bytes:
+        ) -> bytes:
         """Convert text to speech"""
         if not self.tts_model:
             raise RuntimeError("TTS is not enabled or failed to load")
-            
+    
         try:
             if settings.TTS_ENGINE == "coqui":
-                # Coqui TTS
-                output = io.BytesIO()
-                self.tts_model.tts_to_file(
-                    text=text,
-                    file_path=output,
-                    speaker=self.tts_model.speakers[0],
-                    language=self.tts_model.languages[0]
-                )
-                return output.getvalue()
-                
+            # Coqui TTS - return bytes directly
+                return self.tts_model.tts(text)
+            
             elif settings.TTS_ENGINE == "pyttsx3":
-                # pyttsx3 TTS - corrected implementation
-                with tempfile.NamedTemporaryFile(delete=False, suffix=f".{output_format}") as tmpfile:
-                    temp_filename = tmpfile.name
-                
-                self.tts_model.save_to_file(text, temp_filename)
+            # Pyttsx3 implementation
+                self.tts_model.say(text)
                 self.tts_model.runAndWait()
-                
-                with open(temp_filename, "rb") as f:
-                    audio_data = f.read()
-                
-                os.remove(temp_filename)
-                return audio_data
+            
+            # Capture audio output
+                with tempfile.NamedTemporaryFile(suffix=".wav", delete=True) as tmpfile:
+                    self.tts_model.save_to_file(text, tmpfile.name)
+                    self.tts_model.runAndWait()
+                    with open(tmpfile.name, "rb") as f:
+                        return f.read()
                 
             else:
                 raise ValueError("Unsupported TTS engine")
