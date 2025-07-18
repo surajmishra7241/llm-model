@@ -8,7 +8,7 @@ import uuid
 
 class DBAgent(Base):
     __tablename__ = "agents"
-    __table_args__ = {'schema': 'llm'}  # Add schema here
+    __table_args__ = {'schema': 'llm'}
     
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     owner_id = Column(String, nullable=False, index=True)
@@ -18,9 +18,12 @@ class DBAgent(Base):
     system_prompt = Column(String, nullable=False)
     is_public = Column(Boolean, default=False, index=True)
     tools = Column(ARRAY(String))
-    agent_metadata = Column(JSONB)  
+    personality = Column(JSONB)  # Add this field if missing
+    agent_metadata = Column(JSONB)
+    voice_enabled = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
     
     # Relationships
     documents = relationship("DBDocument", back_populates="agent", cascade="all, delete-orphan")

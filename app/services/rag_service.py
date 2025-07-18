@@ -965,7 +965,6 @@ Instructions:
             }
 
 
-# rag_service.py
     async def _get_agent_collection_name(agent_id: str) -> str:
         return f"agent_{agent_id}_memory"
 
@@ -1006,6 +1005,36 @@ Instructions:
                 )
             ]
         )
+
+    async def delete_agent_data(self, agent_id: str, user_id: str) -> bool:
+        """Delete all data associated with an agent"""
+        await self._ensure_collection_exists()
+    
+        try:
+            from app.utils.qdrant_async import create_user_filter
+        
+        # Create filter for agent-specific data
+            filters = {"agent_id": agent_id}
+        
+            success = await self.client.delete(
+                collection_name=self.collection_name,
+                points_selector=qdrant_models.FilterSelector(
+                    filter=create_user_filter(user_id, filters)
+                )
+            )
+        
+            if success:
+                logger.info(f"Successfully deleted RAG data for agent {agent_id}")
+            else:
+                logger.warning(f"No RAG data found for agent {agent_id}")
+            
+            return success
+        
+        except Exception as e:
+            logger.error(f"Failed to delete agent RAG data: {str(e)}")
+        # Don't raise exception - allow agent deletion to continue
+            return False
+
 
     async def close(self):
         """Clean up resources"""

@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 async def check_ollama_health():
     """Check Ollama service health and model availability"""
     try:
-        service = LLMService()
+        service = OllamaService()  # ✅ Fixed: Use OllamaService instead of LLMService
         status = await service.check_ollama_status()
         return status
     except Exception as e:
@@ -55,7 +55,7 @@ async def check_ollama_health():
 async def list_available_models():
     """List all available models in Ollama"""
     try:
-        service = LLMService()
+        service = OllamaService()  # ✅ Fixed: Use OllamaService instead of LLMService
         models = await service.list_models()
         return {"models": models}
     except Exception as e:
@@ -66,7 +66,7 @@ async def list_available_models():
 async def pull_model(model_name: str):
     """Pull a specific model"""
     try:
-        service = LLMService()
+        service = OllamaService()  # ✅ Fixed: Use OllamaService instead of LLMService
         success = await service.pull_model(model_name)
         if success:
             return {"message": f"Model {model_name} pulled successfully"}
@@ -75,6 +75,7 @@ async def pull_model(model_name: str):
     except Exception as e:
         logger.error(f"Failed to pull model {model_name}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 ===== ./app/routers/monitoring.py =====
 # ./app/routers/monitoring.py
 from fastapi import APIRouter, Depends
@@ -94,7 +95,6 @@ async def metrics_endpoint(user: dict = Depends(get_current_user)):
         )
     return get_metrics()
 ===== ./app/routers/execute.py =====
-# app/routers/execute.py
 from fastapi import APIRouter, Depends, HTTPException
 from app.dependencies import get_current_user, get_db
 from app.services.agent_execution_service import execute_agent
@@ -110,14 +110,10 @@ async def execute_agent_endpoint(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        # Extract input and parameters from request_data
-        input_text = request_data.get("input", "")
-        parameters = request_data.get("parameters", {})
-        
-        # Create the input_data dict expected by execute_agent
+        # The execute_agent service expects input_data with "input" key
         input_data = {
-            "message": input_text,
-            "parameters": parameters
+            "input": request_data.get("input", ""),
+            "parameters": request_data.get("parameters", {})
         }
         
         result = await execute_agent(agent_id, user["sub"], input_data, db)
@@ -127,6 +123,7 @@ async def execute_agent_endpoint(
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Execution failed: {str(e)}")
+
 ===== ./app/routers/__init__.py =====
 # ./app/routers/__init__.py
 from .auth import router as auth_router
@@ -216,14 +213,20 @@ async def voice_chat_with_agent(
 ===== ./app/routers/agents.py =====
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.models.agent_model import AgentCreate, AgentUpdate, AgentResponse
+from app.models.agent_model import AgentCreate, AgentUpdate, AgentResponse, AgentPersonality
 from app.services.agent_service import AgentService
 from app.dependencies import get_db, get_current_user
 from typing import List
 from sqlalchemy import select, delete
 from app.models.db_models import DBAgent
 from typing import TYPE_CHECKING
-from pydantic import BaseModel, Field  # Added Field import here
+from pydantic import BaseModel, Field
+from datetime import datetime
+import logging
+from app.services.conversation_service import ConversationService
+from app.services.rag_service import RAGService
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/agents", tags=["agents"])
 
@@ -243,27 +246,64 @@ async def create_agent(
     db: AsyncSession = Depends(get_db),
     user: dict = Depends(get_current_user)
 ):
-    # Initialize default voice config if not provided
-    if not hasattr(agent_data, 'metadata') or not agent_data.metadata:
-        agent_data.metadata = {}
-    if "voice_config" not in agent_data.metadata:
-        agent_data.metadata["voice_config"] = VoiceModelConfig().dict()
-    
-    db_agent = DBAgent(
-        owner_id=user["sub"],
-        name=agent_data.name,
-        description=agent_data.description,
-        model=agent_data.model,
-        system_prompt=agent_data.system_prompt,
-        is_public=agent_data.is_public,
-        tools=agent_data.tools,
-        agent_metadata=agent_data.metadata,
-        voice_enabled=True  # Enable voice by default
-    )
-    db.add(db_agent)
-    await db.commit()
-    await db.refresh(db_agent)
-    return db_agent
+    try:
+        # Initialize default voice config if not provided
+        # Fix: Use agent_metadata instead of metadata
+        metadata = agent_data.agent_metadata or {}
+        
+        if "voice_config" not in metadata:
+            metadata["voice_config"] = VoiceModelConfig().dict()
+        
+        # Convert personality to dict for storage
+        personality_dict = agent_data.personality.dict() if agent_data.personality else {}
+        
+        db_agent = DBAgent(
+            owner_id=user["sub"],
+            name=agent_data.name,
+            description=agent_data.description,
+            model=agent_data.model,
+            system_prompt=agent_data.system_prompt,
+            is_public=agent_data.is_public,
+            tools=agent_data.tools,
+            personality=personality_dict,  # Add personality field
+            agent_metadata=metadata,
+            voice_enabled=True
+        )
+        
+        db.add(db_agent)
+        await db.commit()
+        await db.refresh(db_agent)
+        
+        # Create response with proper field mapping
+        response_data = {
+            "id": str(db_agent.id),
+            "owner_id": db_agent.owner_id,
+            "name": db_agent.name,
+            "description": db_agent.description,
+            "model": db_agent.model,
+            "system_prompt": db_agent.system_prompt,
+            "is_public": db_agent.is_public,
+            "tools": db_agent.tools,
+            "personality": AgentPersonality(**db_agent.personality) if db_agent.personality else AgentPersonality(),
+            "agent_metadata": db_agent.agent_metadata,
+            "created_at": db_agent.created_at,
+            "updated_at": db_agent.updated_at
+        }
+        
+        return AgentResponse(**response_data)
+        
+    except Exception as e:
+        logger.error(f"Failed to create agent: {str(e)}")
+        await db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to create agent: {str(e)}"
+        )
+
+
+
+
+
 
 @router.get("", response_model=List[AgentResponse])
 async def list_agents(
@@ -273,7 +313,29 @@ async def list_agents(
     result = await db.execute(
         select(DBAgent).where(DBAgent.owner_id == user["sub"])
     )
-    return result.scalars().all()
+    agents = result.scalars().all()
+    
+    # Convert to response format
+    response_agents = []
+    for agent in agents:
+        response_data = {
+            "id": str(agent.id),
+            "owner_id": agent.owner_id,
+            "name": agent.name,
+            "description": agent.description,
+            "model": agent.model,
+            "system_prompt": agent.system_prompt,
+            "is_public": agent.is_public,
+            "tools": agent.tools,
+            "personality": AgentPersonality(**agent.personality) if agent.personality else AgentPersonality(),
+            "agent_metadata": agent.agent_metadata,
+            "created_at": agent.created_at,
+            "updated_at": agent.updated_at
+        }
+        response_agents.append(AgentResponse(**response_data))
+    
+    return response_agents
+
 
 @router.get("/{agent_id}", response_model=AgentResponse)
 async def get_agent(
@@ -281,8 +343,14 @@ async def get_agent(
     db: AsyncSession = Depends(get_db),
     user: dict = Depends(get_current_user)
 ):
-    service = AgentService(db)
-    agent = await service.get_agent(agent_id, user["sub"])
+    result = await db.execute(
+        select(DBAgent).where(
+            DBAgent.id == agent_id,
+            DBAgent.owner_id == user["sub"]
+        )
+    )
+    agent = result.scalars().first()
+    
     if not agent:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -297,7 +365,24 @@ async def get_agent(
         await db.commit()
         await db.refresh(agent)
     
-    return agent
+    # Convert to response format
+    response_data = {
+        "id": str(agent.id),
+        "owner_id": agent.owner_id,
+        "name": agent.name,
+        "description": agent.description,
+        "model": agent.model,
+        "system_prompt": agent.system_prompt,
+        "is_public": agent.is_public,
+        "tools": agent.tools,
+        "personality": AgentPersonality(**agent.personality) if agent.personality else AgentPersonality(),
+        "agent_metadata": agent.agent_metadata,
+        "created_at": agent.created_at,
+        "updated_at": agent.updated_at
+    }
+    
+    return AgentResponse(**response_data)
+
 
 @router.put("/{agent_id}", response_model=AgentResponse)
 async def update_agent(
@@ -306,34 +391,75 @@ async def update_agent(
     db: AsyncSession = Depends(get_db),
     user: dict = Depends(get_current_user)
 ):
-    service = AgentService(db)
-    agent = await service.update_agent(agent_id, user["sub"], agent_data)
-    if not agent:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Agent not found"
+    try:
+        # Get existing agent
+        result = await db.execute(
+            select(DBAgent).where(
+                DBAgent.id == agent_id,
+                DBAgent.owner_id == user["sub"]
+            )
         )
-    
-    # Handle voice config updates
-    if hasattr(agent_data, 'metadata') and agent_data.metadata and "voice_config" in agent_data.metadata:
-        # Validate voice config
-        try:
-            VoiceModelConfig(**agent_data.metadata["voice_config"])
-        except ValueError as e:
+        agent = result.scalars().first()
+        
+        if not agent:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Invalid voice configuration: {str(e)}"
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Agent not found"
             )
         
-        # Update voice config
-        if not agent.agent_metadata:
-            agent.agent_metadata = {}
-        agent.agent_metadata["voice_config"] = agent_data.metadata["voice_config"]
-        agent.voice_enabled = True
+        # Update fields that are provided
+        update_data = agent_data.dict(exclude_unset=True)
+        
+        for field, value in update_data.items():
+            if field == "personality" and value is not None:
+                # **FIX: Replace personality completely instead of merging**
+                if isinstance(value, AgentPersonality):
+                    agent.personality = value.dict()
+                else:
+                    # Handle partial personality updates properly
+                    new_personality = AgentPersonality(**value).dict()
+                    agent.personality = new_personality
+            elif field == "agent_metadata" and value is not None:
+                # Merge metadata (this is fine for metadata)
+                existing_metadata = agent.agent_metadata or {}
+                existing_metadata.update(value)
+                agent.agent_metadata = existing_metadata
+            elif hasattr(agent, field) and value is not None:
+                setattr(agent, field, value)
+        
+        agent.updated_at = datetime.utcnow()
         await db.commit()
         await db.refresh(agent)
-    
-    return agent
+        
+        # Convert to response
+        response_data = {
+            "id": str(agent.id),
+            "owner_id": agent.owner_id,
+            "name": agent.name,
+            "description": agent.description,
+            "model": agent.model,
+            "system_prompt": agent.system_prompt,
+            "is_public": agent.is_public,
+            "tools": agent.tools,
+            "personality": AgentPersonality(**agent.personality) if agent.personality else AgentPersonality(),
+            "agent_metadata": agent.agent_metadata,
+            "created_at": agent.created_at,
+            "updated_at": agent.updated_at
+        }
+        
+        return AgentResponse(**response_data)
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to update agent: {str(e)}")
+        await db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to update agent: {str(e)}"
+        )
+
+
 
 @router.patch("/{agent_id}/voice", response_model=AgentResponse)
 async def update_voice_config(
@@ -373,35 +499,66 @@ async def delete_agent(
     user: dict = Depends(get_current_user)
 ):
     """Delete an agent and all its associated data"""
-    from app.services.rag_service import RAGService
-    from app.services.conversation_service import ConversationService
-    
-    result = await db.execute(
-        select(DBAgent).where(
-            DBAgent.id == agent_id,
-            DBAgent.owner_id == user["sub"]
+    try:
+        # Get existing agent first
+        result = await db.execute(
+            select(DBAgent).where(
+                DBAgent.id == agent_id,
+                DBAgent.owner_id == user["sub"]
+            )
         )
-    )
-    agent = result.scalars().first()
-    if not agent:
+        agent = result.scalars().first()
+        
+        if not agent:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Agent not found"
+            )
+        
+        # Initialize services correctly
+        rag_service = RAGService()  # ✅ FIXED - no db parameter
+        await rag_service.initialize()  # Initialize the service
+        
+        conversation_service = ConversationService(db)  # ConversationService does take db
+        
+        # Clean up associated data
+        try:
+            # Delete agent's RAG data
+            await rag_service.delete_agent_data(agent_id, user["sub"])
+            
+            # Clear conversation history
+            await conversation_service.clear_conversation(agent_id, user["sub"])
+            
+        except Exception as cleanup_error:
+            logger.warning(f"Error during cleanup: {str(cleanup_error)}")
+            # Continue with agent deletion even if cleanup fails
+        
+        # Delete the agent record
+        await db.execute(
+            delete(DBAgent).where(
+                DBAgent.id == agent_id,
+                DBAgent.owner_id == user["sub"]
+            )
+        )
+        await db.commit()
+        
+        logger.info(f"Successfully deleted agent {agent_id}")
+        
+        # Clean up RAG service resources
+        await rag_service.close()
+        
+        return {"message": "Agent deleted successfully"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to delete agent: {str(e)}")
+        await db.rollback()
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Agent not found"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to delete agent: {str(e)}"
         )
-    
-    rag_service = RAGService(db)
-    conversation_service = ConversationService(db)
-    
-    await rag_service.delete_agent_data(agent_id, user["sub"])
-    await conversation_service.clear_conversation(agent_id, user["sub"])
-    
-    await db.execute(
-        delete(DBAgent).where(
-            DBAgent.id == agent_id,
-            DBAgent.owner_id == user["sub"]
-        )
-    )
-    await db.commit()
+
 ===== ./app/routers/voice.py =====
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from app.models.voice_model import VoiceResponse, TextToSpeechRequest
@@ -1597,7 +1754,7 @@ if "pytest" not in os.sys.modules and __name__ != "__main__":
         print(f"Warning: Configuration validation failed: {e}")
         # Don't raise in case this is being imported during setup
 ===== ./app/database.py =====
-# ./app/database.py
+# app/database.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, declarative_base
 from app.config import settings
@@ -1634,6 +1791,16 @@ AsyncSessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+async def get_db():
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+            await session.commit()
+        except Exception as e:
+            logger.error(f"Database error: {str(e)}")
+            await session.rollback()
+            raise
 ===== ./app/__init__.py =====
 # Initialize application package
 from .config import settings
@@ -3565,11 +3732,10 @@ def validate_vector(vector: List[float], expected_dim: int) -> bool:
     return True
 ===== ./app/models/agent_model.py =====
 # ./app/models/agent_model.py
-from datetime import datetime  # Add this import at the top
+from datetime import datetime
 from enum import Enum
-from pydantic import BaseModel, Field
-from typing import Optional, List, Dict, Any
-
+from pydantic import BaseModel, Field, validator
+from typing import Optional, List, Dict, Any, Union  # Added Union here
 
 class PersonalityTrait(str, Enum):
     FRIENDLY = "friendly"
@@ -3577,6 +3743,11 @@ class PersonalityTrait(str, Enum):
     WITTY = "witty"
     EMPATHETIC = "empathetic"
     ENTHUSIASTIC = "enthusiastic"
+    ANALYTICAL = "analytical"
+    CREATIVE = "creative"
+    SUPPORTIVE = "supportive"
+    HUMOROUS = "humorous"
+    SERIOUS = "serious"
 
 class EmotionalAwarenessConfig(BaseModel):
     detect_emotion: bool = True
@@ -3585,15 +3756,39 @@ class EmotionalAwarenessConfig(BaseModel):
     max_emotional_response_time: float = Field(1.5, gt=0)
 
 class MemoryConfig(BaseModel):
-    context_window: int = Field(10, gt=0)
+    context_window: int = Field(10, gt=0, le=50)
     long_term_memory: bool = False
-    memory_refresh_interval: int = Field(300, gt=0)  # seconds
+    memory_refresh_interval: int = Field(300, gt=0)
 
 class AgentPersonality(BaseModel):
-    traits: List[PersonalityTrait] = [PersonalityTrait.FRIENDLY]
+    traits: List[Union[PersonalityTrait, str]] = [PersonalityTrait.FRIENDLY]
     base_tone: str = "helpful and knowledgeable"
-    emotional_awareness: EmotionalAwarenessConfig = EmotionalAwarenessConfig()
-    memory: MemoryConfig = MemoryConfig()
+    emotional_awareness: EmotionalAwarenessConfig = Field(default_factory=EmotionalAwarenessConfig)
+    memory: MemoryConfig = Field(default_factory=MemoryConfig)
+    
+    @validator('traits', pre=True)
+    def validate_traits(cls, v):
+        if isinstance(v, list):
+            validated_traits = []
+            for trait in v:
+                if isinstance(trait, str):
+                    validated_traits.append(trait)
+                else:
+                    validated_traits.append(trait.value if hasattr(trait, 'value') else str(trait))
+            return validated_traits
+        return v
+    
+    def dict(self, **kwargs):
+        """Override dict method to handle partial updates correctly"""
+        result = super().dict(**kwargs)
+        return result
+
+
+class VoiceModelConfig(BaseModel):
+    model_name: str = Field(default="default", description="Voice model to use")
+    speaking_rate: float = Field(default=1.0, ge=0.5, le=2.0)
+    pitch: float = Field(default=0.0, ge=-20.0, le=20.0)
+    volume_gain: float = Field(default=0.0, ge=-96.0, le=16.0)
 
 class AgentBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
@@ -3601,9 +3796,9 @@ class AgentBase(BaseModel):
     model: str = Field(..., description="Ollama model to use")
     system_prompt: str = Field(..., description="System prompt defining behavior")
     is_public: bool = Field(False)
-    tools: List[str] = Field([])
+    tools: List[str] = Field(default_factory=list)
     personality: AgentPersonality = Field(default_factory=AgentPersonality)
-    metadata: Optional[Dict[str, Any]] = Field(None, alias="agent_metadata")
+    agent_metadata: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
 class AgentCreate(AgentBase):
     pass
@@ -3616,7 +3811,7 @@ class AgentUpdate(BaseModel):
     is_public: Optional[bool] = None
     tools: Optional[List[str]] = None
     personality: Optional[AgentPersonality] = None
-    metadata: Optional[Dict[str, Any]] = Field(None, alias="agent_metadata")
+    agent_metadata: Optional[Dict[str, Any]] = None
 
 class Agent(AgentBase):
     id: str
@@ -3628,10 +3823,9 @@ class AgentResponse(AgentBase):
     owner_id: str
     created_at: datetime
     updated_at: datetime
-
+    
     class Config:
         from_attributes = True
-        populate_by_name = True
 
 
 
@@ -3686,7 +3880,7 @@ import uuid
 
 class DBAgent(Base):
     __tablename__ = "agents"
-    __table_args__ = {'schema': 'llm'}  # Add schema here
+    __table_args__ = {'schema': 'llm'}
     
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     owner_id = Column(String, nullable=False, index=True)
@@ -3696,10 +3890,12 @@ class DBAgent(Base):
     system_prompt = Column(String, nullable=False)
     is_public = Column(Boolean, default=False, index=True)
     tools = Column(ARRAY(String))
+    personality = Column(JSONB)  # Add this field if missing
     agent_metadata = Column(JSONB)
     voice_enabled = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
     
     # Relationships
     documents = relationship("DBDocument", back_populates="agent", cascade="all, delete-orphan")
@@ -4087,13 +4283,45 @@ from app.routers import (
 )
 from app.middleware import LoggingMiddleware, RateLimiterMiddleware
 import asyncio
-import logging
+import logging  # Add this import
 from app.utils.health_check import router as health_router
 
+# Add this line to define the logger
+logger = logging.getLogger(__name__)
+
+# Create the FastAPI app FIRST
 app = FastAPI(
     title=settings.APP_NAME,
     version=settings.APP_VERSION
 )
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database and services on startup"""
+    try:
+        # Initialize database
+        from app.init_db import init_db
+        await init_db()
+        logger.info("Database initialization completed")
+        
+        # Initialize cache service
+        from app.services.cache import cache_service
+        await cache_service.connect()
+        logger.info("Cache service initialized")
+        
+    except Exception as e:
+        logger.error(f"Startup initialization failed: {str(e)}")  # Now this will work
+        # Don't raise - let the app start even if some services fail
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on shutdown"""
+    try:
+        from app.services.cache import cache_service
+        await cache_service.disconnect()
+        logger.info("Services cleaned up successfully")
+    except Exception as e:
+        logger.error(f"Shutdown cleanup failed: {str(e)}")
 
 # Middleware
 app.add_middleware(
@@ -4118,12 +4346,10 @@ app.include_router(chat.router, prefix="/api/v1")
 app.include_router(voice.router, prefix="/api/v1/voice")
 app.include_router(agent_interaction.router, prefix="/api/v1")
 
-
-
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 ===== ./app/services/agent_interaction_service.py =====
 # ./app/services/agent_interaction_service.py
 import logging
@@ -5849,7 +6075,6 @@ Instructions:
             }
 
 
-# rag_service.py
     async def _get_agent_collection_name(agent_id: str) -> str:
         return f"agent_{agent_id}_memory"
 
@@ -5891,6 +6116,36 @@ Instructions:
             ]
         )
 
+    async def delete_agent_data(self, agent_id: str, user_id: str) -> bool:
+        """Delete all data associated with an agent"""
+        await self._ensure_collection_exists()
+    
+        try:
+            from app.utils.qdrant_async import create_user_filter
+        
+        # Create filter for agent-specific data
+            filters = {"agent_id": agent_id}
+        
+            success = await self.client.delete(
+                collection_name=self.collection_name,
+                points_selector=qdrant_models.FilterSelector(
+                    filter=create_user_filter(user_id, filters)
+                )
+            )
+        
+            if success:
+                logger.info(f"Successfully deleted RAG data for agent {agent_id}")
+            else:
+                logger.warning(f"No RAG data found for agent {agent_id}")
+            
+            return success
+        
+        except Exception as e:
+            logger.error(f"Failed to delete agent RAG data: {str(e)}")
+        # Don't raise exception - allow agent deletion to continue
+            return False
+
+
     async def close(self):
         """Clean up resources"""
         if self.client:
@@ -5906,10 +6161,10 @@ from datetime import datetime
 from sqlalchemy import select, update, delete
 import httpx
 import json
-from app.dependencies import get_db_session
+from app.dependencies import get_db
 
 class AgentService:
-    def __init__(self, db: AsyncSession = Depends(get_db_session)):
+    def __init__(self, db: AsyncSession = Depends(get_db)):
         self.db = db
 
     async def create_agent(self, owner_id: str, agent_data: AgentCreate) -> DBAgent:
@@ -6827,8 +7082,13 @@ class MCPClient:
 # app/services/agent_execution_service.py
 from datetime import datetime
 import httpx
+import json
 from app.services.agent_service import AgentService
+from app.models.db_models import DBAgent  # ← ADD THIS
+from app.models.agent_model import AgentPersonality  # ← ADD THIS
+from app.services.cache import cache_service  # ← ADD THIS
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 import logging
 
 logger = logging.getLogger(__name__)
@@ -6850,7 +7110,7 @@ async def call_ai_service(
             }
             
             response = await client.post(
-                "http://localhost:11434/api/generate",  # Ollama endpoint
+                "http://localhost:11434/api/generate",
                 json=payload,
                 timeout=30.0
             )
@@ -6869,55 +7129,91 @@ async def call_ai_service(
         logger.error(f"Error calling AI service: {str(e)}")
         raise Exception(f"AI service call failed: {str(e)}")
 
-async def execute_agent(
-    agent_id: str, 
-    owner_id: str, 
-    input_data: dict,
-    db: AsyncSession
-):
-    """
-    Execute an agent with the given input data.
-    """
-    agent_service = AgentService(db)
-    
+async def execute_agent(agent_id: str, user_id: str, input_data: dict, db: AsyncSession):
     try:
-        # Get the agent
-        agent = await agent_service.get_agent(agent_id, owner_id)
-        if not agent:
-            raise ValueError(f"Agent {agent_id} not found")
-        
-        # Extract message and parameters
-        message = input_data.get("message", "")
-        parameters = input_data.get("parameters", {})
-        
-        # Execute the agent
-        try:
-            response = await call_ai_service(
-                model=agent.model,
-                system_prompt=agent.system_prompt,
-                message=message,
-                parameters=parameters
+        # Get agent with personality
+        result = await db.execute(
+            select(DBAgent).where(
+                DBAgent.id == agent_id,
+                DBAgent.owner_id == user_id
             )
-            
-            return {
-                "status": "success",
-                "response": response,
-                "agent_id": agent_id,
-                "timestamp": datetime.utcnow().isoformat()
+        )
+        agent = result.scalars().first()
+        
+        if not agent:
+            raise ValueError("Agent not found")
+        
+        # Build personality-aware system prompt
+        personality = AgentPersonality(**agent.personality) if agent.personality else AgentPersonality()
+        
+        enhanced_system_prompt = f"""
+{agent.system_prompt}
+
+PERSONALITY CONFIGURATION:
+- Traits: {', '.join(personality.traits)}
+- Tone: {personality.base_tone}
+- Empathy Level: {personality.emotional_awareness.empathy_level}/1.0
+- Context Memory: {personality.memory.context_window} messages
+- Emotional Awareness: {'Enabled' if personality.emotional_awareness.detect_emotion else 'Disabled'}
+
+Remember to embody these personality traits in all your responses.
+"""
+        
+        # Get conversation history
+        history_key = f"chat_history:{user_id}:{agent_id}"
+        history = await cache_service.get(history_key)
+        conversation_history = json.loads(history) if history else []
+        
+        # Limit history based on personality memory settings
+        max_history = personality.memory.context_window
+        conversation_history = conversation_history[-max_history:] if conversation_history else []
+        
+        # Build messages
+        messages = [
+            {"role": "system", "content": enhanced_system_prompt},
+            *conversation_history,
+            {"role": "user", "content": input_data.get("input", "")}
+        ]
+        
+        # Execute with LLM
+        from app.services.llm_service import OllamaService
+        llm_service = OllamaService()
+        
+        response = await llm_service.chat(
+            messages=messages,
+            model=agent.model,
+            options={
+                "temperature": input_data.get("parameters", {}).get("temperature", 0.7),
+                "max_tokens": input_data.get("parameters", {}).get("max_tokens", 2000),
+                "top_p": 0.9,
             }
-            
-        except Exception as e:
-            return {
-                "status": "error",
-                "error": str(e),
-                "agent_id": agent_id,
-                "timestamp": datetime.utcnow().isoformat()
-            }
+        )
+        
+        # Update conversation history
+        new_message_user = {"role": "user", "content": input_data.get("input", "")}
+        new_message_assistant = {"role": "assistant", "content": response.get("message", {}).get("content", "")}
+        
+        updated_history = conversation_history + [new_message_user, new_message_assistant]
+        updated_history = updated_history[-max_history:]
+        
+        # Save to cache
+        await cache_service.set(
+            history_key, 
+            json.dumps(updated_history), 
+            ttl=personality.memory.memory_refresh_interval
+        )
+        
+        return {
+            "response": response.get("message", {}).get("content", ""),
+            "model": agent.model,
+            "personality_applied": personality.dict(),
+            "context_length": len(updated_history)
+        }
+        
     except Exception as e:
-        await db.rollback()
+        logger.error(f"Agent execution failed: {str(e)}")
         raise
-    finally:
-        await db.close()
+
 ===== ./app/services/voice_service.py =====
 import logging
 from typing import Optional, Tuple
@@ -7165,12 +7461,24 @@ class VoiceAgentService:
         return "\n".join(prompt_lines)
 ===== ./app/dependencies.py =====
 from fastapi import Depends
+from sqlalchemy.ext.asyncio import AsyncSession
 from app.utils.auth import verify_token, get_current_user
-from app.utils.helpers import get_db
-from sqlalchemy.orm import Session
+from app.database import AsyncSessionLocal
+import logging
 
-# Database dependency
+logger = logging.getLogger(__name__)
+
+async def get_db() -> AsyncSession:
+    """Database session dependency"""
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
+
+# Add this missing function
 def get_db_session():
+    """Returns the database session dependency"""
     return Depends(get_db)
 
 # Authentication dependencies
@@ -7179,25 +7487,92 @@ def verify_token_dep():
 
 def get_current_user_dep():
     return Depends(get_current_user)
+
 ===== ./app/init_db.py =====
 import asyncio
+import logging
 from sqlalchemy import text
 from app.database import engine, Base
-from app.models.db_models import DBAgent
-import logging
+from app.models.db_models import DBAgent, DBDocument, DBTrainingJob, DBConversation, DBMessage
+from app.config import settings
 
-logging.basicConfig()
-logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+async def create_schema():
+    """Create the llm schema if it doesn't exist"""
+    try:
+        async with engine.begin() as conn:
+            # Create schema
+            await conn.execute(text("CREATE SCHEMA IF NOT EXISTS llm"))
+            logger.info("Schema 'llm' created or already exists")
+    except Exception as e:
+        logger.error(f"Error creating schema: {str(e)}")
+        raise
+
+async def create_tables():
+    """Create all tables in the correct order"""
+    try:
+        async with engine.begin() as conn:
+            # Set search path to include llm schema
+            await conn.execute(text("SET search_path TO llm, public"))
+            
+            # Create all tables
+            await conn.run_sync(Base.metadata.create_all)
+            logger.info("All tables created successfully")
+    except Exception as e:
+        logger.error(f"Error creating tables: {str(e)}")
+        raise
+
+async def verify_tables():
+    """Verify that all required tables exist"""
+    required_tables = [
+        'agents', 'documents', 'training_jobs', 'conversations', 'messages'
+    ]
+    
+    try:
+        async with engine.begin() as conn:
+            for table in required_tables:
+                result = await conn.execute(text(f"""
+                    SELECT EXISTS (
+                        SELECT FROM information_schema.tables 
+                        WHERE table_schema = 'llm' 
+                        AND table_name = '{table}'
+                    )
+                """))
+                exists = result.scalar()
+                if exists:
+                    logger.info(f"✅ Table 'llm.{table}' exists")
+                else:
+                    logger.error(f"❌ Table 'llm.{table}' does not exist")
+    except Exception as e:
+        logger.error(f"Error verifying tables: {str(e)}")
+        raise
 
 async def init_db():
-    async with engine.begin() as conn:
-        # Create schema
-        await conn.execute(text("CREATE SCHEMA IF NOT EXISTS llm"))
-        # Set search path to include llm schema
-        await conn.execute(text("SET search_path TO llm, public"))
-        # Create tables
-        await conn.run_sync(Base.metadata.create_all)
-    print("Database initialized successfully!")
+    """Initialize the database with schema and tables"""
+    try:
+        logger.info("Starting database initialization...")
+        
+        # Step 1: Create schema
+        await create_schema()
+        
+        # Step 2: Create tables
+        await create_tables()
+        
+        # Step 3: Verify tables
+        await verify_tables()
+        
+        logger.info("✅ Database initialized successfully!")
+        
+    except Exception as e:
+        logger.error(f"❌ Database initialization failed: {str(e)}")
+        raise
+    finally:
+        # Close the engine
+        await engine.dispose()
 
 if __name__ == "__main__":
     asyncio.run(init_db())
+

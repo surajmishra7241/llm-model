@@ -494,7 +494,7 @@ class AsyncQdrantClient:
         try:
             # Shutdown executor
             if hasattr(self, 'executor'):
-                self.executor.shutdown(wait=True, timeout=30)
+                self.executor.shutdown(wait=True)
                 logger.info("AsyncQdrant executor shutdown completed")
                 
             if hasattr(self._local, 'client') and self._local.client is not None:

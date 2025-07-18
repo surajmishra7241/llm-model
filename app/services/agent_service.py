@@ -7,10 +7,10 @@ from datetime import datetime
 from sqlalchemy import select, update, delete
 import httpx
 import json
-from app.dependencies import get_db_session
+from app.dependencies import get_db
 
 class AgentService:
-    def __init__(self, db: AsyncSession = Depends(get_db_session)):
+    def __init__(self, db: AsyncSession = Depends(get_db)):
         self.db = db
 
     async def create_agent(self, owner_id: str, agent_data: AgentCreate) -> DBAgent:

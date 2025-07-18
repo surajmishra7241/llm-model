@@ -26,18 +26,28 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "llm_agents"
     DATABASE_URL: Optional[PostgresDsn] = None
     
+
+
+    
+
     @validator("DATABASE_URL", pre=True)
     def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> str:
         if isinstance(v, str):
             return v
+    
+    # Fix: Don't add leading slash to database name
+        db_name = values.get("POSTGRES_DB", "")
+    
         return str(PostgresDsn.build(
             scheme="postgresql+asyncpg",
             username=values.get("POSTGRES_USER"),
             password=values.get("POSTGRES_PASSWORD"),
             host=values.get("POSTGRES_SERVER"),
             port=values.get("POSTGRES_PORT"),
-            path=f"/{values.get('POSTGRES_DB') or ''}",
+            path=db_name,  # Remove the leading slash
         ))
+
+
     
     # Redis
     REDIS_URL: RedisDsn = "redis://localhost:6379/0"

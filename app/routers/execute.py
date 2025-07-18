@@ -1,4 +1,3 @@
-# app/routers/execute.py
 from fastapi import APIRouter, Depends, HTTPException
 from app.dependencies import get_current_user, get_db
 from app.services.agent_execution_service import execute_agent
@@ -14,14 +13,10 @@ async def execute_agent_endpoint(
     db: AsyncSession = Depends(get_db)
 ):
     try:
-        # Extract input and parameters from request_data
-        input_text = request_data.get("input", "")
-        parameters = request_data.get("parameters", {})
-        
-        # Create the input_data dict expected by execute_agent
+        # The execute_agent service expects input_data with "input" key
         input_data = {
-            "message": input_text,
-            "parameters": parameters
+            "input": request_data.get("input", ""),
+            "parameters": request_data.get("parameters", {})
         }
         
         result = await execute_agent(agent_id, user["sub"], input_data, db)

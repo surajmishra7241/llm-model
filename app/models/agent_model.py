@@ -1,9 +1,8 @@
 # ./app/models/agent_model.py
-from datetime import datetime  # Add this import at the top
+from datetime import datetime
 from enum import Enum
-from pydantic import BaseModel, Field
-from typing import Optional, List, Dict, Any
-
+from pydantic import BaseModel, Field, validator
+from typing import Optional, List, Dict, Any, Union  # Added Union here
 
 class PersonalityTrait(str, Enum):
     FRIENDLY = "friendly"
@@ -11,6 +10,11 @@ class PersonalityTrait(str, Enum):
     WITTY = "witty"
     EMPATHETIC = "empathetic"
     ENTHUSIASTIC = "enthusiastic"
+    ANALYTICAL = "analytical"
+    CREATIVE = "creative"
+    SUPPORTIVE = "supportive"
+    HUMOROUS = "humorous"
+    SERIOUS = "serious"
 
 class EmotionalAwarenessConfig(BaseModel):
     detect_emotion: bool = True
@@ -19,15 +23,39 @@ class EmotionalAwarenessConfig(BaseModel):
     max_emotional_response_time: float = Field(1.5, gt=0)
 
 class MemoryConfig(BaseModel):
-    context_window: int = Field(10, gt=0)
+    context_window: int = Field(10, gt=0, le=50)
     long_term_memory: bool = False
-    memory_refresh_interval: int = Field(300, gt=0)  # seconds
+    memory_refresh_interval: int = Field(300, gt=0)
 
 class AgentPersonality(BaseModel):
-    traits: List[PersonalityTrait] = [PersonalityTrait.FRIENDLY]
+    traits: List[Union[PersonalityTrait, str]] = [PersonalityTrait.FRIENDLY]
     base_tone: str = "helpful and knowledgeable"
-    emotional_awareness: EmotionalAwarenessConfig = EmotionalAwarenessConfig()
-    memory: MemoryConfig = MemoryConfig()
+    emotional_awareness: EmotionalAwarenessConfig = Field(default_factory=EmotionalAwarenessConfig)
+    memory: MemoryConfig = Field(default_factory=MemoryConfig)
+    
+    @validator('traits', pre=True)
+    def validate_traits(cls, v):
+        if isinstance(v, list):
+            validated_traits = []
+            for trait in v:
+                if isinstance(trait, str):
+                    validated_traits.append(trait)
+                else:
+                    validated_traits.append(trait.value if hasattr(trait, 'value') else str(trait))
+            return validated_traits
+        return v
+    
+    def dict(self, **kwargs):
+        """Override dict method to handle partial updates correctly"""
+        result = super().dict(**kwargs)
+        return result
+
+
+class VoiceModelConfig(BaseModel):
+    model_name: str = Field(default="default", description="Voice model to use")
+    speaking_rate: float = Field(default=1.0, ge=0.5, le=2.0)
+    pitch: float = Field(default=0.0, ge=-20.0, le=20.0)
+    volume_gain: float = Field(default=0.0, ge=-96.0, le=16.0)
 
 class AgentBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
@@ -35,9 +63,9 @@ class AgentBase(BaseModel):
     model: str = Field(..., description="Ollama model to use")
     system_prompt: str = Field(..., description="System prompt defining behavior")
     is_public: bool = Field(False)
-    tools: List[str] = Field([])
+    tools: List[str] = Field(default_factory=list)
     personality: AgentPersonality = Field(default_factory=AgentPersonality)
-    metadata: Optional[Dict[str, Any]] = Field(None, alias="agent_metadata")
+    agent_metadata: Optional[Dict[str, Any]] = Field(default_factory=dict)
 
 class AgentCreate(AgentBase):
     pass
@@ -50,7 +78,7 @@ class AgentUpdate(BaseModel):
     is_public: Optional[bool] = None
     tools: Optional[List[str]] = None
     personality: Optional[AgentPersonality] = None
-    metadata: Optional[Dict[str, Any]] = Field(None, alias="agent_metadata")
+    agent_metadata: Optional[Dict[str, Any]] = None
 
 class Agent(AgentBase):
     id: str
@@ -62,10 +90,9 @@ class AgentResponse(AgentBase):
     owner_id: str
     created_at: datetime
     updated_at: datetime
-
+    
     class Config:
         from_attributes = True
-        populate_by_name = True
 
 
 
