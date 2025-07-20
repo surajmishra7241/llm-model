@@ -125,9 +125,33 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = "your-secret-key-here"
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 11440  # 24 hours
+
+
+
+    ENABLE_INTERNET_SEARCH: bool = True
+    SEARCH_SOURCES: List[str] = ["duckduckgo", "reddit", "hackernews", "wikipedia"]
+    MAX_SEARCH_RESULTS_PER_SOURCE: int = 5
+    SEARCH_TIMEOUT_SECONDS: int = 15
+
+    # Google Search API (optional - for paid Google Custom Search)
+    GOOGLE_SEARCH_API_KEY: Optional[str] = None
+    GOOGLE_SEARCH_ENGINE_ID: Optional[str] = None
+
+    # Brave Search API (optional - for Brave Search API)
+    BRAVE_SEARCH_API_KEY: Optional[str] = None
+
+    # Rate limiting for search APIs
+    SEARCH_RATE_LIMIT_PER_MINUTE: int = 60
+    SEARCH_CACHE_TTL_SECONDS: int = 3600  # 1 hour
+
+
+
+# WebSocket Configuration
+    WEBSOCKET_MAX_CONNECTIONS: int = 100
+    WEBSOCKET_TIMEOUT: int = 300
     
     # Monitoring
-    PROMETHEUS_ENABLED: bool = False
+    PROMETHEUS_ENABLED: bool = True
     PROMETHEUS_PORT: conint(gt=0, le=65535) = 8001
     
     # Logging

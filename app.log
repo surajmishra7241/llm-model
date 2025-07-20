@@ -9305,3 +9305,265 @@ TypeError: RAGService.query() missing 1 required positional argument: 'agent_id'
 2025-07-06 20:24:35 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/rag/query/4196cb39-6670-45cb-80cd-b8a49caa58af - Status: 404
 2025-07-06 20:27:49 - app - INFO - Shutting down application...
 2025-07-06 20:27:49 - app.services.cache - INFO - Redis connection closed
+2025-07-19 19:12:45 - app - INFO - Logging configured successfully
+2025-07-19 19:14:39 - app - INFO - Logging configured successfully
+2025-07-19 19:14:43 - app - INFO - Logging configured successfully
+2025-07-19 19:14:43 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 19:14:43 - app - INFO - Environment: development
+2025-07-19 19:14:43 - app - INFO - Debug Mode: False
+2025-07-19 19:14:43 - app - ERROR - Startup failed: 'Settings' object has no attribute 'ENABLE_INTERNET_SEARCH'
+2025-07-19 19:15:14 - app - INFO - Logging configured successfully
+2025-07-19 19:15:18 - app - INFO - Logging configured successfully
+2025-07-19 19:15:18 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 19:15:18 - app - INFO - Environment: development
+2025-07-19 19:15:18 - app - INFO - Debug Mode: False
+2025-07-19 19:15:18 - app - ERROR - Startup failed: 'Settings' object has no attribute 'ENABLE_INTERNET_SEARCH'
+2025-07-19 19:19:50 - app - INFO - Logging configured successfully
+2025-07-19 19:19:54 - app - INFO - Logging configured successfully
+2025-07-19 19:19:54 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 19:19:54 - app - INFO - Environment: development
+2025-07-19 19:19:54 - app - INFO - Debug Mode: False
+2025-07-19 19:19:54 - app - INFO - Internet Search: Enabled
+2025-07-19 19:19:54 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-19 19:19:54 - app - INFO - === Ready to Accept Requests ===
+2025-07-19 19:22:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:22:03 - app.services.agent_execution_service - ERROR - Agent execution failed: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/agent_execution_service.py", line 115, in execute_agent
+    "temperature": parameters.get("temperature", personality.base_tone_temperature),
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/venv/lib/python3.11/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+2025-07-19 19:22:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:22:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:22:33 - app.services.agent_execution_service - ERROR - Agent execution failed: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/agent_execution_service.py", line 115, in execute_agent
+    "temperature": parameters.get("temperature", personality.base_tone_temperature),
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/venv/lib/python3.11/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+2025-07-19 19:22:33 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:26:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/ya45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:26:57 - app.services.agent_execution_service - ERROR - Validation error: Agent ya45b7d28-dfe7-40d3-83d5-1c6e92b06a33 not found
+2025-07-19 19:26:57 - app.routers.execute - ERROR - Validation error for agent ya45b7d28-dfe7-40d3-83d5-1c6e92b06a33: Agent ya45b7d28-dfe7-40d3-83d5-1c6e92b06a33 not found
+2025-07-19 19:26:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/ya45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 404
+2025-07-19 19:27:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:27:03 - app.services.agent_execution_service - ERROR - Agent execution failed: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/agent_execution_service.py", line 115, in execute_agent
+    "temperature": parameters.get("temperature", personality.base_tone_temperature),
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/venv/lib/python3.11/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+2025-07-19 19:27:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:28:08 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:28:08 - app.services.agent_execution_service - ERROR - Agent execution failed: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+Traceback (most recent call last):
+  File "/Users/surajmishra/reactNative/llmmodel/app/services/agent_execution_service.py", line 115, in execute_agent
+    "temperature": parameters.get("temperature", personality.base_tone_temperature),
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/surajmishra/reactNative/llmmodel/venv/lib/python3.11/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'AgentPersonality' object has no attribute 'base_tone_temperature'
+2025-07-19 19:28:08 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:30:05 - app - INFO - Shutting down AI Agent Platform...
+2025-07-19 19:30:06 - app - INFO - Logging configured successfully
+2025-07-19 19:30:09 - app - INFO - Logging configured successfully
+2025-07-19 19:30:09 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 19:30:09 - app - INFO - Environment: development
+2025-07-19 19:30:09 - app - INFO - Debug Mode: False
+2025-07-19 19:30:09 - app - INFO - Internet Search: Enabled
+2025-07-19 19:30:09 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-19 19:30:09 - app - INFO - === Ready to Accept Requests ===
+2025-07-19 19:30:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:30:14 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:30:14 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:30:14 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:30:33 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:30:53 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:30:53 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:30:53 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:30:53 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:30:56 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:32:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:32:02 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:32:02 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:32:02 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:32:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:32:37 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:32:37 - app.services.agent_execution_service - INFO - Performing internet search for query: What is 2+2?...
+2025-07-19 19:32:38 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-19 19:32:39 - app.services.agent_execution_service - INFO - Search completed: 0 results from 2 sources
+2025-07-19 19:32:39 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:32:39 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:32:39 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:33:01 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:34:04 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:34:04 - app.services.agent_execution_service - INFO - Performing internet search for query: can you write code...
+2025-07-19 19:34:04 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-19 19:34:05 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-19 19:34:05 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:34:05 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:34:05 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:34:27 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:36:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:36:05 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:36:05 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:36:05 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:36:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:36:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:36:59 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 19:36:59 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 19:36:59 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 19:37:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 19:42:56 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 19:42:56 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 422
+2025-07-19 20:02:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 20:02:48 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 422
+2025-07-19 20:16:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 20:16:13 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 20:16:13 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 20:16:13 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 20:16:15 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 20:20:18 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 20:20:18 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 20:20:18 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 20:20:18 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 20:20:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 20:20:40 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 20:20:40 - app.services.agent_execution_service - INFO - Performing internet search for query: share some latest news...
+2025-07-19 20:20:40 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-19 20:20:40 - app.services.agent_execution_service - INFO - Search completed: 0 results from 1 sources
+2025-07-19 20:20:40 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 20:20:40 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 20:20:40 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 20:20:56 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 20:21:19 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 20:21:19 - app.services.agent_execution_service - INFO - Performing internet search for query: provide latest new on ai...
+2025-07-19 20:21:19 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-19 20:21:19 - app.services.agent_execution_service - INFO - Search completed: 0 results from 1 sources
+2025-07-19 20:21:19 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 20:21:19 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 20:21:19 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 20:21:48 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 20:22:09 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-19 20:22:09 - app.services.agent_execution_service - INFO - Performing internet search for query: whats the current date...
+2025-07-19 20:22:09 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-19 20:22:09 - app.services.agent_execution_service - INFO - Search completed: 0 results from 1 sources
+2025-07-19 20:22:09 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 20:22:09 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 20:22:09 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 20:22:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-19 21:21:14 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33/history?user_id=6861220687f9629419d9624e&limit=20&offset=0
+2025-07-19 21:21:14 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33/history?user_id=6861220687f9629419d9624e&limit=20&offset=0 - Status: 404
+2025-07-19 21:34:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-07-19 21:34:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-07-19 21:34:11 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-07-19 21:34:11 - app.services.llm_service - INFO - Found 1 models
+2025-07-19 21:34:11 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-19 21:34:11 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-19 21:34:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-07-19 22:01:18 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/3d767064-6a47-4e9c-9405-80bd76c32fe0/history?user_id=6861220687f9629419d9624e&limit=20&offset=0
+2025-07-19 22:01:18 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/3d767064-6a47-4e9c-9405-80bd76c32fe0/history?user_id=6861220687f9629419d9624e&limit=20&offset=0 - Status: 404
+2025-07-19 22:01:19 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/3d767064-6a47-4e9c-9405-80bd76c32fe0/history?user_id=6861220687f9629419d9624e&limit=20&offset=0
+2025-07-19 22:01:19 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/3d767064-6a47-4e9c-9405-80bd76c32fe0/history?user_id=6861220687f9629419d9624e&limit=20&offset=0 - Status: 404
+2025-07-19 22:01:45 - app - INFO - Shutting down AI Agent Platform...
+2025-07-19 22:01:48 - app - INFO - Logging configured successfully
+2025-07-19 22:01:52 - app - INFO - Logging configured successfully
+2025-07-19 22:01:52 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 22:01:52 - app - INFO - Environment: development
+2025-07-19 22:01:52 - app - INFO - Debug Mode: False
+2025-07-19 22:01:52 - app - INFO - Internet Search: Enabled
+2025-07-19 22:01:52 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-19 22:01:52 - app - INFO - === Ready to Accept Requests ===
+2025-07-19 22:14:59 - app - INFO - Shutting down AI Agent Platform...
+2025-07-19 22:15:00 - app - INFO - Logging configured successfully
+2025-07-19 22:15:04 - app - INFO - Logging configured successfully
+2025-07-19 22:15:04 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 22:15:04 - app - INFO - Environment: development
+2025-07-19 22:15:04 - app - INFO - Debug Mode: False
+2025-07-19 22:15:04 - app - INFO - Internet Search: Enabled
+2025-07-19 22:15:04 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-19 22:15:04 - app - INFO - === Ready to Accept Requests ===
+2025-07-19 22:15:11 - app - INFO - Shutting down AI Agent Platform...
+2025-07-19 22:15:11 - app - INFO - Logging configured successfully
+2025-07-19 22:15:14 - app - INFO - Logging configured successfully
+2025-07-19 22:15:14 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 22:15:14 - app - INFO - Environment: development
+2025-07-19 22:15:14 - app - INFO - Debug Mode: False
+2025-07-19 22:15:14 - app - INFO - Internet Search: Enabled
+2025-07-19 22:15:14 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-19 22:15:14 - app - INFO - === Ready to Accept Requests ===
+2025-07-19 22:15:35 - app - INFO - Shutting down AI Agent Platform...
+2025-07-19 22:15:36 - app - INFO - Logging configured successfully
+2025-07-19 22:15:39 - app - INFO - Logging configured successfully
+2025-07-19 22:15:39 - app - INFO - === AI Agent Platform Started ===
+2025-07-19 22:15:39 - app - INFO - Environment: development
+2025-07-19 22:15:39 - app - INFO - Debug Mode: False
+2025-07-19 22:15:39 - app - INFO - Internet Search: Enabled
+2025-07-19 22:15:39 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-19 22:15:39 - app - INFO - === Ready to Accept Requests ===
+2025-07-19 22:16:54 - app - INFO - Shutting down AI Agent Platform...
+2025-07-20 01:14:32 - app - INFO - Logging configured successfully
+2025-07-20 01:14:54 - app - INFO - Logging configured successfully
+2025-07-20 01:17:39 - app - INFO - Logging configured successfully
+2025-07-20 01:18:09 - app - INFO - Logging configured successfully
+2025-07-20 01:18:12 - app - INFO - Logging configured successfully
+2025-07-20 01:18:13 - app - INFO - === AI Agent Platform Started ===
+2025-07-20 01:18:13 - app - INFO - Environment: development
+2025-07-20 01:18:13 - app - INFO - Debug Mode: False
+2025-07-20 01:18:13 - app - INFO - Internet Search: Enabled
+2025-07-20 01:18:13 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-20 01:18:13 - app - INFO - === Ready to Accept Requests ===
+2025-07-20 01:18:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-20 01:18:21 - app.services.llm_service - INFO - Found 1 models
+2025-07-20 01:18:21 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-20 01:18:21 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-20 01:18:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-20 01:18:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-20 01:18:39 - app.services.llm_service - INFO - Found 1 models
+2025-07-20 01:18:39 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-20 01:18:39 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-20 01:19:00 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-20 01:28:22 - app - INFO - Shutting down AI Agent Platform...
+2025-07-20 01:28:23 - app - INFO - Logging configured successfully
+2025-07-20 01:28:26 - app - INFO - Logging configured successfully
+2025-07-20 01:28:26 - app - INFO - === AI Agent Platform Started ===
+2025-07-20 01:28:26 - app - INFO - Environment: development
+2025-07-20 01:28:26 - app - INFO - Debug Mode: False
+2025-07-20 01:28:26 - app - INFO - Internet Search: Enabled
+2025-07-20 01:28:26 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-20 01:28:26 - app - INFO - === Ready to Accept Requests ===
+2025-07-20 01:29:43 - app - INFO - Shutting down AI Agent Platform...
+2025-07-20 09:30:28 - app - INFO - Logging configured successfully
+2025-07-20 09:30:32 - app - INFO - Logging configured successfully
+2025-07-20 09:30:32 - app - INFO - === AI Agent Platform Started ===
+2025-07-20 09:30:32 - app - INFO - Environment: development
+2025-07-20 09:30:32 - app - INFO - Debug Mode: False
+2025-07-20 09:30:32 - app - INFO - Internet Search: Enabled
+2025-07-20 09:30:32 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-20 09:30:32 - app - INFO - === Ready to Accept Requests ===
+2025-07-20 09:30:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-20 09:30:40 - app.services.llm_service - INFO - Found 1 models
+2025-07-20 09:30:40 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-20 09:30:40 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-20 09:30:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-20 09:31:10 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-20 09:31:10 - app.services.llm_service - INFO - Found 1 models
+2025-07-20 09:31:10 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-20 09:31:10 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-20 09:31:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-20 09:31:23 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-20 09:31:24 - app.services.llm_service - INFO - Found 1 models
+2025-07-20 09:31:24 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-20 09:31:24 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-20 09:31:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200
+2025-07-20 09:31:55 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33
+2025-07-20 09:31:55 - app.services.llm_service - INFO - Found 1 models
+2025-07-20 09:31:55 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-20 09:31:55 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-20 09:32:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/a45b7d28-dfe7-40d3-83d5-1c6e92b06a33 - Status: 200

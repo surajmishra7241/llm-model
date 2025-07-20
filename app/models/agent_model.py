@@ -2,7 +2,7 @@
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel, Field, validator
-from typing import Optional, List, Dict, Any, Union  # Added Union here
+from typing import Optional, List, Dict, Any, Union
 
 class PersonalityTrait(str, Enum):
     FRIENDLY = "friendly"
@@ -30,6 +30,7 @@ class MemoryConfig(BaseModel):
 class AgentPersonality(BaseModel):
     traits: List[Union[PersonalityTrait, str]] = [PersonalityTrait.FRIENDLY]
     base_tone: str = "helpful and knowledgeable"
+    base_tone_temperature: float = Field(0.7, ge=0.0, le=2.0)  # ADD THIS LINE
     emotional_awareness: EmotionalAwarenessConfig = Field(default_factory=EmotionalAwarenessConfig)
     memory: MemoryConfig = Field(default_factory=MemoryConfig)
     
@@ -49,6 +50,8 @@ class AgentPersonality(BaseModel):
         """Override dict method to handle partial updates correctly"""
         result = super().dict(**kwargs)
         return result
+
+
 
 
 class VoiceModelConfig(BaseModel):
