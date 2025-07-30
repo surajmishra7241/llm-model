@@ -1,0 +1,1389 @@
+2025-07-23 00:32:36,743 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-23 00:32:36,754 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-23 00:32:36,754 - app.main - INFO - Initializing LLM service...
+2025-07-23 00:32:36,754 - app.main - INFO - Initializing Voice service...
+2025-07-23 00:32:36,754 - app.main - INFO - Initializing RAG service...
+2025-07-23 00:32:39,812 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-23 00:32:41,155 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-23 00:32:41,155 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-23 00:32:41,155 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-23 00:32:41,155 - app.main - INFO - Environment: development
+2025-07-23 00:32:41,156 - app.main - INFO - Debug Mode: False
+2025-07-23 00:32:41,156 - app.main - INFO - Internet Search: Enabled
+2025-07-23 00:32:41,156 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-23 00:32:41,156 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-23 00:32:53,401 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:32:53,402 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:32:56,564 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-23 00:32:56,565 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-23 00:33:07,409 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-23 00:33:07,421 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-23 00:33:07,422 - app.main - INFO - Initializing LLM service...
+2025-07-23 00:33:07,422 - app.main - INFO - Initializing Voice service...
+2025-07-23 00:33:07,422 - app.main - INFO - Initializing RAG service...
+2025-07-23 00:33:09,554 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-23 00:33:10,164 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-23 00:33:10,164 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-23 00:33:10,164 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-23 00:33:10,164 - app.main - INFO - Environment: development
+2025-07-23 00:33:10,164 - app.main - INFO - Debug Mode: False
+2025-07-23 00:33:10,165 - app.main - INFO - Internet Search: Enabled
+2025-07-23 00:33:10,165 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-23 00:33:10,165 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-23 00:33:20,479 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-23 00:33:20,480 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-23 00:34:33,816 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-23 00:34:33,827 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-23 00:34:33,827 - app.main - INFO - Initializing LLM service...
+2025-07-23 00:34:33,827 - app.main - INFO - Initializing Voice service...
+2025-07-23 00:34:33,827 - app.main - INFO - Initializing RAG service...
+2025-07-23 00:34:36,344 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-23 00:34:37,154 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-23 00:34:37,155 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-23 00:34:37,155 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-23 00:34:37,155 - app.main - INFO - Environment: development
+2025-07-23 00:34:37,155 - app.main - INFO - Debug Mode: False
+2025-07-23 00:34:37,155 - app.main - INFO - Internet Search: Enabled
+2025-07-23 00:34:37,155 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-23 00:34:37,155 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-23 00:34:40,076 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: cbe7cb28-53c5-4efe-a3d5-0f617ddea33f
+2025-07-23 00:34:40,076 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: cbe7cb28-53c5-4efe-a3d5-0f617ddea33f
+2025-07-23 00:34:40,080 - app.routers.voice_websocket - INFO - ✅ Authentication successful for cbe7cb28-53c5-4efe-a3d5-0f617ddea33f
+2025-07-23 00:34:53,404 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:34:53,405 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:35:47,079 - app.routers.voice_websocket - INFO - WebSocket disconnected: cbe7cb28-53c5-4efe-a3d5-0f617ddea33f
+2025-07-23 00:35:47,079 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: cbe7cb28-53c5-4efe-a3d5-0f617ddea33f
+2025-07-23 00:36:02,560 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 23be4293-0ae0-4ca8-8ed2-06e8683658a8
+2025-07-23 00:36:02,561 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 23be4293-0ae0-4ca8-8ed2-06e8683658a8
+2025-07-23 00:36:02,565 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 23be4293-0ae0-4ca8-8ed2-06e8683658a8
+2025-07-23 00:36:28,027 - app.routers.voice_websocket - INFO - WebSocket disconnected: 23be4293-0ae0-4ca8-8ed2-06e8683658a8
+2025-07-23 00:36:28,028 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 23be4293-0ae0-4ca8-8ed2-06e8683658a8
+2025-07-23 00:36:30,315 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: b95ea9a7-49a5-47cb-bf25-36deb1b11337
+2025-07-23 00:36:30,315 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: b95ea9a7-49a5-47cb-bf25-36deb1b11337
+2025-07-23 00:36:30,317 - app.routers.voice_websocket - INFO - ✅ Authentication successful for b95ea9a7-49a5-47cb-bf25-36deb1b11337
+2025-07-23 00:36:50,637 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:36:50,638 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:37:50,644 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:37:50,648 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:38:44,533 - app.routers.voice_websocket - INFO - WebSocket disconnected: b95ea9a7-49a5-47cb-bf25-36deb1b11337
+2025-07-23 00:38:44,535 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: b95ea9a7-49a5-47cb-bf25-36deb1b11337
+2025-07-23 00:38:50,644 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:38:50,645 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:38:54,504 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: eeeb3400-7310-46e3-a79b-a2e29153be85
+2025-07-23 00:38:54,504 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: eeeb3400-7310-46e3-a79b-a2e29153be85
+2025-07-23 00:38:54,509 - app.routers.voice_websocket - INFO - ✅ Authentication successful for eeeb3400-7310-46e3-a79b-a2e29153be85
+2025-07-23 00:39:50,646 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:39:50,650 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:40:50,643 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:40:50,646 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:41:50,643 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:41:50,646 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:42:36,427 - app.routers.voice_websocket - INFO - WebSocket disconnected: eeeb3400-7310-46e3-a79b-a2e29153be85
+2025-07-23 00:42:36,439 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: eeeb3400-7310-46e3-a79b-a2e29153be85
+2025-07-23 00:42:50,660 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:42:50,661 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:43:50,650 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:43:50,654 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:44:43,978 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-23 00:44:43,981 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-23 00:44:52,427 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-23 00:44:52,438 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-23 00:44:52,438 - app.main - INFO - Initializing LLM service...
+2025-07-23 00:44:52,438 - app.main - INFO - Initializing Voice service...
+2025-07-23 00:44:52,438 - app.main - INFO - Initializing RAG service...
+2025-07-23 00:44:55,078 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-23 00:44:55,753 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-23 00:44:55,754 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-23 00:44:55,754 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-23 00:44:55,754 - app.main - INFO - Environment: development
+2025-07-23 00:44:55,754 - app.main - INFO - Debug Mode: False
+2025-07-23 00:44:55,754 - app.main - INFO - Internet Search: Enabled
+2025-07-23 00:44:55,755 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-23 00:44:55,755 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-23 00:44:55,767 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:44:55,769 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:45:50,649 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:45:50,652 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:46:36,700 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 6fc9d3f9-aade-47a1-9292-6ba034f90b93
+2025-07-23 00:46:36,701 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 6fc9d3f9-aade-47a1-9292-6ba034f90b93
+2025-07-23 00:46:36,704 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 6fc9d3f9-aade-47a1-9292-6ba034f90b93
+2025-07-23 00:47:00,879 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:47:00,881 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:48:00,908 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:48:00,914 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:49:00,897 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:49:00,903 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:50:00,905 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:50:00,908 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:50:44,291 - app.routers.voice_websocket - INFO - WebSocket disconnected: 6fc9d3f9-aade-47a1-9292-6ba034f90b93
+2025-07-23 00:50:44,292 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 6fc9d3f9-aade-47a1-9292-6ba034f90b93
+2025-07-23 00:50:47,240 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 9551a243-e37a-4df7-b698-72eca37cdb29
+2025-07-23 00:50:47,240 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 9551a243-e37a-4df7-b698-72eca37cdb29
+2025-07-23 00:50:47,244 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 9551a243-e37a-4df7-b698-72eca37cdb29
+2025-07-23 00:51:00,903 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:51:00,906 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:52:00,906 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:52:00,911 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:53:00,907 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:53:00,912 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:54:00,909 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:54:00,914 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:54:22,683 - app.routers.voice_websocket - INFO - WebSocket disconnected: 9551a243-e37a-4df7-b698-72eca37cdb29
+2025-07-23 00:54:22,684 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 9551a243-e37a-4df7-b698-72eca37cdb29
+2025-07-23 00:54:25,278 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 3aac9863-828f-4c60-9bc4-94f55891ec61
+2025-07-23 00:54:25,278 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 3aac9863-828f-4c60-9bc4-94f55891ec61
+2025-07-23 00:54:25,281 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 3aac9863-828f-4c60-9bc4-94f55891ec61
+2025-07-23 00:54:34,893 - app.routers.voice_websocket - INFO - WebSocket disconnected: 3aac9863-828f-4c60-9bc4-94f55891ec61
+2025-07-23 00:54:34,894 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 3aac9863-828f-4c60-9bc4-94f55891ec61
+2025-07-23 00:54:51,567 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 4e2402f8-7c5a-4768-b150-525ebad60c44
+2025-07-23 00:54:51,569 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 4e2402f8-7c5a-4768-b150-525ebad60c44
+2025-07-23 00:54:51,572 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 4e2402f8-7c5a-4768-b150-525ebad60c44
+2025-07-23 00:55:00,902 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:55:00,904 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:56:00,910 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:56:00,913 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:57:00,907 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:57:00,909 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:58:00,912 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:58:00,916 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:59:00,909 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 00:59:00,911 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 00:59:51,577 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 4e2402f8-7c5a-4768-b150-525ebad60c44
+2025-07-23 00:59:51,579 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 4e2402f8-7c5a-4768-b150-525ebad60c44
+2025-07-23 01:00:00,912 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:00:00,914 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:01:00,909 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:01:00,911 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:02:00,910 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:02:00,911 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:03:00,913 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:03:00,922 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:04:00,887 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:04:00,888 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:05:00,885 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:05:00,887 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:06:00,891 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:06:00,894 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:07:00,890 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:07:00,891 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:08:00,891 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:08:00,894 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:09:00,903 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:09:00,908 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:09:26,458 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c76a3f8d-1c33-464d-b3a1-fb30f9e0470e
+2025-07-23 01:09:26,459 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c76a3f8d-1c33-464d-b3a1-fb30f9e0470e
+2025-07-23 01:09:26,462 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c76a3f8d-1c33-464d-b3a1-fb30f9e0470e
+2025-07-23 01:09:31,148 - app.routers.voice_websocket - INFO - WebSocket disconnected: c76a3f8d-1c33-464d-b3a1-fb30f9e0470e
+2025-07-23 01:09:31,148 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c76a3f8d-1c33-464d-b3a1-fb30f9e0470e
+2025-07-23 01:09:34,737 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 010063f4-3817-4249-92ab-e93251aeca10
+2025-07-23 01:09:34,737 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 010063f4-3817-4249-92ab-e93251aeca10
+2025-07-23 01:09:34,739 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 010063f4-3817-4249-92ab-e93251aeca10
+2025-07-23 01:09:54,581 - app.routers.voice_websocket - INFO - WebSocket disconnected: 010063f4-3817-4249-92ab-e93251aeca10
+2025-07-23 01:09:54,587 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 010063f4-3817-4249-92ab-e93251aeca10
+2025-07-23 01:09:56,763 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 9d4130bb-14a7-4679-8608-d4e597e11209
+2025-07-23 01:09:56,763 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 9d4130bb-14a7-4679-8608-d4e597e11209
+2025-07-23 01:09:56,766 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 9d4130bb-14a7-4679-8608-d4e597e11209
+2025-07-23 01:10:00,894 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:10:00,895 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:10:14,273 - app.routers.voice_websocket - INFO - WebSocket disconnected: 9d4130bb-14a7-4679-8608-d4e597e11209
+2025-07-23 01:10:14,273 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 9d4130bb-14a7-4679-8608-d4e597e11209
+2025-07-23 01:10:16,326 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 2151b114-8a1b-4bcc-b7a0-935008aefb8a
+2025-07-23 01:10:16,326 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 2151b114-8a1b-4bcc-b7a0-935008aefb8a
+2025-07-23 01:10:16,327 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 2151b114-8a1b-4bcc-b7a0-935008aefb8a
+2025-07-23 01:10:26,121 - app.routers.voice_websocket - INFO - WebSocket disconnected: 2151b114-8a1b-4bcc-b7a0-935008aefb8a
+2025-07-23 01:10:26,122 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 2151b114-8a1b-4bcc-b7a0-935008aefb8a
+2025-07-23 01:11:00,900 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:11:00,904 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:12:00,896 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:12:00,898 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:13:00,894 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:13:00,896 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:13:45,398 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e5698dd5-cc8a-4b9e-af66-ee1bceeb9c21
+2025-07-23 01:13:45,398 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e5698dd5-cc8a-4b9e-af66-ee1bceeb9c21
+2025-07-23 01:13:45,401 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e5698dd5-cc8a-4b9e-af66-ee1bceeb9c21
+2025-07-23 01:13:54,806 - app.routers.voice_websocket - INFO - WebSocket disconnected: e5698dd5-cc8a-4b9e-af66-ee1bceeb9c21
+2025-07-23 01:13:54,807 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e5698dd5-cc8a-4b9e-af66-ee1bceeb9c21
+2025-07-23 01:13:56,393 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 7c8e252e-cdf2-464c-8ea2-c3f60efc2857
+2025-07-23 01:13:56,393 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 7c8e252e-cdf2-464c-8ea2-c3f60efc2857
+2025-07-23 01:13:56,397 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 7c8e252e-cdf2-464c-8ea2-c3f60efc2857
+2025-07-23 01:13:56,823 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 7a48b9ad-a9f9-4a98-b946-a380906b1618
+2025-07-23 01:13:56,823 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 7a48b9ad-a9f9-4a98-b946-a380906b1618
+2025-07-23 01:13:56,825 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 7a48b9ad-a9f9-4a98-b946-a380906b1618
+2025-07-23 01:14:00,904 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:14:00,905 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:15:00,902 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:15:00,908 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:16:00,899 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:16:00,901 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:17:00,900 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:17:00,902 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:17:50,357 - app.routers.voice_websocket - INFO - WebSocket disconnected: 7a48b9ad-a9f9-4a98-b946-a380906b1618
+2025-07-23 01:17:50,359 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 7a48b9ad-a9f9-4a98-b946-a380906b1618
+2025-07-23 01:17:54,351 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 93d6d71d-f8fc-4b24-9451-c3145397eab7
+2025-07-23 01:17:54,351 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 93d6d71d-f8fc-4b24-9451-c3145397eab7
+2025-07-23 01:17:54,354 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 93d6d71d-f8fc-4b24-9451-c3145397eab7
+2025-07-23 01:17:54,535 - app.routers.voice_websocket - INFO - WebSocket disconnected: 7c8e252e-cdf2-464c-8ea2-c3f60efc2857
+2025-07-23 01:17:54,535 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 7c8e252e-cdf2-464c-8ea2-c3f60efc2857
+2025-07-23 01:17:54,537 - app.routers.voice_websocket - INFO - WebSocket disconnected: 93d6d71d-f8fc-4b24-9451-c3145397eab7
+2025-07-23 01:17:54,537 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 93d6d71d-f8fc-4b24-9451-c3145397eab7
+2025-07-23 01:18:00,915 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:18:00,930 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:18:02,436 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: b4d11f2b-dc23-4afe-830a-a72c49f33aa8
+2025-07-23 01:18:02,436 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: b4d11f2b-dc23-4afe-830a-a72c49f33aa8
+2025-07-23 01:18:02,437 - app.routers.voice_websocket - INFO - ✅ Authentication successful for b4d11f2b-dc23-4afe-830a-a72c49f33aa8
+2025-07-23 01:18:22,142 - app.routers.voice_websocket - INFO - WebSocket disconnected: b4d11f2b-dc23-4afe-830a-a72c49f33aa8
+2025-07-23 01:18:22,144 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: b4d11f2b-dc23-4afe-830a-a72c49f33aa8
+2025-07-23 01:18:24,181 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 33db33cc-62b4-4e40-b8c9-4debbd4b20d6
+2025-07-23 01:18:24,181 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 33db33cc-62b4-4e40-b8c9-4debbd4b20d6
+2025-07-23 01:18:24,186 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 33db33cc-62b4-4e40-b8c9-4debbd4b20d6
+2025-07-23 01:19:00,926 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:19:00,929 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:19:10,276 - app.routers.voice_websocket - INFO - WebSocket disconnected: 33db33cc-62b4-4e40-b8c9-4debbd4b20d6
+2025-07-23 01:19:10,277 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 33db33cc-62b4-4e40-b8c9-4debbd4b20d6
+2025-07-23 01:19:19,368 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 5a5fda52-ab60-4dcc-bcbe-5b32d546498f
+2025-07-23 01:19:19,368 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 5a5fda52-ab60-4dcc-bcbe-5b32d546498f
+2025-07-23 01:19:19,372 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 5a5fda52-ab60-4dcc-bcbe-5b32d546498f
+2025-07-23 01:19:50,736 - app.routers.voice_websocket - INFO - WebSocket disconnected: 5a5fda52-ab60-4dcc-bcbe-5b32d546498f
+2025-07-23 01:19:50,740 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 5a5fda52-ab60-4dcc-bcbe-5b32d546498f
+2025-07-23 01:19:52,764 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 018d093c-ab3b-472f-8834-05e9a4a90821
+2025-07-23 01:19:52,764 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 018d093c-ab3b-472f-8834-05e9a4a90821
+2025-07-23 01:19:52,771 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 018d093c-ab3b-472f-8834-05e9a4a90821
+2025-07-23 01:20:00,926 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:20:00,927 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:21:00,933 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:21:00,938 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:22:00,924 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:22:00,926 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:23:00,923 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:23:00,924 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:23:12,317 - app.routers.voice_websocket - INFO - WebSocket disconnected: 018d093c-ab3b-472f-8834-05e9a4a90821
+2025-07-23 01:23:12,317 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 018d093c-ab3b-472f-8834-05e9a4a90821
+2025-07-23 01:23:16,338 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 3a446e82-02e4-444c-b890-c9a477b3ca96
+2025-07-23 01:23:16,338 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 3a446e82-02e4-444c-b890-c9a477b3ca96
+2025-07-23 01:23:16,341 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 3a446e82-02e4-444c-b890-c9a477b3ca96
+2025-07-23 01:23:18,947 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c2e1b0df-451c-4139-8b1b-2ea5938fea59
+2025-07-23 01:23:18,947 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c2e1b0df-451c-4139-8b1b-2ea5938fea59
+2025-07-23 01:23:18,949 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c2e1b0df-451c-4139-8b1b-2ea5938fea59
+2025-07-23 01:23:48,977 - app.routers.voice_websocket - INFO - WebSocket disconnected: c2e1b0df-451c-4139-8b1b-2ea5938fea59
+2025-07-23 01:23:48,978 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c2e1b0df-451c-4139-8b1b-2ea5938fea59
+2025-07-23 01:23:51,003 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: f5d66731-a7d9-4060-87a9-8c3429805e44
+2025-07-23 01:23:51,004 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: f5d66731-a7d9-4060-87a9-8c3429805e44
+2025-07-23 01:23:51,008 - app.routers.voice_websocket - INFO - ✅ Authentication successful for f5d66731-a7d9-4060-87a9-8c3429805e44
+2025-07-23 01:24:00,926 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:24:00,927 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:24:07,653 - app.routers.voice_websocket - INFO - WebSocket disconnected: 3a446e82-02e4-444c-b890-c9a477b3ca96
+2025-07-23 01:24:07,653 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 3a446e82-02e4-444c-b890-c9a477b3ca96
+2025-07-23 01:24:07,654 - app.routers.voice_websocket - INFO - WebSocket disconnected: f5d66731-a7d9-4060-87a9-8c3429805e44
+2025-07-23 01:24:07,654 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: f5d66731-a7d9-4060-87a9-8c3429805e44
+2025-07-23 01:24:18,996 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e4c75fb3-1254-4926-b526-3f063ca220e7
+2025-07-23 01:24:18,996 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e4c75fb3-1254-4926-b526-3f063ca220e7
+2025-07-23 01:24:19,000 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e4c75fb3-1254-4926-b526-3f063ca220e7
+2025-07-23 01:24:31,545 - app.routers.voice_websocket - INFO - WebSocket disconnected: e4c75fb3-1254-4926-b526-3f063ca220e7
+2025-07-23 01:24:31,545 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e4c75fb3-1254-4926-b526-3f063ca220e7
+2025-07-23 01:24:33,572 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c27508e1-cab6-462b-bcac-079d05a0e7c1
+2025-07-23 01:24:33,572 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c27508e1-cab6-462b-bcac-079d05a0e7c1
+2025-07-23 01:24:33,574 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c27508e1-cab6-462b-bcac-079d05a0e7c1
+2025-07-23 01:24:38,295 - app.routers.voice_websocket - INFO - WebSocket disconnected: c27508e1-cab6-462b-bcac-079d05a0e7c1
+2025-07-23 01:24:38,296 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c27508e1-cab6-462b-bcac-079d05a0e7c1
+2025-07-23 01:24:42,328 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 2b699f10-c188-4e29-98fd-36c2ed2a562c
+2025-07-23 01:24:42,328 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 2b699f10-c188-4e29-98fd-36c2ed2a562c
+2025-07-23 01:24:42,330 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 2b699f10-c188-4e29-98fd-36c2ed2a562c
+2025-07-23 01:24:46,492 - app.routers.voice_websocket - INFO - WebSocket disconnected: 2b699f10-c188-4e29-98fd-36c2ed2a562c
+2025-07-23 01:24:46,492 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 2b699f10-c188-4e29-98fd-36c2ed2a562c
+2025-07-23 01:24:52,512 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 31609001-b01f-4e60-9212-2e69ab13024a
+2025-07-23 01:24:52,512 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 31609001-b01f-4e60-9212-2e69ab13024a
+2025-07-23 01:24:52,515 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 31609001-b01f-4e60-9212-2e69ab13024a
+2025-07-23 01:25:00,926 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:25:00,928 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:26:00,932 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:26:00,935 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:27:00,930 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:27:00,932 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:28:00,932 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:28:00,935 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:29:00,935 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:29:00,940 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:29:52,518 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 31609001-b01f-4e60-9212-2e69ab13024a
+2025-07-23 01:29:52,521 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 31609001-b01f-4e60-9212-2e69ab13024a
+2025-07-23 01:30:00,934 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:30:00,935 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:30:16,686 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 2cfb7450-7d25-4d73-a4a9-bac9a1a2e3c4
+2025-07-23 01:30:16,687 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 2cfb7450-7d25-4d73-a4a9-bac9a1a2e3c4
+2025-07-23 01:30:16,690 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 2cfb7450-7d25-4d73-a4a9-bac9a1a2e3c4
+2025-07-23 01:30:26,951 - app.routers.voice_websocket - INFO - WebSocket disconnected: 2cfb7450-7d25-4d73-a4a9-bac9a1a2e3c4
+2025-07-23 01:30:26,951 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 2cfb7450-7d25-4d73-a4a9-bac9a1a2e3c4
+2025-07-23 01:30:28,981 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: cc49f871-2ab2-4c53-ae02-aca429c49c83
+2025-07-23 01:30:28,981 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: cc49f871-2ab2-4c53-ae02-aca429c49c83
+2025-07-23 01:30:28,982 - app.routers.voice_websocket - INFO - ✅ Authentication successful for cc49f871-2ab2-4c53-ae02-aca429c49c83
+2025-07-23 01:30:37,581 - app.routers.voice_websocket - INFO - WebSocket disconnected: cc49f871-2ab2-4c53-ae02-aca429c49c83
+2025-07-23 01:30:37,581 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: cc49f871-2ab2-4c53-ae02-aca429c49c83
+2025-07-23 01:30:41,612 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: ea9c9fbf-dd77-45dd-b5e3-c75a8fecb2b1
+2025-07-23 01:30:41,612 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: ea9c9fbf-dd77-45dd-b5e3-c75a8fecb2b1
+2025-07-23 01:30:41,615 - app.routers.voice_websocket - INFO - ✅ Authentication successful for ea9c9fbf-dd77-45dd-b5e3-c75a8fecb2b1
+2025-07-23 01:31:00,936 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:31:00,938 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:32:00,938 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:32:00,942 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:32:30,231 - app.routers.voice_websocket - INFO - WebSocket disconnected: ea9c9fbf-dd77-45dd-b5e3-c75a8fecb2b1
+2025-07-23 01:32:30,232 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: ea9c9fbf-dd77-45dd-b5e3-c75a8fecb2b1
+2025-07-23 01:32:50,089 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c0aca0da-5c0b-42bd-8a83-7f4dfba156e1
+2025-07-23 01:32:50,089 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c0aca0da-5c0b-42bd-8a83-7f4dfba156e1
+2025-07-23 01:32:50,093 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c0aca0da-5c0b-42bd-8a83-7f4dfba156e1
+2025-07-23 01:32:57,947 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 063110bc-fb18-4d52-a5bd-5cf681f9c63b
+2025-07-23 01:32:57,947 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 063110bc-fb18-4d52-a5bd-5cf681f9c63b
+2025-07-23 01:32:57,949 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 063110bc-fb18-4d52-a5bd-5cf681f9c63b
+2025-07-23 01:33:09,598 - app.routers.voice_websocket - INFO - WebSocket disconnected: 063110bc-fb18-4d52-a5bd-5cf681f9c63b
+2025-07-23 01:33:09,599 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 063110bc-fb18-4d52-a5bd-5cf681f9c63b
+2025-07-23 01:33:11,621 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e523cba4-ed4a-4972-bb90-c42598ed7284
+2025-07-23 01:33:11,622 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e523cba4-ed4a-4972-bb90-c42598ed7284
+2025-07-23 01:33:11,625 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e523cba4-ed4a-4972-bb90-c42598ed7284
+2025-07-23 01:33:33,174 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:33:33,177 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:34:33,163 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:34:33,165 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:35:33,174 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:35:33,175 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:36:33,179 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:36:33,181 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:37:33,182 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:37:33,184 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:37:50,111 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: c0aca0da-5c0b-42bd-8a83-7f4dfba156e1
+2025-07-23 01:37:50,112 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c0aca0da-5c0b-42bd-8a83-7f4dfba156e1
+2025-07-23 01:38:11,642 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: e523cba4-ed4a-4972-bb90-c42598ed7284
+2025-07-23 01:38:11,644 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e523cba4-ed4a-4972-bb90-c42598ed7284
+2025-07-23 01:38:33,183 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:38:33,185 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:39:33,185 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:39:33,187 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:40:33,191 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:40:33,195 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:41:33,192 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:41:33,194 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:42:33,187 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:42:33,189 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:43:33,192 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:43:33,196 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:44:33,196 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:44:33,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:45:33,198 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:45:33,205 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:46:33,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:46:33,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:47:33,192 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:47:33,196 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:47:39,339 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 18bd9f61-f289-4324-9098-1753fca016de
+2025-07-23 01:47:39,340 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 18bd9f61-f289-4324-9098-1753fca016de
+2025-07-23 01:47:39,341 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 18bd9f61-f289-4324-9098-1753fca016de
+2025-07-23 01:47:46,371 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 6b779641-d043-42dc-8506-78e23d755cfa
+2025-07-23 01:47:46,371 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 6b779641-d043-42dc-8506-78e23d755cfa
+2025-07-23 01:47:46,373 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 6b779641-d043-42dc-8506-78e23d755cfa
+2025-07-23 01:47:51,457 - app.routers.voice_websocket - INFO - WebSocket disconnected: 6b779641-d043-42dc-8506-78e23d755cfa
+2025-07-23 01:47:51,457 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 6b779641-d043-42dc-8506-78e23d755cfa
+2025-07-23 01:47:53,474 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 318780cb-a305-45cf-b52b-83686bea1935
+2025-07-23 01:47:53,474 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 318780cb-a305-45cf-b52b-83686bea1935
+2025-07-23 01:47:53,476 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 318780cb-a305-45cf-b52b-83686bea1935
+2025-07-23 01:48:03,920 - app.routers.voice_websocket - INFO - WebSocket disconnected: 318780cb-a305-45cf-b52b-83686bea1935
+2025-07-23 01:48:03,921 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 318780cb-a305-45cf-b52b-83686bea1935
+2025-07-23 01:48:07,958 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 6aaa579a-10c2-4b39-87b3-dab8319a9848
+2025-07-23 01:48:07,958 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 6aaa579a-10c2-4b39-87b3-dab8319a9848
+2025-07-23 01:48:07,962 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 6aaa579a-10c2-4b39-87b3-dab8319a9848
+2025-07-23 01:48:10,719 - app.routers.voice_websocket - INFO - WebSocket disconnected: 6aaa579a-10c2-4b39-87b3-dab8319a9848
+2025-07-23 01:48:10,719 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 6aaa579a-10c2-4b39-87b3-dab8319a9848
+2025-07-23 01:48:13,947 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 8dd8f874-872a-4370-883c-e039248db896
+2025-07-23 01:48:13,947 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 8dd8f874-872a-4370-883c-e039248db896
+2025-07-23 01:48:13,949 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 8dd8f874-872a-4370-883c-e039248db896
+2025-07-23 01:48:16,736 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: ce228054-ed41-4f88-9b1e-9e6c72814847
+2025-07-23 01:48:16,736 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: ce228054-ed41-4f88-9b1e-9e6c72814847
+2025-07-23 01:48:16,737 - app.routers.voice_websocket - INFO - ✅ Authentication successful for ce228054-ed41-4f88-9b1e-9e6c72814847
+2025-07-23 01:48:33,196 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:48:33,198 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:48:46,822 - app.routers.voice_websocket - INFO - WebSocket disconnected: ce228054-ed41-4f88-9b1e-9e6c72814847
+2025-07-23 01:48:46,824 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: ce228054-ed41-4f88-9b1e-9e6c72814847
+2025-07-23 01:48:51,755 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: a14eae26-2895-4f35-ac29-4bce9773ee52
+2025-07-23 01:48:51,755 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: a14eae26-2895-4f35-ac29-4bce9773ee52
+2025-07-23 01:48:51,756 - app.routers.voice_websocket - INFO - ✅ Authentication successful for a14eae26-2895-4f35-ac29-4bce9773ee52
+2025-07-23 01:48:54,798 - app.routers.voice_websocket - INFO - WebSocket disconnected: a14eae26-2895-4f35-ac29-4bce9773ee52
+2025-07-23 01:48:54,798 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: a14eae26-2895-4f35-ac29-4bce9773ee52
+2025-07-23 01:48:56,815 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 8412d6ab-3456-42d5-aeca-c0f6ac8180a1
+2025-07-23 01:48:56,815 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 8412d6ab-3456-42d5-aeca-c0f6ac8180a1
+2025-07-23 01:48:56,818 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 8412d6ab-3456-42d5-aeca-c0f6ac8180a1
+2025-07-23 01:49:33,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:49:33,198 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:50:33,202 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:50:33,203 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:51:33,198 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:51:33,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:52:33,180 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:52:33,182 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:52:39,328 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 18bd9f61-f289-4324-9098-1753fca016de
+2025-07-23 01:52:39,330 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 18bd9f61-f289-4324-9098-1753fca016de
+2025-07-23 01:53:13,935 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 8dd8f874-872a-4370-883c-e039248db896
+2025-07-23 01:53:13,937 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 8dd8f874-872a-4370-883c-e039248db896
+2025-07-23 01:53:33,183 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:53:33,184 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:53:56,803 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 8412d6ab-3456-42d5-aeca-c0f6ac8180a1
+2025-07-23 01:53:56,804 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 8412d6ab-3456-42d5-aeca-c0f6ac8180a1
+2025-07-23 01:54:33,183 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:54:33,184 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:55:33,185 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:55:33,187 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:56:22,981 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: d98f8607-c777-4037-b4e4-7a86793d8fe0
+2025-07-23 01:56:22,982 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: d98f8607-c777-4037-b4e4-7a86793d8fe0
+2025-07-23 01:56:22,987 - app.routers.voice_websocket - INFO - ✅ Authentication successful for d98f8607-c777-4037-b4e4-7a86793d8fe0
+2025-07-23 01:56:32,846 - app.routers.voice_websocket - INFO - WebSocket disconnected: d98f8607-c777-4037-b4e4-7a86793d8fe0
+2025-07-23 01:56:32,853 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: d98f8607-c777-4037-b4e4-7a86793d8fe0
+2025-07-23 01:56:33,190 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 01:56:33,191 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 01:56:34,873 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 506e91c9-ef7f-4367-b1e9-e362ec32f561
+2025-07-23 01:56:34,873 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 506e91c9-ef7f-4367-b1e9-e362ec32f561
+2025-07-23 01:56:34,876 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 506e91c9-ef7f-4367-b1e9-e362ec32f561
+2025-07-23 01:56:47,292 - app.routers.voice_websocket - INFO - WebSocket disconnected: 506e91c9-ef7f-4367-b1e9-e362ec32f561
+2025-07-23 01:56:47,293 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 506e91c9-ef7f-4367-b1e9-e362ec32f561
+2025-07-23 01:56:51,326 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: a9cb994a-d1da-4017-b34f-3f91d9952a68
+2025-07-23 01:56:51,326 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: a9cb994a-d1da-4017-b34f-3f91d9952a68
+2025-07-23 01:56:51,327 - app.routers.voice_websocket - INFO - ✅ Authentication successful for a9cb994a-d1da-4017-b34f-3f91d9952a68
+2025-07-23 01:57:22,023 - app.routers.voice_websocket - INFO - WebSocket disconnected: a9cb994a-d1da-4017-b34f-3f91d9952a68
+2025-07-23 01:57:22,024 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: a9cb994a-d1da-4017-b34f-3f91d9952a68
+2025-07-23 01:57:22,124 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-23 01:57:22,125 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-23 20:16:10,010 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-23 20:16:10,023 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-23 20:16:10,023 - app.main - INFO - Initializing LLM service...
+2025-07-23 20:16:10,023 - app.main - INFO - Initializing Voice service...
+2025-07-23 20:16:10,023 - app.main - INFO - Initializing RAG service...
+2025-07-23 20:16:12,410 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-23 20:16:13,013 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-23 20:16:13,014 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-23 20:16:13,014 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-23 20:16:13,014 - app.main - INFO - Environment: development
+2025-07-23 20:16:13,014 - app.main - INFO - Debug Mode: False
+2025-07-23 20:16:13,014 - app.main - INFO - Internet Search: Enabled
+2025-07-23 20:16:13,014 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-23 20:16:13,014 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-23 20:16:30,273 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 94aee146-5191-4cea-af22-9c9198cd608b
+2025-07-23 20:16:30,274 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 94aee146-5191-4cea-af22-9c9198cd608b
+2025-07-23 20:16:30,277 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 94aee146-5191-4cea-af22-9c9198cd608b
+2025-07-23 20:16:35,324 - app.routers.voice_websocket - INFO - WebSocket disconnected: 94aee146-5191-4cea-af22-9c9198cd608b
+2025-07-23 20:16:35,324 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 94aee146-5191-4cea-af22-9c9198cd608b
+2025-07-23 20:16:37,342 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c2b9da0e-09fc-46e5-bafb-623d5f71ead0
+2025-07-23 20:16:37,342 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c2b9da0e-09fc-46e5-bafb-623d5f71ead0
+2025-07-23 20:16:37,345 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c2b9da0e-09fc-46e5-bafb-623d5f71ead0
+2025-07-23 20:16:43,016 - app.routers.voice_websocket - INFO - WebSocket disconnected: c2b9da0e-09fc-46e5-bafb-623d5f71ead0
+2025-07-23 20:16:43,016 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c2b9da0e-09fc-46e5-bafb-623d5f71ead0
+2025-07-23 20:16:44,010 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 293eb221-f902-41fa-ac5e-55676ba0b2fa
+2025-07-23 20:16:44,011 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 293eb221-f902-41fa-ac5e-55676ba0b2fa
+2025-07-23 20:16:44,012 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 293eb221-f902-41fa-ac5e-55676ba0b2fa
+2025-07-23 20:16:44,528 - app.routers.voice_websocket - INFO - WebSocket disconnected: 293eb221-f902-41fa-ac5e-55676ba0b2fa
+2025-07-23 20:16:44,528 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 293eb221-f902-41fa-ac5e-55676ba0b2fa
+2025-07-23 20:16:44,643 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 0570f347-2f63-439a-8b39-c0eb8a2b440d
+2025-07-23 20:16:44,643 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 0570f347-2f63-439a-8b39-c0eb8a2b440d
+2025-07-23 20:16:44,645 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 0570f347-2f63-439a-8b39-c0eb8a2b440d
+2025-07-23 20:16:44,902 - app.routers.voice_websocket - INFO - WebSocket disconnected: 0570f347-2f63-439a-8b39-c0eb8a2b440d
+2025-07-23 20:16:44,902 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 0570f347-2f63-439a-8b39-c0eb8a2b440d
+2025-07-23 20:16:44,992 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 78d92fb7-f7e8-449a-b14c-a73b3ec31289
+2025-07-23 20:16:44,992 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 78d92fb7-f7e8-449a-b14c-a73b3ec31289
+2025-07-23 20:16:44,998 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 78d92fb7-f7e8-449a-b14c-a73b3ec31289
+2025-07-23 20:16:45,211 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 1a700154-841d-46f9-93be-1c7ba722aef7
+2025-07-23 20:16:45,212 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 1a700154-841d-46f9-93be-1c7ba722aef7
+2025-07-23 20:16:45,214 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 1a700154-841d-46f9-93be-1c7ba722aef7
+2025-07-23 20:16:45,438 - app.routers.voice_websocket - INFO - WebSocket disconnected: 1a700154-841d-46f9-93be-1c7ba722aef7
+2025-07-23 20:16:45,438 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 1a700154-841d-46f9-93be-1c7ba722aef7
+2025-07-23 20:16:45,709 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: da6495b5-a6a2-412d-93d3-e72559ba666e
+2025-07-23 20:16:45,709 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: da6495b5-a6a2-412d-93d3-e72559ba666e
+2025-07-23 20:16:45,711 - app.routers.voice_websocket - INFO - ✅ Authentication successful for da6495b5-a6a2-412d-93d3-e72559ba666e
+2025-07-23 20:16:45,958 - app.routers.voice_websocket - INFO - WebSocket disconnected: da6495b5-a6a2-412d-93d3-e72559ba666e
+2025-07-23 20:16:45,958 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: da6495b5-a6a2-412d-93d3-e72559ba666e
+2025-07-23 20:16:58,908 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:16:58,909 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:17:58,903 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:17:58,910 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:18:58,191 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 798e61ce-8d1c-4387-a600-7f91eb9e4424
+2025-07-23 20:18:58,192 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 798e61ce-8d1c-4387-a600-7f91eb9e4424
+2025-07-23 20:18:58,194 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 798e61ce-8d1c-4387-a600-7f91eb9e4424
+2025-07-23 20:18:58,895 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:18:58,897 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:19:00,222 - app.routers.voice_websocket - INFO - WebSocket disconnected: 798e61ce-8d1c-4387-a600-7f91eb9e4424
+2025-07-23 20:19:00,222 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 798e61ce-8d1c-4387-a600-7f91eb9e4424
+2025-07-23 20:19:02,238 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: edc51f7e-3f1d-49f1-b335-75de0edebd61
+2025-07-23 20:19:02,238 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: edc51f7e-3f1d-49f1-b335-75de0edebd61
+2025-07-23 20:19:02,239 - app.routers.voice_websocket - INFO - ✅ Authentication successful for edc51f7e-3f1d-49f1-b335-75de0edebd61
+2025-07-23 20:19:58,896 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:19:58,900 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:20:58,892 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:20:58,894 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:21:44,996 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 78d92fb7-f7e8-449a-b14c-a73b3ec31289
+2025-07-23 20:21:44,998 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 78d92fb7-f7e8-449a-b14c-a73b3ec31289
+2025-07-23 20:21:58,898 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:21:58,902 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:22:58,892 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:22:58,894 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:23:58,896 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:23:58,898 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:24:02,236 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: edc51f7e-3f1d-49f1-b335-75de0edebd61
+2025-07-23 20:24:02,236 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: edc51f7e-3f1d-49f1-b335-75de0edebd61
+2025-07-23 20:24:58,892 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:24:58,894 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:25:58,907 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:25:58,919 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:26:58,897 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:26:58,906 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:27:38,177 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 7da351bb-1b86-4925-829e-1296f5fa4f41
+2025-07-23 20:27:38,178 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 7da351bb-1b86-4925-829e-1296f5fa4f41
+2025-07-23 20:27:38,180 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 7da351bb-1b86-4925-829e-1296f5fa4f41
+2025-07-23 20:27:38,184 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 10134e29-5d0b-4f92-bffc-7094e50251d4
+2025-07-23 20:27:38,184 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 10134e29-5d0b-4f92-bffc-7094e50251d4
+2025-07-23 20:27:38,185 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 10134e29-5d0b-4f92-bffc-7094e50251d4
+2025-07-23 20:27:40,164 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: f5399951-19ae-4890-9455-33f5c3abd1b5
+2025-07-23 20:27:40,164 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: f5399951-19ae-4890-9455-33f5c3abd1b5
+2025-07-23 20:27:40,166 - app.routers.voice_websocket - INFO - ✅ Authentication successful for f5399951-19ae-4890-9455-33f5c3abd1b5
+2025-07-23 20:27:43,160 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 8c26b7cb-c287-4534-b601-a1a288ca7b4b
+2025-07-23 20:27:43,160 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 8c26b7cb-c287-4534-b601-a1a288ca7b4b
+2025-07-23 20:27:43,163 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 8c26b7cb-c287-4534-b601-a1a288ca7b4b
+2025-07-23 20:27:58,895 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:27:58,896 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:28:43,186 - app.routers.voice_websocket - INFO - WebSocket disconnected: f5399951-19ae-4890-9455-33f5c3abd1b5
+2025-07-23 20:28:43,191 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: f5399951-19ae-4890-9455-33f5c3abd1b5
+2025-07-23 20:28:43,211 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: b352ab80-d9fd-4aab-a886-7dcd11cefd0c
+2025-07-23 20:28:43,212 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: b352ab80-d9fd-4aab-a886-7dcd11cefd0c
+2025-07-23 20:28:43,215 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 91f2742c-5815-4b39-8e52-20749761942c
+2025-07-23 20:28:43,215 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 91f2742c-5815-4b39-8e52-20749761942c
+2025-07-23 20:28:43,217 - app.routers.voice_websocket - INFO - ✅ Authentication successful for b352ab80-d9fd-4aab-a886-7dcd11cefd0c
+2025-07-23 20:28:43,218 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 91f2742c-5815-4b39-8e52-20749761942c
+2025-07-23 20:28:45,914 - app.routers.voice_websocket - INFO - WebSocket disconnected: 91f2742c-5815-4b39-8e52-20749761942c
+2025-07-23 20:28:45,915 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 91f2742c-5815-4b39-8e52-20749761942c
+2025-07-23 20:28:45,933 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 1b7b6e1f-246e-44a8-b639-cdc39dc5cb17
+2025-07-23 20:28:45,933 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 1b7b6e1f-246e-44a8-b639-cdc39dc5cb17
+2025-07-23 20:28:45,936 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 1b7b6e1f-246e-44a8-b639-cdc39dc5cb17
+2025-07-23 20:28:49,831 - app.routers.voice_websocket - INFO - WebSocket disconnected: 1b7b6e1f-246e-44a8-b639-cdc39dc5cb17
+2025-07-23 20:28:49,831 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 1b7b6e1f-246e-44a8-b639-cdc39dc5cb17
+2025-07-23 20:28:49,846 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 1da02fc9-ab36-47c3-9166-3eee85d3b000
+2025-07-23 20:28:49,847 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 1da02fc9-ab36-47c3-9166-3eee85d3b000
+2025-07-23 20:28:49,850 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 1da02fc9-ab36-47c3-9166-3eee85d3b000
+2025-07-23 20:28:49,856 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 2434170d-df58-40b2-80ad-1c8f59fc4175
+2025-07-23 20:28:49,856 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 2434170d-df58-40b2-80ad-1c8f59fc4175
+2025-07-23 20:28:49,859 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 2434170d-df58-40b2-80ad-1c8f59fc4175
+2025-07-23 20:28:54,952 - app.routers.voice_websocket - INFO - WebSocket disconnected: 7da351bb-1b86-4925-829e-1296f5fa4f41
+2025-07-23 20:28:54,952 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 7da351bb-1b86-4925-829e-1296f5fa4f41
+2025-07-23 20:28:54,954 - app.routers.voice_websocket - INFO - WebSocket disconnected: 2434170d-df58-40b2-80ad-1c8f59fc4175
+2025-07-23 20:28:54,954 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 2434170d-df58-40b2-80ad-1c8f59fc4175
+2025-07-23 20:28:54,954 - app.routers.voice_websocket - INFO - WebSocket disconnected: 1da02fc9-ab36-47c3-9166-3eee85d3b000
+2025-07-23 20:28:54,954 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 1da02fc9-ab36-47c3-9166-3eee85d3b000
+2025-07-23 20:28:54,955 - app.routers.voice_websocket - INFO - WebSocket disconnected: b352ab80-d9fd-4aab-a886-7dcd11cefd0c
+2025-07-23 20:28:54,955 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: b352ab80-d9fd-4aab-a886-7dcd11cefd0c
+2025-07-23 20:28:54,955 - app.routers.voice_websocket - INFO - WebSocket disconnected: 8c26b7cb-c287-4534-b601-a1a288ca7b4b
+2025-07-23 20:28:54,955 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 8c26b7cb-c287-4534-b601-a1a288ca7b4b
+2025-07-23 20:28:54,957 - app.routers.voice_websocket - INFO - WebSocket disconnected: 10134e29-5d0b-4f92-bffc-7094e50251d4
+2025-07-23 20:28:54,957 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 10134e29-5d0b-4f92-bffc-7094e50251d4
+2025-07-23 20:28:56,359 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e478795d-c93b-4a4e-9462-e9f7b6216092
+2025-07-23 20:28:56,359 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e478795d-c93b-4a4e-9462-e9f7b6216092
+2025-07-23 20:28:56,361 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 4e7482ae-bf0b-45c1-85d4-8a7bde9575b9
+2025-07-23 20:28:56,362 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 4e7482ae-bf0b-45c1-85d4-8a7bde9575b9
+2025-07-23 20:28:56,363 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e478795d-c93b-4a4e-9462-e9f7b6216092
+2025-07-23 20:28:56,364 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 4e7482ae-bf0b-45c1-85d4-8a7bde9575b9
+2025-07-23 20:28:57,338 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 48066234-fb62-4b7c-9728-4432c08555e5
+2025-07-23 20:28:57,338 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 48066234-fb62-4b7c-9728-4432c08555e5
+2025-07-23 20:28:57,340 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 48066234-fb62-4b7c-9728-4432c08555e5
+2025-07-23 20:28:58,013 - app.routers.voice_websocket - INFO - WebSocket disconnected: 48066234-fb62-4b7c-9728-4432c08555e5
+2025-07-23 20:28:58,013 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 48066234-fb62-4b7c-9728-4432c08555e5
+2025-07-23 20:28:58,032 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: dea96af0-c770-4cf8-9e2e-749e4e411d5d
+2025-07-23 20:28:58,032 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: dea96af0-c770-4cf8-9e2e-749e4e411d5d
+2025-07-23 20:28:58,034 - app.routers.voice_websocket - INFO - ✅ Authentication successful for dea96af0-c770-4cf8-9e2e-749e4e411d5d
+2025-07-23 20:28:58,896 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:28:58,896 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:29:58,901 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:29:58,907 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:30:58,899 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:30:58,902 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:31:58,896 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:31:58,899 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:32:58,931 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:32:58,936 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:33:56,394 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: e478795d-c93b-4a4e-9462-e9f7b6216092
+2025-07-23 20:33:56,397 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e478795d-c93b-4a4e-9462-e9f7b6216092
+2025-07-23 20:33:56,398 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 4e7482ae-bf0b-45c1-85d4-8a7bde9575b9
+2025-07-23 20:33:56,398 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 4e7482ae-bf0b-45c1-85d4-8a7bde9575b9
+2025-07-23 20:33:58,064 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: dea96af0-c770-4cf8-9e2e-749e4e411d5d
+2025-07-23 20:33:58,065 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: dea96af0-c770-4cf8-9e2e-749e4e411d5d
+2025-07-23 20:33:58,927 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:33:58,929 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:34:58,929 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:34:58,932 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:35:58,927 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:35:58,928 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:36:58,928 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:36:58,930 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:37:29,747 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e52b7808-d9fa-4615-afde-011d33ca594e
+2025-07-23 20:37:29,747 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e52b7808-d9fa-4615-afde-011d33ca594e
+2025-07-23 20:37:29,751 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: f8000b6d-3026-43ee-9b3a-3cced150cbb0
+2025-07-23 20:37:29,751 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: f8000b6d-3026-43ee-9b3a-3cced150cbb0
+2025-07-23 20:37:29,753 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 70233f00-4037-4c4e-8f69-9dbd04133e48
+2025-07-23 20:37:29,753 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 70233f00-4037-4c4e-8f69-9dbd04133e48
+2025-07-23 20:37:29,753 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e52b7808-d9fa-4615-afde-011d33ca594e
+2025-07-23 20:37:29,753 - app.routers.voice_websocket - INFO - ✅ Authentication successful for f8000b6d-3026-43ee-9b3a-3cced150cbb0
+2025-07-23 20:37:29,754 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 70233f00-4037-4c4e-8f69-9dbd04133e48
+2025-07-23 20:37:31,198 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 498f5129-79fc-462f-a8d0-5dbab8b4a442
+2025-07-23 20:37:31,199 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 498f5129-79fc-462f-a8d0-5dbab8b4a442
+2025-07-23 20:37:31,203 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 7b7a3bb4-65e1-4425-9a27-ad67af3d5d9c
+2025-07-23 20:37:31,203 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 7b7a3bb4-65e1-4425-9a27-ad67af3d5d9c
+2025-07-23 20:37:31,204 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 498f5129-79fc-462f-a8d0-5dbab8b4a442
+2025-07-23 20:37:31,206 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 7b7a3bb4-65e1-4425-9a27-ad67af3d5d9c
+2025-07-23 20:37:32,180 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: faad562c-6d0f-4198-aa69-b8eef535d068
+2025-07-23 20:37:32,180 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: faad562c-6d0f-4198-aa69-b8eef535d068
+2025-07-23 20:37:32,182 - app.routers.voice_websocket - INFO - ✅ Authentication successful for faad562c-6d0f-4198-aa69-b8eef535d068
+2025-07-23 20:37:58,935 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:37:58,937 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:42:24,113 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:42:24,114 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:42:29,761 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: e52b7808-d9fa-4615-afde-011d33ca594e
+2025-07-23 20:42:29,766 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e52b7808-d9fa-4615-afde-011d33ca594e
+2025-07-23 20:42:29,767 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: f8000b6d-3026-43ee-9b3a-3cced150cbb0
+2025-07-23 20:42:29,767 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: f8000b6d-3026-43ee-9b3a-3cced150cbb0
+2025-07-23 20:42:29,767 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 70233f00-4037-4c4e-8f69-9dbd04133e48
+2025-07-23 20:42:29,768 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 70233f00-4037-4c4e-8f69-9dbd04133e48
+2025-07-23 20:42:31,210 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 498f5129-79fc-462f-a8d0-5dbab8b4a442
+2025-07-23 20:42:31,210 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 498f5129-79fc-462f-a8d0-5dbab8b4a442
+2025-07-23 20:42:31,210 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 7b7a3bb4-65e1-4425-9a27-ad67af3d5d9c
+2025-07-23 20:42:31,211 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 7b7a3bb4-65e1-4425-9a27-ad67af3d5d9c
+2025-07-23 20:42:32,189 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: faad562c-6d0f-4198-aa69-b8eef535d068
+2025-07-23 20:42:32,190 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: faad562c-6d0f-4198-aa69-b8eef535d068
+2025-07-23 20:43:24,119 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:43:24,121 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:44:24,111 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:44:24,168 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:45:24,114 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:45:24,116 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:46:24,110 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:46:24,112 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:47:24,111 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:47:24,113 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:48:24,114 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:48:24,116 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:49:24,115 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:49:24,117 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:50:24,116 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:50:24,118 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:51:24,119 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:51:24,121 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:52:24,118 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:52:24,120 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:53:24,120 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:53:24,122 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:54:24,121 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:54:24,124 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:55:24,122 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:55:24,124 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:56:24,125 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:56:24,126 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:57:24,124 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:57:24,126 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:58:24,135 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:58:24,136 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 20:59:24,146 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 20:59:24,147 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:00:24,164 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:00:24,167 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:01:24,148 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:01:24,150 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:02:24,149 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:02:24,151 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:03:24,150 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:03:24,152 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:04:24,150 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:04:24,153 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:05:24,153 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:05:24,155 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:06:24,153 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:06:24,155 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:07:24,155 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:07:24,157 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:08:24,154 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:08:24,155 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:09:24,157 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:09:24,158 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:10:24,164 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:10:24,168 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:11:24,166 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:11:24,169 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:12:24,162 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:12:24,163 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:13:24,169 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:13:24,173 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:14:24,169 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:14:24,171 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:15:24,164 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:15:24,166 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:16:24,163 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:16:24,164 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:17:24,166 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:17:24,168 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:18:24,179 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:18:24,182 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:19:24,180 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:19:24,182 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:20:24,182 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:20:24,185 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:21:24,186 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:21:24,188 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:22:24,184 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:22:24,186 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:23:24,188 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:23:24,191 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:24:24,189 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:24:24,193 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:25:17,941 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 11bc95fe-79a0-4bc4-958d-e3b1c5a1a6bb
+2025-07-23 21:25:17,941 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 11bc95fe-79a0-4bc4-958d-e3b1c5a1a6bb
+2025-07-23 21:25:17,945 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 11bc95fe-79a0-4bc4-958d-e3b1c5a1a6bb
+2025-07-23 21:25:24,186 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:25:24,187 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:25:58,692 - app.routers.voice_websocket - INFO - WebSocket disconnected: 11bc95fe-79a0-4bc4-958d-e3b1c5a1a6bb
+2025-07-23 21:25:58,693 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 11bc95fe-79a0-4bc4-958d-e3b1c5a1a6bb
+2025-07-23 21:25:59,997 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 8c548846-8f26-477c-a4af-34f90acc3674
+2025-07-23 21:25:59,997 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 8c548846-8f26-477c-a4af-34f90acc3674
+2025-07-23 21:26:00,001 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 8c548846-8f26-477c-a4af-34f90acc3674
+2025-07-23 21:26:24,187 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:26:24,188 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:27:24,187 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:27:24,189 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:28:24,190 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:28:24,192 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:29:24,190 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:29:24,192 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:30:24,191 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:30:24,192 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:31:00,010 - app.routers.voice_websocket - INFO - WebSocket timeout for connection: 8c548846-8f26-477c-a4af-34f90acc3674
+2025-07-23 21:31:00,016 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 8c548846-8f26-477c-a4af-34f90acc3674
+2025-07-23 21:31:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:31:24,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:32:24,192 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:32:24,194 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:33:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:33:24,199 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:34:24,198 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:34:24,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:35:24,200 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:35:24,201 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:36:24,200 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:36:24,201 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:37:24,202 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:37:24,204 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:38:24,207 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:38:24,210 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:39:24,208 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:39:24,211 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:40:24,206 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:40:24,208 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:41:24,213 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:41:24,217 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:42:24,211 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:42:24,213 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:43:24,217 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:43:24,221 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:44:24,215 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:44:24,218 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:45:24,216 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:45:24,221 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:46:24,214 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:46:24,217 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:47:23,355 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: dc8d5860-d6ce-4008-b8ed-955708a3936a
+2025-07-23 21:47:23,356 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: dc8d5860-d6ce-4008-b8ed-955708a3936a
+2025-07-23 21:47:23,360 - app.routers.voice_websocket - INFO - ✅ Authentication successful for dc8d5860-d6ce-4008-b8ed-955708a3936a
+2025-07-23 21:47:24,219 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:47:24,220 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:48:24,224 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:48:24,252 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:48:27,970 - app.routers.voice_websocket - INFO - WebSocket disconnected: dc8d5860-d6ce-4008-b8ed-955708a3936a
+2025-07-23 21:48:27,970 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: dc8d5860-d6ce-4008-b8ed-955708a3936a
+2025-07-23 21:48:31,167 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 93134bc8-568f-4445-9c60-20a4b5b02c29
+2025-07-23 21:48:31,167 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 93134bc8-568f-4445-9c60-20a4b5b02c29
+2025-07-23 21:48:31,169 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 93134bc8-568f-4445-9c60-20a4b5b02c29
+2025-07-23 21:49:22,676 - app.routers.voice_websocket - INFO - WebSocket disconnected: 93134bc8-568f-4445-9c60-20a4b5b02c29
+2025-07-23 21:49:22,698 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 93134bc8-568f-4445-9c60-20a4b5b02c29
+2025-07-23 21:49:24,214 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:49:24,216 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:49:28,086 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e84724bd-9cd3-481e-b9e7-99fc927a58c5
+2025-07-23 21:49:28,086 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e84724bd-9cd3-481e-b9e7-99fc927a58c5
+2025-07-23 21:49:28,088 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e84724bd-9cd3-481e-b9e7-99fc927a58c5
+2025-07-23 21:50:00,659 - app.routers.voice_websocket - INFO - WebSocket disconnected: e84724bd-9cd3-481e-b9e7-99fc927a58c5
+2025-07-23 21:50:00,660 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e84724bd-9cd3-481e-b9e7-99fc927a58c5
+2025-07-23 21:50:24,158 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:50:24,161 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:51:24,157 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:51:24,159 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:52:24,155 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:52:24,157 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:53:24,159 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:53:24,162 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:54:24,158 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:54:24,161 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:55:24,157 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:55:24,159 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:56:24,160 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:56:24,162 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:57:24,164 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:57:24,171 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:58:24,156 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:58:24,158 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 21:59:24,167 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 21:59:24,171 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:00:24,157 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:00:24,160 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:01:24,165 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:01:24,169 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:01:47,300 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 1f504d2d-5858-47e0-acac-ca88dcbaff24
+2025-07-23 22:01:47,300 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 1f504d2d-5858-47e0-acac-ca88dcbaff24
+2025-07-23 22:01:47,303 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 1f504d2d-5858-47e0-acac-ca88dcbaff24
+2025-07-23 22:02:24,161 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:02:24,164 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:03:24,158 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:03:24,160 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:04:24,158 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:04:24,159 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:05:24,161 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:05:24,163 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:06:16,908 - app.routers.voice_websocket - INFO - WebSocket disconnected: 1f504d2d-5858-47e0-acac-ca88dcbaff24
+2025-07-23 22:06:16,909 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 1f504d2d-5858-47e0-acac-ca88dcbaff24
+2025-07-23 22:06:24,173 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:06:24,178 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:06:35,017 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: a30e6b0a-cf4f-428f-92cd-4d5ba44fe313
+2025-07-23 22:06:35,018 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: a30e6b0a-cf4f-428f-92cd-4d5ba44fe313
+2025-07-23 22:06:35,022 - app.routers.voice_websocket - INFO - ✅ Authentication successful for a30e6b0a-cf4f-428f-92cd-4d5ba44fe313
+2025-07-23 22:06:48,327 - app.routers.voice_websocket - INFO - WebSocket disconnected: a30e6b0a-cf4f-428f-92cd-4d5ba44fe313
+2025-07-23 22:06:48,327 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: a30e6b0a-cf4f-428f-92cd-4d5ba44fe313
+2025-07-23 22:07:20,730 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 50efb3b7-dbd4-4387-9a4e-d9d965bf580b
+2025-07-23 22:07:20,731 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 50efb3b7-dbd4-4387-9a4e-d9d965bf580b
+2025-07-23 22:07:20,734 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 50efb3b7-dbd4-4387-9a4e-d9d965bf580b
+2025-07-23 22:07:24,180 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:07:24,181 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:07:48,121 - app.routers.voice_websocket - INFO - WebSocket disconnected: 50efb3b7-dbd4-4387-9a4e-d9d965bf580b
+2025-07-23 22:07:48,121 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 50efb3b7-dbd4-4387-9a4e-d9d965bf580b
+2025-07-23 22:07:55,457 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 63f88e75-564d-4f7a-a093-ddfa3c74bcdd
+2025-07-23 22:07:55,457 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 63f88e75-564d-4f7a-a093-ddfa3c74bcdd
+2025-07-23 22:07:55,458 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 63f88e75-564d-4f7a-a093-ddfa3c74bcdd
+2025-07-23 22:08:24,183 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:08:24,185 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:08:29,263 - app.routers.voice_websocket - INFO - WebSocket disconnected: 63f88e75-564d-4f7a-a093-ddfa3c74bcdd
+2025-07-23 22:08:29,263 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 63f88e75-564d-4f7a-a093-ddfa3c74bcdd
+2025-07-23 22:09:24,191 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:09:24,194 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:10:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:10:24,201 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:11:24,191 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:11:24,195 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:12:24,186 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:12:24,188 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:13:24,192 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:13:24,196 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:14:24,187 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:14:24,189 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:15:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:15:24,202 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:16:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:16:24,201 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:17:24,196 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:17:24,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:18:24,195 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:18:24,197 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:19:24,195 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:19:24,198 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:20:24,191 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:20:24,195 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:21:24,193 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:21:24,195 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:22:10,483 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: bf368135-4a5f-40cc-a469-d438d334d285
+2025-07-23 22:22:10,484 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: bf368135-4a5f-40cc-a469-d438d334d285
+2025-07-23 22:22:10,488 - app.routers.voice_websocket - INFO - ✅ Authentication successful for bf368135-4a5f-40cc-a469-d438d334d285
+2025-07-23 22:22:24,194 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:22:24,198 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:23:00,082 - app.routers.voice_websocket - INFO - WebSocket disconnected: bf368135-4a5f-40cc-a469-d438d334d285
+2025-07-23 22:23:00,083 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: bf368135-4a5f-40cc-a469-d438d334d285
+2025-07-23 22:23:11,691 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: a27b4e4b-2709-4dd3-9251-a294e837b8e6
+2025-07-23 22:23:11,692 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: a27b4e4b-2709-4dd3-9251-a294e837b8e6
+2025-07-23 22:23:11,694 - app.routers.voice_websocket - INFO - ✅ Authentication successful for a27b4e4b-2709-4dd3-9251-a294e837b8e6
+2025-07-23 22:23:23,005 - app.routers.voice_websocket - INFO - WebSocket disconnected: a27b4e4b-2709-4dd3-9251-a294e837b8e6
+2025-07-23 22:23:23,005 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: a27b4e4b-2709-4dd3-9251-a294e837b8e6
+2025-07-23 22:23:24,195 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:23:24,197 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:23:47,681 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: ace12164-ceea-4787-b6d8-a98644a70071
+2025-07-23 22:23:47,683 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: ace12164-ceea-4787-b6d8-a98644a70071
+2025-07-23 22:23:47,685 - app.routers.voice_websocket - INFO - ✅ Authentication successful for ace12164-ceea-4787-b6d8-a98644a70071
+2025-07-23 22:24:11,570 - app.routers.voice_websocket - INFO - WebSocket disconnected: ace12164-ceea-4787-b6d8-a98644a70071
+2025-07-23 22:24:11,571 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: ace12164-ceea-4787-b6d8-a98644a70071
+2025-07-23 22:24:24,198 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:24:24,203 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:25:24,196 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:25:24,198 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:26:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:26:24,200 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:27:24,196 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:27:24,199 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:28:24,197 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:28:24,199 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:29:24,198 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:29:24,203 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:30:24,219 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:30:24,222 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:31:24,227 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:31:24,230 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:32:24,225 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:32:24,227 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:33:24,231 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:33:24,234 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:33:39,685 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 950155f3-42d8-4ea9-a73e-830a69e66ba0
+2025-07-23 22:33:39,686 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 950155f3-42d8-4ea9-a73e-830a69e66ba0
+2025-07-23 22:33:39,689 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 950155f3-42d8-4ea9-a73e-830a69e66ba0
+2025-07-23 22:34:01,710 - app.routers.voice_websocket - INFO - WebSocket disconnected: 950155f3-42d8-4ea9-a73e-830a69e66ba0
+2025-07-23 22:34:01,710 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 950155f3-42d8-4ea9-a73e-830a69e66ba0
+2025-07-23 22:34:08,041 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: e5001499-887a-4a1a-9d68-16e05cbe66d0
+2025-07-23 22:34:08,041 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: e5001499-887a-4a1a-9d68-16e05cbe66d0
+2025-07-23 22:34:08,044 - app.routers.voice_websocket - INFO - ✅ Authentication successful for e5001499-887a-4a1a-9d68-16e05cbe66d0
+2025-07-23 22:34:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:34:24,227 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:34:32,343 - app.routers.voice_websocket - INFO - WebSocket disconnected: e5001499-887a-4a1a-9d68-16e05cbe66d0
+2025-07-23 22:34:32,343 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: e5001499-887a-4a1a-9d68-16e05cbe66d0
+2025-07-23 22:34:36,709 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 15f39b4e-17dd-401d-9769-94cf8c85a69b
+2025-07-23 22:34:36,709 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 15f39b4e-17dd-401d-9769-94cf8c85a69b
+2025-07-23 22:34:36,712 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 15f39b4e-17dd-401d-9769-94cf8c85a69b
+2025-07-23 22:34:49,242 - app.routers.voice_websocket - INFO - WebSocket disconnected: 15f39b4e-17dd-401d-9769-94cf8c85a69b
+2025-07-23 22:34:49,242 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 15f39b4e-17dd-401d-9769-94cf8c85a69b
+2025-07-23 22:35:24,229 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:35:24,232 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:36:24,236 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:36:24,239 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:37:24,229 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:37:24,231 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:38:24,230 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:38:24,231 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:39:24,229 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:39:24,231 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:40:24,232 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:40:24,234 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:41:24,235 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:41:24,238 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:42:24,234 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:42:24,237 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:43:24,233 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:43:24,235 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:44:24,236 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:44:24,239 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:45:24,236 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:45:24,238 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:46:24,240 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:46:24,244 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:47:24,245 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:47:24,249 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:48:24,245 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:48:24,247 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:49:24,247 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:49:24,250 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:50:24,245 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:50:24,248 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:51:24,244 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:51:24,247 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:52:24,242 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:52:24,244 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:53:24,248 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:53:24,252 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:54:24,247 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:54:24,251 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:55:24,241 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:55:24,246 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:56:05,955 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 5aa61c0c-711f-4414-a9af-3e2fcda351d7
+2025-07-23 22:56:05,956 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 5aa61c0c-711f-4414-a9af-3e2fcda351d7
+2025-07-23 22:56:05,959 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 5aa61c0c-711f-4414-a9af-3e2fcda351d7
+2025-07-23 22:56:19,434 - app.routers.voice_websocket - INFO - WebSocket disconnected: 5aa61c0c-711f-4414-a9af-3e2fcda351d7
+2025-07-23 22:56:19,434 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 5aa61c0c-711f-4414-a9af-3e2fcda351d7
+2025-07-23 22:56:24,222 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:56:24,224 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:57:24,220 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:57:24,225 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:58:24,216 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:58:24,217 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 22:59:24,218 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 22:59:24,220 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:00:24,223 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:00:24,227 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:01:24,220 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:01:24,223 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:02:24,228 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:02:24,230 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:03:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:03:24,228 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:04:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:04:24,228 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:05:24,224 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:05:24,226 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:06:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:06:24,228 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:07:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:07:24,228 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:08:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:08:24,228 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:09:24,226 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:09:24,228 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:10:24,229 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:10:24,232 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:11:24,261 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:11:24,263 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:12:24,269 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:12:24,270 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:13:24,272 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:13:24,274 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:14:24,273 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:14:24,275 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:15:24,275 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:15:24,277 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:16:24,283 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:16:24,287 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:17:24,278 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:17:24,280 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:18:24,281 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:18:24,283 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:19:24,280 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:19:24,282 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:20:24,282 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:20:24,284 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:21:24,283 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:21:24,284 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:22:24,285 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:22:24,288 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:23:24,287 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:23:24,290 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:24:24,291 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:24:24,294 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:25:24,290 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:25:24,292 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:26:24,301 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:26:24,303 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:27:24,310 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:27:24,312 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:28:24,314 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:28:24,315 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:29:24,314 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:29:24,316 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:30:24,323 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:30:24,328 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:31:24,317 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:31:24,319 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:32:24,319 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:32:24,322 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:33:24,323 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:33:24,325 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:34:24,324 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:34:24,326 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:35:24,328 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:35:24,330 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:36:24,327 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:36:24,329 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:37:24,337 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:37:24,341 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:38:24,342 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:38:24,346 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:39:24,332 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:39:24,334 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:40:24,334 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:40:24,336 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:41:24,338 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:41:24,340 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:42:24,338 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:42:24,340 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:43:24,339 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:43:24,342 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:44:24,340 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:44:24,341 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:45:24,288 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:45:24,289 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:46:24,288 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:46:24,291 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:47:24,289 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:47:24,292 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:48:24,288 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:48:24,289 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:49:24,291 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:49:24,294 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:50:24,290 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:50:24,292 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:51:24,298 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:51:24,302 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:52:24,294 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:52:24,296 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:53:24,295 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:53:24,297 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:54:24,296 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:54:24,299 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:55:24,298 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:55:24,301 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:56:24,298 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:56:24,300 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:57:24,299 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:57:24,302 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:58:24,301 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:58:24,303 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-23 23:59:24,301 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-23 23:59:24,304 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:00:24,307 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:00:24,309 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:01:24,332 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:01:24,341 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:02:51,826 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:02:51,828 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:03:51,833 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:03:51,837 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:20:14,185 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:20:14,185 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:31:09,270 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:31:09,272 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:31:19,975 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 6a2738e0-00c6-4934-b2a5-70a20b251e7a
+2025-07-24 00:31:19,976 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 6a2738e0-00c6-4934-b2a5-70a20b251e7a
+2025-07-24 00:31:19,979 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 6a2738e0-00c6-4934-b2a5-70a20b251e7a
+2025-07-24 00:31:39,478 - app.routers.voice_websocket - INFO - WebSocket disconnected: 6a2738e0-00c6-4934-b2a5-70a20b251e7a
+2025-07-24 00:31:39,479 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 6a2738e0-00c6-4934-b2a5-70a20b251e7a
+2025-07-24 00:32:09,307 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:32:09,310 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:32:18,915 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: b1b69d9c-d813-4a5b-bbce-fdddceb5f431
+2025-07-24 00:32:18,915 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: b1b69d9c-d813-4a5b-bbce-fdddceb5f431
+2025-07-24 00:32:18,917 - app.routers.voice_websocket - INFO - ✅ Authentication successful for b1b69d9c-d813-4a5b-bbce-fdddceb5f431
+2025-07-24 00:33:09,295 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:33:09,298 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:33:09,932 - app.routers.voice_websocket - INFO - WebSocket disconnected: b1b69d9c-d813-4a5b-bbce-fdddceb5f431
+2025-07-24 00:33:09,932 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: b1b69d9c-d813-4a5b-bbce-fdddceb5f431
+2025-07-24 00:33:15,627 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: fb7ef636-ac13-4d40-9f21-26adaa74d17b
+2025-07-24 00:33:15,627 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: fb7ef636-ac13-4d40-9f21-26adaa74d17b
+2025-07-24 00:33:15,629 - app.routers.voice_websocket - INFO - ✅ Authentication successful for fb7ef636-ac13-4d40-9f21-26adaa74d17b
+2025-07-24 00:33:20,257 - app.routers.voice_websocket - INFO - WebSocket disconnected: fb7ef636-ac13-4d40-9f21-26adaa74d17b
+2025-07-24 00:33:20,258 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: fb7ef636-ac13-4d40-9f21-26adaa74d17b
+2025-07-24 00:34:09,308 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:34:09,313 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:35:09,303 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:35:09,307 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:36:09,303 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:36:09,306 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:37:09,299 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:37:09,300 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:38:09,299 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:38:09,301 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:39:09,304 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:39:09,308 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:39:27,620 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c328a67f-b234-4f41-835c-d0a2f5db0056
+2025-07-24 00:39:27,620 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c328a67f-b234-4f41-835c-d0a2f5db0056
+2025-07-24 00:39:27,624 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c328a67f-b234-4f41-835c-d0a2f5db0056
+2025-07-24 00:39:39,557 - app.routers.voice_websocket - INFO - WebSocket disconnected: c328a67f-b234-4f41-835c-d0a2f5db0056
+2025-07-24 00:39:39,557 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c328a67f-b234-4f41-835c-d0a2f5db0056
+2025-07-24 00:40:09,310 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:40:09,313 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:41:09,307 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:41:09,311 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:41:43,665 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c16b8257-f99d-48df-8477-7312597a9a74
+2025-07-24 00:41:43,666 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c16b8257-f99d-48df-8477-7312597a9a74
+2025-07-24 00:41:43,669 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c16b8257-f99d-48df-8477-7312597a9a74
+2025-07-24 00:42:09,301 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:42:09,304 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:42:14,024 - app.routers.voice_websocket - INFO - WebSocket disconnected: c16b8257-f99d-48df-8477-7312597a9a74
+2025-07-24 00:42:14,024 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c16b8257-f99d-48df-8477-7312597a9a74
+2025-07-24 00:42:20,312 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: c35a88a3-66f0-4a04-97cb-946a5ac7d581
+2025-07-24 00:42:20,312 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: c35a88a3-66f0-4a04-97cb-946a5ac7d581
+2025-07-24 00:42:20,313 - app.routers.voice_websocket - INFO - ✅ Authentication successful for c35a88a3-66f0-4a04-97cb-946a5ac7d581
+2025-07-24 00:42:43,097 - app.routers.voice_websocket - INFO - WebSocket disconnected: c35a88a3-66f0-4a04-97cb-946a5ac7d581
+2025-07-24 00:42:43,097 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: c35a88a3-66f0-4a04-97cb-946a5ac7d581
+2025-07-24 00:43:09,302 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:43:09,304 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:44:09,307 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:44:09,310 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:44:33,212 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 4e85c69f-5e44-4682-aacf-537bef9dee77
+2025-07-24 00:44:33,212 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 4e85c69f-5e44-4682-aacf-537bef9dee77
+2025-07-24 00:44:33,214 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 4e85c69f-5e44-4682-aacf-537bef9dee77
+2025-07-24 00:45:09,304 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:45:09,306 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:46:09,303 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:46:09,305 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:46:13,641 - app.routers.voice_websocket - INFO - WebSocket disconnected: 4e85c69f-5e44-4682-aacf-537bef9dee77
+2025-07-24 00:46:13,641 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 4e85c69f-5e44-4682-aacf-537bef9dee77
+2025-07-24 00:46:25,278 - app.routers.voice_websocket - INFO - 🔌 Voice connection established: 6f3c69b3-a9d9-4f37-964f-067eebcf001e
+2025-07-24 00:46:25,278 - app.routers.voice_websocket - INFO - 🔌 WebSocket connection established: 6f3c69b3-a9d9-4f37-964f-067eebcf001e
+2025-07-24 00:46:25,280 - app.routers.voice_websocket - INFO - ✅ Authentication successful for 6f3c69b3-a9d9-4f37-964f-067eebcf001e
+2025-07-24 00:46:46,257 - app.routers.voice_websocket - INFO - WebSocket disconnected: 6f3c69b3-a9d9-4f37-964f-067eebcf001e
+2025-07-24 00:46:46,257 - app.routers.voice_websocket - INFO - 🔌 Voice connection closed: 6f3c69b3-a9d9-4f37-964f-067eebcf001e
+2025-07-24 00:47:09,306 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:47:09,308 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:48:09,313 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:48:09,320 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:49:09,307 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:49:09,309 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:50:09,316 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:50:09,321 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:51:09,315 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:51:09,324 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:52:09,310 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:52:09,313 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:53:09,316 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:53:09,320 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:54:09,315 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:54:09,319 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:55:09,318 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:55:09,324 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:56:09,322 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:56:09,327 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:57:09,322 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:57:09,326 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:58:09,324 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:58:09,328 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 00:59:09,328 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 00:59:09,331 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 01:00:09,327 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 01:00:09,330 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 01:01:09,326 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 01:01:09,329 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 200
+2025-07-24 01:20:06,267 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:20:06,270 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:21:06,256 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:21:06,263 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:22:06,263 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:22:06,265 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:23:06,256 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:23:06,260 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:24:06,263 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:24:06,264 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:24:18,227 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:24:18,228 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:42:17,244 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-24 01:42:17,252 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:42:17,252 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:42:17,252 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:42:17,252 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:42:19,597 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:42:20,507 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:42:20,508 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:42:20,508 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:42:20,508 - app.main - INFO - Environment: development
+2025-07-24 01:42:20,508 - app.main - INFO - Debug Mode: False
+2025-07-24 01:42:20,508 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:42:20,508 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:42:20,508 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:42:29,209 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute
+2025-07-24 01:42:29,210 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute - Status: 404
+2025-07-24 01:42:53,534 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:42:53,536 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:43:10,089 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:43:10,089 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:43:10,089 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:43:10,089 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:43:12,855 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:43:13,851 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:43:13,851 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:43:13,851 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:43:13,851 - app.main - INFO - Environment: development
+2025-07-24 01:43:13,851 - app.main - INFO - Debug Mode: False
+2025-07-24 01:43:13,851 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:43:13,851 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:43:13,851 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:43:13,859 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:43:13,859 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute
+2025-07-24 01:43:13,860 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:43:13,860 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute - Status: 404
+2025-07-24 01:43:58,422 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:43:58,424 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:44:02,535 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-24 01:44:02,542 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:44:02,543 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:44:02,543 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:44:02,543 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:44:05,443 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:44:06,408 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:44:06,409 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:44:06,409 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:44:06,409 - app.main - INFO - Environment: development
+2025-07-24 01:44:06,409 - app.main - INFO - Debug Mode: False
+2025-07-24 01:44:06,409 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:44:06,409 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:44:06,409 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:44:06,426 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute
+2025-07-24 01:44:06,427 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:44:06,427 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute - Status: 404
+2025-07-24 01:44:06,428 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:45:06,332 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/health/enhanced
+2025-07-24 01:45:06,336 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/health/enhanced - Status: 404
+2025-07-24 01:45:28,771 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-07-24 01:45:28,772 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 404
+2025-07-24 01:46:01,186 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:46:01,188 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:46:05,511 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-24 01:46:05,518 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:46:05,518 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:46:05,518 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:46:05,518 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:46:08,103 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:46:08,991 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:46:08,992 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:46:08,992 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:46:08,992 - app.main - INFO - Environment: development
+2025-07-24 01:46:08,992 - app.main - INFO - Debug Mode: False
+2025-07-24 01:46:08,992 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:46:08,992 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:46:08,992 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:46:25,818 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 01:46:25,818 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 404
+2025-07-24 01:46:50,830 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute
+2025-07-24 01:46:50,831 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/execute - Status: 404
+2025-07-24 01:47:25,156 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-07-24 01:47:25,159 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 404
+2025-07-24 01:47:50,701 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-07-24 01:47:50,703 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 404
+2025-07-24 01:48:07,608 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:48:07,609 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:48:11,845 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:48:11,845 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:48:11,845 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:48:11,845 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:48:14,581 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:48:15,559 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:48:15,560 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:48:15,560 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:48:15,563 - app.main - INFO - Environment: development
+2025-07-24 01:48:15,563 - app.main - INFO - Debug Mode: False
+2025-07-24 01:48:15,563 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:48:15,563 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:48:15,563 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:48:21,715 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 01:48:21,716 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 404
+2025-07-24 01:48:32,848 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:48:32,849 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:48:37,002 - app.main - INFO - ✅ Rate limiting middleware enabled
+2025-07-24 01:48:37,009 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:48:37,009 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:48:37,009 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:48:37,009 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:48:39,579 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:48:40,435 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:48:40,435 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:48:40,435 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:48:40,435 - app.main - INFO - Environment: development
+2025-07-24 01:48:40,435 - app.main - INFO - Debug Mode: False
+2025-07-24 01:48:40,436 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:48:40,436 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:48:40,436 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:49:05,193 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-07-24 01:49:05,336 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-07-24 01:49:21,716 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 01:49:21,719 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 404
+2025-07-24 01:49:32,759 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-24 01:49:32,761 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 404
+2025-07-24 01:50:08,856 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:50:08,857 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'
+2025-07-24 01:50:13,364 - app.main - INFO - 🚀 Starting AI Agent Platform...
+2025-07-24 01:50:13,364 - app.main - INFO - Initializing LLM service...
+2025-07-24 01:50:13,365 - app.main - INFO - Initializing Voice service...
+2025-07-24 01:50:13,365 - app.main - INFO - Initializing RAG service...
+2025-07-24 01:50:16,450 - sentence_transformers.cross_encoder.CrossEncoder - INFO - Use pytorch device: mps
+2025-07-24 01:50:17,394 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-07-24 01:50:17,395 - app.main - WARNING - Service verification warning: 'OllamaService' object has no attribute 'health_check'
+2025-07-24 01:50:17,395 - app.main - INFO - === AI Agent Platform Started ===
+2025-07-24 01:50:17,395 - app.main - INFO - Environment: development
+2025-07-24 01:50:17,395 - app.main - INFO - Debug Mode: False
+2025-07-24 01:50:17,395 - app.main - INFO - Internet Search: Enabled
+2025-07-24 01:50:17,395 - app.main - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-24 01:50:17,395 - app.main - INFO - === Ready to Accept Requests ===
+2025-07-24 01:50:17,411 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-24 01:50:17,411 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 404
+2025-07-24 01:50:21,714 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/voice/ws/health
+2025-07-24 01:50:21,716 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/voice/ws/health - Status: 404
+2025-07-24 01:50:22,048 - app.main - INFO - 🔄 Shutting down AI Agent Platform...
+2025-07-24 01:50:22,049 - app.main - ERROR - Error during shutdown: 'RAGService' object has no attribute 'cleanup'

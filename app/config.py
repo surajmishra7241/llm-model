@@ -68,8 +68,14 @@ class Settings(BaseSettings):
     QDRANT_TIMEOUT: conint(gt=0) = 30
 
     RATE_LIMITING_ENABLED: bool = True
-    RATE_LIMIT_MAX_REQUESTS: int = 100
+    RATE_LIMIT_MAX_REQUESTS: int = 1000
     RATE_LIMIT_TIME_WINDOW: int = 60  # seconds
+
+    HEALTH_CHECK_TIMEOUT: int = 5000
+    PYTHON_API_TIMEOUT: int = 10000
+
+    # PYTHON_API_URL=http://localhost:8000
+    # PYTHON_VOICE_WS_URL=ws://localhost:8000/api/v1/voice/ws
 
 
     HYBRID_SEARCH_ENABLED: bool = True
@@ -107,8 +113,15 @@ class Settings(BaseSettings):
     WHISPER_MODEL: str = "base"  # or "small", "medium", "large"
     ENABLE_TTS: bool = True
     TTS_ENGINE: str = "coqui"  # or "pyttsx3"
-    TTS_MODEL: str = "tts_models/en/ljspeech/glow-tts"
+    TTS_MODEL: str = "tts_models/en/ljspeech/tacotron2-DDC"
     TTS_VOICE: str = "female"
+    TTS_MODEL_ALTERNATIVES: List[str] = [
+        "tts_models/en/ljspeech/tacotron2-DDC",    # Most reliable single-speaker
+        "tts_models/en/ljspeech/fast_pitch",       # Fast single-speaker
+        "tts_models/en/ljspeech/glow-tts",         # Good quality single-speaker
+        "tts_models/en/ljspeech/neural_hmm",       # Alternative single-speaker
+        "tts_models/en/vctk/vits",                 # Multi-speaker (fallback)
+    ]
     
     # Document Processing
     DEFAULT_CHUNK_SIZE: conint(gt=0) = 1000

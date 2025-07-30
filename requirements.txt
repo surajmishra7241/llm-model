@@ -36,3 +36,7 @@ asyncpg==0.29.0
 psycopg2-binary==2.9.9
 aiohttp>=3.8.0
 beautifulsoup4>=4.11.0
+whisper-openai==20231117
+torch
+torchaudio
+pyttsx3
