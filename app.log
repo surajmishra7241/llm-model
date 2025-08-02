@@ -13187,3 +13187,1527 @@ Okay, so I need to figure out if everythin...
 2025-07-30 17:06:58 - app.routers.voice_processing - INFO - ✅ TTS Success: 1034428 chars
 2025-07-30 17:06:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
 2025-07-30 17:07:57 - app - INFO - Shutting down AI Agent Platform...
+2025-07-30 19:56:26 - app - INFO - Logging configured successfully
+2025-07-30 19:56:29 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-07-30 19:56:29 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-07-30 19:56:29 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-07-30 19:56:29 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-07-30 19:56:29 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-07-30 19:56:29 - app - INFO - Logging configured successfully
+2025-07-30 19:56:30 - app - INFO - === AI Agent Platform Started ===
+2025-07-30 19:56:30 - app - INFO - Environment: development
+2025-07-30 19:56:30 - app - INFO - Debug Mode: False
+2025-07-30 19:56:30 - app - INFO - Internet Search: Enabled
+2025-07-30 19:56:30 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-30 19:56:30 - app - INFO - === Ready to Accept Requests ===
+2025-07-30 19:57:17 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 19:57:17 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753885631163_ar4p1ku9v
+2025-07-30 19:57:17 - app.services.voice_service - INFO - Loading voice models...
+2025-07-30 19:57:18 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-07-30 19:57:18 - app.services.voice_service - INFO - ✅ Found espeak
+2025-07-30 19:57:18 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-07-30 19:57:18 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-07-30 19:57:20 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-07-30 19:57:21 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-07-30 19:57:21 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-07-30 19:57:21 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-07-30 19:57:21 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30480 samples)
+2025-07-30 19:57:21 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30480,)
+2025-07-30 19:57:21 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-07-30 19:57:21 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-07-30 19:57:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 19:57:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 19:57:22 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 19:57:22 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 19:57:22 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 19:57:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 19:57:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 19:57:24 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, the user just said "hi", so I should...
+2025-07-30 19:57:24 - app.services.voice_service - INFO - 🔊 Generating TTS for: Sure! How can I assist you today?...
+2025-07-30 19:57:24 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 19:57:24 - app.services.voice_service - INFO - Generating Coqui TTS for: Sure! How can I assist you today?...
+2025-07-30 19:57:24 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 19:57:24 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 19:57:24 - app.services.voice_service - INFO - Converting list of 82208 audio samples to numpy array
+2025-07-30 19:57:24 - app.services.voice_service - INFO - Successfully converted to array with shape: (82208,)
+2025-07-30 19:57:24 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 219280 chars
+2025-07-30 19:57:24 - app.routers.voice_processing - INFO - ✅ TTS Success: 219280 chars
+2025-07-30 19:57:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 19:57:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 19:57:39 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753885631163_ar4p1ku9v
+2025-07-30 19:57:39 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 19:57:39 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 19:57:39 - app.services.agent_execution_service - INFO - Performing internet search for query: Can you tell me what is AI agent?...
+2025-07-30 19:57:40 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 19:57:41 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 19:57:41 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 19:57:41 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 19:57:41 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 19:57:55 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 19:57:55 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 19:57:55 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I need to figure out what an AI a...
+2025-07-30 19:57:55 - app.services.voice_service - INFO - 🔊 Generating TTS for: An AI agent is a computer program designed to perf...
+2025-07-30 19:57:55 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 19:57:55 - app.services.voice_service - INFO - Generating Coqui TTS for: An AI agent is a computer program designed to perform specific tasks or functions independently, oft...
+2025-07-30 19:57:55 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 19:57:57 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 19:57:57 - app.services.voice_service - INFO - Converting list of 241680 audio samples to numpy array
+2025-07-30 19:57:57 - app.services.voice_service - INFO - Successfully converted to array with shape: (241680,)
+2025-07-30 19:57:57 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 644540 chars
+2025-07-30 19:57:57 - app.routers.voice_processing - INFO - ✅ TTS Success: 644540 chars
+2025-07-30 19:57:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 19:59:41 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 19:59:41 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753885631163_ar4p1ku9v
+2025-07-30 19:59:42 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 19:59:42 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 19:59:42 - app.services.agent_execution_service - INFO - Performing internet search for query: Write an email to Akshamina and tell her that I am...
+2025-07-30 19:59:42 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 19:59:43 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 19:59:43 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 19:59:43 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 19:59:43 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 19:59:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 19:59:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 19:59:54 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so the user sent me a query where th...
+2025-07-30 19:59:54 - app.services.voice_service - INFO - 🔊 Generating TTS for: Subject: Missing You Dear Akshamina, I hope this m...
+2025-07-30 19:59:54 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 19:59:54 - app.services.voice_service - INFO - Generating Coqui TTS for: Subject: Missing You Dear Akshamina, I hope this message finds you well. I wanted to reach out for a...
+2025-07-30 19:59:54 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 19:59:55 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 19:59:55 - app.services.voice_service - INFO - Converting list of 277536 audio samples to numpy array
+2025-07-30 19:59:55 - app.services.voice_service - INFO - Successfully converted to array with shape: (277536,)
+2025-07-30 19:59:55 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 740156 chars
+2025-07-30 19:59:55 - app.routers.voice_processing - INFO - ✅ TTS Success: 740156 chars
+2025-07-30 19:59:55 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:03:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:03:02 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753885631163_ar4p1ku9v
+2025-07-30 20:03:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:03:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 20:03:02 - app.services.agent_execution_service - INFO - Performing internet search for query: What was the previous question which I had asked?...
+2025-07-30 20:03:03 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:03:04 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:03:04 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:03:04 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:03:04 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:03:16 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 20:03:16 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:03:16 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what hap...
+2025-07-30 20:03:16 - app.services.voice_service - INFO - 🔊 Generating TTS for: In addressing the situation where your 15-year-old...
+2025-07-30 20:03:16 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:03:16 - app.services.voice_service - INFO - Generating Coqui TTS for: In addressing the situation where your 15-year-old kid got pregnant on purpose after his birthday, y...
+2025-07-30 20:03:16 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:03:19 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:03:19 - app.services.voice_service - INFO - Converting list of 372000 audio samples to numpy array
+2025-07-30 20:03:19 - app.services.voice_service - INFO - Successfully converted to array with shape: (372000,)
+2025-07-30 20:03:19 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 992060 chars
+2025-07-30 20:03:19 - app.routers.voice_processing - INFO - ✅ TTS Success: 992060 chars
+2025-07-30 20:03:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:04:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 20:04:05 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:04:05 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:04:05 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:04:47 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 20:05:15 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 20:05:15 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:05:15 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:05:15 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:05:16 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 20:05:30 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:05:30 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753886126776_d4g4j3vkc
+2025-07-30 20:05:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:05:31 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-07-30 20:05:31 - app.services.agent_execution_service - INFO - Performing internet search for query: What's your name?...
+2025-07-30 20:05:33 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:05:34 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:05:34 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:05:34 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:05:34 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:05:40 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-07-30 20:05:40 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:05:40 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, I need to figure out how to respond ...
+2025-07-30 20:05:40 - app.services.voice_service - INFO - 🔊 Generating TTS for: My cat is called Bug. You might recognize it as "B...
+2025-07-30 20:05:40 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:05:40 - app.services.voice_service - INFO - Generating Coqui TTS for: My cat is called Bug. You might recognize it as "Buggie," which are commonly associated with cute an...
+2025-07-30 20:05:40 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:05:43 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:05:43 - app.services.voice_service - INFO - Converting list of 376624 audio samples to numpy array
+2025-07-30 20:05:43 - app.services.voice_service - INFO - Successfully converted to array with shape: (376624,)
+2025-07-30 20:05:43 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1004392 chars
+2025-07-30 20:05:43 - app.routers.voice_processing - INFO - ✅ TTS Success: 1004392 chars
+2025-07-30 20:05:43 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:05:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:05:59 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753886155484_5uoq94v7j
+2025-07-30 20:05:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:05:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-07-30 20:05:59 - app.services.agent_execution_service - INFO - Performing internet search for query: Hi, what's your name?...
+2025-07-30 20:05:59 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:06:00 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:06:00 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:06:00 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:06:00 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:06:09 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-07-30 20:06:09 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:06:09 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out how to r...
+2025-07-30 20:06:09 - app.services.voice_service - INFO - 🔊 Generating TTS for: It seems you're asking for a joke in your own lang...
+2025-07-30 20:06:09 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:06:09 - app.services.voice_service - INFO - Generating Coqui TTS for: It seems you're asking for a joke in your own language or providing information without a specific q...
+2025-07-30 20:06:09 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:06:11 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:06:11 - app.services.voice_service - INFO - Converting list of 305184 audio samples to numpy array
+2025-07-30 20:06:11 - app.services.voice_service - INFO - Successfully converted to array with shape: (305184,)
+2025-07-30 20:06:11 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 813884 chars
+2025-07-30 20:06:11 - app.routers.voice_processing - INFO - ✅ TTS Success: 813884 chars
+2025-07-30 20:06:11 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:06:49 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:06:49 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753886155484_5uoq94v7j
+2025-07-30 20:06:49 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:06:49 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-07-30 20:06:49 - app.services.agent_execution_service - INFO - Performing internet search for query: Joke do you know what's my name is...
+2025-07-30 20:06:50 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:06:51 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:06:51 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:06:51 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:06:51 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:06:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-07-30 20:06:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:06:57 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, I need to figure out how to respo...
+2025-07-30 20:06:57 - app.services.voice_service - INFO - 🔊 Generating TTS for: Do you know who's name is mine?...
+2025-07-30 20:06:57 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:06:57 - app.services.voice_service - INFO - Generating Coqui TTS for: Do you know who's name is mine?...
+2025-07-30 20:06:57 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:06:57 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:06:57 - app.services.voice_service - INFO - Converting list of 59408 audio samples to numpy array
+2025-07-30 20:06:57 - app.services.voice_service - INFO - Successfully converted to array with shape: (59408,)
+2025-07-30 20:06:57 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 158480 chars
+2025-07-30 20:06:57 - app.routers.voice_processing - INFO - ✅ TTS Success: 158480 chars
+2025-07-30 20:06:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:07:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:07:13 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753886155484_5uoq94v7j
+2025-07-30 20:07:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:07:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-07-30 20:07:14 - app.services.agent_execution_service - INFO - Performing internet search for query: What is the capital of India?...
+2025-07-30 20:07:15 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:07:15 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:07:15 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:07:15 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:07:15 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:07:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-07-30 20:07:22 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:07:22 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I need to figure out what's the c...
+2025-07-30 20:07:22 - app.services.voice_service - INFO - 🔊 Generating TTS for: The capital of India is New Delhi....
+2025-07-30 20:07:22 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:07:22 - app.services.voice_service - INFO - Generating Coqui TTS for: The capital of India is New Delhi....
+2025-07-30 20:07:22 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:07:23 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:07:23 - app.services.voice_service - INFO - Converting list of 67344 audio samples to numpy array
+2025-07-30 20:07:23 - app.services.voice_service - INFO - Successfully converted to array with shape: (67344,)
+2025-07-30 20:07:23 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 179644 chars
+2025-07-30 20:07:23 - app.routers.voice_processing - INFO - ✅ TTS Success: 179644 chars
+2025-07-30 20:07:23 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:07:37 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:07:37 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753886155484_5uoq94v7j
+2025-07-30 20:07:38 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:07:38 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-07-30 20:07:38 - app.services.agent_execution_service - INFO - Performing internet search for query: What is the capital of United States of America?...
+2025-07-30 20:07:38 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:07:39 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:07:39 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:07:39 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:07:39 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:07:51 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-07-30 20:07:51 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:07:51 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I need to figure out what the ...
+2025-07-30 20:07:51 - app.services.voice_service - INFO - 🔊 Generating TTS for: The capital of the United States of America has sh...
+2025-07-30 20:07:51 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:07:51 - app.services.voice_service - INFO - Generating Coqui TTS for: The capital of the United States of America has shifted over time as political dynamics changed, esp...
+2025-07-30 20:07:51 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:07:53 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:07:53 - app.services.voice_service - INFO - Converting list of 227088 audio samples to numpy array
+2025-07-30 20:07:53 - app.services.voice_service - INFO - Successfully converted to array with shape: (227088,)
+2025-07-30 20:07:53 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 605628 chars
+2025-07-30 20:07:53 - app.routers.voice_processing - INFO - ✅ TTS Success: 605628 chars
+2025-07-30 20:07:53 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:09:04 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 20:09:04 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753886155484_5uoq94v7j
+2025-07-30 20:09:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 20:09:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-07-30 20:09:05 - app.services.agent_execution_service - INFO - Performing internet search for query: Hi, my name is Suraj. And you know, who is the Kin...
+2025-07-30 20:09:05 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 20:09:07 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 20:09:07 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 20:09:07 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 20:09:07 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 20:09:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-07-30 20:09:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 20:09:24 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out the answ...
+2025-07-30 20:09:24 - app.services.voice_service - INFO - 🔊 Generating TTS for: The joke playing on words suggests that there isn'...
+2025-07-30 20:09:24 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 20:09:24 - app.services.voice_service - INFO - Generating Coqui TTS for: The joke playing on words suggests that there isn't actually a King of the United States of America ...
+2025-07-30 20:09:24 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 20:09:34 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 20:09:34 - app.services.voice_service - INFO - Converting list of 1236240 audio samples to numpy array
+2025-07-30 20:09:34 - app.services.voice_service - INFO - Successfully converted to array with shape: (1236240,)
+2025-07-30 20:09:34 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 3296700 chars
+2025-07-30 20:09:34 - app.routers.voice_processing - INFO - ✅ TTS Success: 3296700 chars
+2025-07-30 20:09:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-30 20:11:18 - app - INFO - Shutting down AI Agent Platform...
+2025-07-30 23:22:13 - app - INFO - Logging configured successfully
+2025-07-30 23:22:17 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-07-30 23:22:17 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-07-30 23:22:17 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-07-30 23:22:17 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-07-30 23:22:17 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-07-30 23:22:17 - app - INFO - Logging configured successfully
+2025-07-30 23:22:17 - app - INFO - === AI Agent Platform Started ===
+2025-07-30 23:22:17 - app - INFO - Environment: development
+2025-07-30 23:22:17 - app - INFO - Debug Mode: False
+2025-07-30 23:22:17 - app - INFO - Internet Search: Enabled
+2025-07-30 23:22:17 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-30 23:22:17 - app - INFO - === Ready to Accept Requests ===
+2025-07-30 23:26:09 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-07-30 23:26:09 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753898162524_lh8prwybd
+2025-07-30 23:26:09 - app.services.voice_service - INFO - Loading voice models...
+2025-07-30 23:26:09 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-07-30 23:26:09 - app.services.voice_service - INFO - ✅ Found espeak
+2025-07-30 23:26:09 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-07-30 23:26:09 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-07-30 23:26:12 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-07-30 23:26:13 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-07-30 23:26:13 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-07-30 23:26:13 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-07-30 23:26:13 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30736 samples)
+2025-07-30 23:26:13 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30736,)
+2025-07-30 23:26:13 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-07-30 23:26:13 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-07-30 23:26:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-07-30 23:26:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-07-30 23:26:14 - app.services.agent_execution_service - INFO - Performing internet search for query: Hello, my name is Suryadmushra, what's your name?...
+2025-07-30 23:26:14 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-07-30 23:26:15 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-07-30 23:26:15 - app.services.llm_service - INFO - Found 1 models
+2025-07-30 23:26:15 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-07-30 23:26:15 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-07-30 23:26:27 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-07-30 23:26:27 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-07-30 23:26:27 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, let me try to figure out how to r...
+2025-07-30 23:26:27 - app.services.voice_service - INFO - 🔊 Generating TTS for: The thread from r/trashy discusses humorous discus...
+2025-07-30 23:26:27 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-07-30 23:26:27 - app.services.voice_service - INFO - Generating Coqui TTS for: The thread from r/trashy discusses humorous discussions around trashing names but isn't directly rel...
+2025-07-30 23:26:27 - app.services.voice_service - INFO - Using single-speaker model
+2025-07-30 23:26:28 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-07-30 23:26:28 - app.services.voice_service - INFO - Converting list of 217360 audio samples to numpy array
+2025-07-30 23:26:28 - app.services.voice_service - INFO - Successfully converted to array with shape: (217360,)
+2025-07-30 23:26:28 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 579688 chars
+2025-07-30 23:26:28 - app.routers.voice_processing - INFO - ✅ TTS Success: 579688 chars
+2025-07-30 23:26:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-07-31 22:41:17 - app - INFO - Shutting down AI Agent Platform...
+2025-07-31 22:41:20 - app - INFO - Logging configured successfully
+2025-07-31 22:41:24 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-07-31 22:41:24 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-07-31 22:41:24 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-07-31 22:41:24 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-07-31 22:41:24 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-07-31 22:41:24 - app - INFO - Logging configured successfully
+2025-07-31 22:41:24 - app - INFO - === AI Agent Platform Started ===
+2025-07-31 22:41:24 - app - INFO - Environment: development
+2025-07-31 22:41:24 - app - INFO - Debug Mode: False
+2025-07-31 22:41:24 - app - INFO - Internet Search: Enabled
+2025-07-31 22:41:24 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-07-31 22:41:24 - app - INFO - === Ready to Accept Requests ===
+2025-07-31 22:45:17 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/history?user_id=6861220687f9629419d9624e&limit=20&offset=0
+2025-07-31 22:45:17 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/history?user_id=6861220687f9629419d9624e&limit=20&offset=0 - Status: 404
+2025-07-31 22:45:23 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/history?user_id=6861220687f9629419d9624e&limit=20&offset=0
+2025-07-31 22:45:23 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/history?user_id=6861220687f9629419d9624e&limit=20&offset=0 - Status: 404
+2025-07-31 23:08:17 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/history?user_id=6861220687f9629419d9624e&limit=20&offset=0
+2025-07-31 23:08:17 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/798e721c-b980-4b44-8efd-e4cbdd3a0e88/history?user_id=6861220687f9629419d9624e&limit=20&offset=0 - Status: 404
+2025-07-31 23:35:51 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:09:32 - app - INFO - Logging configured successfully
+2025-08-01 00:09:36 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:09:36 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:09:36 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:09:36 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:09:36 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:09:36 - app - INFO - Logging configured successfully
+2025-08-01 00:09:36 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:09:36 - app - INFO - Environment: development
+2025-08-01 00:09:36 - app - INFO - Debug Mode: False
+2025-08-01 00:09:36 - app - INFO - Internet Search: Enabled
+2025-08-01 00:09:36 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:09:36 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:09:52 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:09:52 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753987184775_zf22822mo
+2025-08-01 00:09:52 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:09:53 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:09:53 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:09:53 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:09:53 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:09:55 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:09:56 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:09:56 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:09:56 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:09:56 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30480 samples)
+2025-08-01 00:09:56 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30480,)
+2025-08-01 00:09:56 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:09:56 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:09:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:09:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:09:57 - app.services.agent_execution_service - INFO - Performing internet search for query: Hello, my name is Surah Mishra. What's your name?...
+2025-08-01 00:09:57 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:09:58 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:09:58 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:09:58 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:09:58 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:10:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:10:12 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:10:12 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out who Sura...
+2025-08-01 00:10:12 - app.services.voice_service - INFO - 🔊 Generating TTS for: It seems there is no specific information availabl...
+2025-08-01 00:10:12 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:10:12 - app.services.voice_service - INFO - Generating Coqui TTS for: It seems there is no specific information available on Surah Mishra based on the provided Reddit dis...
+2025-08-01 00:10:12 - app.services.voice_service - INFO - Using single-speaker model
+2025-08-01 00:10:19 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-08-01 00:10:19 - app.services.voice_service - INFO - Converting list of 975632 audio samples to numpy array
+2025-08-01 00:10:19 - app.services.voice_service - INFO - Successfully converted to array with shape: (975632,)
+2025-08-01 00:10:19 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 2601744 chars
+2025-08-01 00:10:19 - app.routers.voice_processing - INFO - ✅ TTS Success: 2601744 chars
+2025-08-01 00:10:19 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:10:51 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:10:51 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753987241689_435vmwty7
+2025-08-01 00:10:52 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:10:52 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:10:52 - app.services.agent_execution_service - INFO - Performing internet search for query: What is AI agents and how we can utilize their cap...
+2025-08-01 00:10:52 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:10:54 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:10:54 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:10:54 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:10:54 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:11:08 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:11:08 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:11:08 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I need to understand what AI a...
+2025-08-01 00:11:08 - app.services.voice_service - INFO - 🔊 Generating TTS for: AI agents are intelligent systems designed to perf...
+2025-08-01 00:11:08 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:11:08 - app.services.voice_service - INFO - Generating Coqui TTS for: AI agents are intelligent systems designed to perform tasks with learned behaviors. They can learn f...
+2025-08-01 00:11:08 - app.services.voice_service - INFO - Using single-speaker model
+2025-08-01 00:11:10 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-08-01 00:11:10 - app.services.voice_service - INFO - Converting list of 295456 audio samples to numpy array
+2025-08-01 00:11:10 - app.services.voice_service - INFO - Successfully converted to array with shape: (295456,)
+2025-08-01 00:11:10 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 787944 chars
+2025-08-01 00:11:10 - app.routers.voice_processing - INFO - ✅ TTS Success: 787944 chars
+2025-08-01 00:11:10 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:23:11 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:23:13 - app - INFO - Logging configured successfully
+2025-08-01 00:23:16 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:23:16 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:23:16 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:23:16 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:23:16 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:23:16 - app - INFO - Logging configured successfully
+2025-08-01 00:23:16 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:23:16 - app - INFO - Environment: development
+2025-08-01 00:23:16 - app - INFO - Debug Mode: False
+2025-08-01 00:23:16 - app - INFO - Internet Search: Enabled
+2025-08-01 00:23:16 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:23:16 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:23:33 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:23:33 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753987241689_435vmwty7
+2025-08-01 00:23:33 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:23:33 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:23:33 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:23:33 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:23:33 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:23:36 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:23:36 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:23:36 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:23:36 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:23:36 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (29712 samples)
+2025-08-01 00:23:36 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (29712,)
+2025-08-01 00:23:36 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:23:36 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:23:37 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:23:37 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:23:37 - app.services.agent_execution_service - INFO - Performing internet search for query: So, now tell me what is AI agent?...
+2025-08-01 00:23:37 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:23:38 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:23:38 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:23:38 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:23:38 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:23:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:23:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:23:59 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I need to figure out what an AI a...
+2025-08-01 00:23:59 - app.services.voice_service - INFO - 🔊 Generating TTS for: AI Agent Definition and Explanation An AI agent is... (Total length: 1719 chars)
+2025-08-01 00:23:59 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:23:59 - app.services.voice_service - INFO - Processing 6 text chunks for TTS
+2025-08-01 00:23:59 - app.services.voice_service - INFO - Generating TTS for chunk 1/6: AI Agent Definition and Explanation An AI agent is...
+2025-08-01 00:24:03 - app.services.voice_service - INFO - Generating TTS for chunk 2/6: Types of AI Agents: - Autonomous Vehicles: These v...
+2025-08-01 00:24:06 - app.services.voice_service - INFO - Generating TTS for chunk 3/6: - Deep Learning Agents: Utilize neural networks to...
+2025-08-01 00:24:10 - app.services.voice_service - INFO - Generating TTS for chunk 4/6: - Autonomous Vehicles: Use deep learning models to...
+2025-08-01 00:24:14 - app.services.voice_service - INFO - Generating TTS for chunk 5/6: - Self-regulating Agents: These adjust behavior ba...
+2025-08-01 00:24:17 - app.services.voice_service - INFO - Generating TTS for chunk 6/6: This classification provides a comprehensive under...
+2025-08-01 00:24:18 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 7694616 chars for full text (1719 input chars)
+2025-08-01 00:24:18 - app.routers.voice_processing - INFO - ✅ TTS Success: 7694616 chars
+2025-08-01 00:24:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:29:24 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:30:58 - app - INFO - Logging configured successfully
+2025-08-01 00:31:02 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:31:02 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:31:02 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:31:02 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:31:02 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:31:02 - app - INFO - Logging configured successfully
+2025-08-01 00:31:02 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:31:02 - app - INFO - Environment: development
+2025-08-01 00:31:02 - app - INFO - Debug Mode: False
+2025-08-01 00:31:02 - app - INFO - Internet Search: Enabled
+2025-08-01 00:31:02 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:31:02 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:31:06 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:31:07 - app - INFO - Logging configured successfully
+2025-08-01 00:31:09 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:31:09 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:31:09 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:31:09 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:31:09 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:31:09 - app - INFO - Logging configured successfully
+2025-08-01 00:31:10 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:31:10 - app - INFO - Environment: development
+2025-08-01 00:31:10 - app - INFO - Debug Mode: False
+2025-08-01 00:31:10 - app - INFO - Internet Search: Enabled
+2025-08-01 00:31:10 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:31:10 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:31:19 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:31:19 - app - INFO - Logging configured successfully
+2025-08-01 00:31:22 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:31:22 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:31:22 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:31:22 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:31:22 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:31:22 - app - INFO - Logging configured successfully
+2025-08-01 00:31:22 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:31:22 - app - INFO - Environment: development
+2025-08-01 00:31:22 - app - INFO - Debug Mode: False
+2025-08-01 00:31:22 - app - INFO - Internet Search: Enabled
+2025-08-01 00:31:22 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:31:22 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:31:26 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:32:44 - app - INFO - Logging configured successfully
+2025-08-01 00:32:46 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:32:46 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:32:46 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:32:46 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:32:46 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:32:46 - app - INFO - Logging configured successfully
+2025-08-01 00:32:47 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:32:47 - app - INFO - Environment: development
+2025-08-01 00:32:47 - app - INFO - Debug Mode: False
+2025-08-01 00:32:47 - app - INFO - Internet Search: Enabled
+2025-08-01 00:32:47 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:32:47 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:32:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:32:58 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753987241689_435vmwty7
+2025-08-01 00:32:58 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:32:59 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:32:59 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:32:59 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:32:59 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:33:01 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:33:02 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:33:02 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:33:02 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:33:02 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30736 samples)
+2025-08-01 00:33:02 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30736,)
+2025-08-01 00:33:02 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:33:02 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:33:02 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:33:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:33:02 - app.services.agent_execution_service - INFO - Performing internet search for query: What do you know about me?...
+2025-08-01 00:33:03 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:33:04 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:33:04 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:33:04 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:33:04 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:33:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:33:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:33:14 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I'm trying to figure out who t...
+2025-08-01 00:33:14 - app.services.voice_service - INFO - 🔊 Generating TTS for: Wright is likely a content moderation or managemen... (Total length: 419 chars)
+2025-08-01 00:33:14 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:33:14 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-01 00:33:14 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: Wright is likely a content moderation or managemen...
+2025-08-01 00:33:17 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: The drawing may represent random noise but could b...
+2025-08-01 00:33:18 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1576356 chars for full text (419 input chars)
+2025-08-01 00:33:18 - app.routers.voice_processing - INFO - ✅ TTS Success: 1576356 chars
+2025-08-01 00:33:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:35:41 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:35:45 - app - INFO - Logging configured successfully
+2025-08-01 00:35:49 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:35:49 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:35:49 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:35:49 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:35:49 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:35:49 - app - INFO - Logging configured successfully
+2025-08-01 00:35:49 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:35:49 - app - INFO - Environment: development
+2025-08-01 00:35:49 - app - INFO - Debug Mode: False
+2025-08-01 00:35:49 - app - INFO - Internet Search: Enabled
+2025-08-01 00:35:49 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:35:49 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:36:01 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:36:01 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753988757588_5a2vpxvpz
+2025-08-01 00:36:01 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:36:01 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:36:01 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:36:01 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:36:01 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:36:04 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:36:04 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:36:04 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:36:05 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:36:05 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (31760 samples)
+2025-08-01 00:36:05 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (31760,)
+2025-08-01 00:36:05 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:36:05 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:36:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:36:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:36:05 - app.services.agent_execution_service - INFO - Performing internet search for query: What is Kumpfupanda?...
+2025-08-01 00:36:05 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:36:06 - app.services.agent_execution_service - INFO - Search completed: 0 results from 2 sources
+2025-08-01 00:36:06 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:36:06 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:36:06 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:36:28 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:36:28 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:36:28 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to understand what Kum...
+2025-08-01 00:36:28 - app.services.voice_service - INFO - 🔊 Generating TTS for: Kumpfupanda is a character created in the context ... (Total length: 1617 chars)
+2025-08-01 00:36:28 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:36:28 - app.services.voice_service - INFO - Processing 5 text chunks for TTS
+2025-08-01 00:36:28 - app.services.voice_service - INFO - Generating TTS for chunk 1/5: Kumpfupanda is a character created in the context ...
+2025-08-01 00:36:32 - app.services.voice_service - INFO - Generating TTS for chunk 2/5: Game Mechanics: - Stats: Includes Strength, Consti...
+2025-08-01 00:36:36 - app.services.voice_service - INFO - Generating TTS for chunk 3/5: Origin in the Game: - Kumpfupanda resides within "...
+2025-08-01 00:36:39 - app.services.voice_service - INFO - Generating TTS for chunk 4/5: Role-Playing Mechanics: - A player can use agility...
+2025-08-01 00:36:43 - app.services.voice_service - INFO - Generating TTS for chunk 5/5: Purpose and Engagement: - The character's traits e...
+2025-08-01 00:36:47 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 7263836 chars for full text (1617 input chars)
+2025-08-01 00:36:47 - app.routers.voice_processing - INFO - ✅ TTS Success: 7263836 chars
+2025-08-01 00:36:47 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:37:21 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:37:21 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753988837181_txfui9hia
+2025-08-01 00:37:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:37:22 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:37:22 - app.services.agent_execution_service - INFO - Performing internet search for query: What is the current date?...
+2025-08-01 00:37:22 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:37:23 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:37:23 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:37:23 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:37:23 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:37:40 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:37:40 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:37:40 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, I need to figure out what the user's...
+2025-08-01 00:37:40 - app.services.voice_service - INFO - 🔊 Generating TTS for: To address your query, here's a structured, organi... (Total length: 2804 chars)
+2025-08-01 00:37:40 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:37:40 - app.services.voice_service - INFO - Processing 9 text chunks for TTS
+2025-08-01 00:37:40 - app.services.voice_service - INFO - Generating TTS for chunk 1/9: To address your query, here's a structured, organi...
+2025-08-01 00:37:43 - app.services.voice_service - INFO - Generating TTS for chunk 2/9: You share a parenting plan where the girls are wit...
+2025-08-01 00:37:46 - app.services.voice_service - INFO - Generating TTS for chunk 3/9: Parenting Plan: - Alternating Pattern: She alterna...
+2025-08-01 00:37:49 - app.services.voice_service - INFO - Generating TTS for chunk 4/9: - Custody Management: Despite separated since 2019...
+2025-08-01 00:37:53 - app.services.voice_service - INFO - Generating TTS for chunk 5/9: - Potential Concerns: The parent is concerned abou...
+2025-08-01 00:37:57 - app.services.voice_service - INFO - Generating TTS for chunk 6/9: The letter was found at a detention center in MDC ...
+2025-08-01 00:38:01 - app.services.voice_service - INFO - Generating TTS for chunk 7/9: This likely heightened concerns about mental healt...
+2025-08-01 00:38:04 - app.services.voice_service - INFO - Generating TTS for chunk 8/9: The individual emphasized that upon discovering th...
+2025-08-01 00:38:07 - app.services.voice_service - INFO - Generating TTS for chunk 9/9: - Online Interactions: Stay informed about potenti...
+2025-08-01 00:38:10 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 12033404 chars for full text (2804 input chars)
+2025-08-01 00:38:10 - app.routers.voice_processing - INFO - ✅ TTS Success: 12033404 chars
+2025-08-01 00:38:10 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:49:47 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:49:49 - app - INFO - Logging configured successfully
+2025-08-01 00:49:52 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:49:52 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:49:52 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:49:52 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:49:52 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:49:52 - app - INFO - Logging configured successfully
+2025-08-01 00:49:52 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:49:52 - app - INFO - Environment: development
+2025-08-01 00:49:52 - app - INFO - Debug Mode: False
+2025-08-01 00:49:52 - app - INFO - Internet Search: Enabled
+2025-08-01 00:49:52 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:49:52 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:50:02 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:50:02 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753988837181_txfui9hia
+2025-08-01 00:50:02 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:50:03 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:50:03 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:50:03 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:50:03 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:50:05 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:50:06 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:50:06 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:50:06 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:50:06 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30480 samples)
+2025-08-01 00:50:06 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30480,)
+2025-08-01 00:50:06 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:50:06 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:50:06 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:50:06 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:50:07 - app.services.agent_execution_service - INFO - Performing internet search for query: What is Tiger?...
+2025-08-01 00:50:07 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:50:07 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:50:07 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:50:07 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:50:07 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:50:24 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:50:24 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:50:24 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what "ti...
+2025-08-01 00:50:24 - app.services.voice_service - INFO - 🔊 Generating TTS for: In this context, "Tiger" isn't confined to the tra... (Total length: 1260 chars)
+2025-08-01 00:50:24 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:50:24 - app.services.voice_service - INFO - Processing 4 text chunks for TTS
+2025-08-01 00:50:24 - app.services.voice_service - INFO - Generating TTS for chunk 1/4: In this context, "Tiger" isn't confined to the tra...
+2025-08-01 00:50:28 - app.services.voice_service - INFO - Generating TTS for chunk 2/4: Technological Enhancement: Kaido, a hunter from th...
+2025-08-01 00:50:32 - app.services.voice_service - INFO - Generating TTS for chunk 3/4: Enhanced Function: Beyond its role as a predator, ...
+2025-08-01 00:50:37 - app.services.voice_service - INFO - Generating TTS for chunk 4/4: In summary, "Tiger" is an versatile and intriguing...
+2025-08-01 00:50:39 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 5814472 chars for full text (1260 input chars)
+2025-08-01 00:50:39 - app.routers.voice_processing - INFO - ✅ TTS Success: 5814472 chars
+2025-08-01 00:50:39 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:51:53 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:51:55 - app - INFO - Logging configured successfully
+2025-08-01 00:51:58 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:51:58 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:51:58 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:51:58 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:51:58 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:51:58 - app - INFO - Logging configured successfully
+2025-08-01 00:51:58 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:51:58 - app - INFO - Environment: development
+2025-08-01 00:51:58 - app - INFO - Debug Mode: False
+2025-08-01 00:51:58 - app - INFO - Internet Search: Enabled
+2025-08-01 00:51:58 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:51:58 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:52:08 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:52:08 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753989725578_inr95n89v
+2025-08-01 00:52:08 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:52:08 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:52:08 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:52:08 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:52:08 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:52:11 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:52:12 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:52:12 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:52:12 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:52:12 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30480 samples)
+2025-08-01 00:52:12 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30480,)
+2025-08-01 00:52:12 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:52:12 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:52:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:52:12 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:52:12 - app.services.agent_execution_service - INFO - Performing internet search for query: What is car?...
+2025-08-01 00:52:13 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:52:13 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:52:14 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:52:14 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:52:14 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:52:26 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:52:26 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:52:26 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what thi...
+2025-08-01 00:52:26 - app.services.voice_service - INFO - 🔊 Generating TTS for: To determine what kind of car you have, consider t...
+2025-08-01 00:52:26 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:52:26 - app.services.voice_service - INFO - Generating Coqui TTS for: To determine what kind of car you have, consider the information from both threads: 1. Identify Your...
+2025-08-01 00:52:26 - app.services.voice_service - INFO - Using single-speaker model
+2025-08-01 00:52:29 - app.services.voice_service - INFO - Coqui TTS output type: <class 'list'>, shape: N/A
+2025-08-01 00:52:29 - app.services.voice_service - INFO - Converting list of 413744 audio samples to numpy array
+2025-08-01 00:52:29 - app.services.voice_service - INFO - Successfully converted to array with shape: (413744,)
+2025-08-01 00:52:29 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1103376 chars
+2025-08-01 00:52:29 - app.routers.voice_processing - INFO - ✅ TTS Success: 1103376 chars
+2025-08-01 00:52:29 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:52:39 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:52:40 - app - INFO - Logging configured successfully
+2025-08-01 00:52:43 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:52:43 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:52:43 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:52:43 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:52:43 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:52:43 - app - INFO - Logging configured successfully
+2025-08-01 00:52:43 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:52:43 - app - INFO - Environment: development
+2025-08-01 00:52:43 - app - INFO - Debug Mode: False
+2025-08-01 00:52:43 - app - INFO - Internet Search: Enabled
+2025-08-01 00:52:43 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:52:43 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:52:52 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:52:52 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753989770228_0a9oj3bgo
+2025-08-01 00:52:52 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:52:53 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:52:53 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:52:53 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:52:53 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:52:55 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:52:56 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:52:56 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:52:56 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:52:56 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30224 samples)
+2025-08-01 00:52:56 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30224,)
+2025-08-01 00:52:56 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:52:56 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:52:57 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:52:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:52:57 - app.services.agent_execution_service - INFO - Performing internet search for query: What is car?...
+2025-08-01 00:52:57 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:52:57 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:52:57 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:52:57 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:52:57 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:53:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:53:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:53:13 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I'm trying to figure out what ...
+2025-08-01 00:53:13 - app.services.voice_service - INFO - 🔊 Generating TTS for: Definition of a Car: A car is a wheeled motor vehi... (Total length: 1188 chars)
+2025-08-01 00:53:13 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:53:13 - app.services.voice_service - INFO - Processing 4 text chunks for TTS
+2025-08-01 00:53:13 - app.services.voice_service - INFO - Generating TTS for chunk 1/4: Definition of a Car: A car is a wheeled motor vehi...
+2025-08-01 00:53:17 - app.services.voice_service - INFO - Generating TTS for chunk 2/4: - Work: Office vehicles, industrial machinery, or ...
+2025-08-01 00:53:24 - app.services.voice_service - INFO - Generating TTS for chunk 3/4: Design Elements: - Doors: Open or closed at the to...
+2025-08-01 00:53:27 - app.services.voice_service - INFO - Generating TTS for chunk 4/4: Emojis for Visual Clarity: -  Transportation -  Ho...
+2025-08-01 00:53:30 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 6683636 chars for full text (1188 input chars)
+2025-08-01 00:53:30 - app.routers.voice_processing - INFO - ✅ TTS Success: 6683636 chars
+2025-08-01 00:53:30 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:54:05 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:54:06 - app - INFO - Logging configured successfully
+2025-08-01 00:54:09 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:54:09 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:54:09 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:54:09 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:54:09 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:54:09 - app - INFO - Logging configured successfully
+2025-08-01 00:54:09 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:54:09 - app - INFO - Environment: development
+2025-08-01 00:54:09 - app - INFO - Debug Mode: False
+2025-08-01 00:54:09 - app - INFO - Internet Search: Enabled
+2025-08-01 00:54:09 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:54:09 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:54:11 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:54:12 - app - INFO - Logging configured successfully
+2025-08-01 00:54:14 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:54:14 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:54:14 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:54:14 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:54:14 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:54:14 - app - INFO - Logging configured successfully
+2025-08-01 00:54:14 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:54:14 - app - INFO - Environment: development
+2025-08-01 00:54:14 - app - INFO - Debug Mode: False
+2025-08-01 00:54:14 - app - INFO - Internet Search: Enabled
+2025-08-01 00:54:14 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:54:14 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:54:55 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:54:56 - app - INFO - Logging configured successfully
+2025-08-01 00:54:59 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:54:59 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:54:59 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:54:59 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:54:59 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:54:59 - app - INFO - Logging configured successfully
+2025-08-01 00:55:00 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:55:00 - app - INFO - Environment: development
+2025-08-01 00:55:00 - app - INFO - Debug Mode: False
+2025-08-01 00:55:00 - app - INFO - Internet Search: Enabled
+2025-08-01 00:55:00 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:55:00 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:55:33 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:55:34 - app - INFO - Logging configured successfully
+2025-08-01 00:55:37 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:55:37 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:55:37 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:55:37 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:55:37 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:55:37 - app - INFO - Logging configured successfully
+2025-08-01 00:55:37 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:55:37 - app - INFO - Environment: development
+2025-08-01 00:55:37 - app - INFO - Debug Mode: False
+2025-08-01 00:55:37 - app - INFO - Internet Search: Enabled
+2025-08-01 00:55:37 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:55:37 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:55:50 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:55:50 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753989946414_axt73ew7t
+2025-08-01 00:55:50 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:55:50 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:55:50 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:55:50 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:55:50 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:55:53 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:55:53 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:55:53 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:55:54 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:55:54 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30736 samples)
+2025-08-01 00:55:54 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30736,)
+2025-08-01 00:55:54 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:55:54 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:55:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:55:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:55:54 - app.services.agent_execution_service - INFO - Performing internet search for query: What is truck?...
+2025-08-01 00:55:54 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:55:55 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:55:55 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:55:55 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:55:55 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:56:04 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:56:04 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:56:04 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what a t...
+2025-08-01 00:56:04 - app.services.voice_service - INFO - 🔊 Generating TTS for: Truck is a vehicle designed for transport, serving... (Total length: 526 chars)
+2025-08-01 00:56:04 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:56:04 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-01 00:56:04 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: Truck is a vehicle designed for transport, serving...
+2025-08-01 00:56:09 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: Thus, while trucks are primarily for transportatio...
+2025-08-01 00:56:10 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 2329380 chars for full text (526 input chars)
+2025-08-01 00:56:10 - app.routers.voice_processing - INFO - ✅ TTS Success: 2329380 chars
+2025-08-01 00:56:10 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:56:27 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:56:29 - app - INFO - Logging configured successfully
+2025-08-01 00:56:32 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:56:32 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:56:32 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:56:32 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:56:32 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:56:32 - app - INFO - Logging configured successfully
+2025-08-01 00:56:32 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:56:32 - app - INFO - Environment: development
+2025-08-01 00:56:32 - app - INFO - Debug Mode: False
+2025-08-01 00:56:32 - app - INFO - Internet Search: Enabled
+2025-08-01 00:56:32 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:56:32 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:56:36 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 00:56:36 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753989946414_axt73ew7t
+2025-08-01 00:56:36 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 00:56:37 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 00:56:37 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 00:56:37 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 00:56:37 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 00:56:40 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:56:40 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 00:56:40 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 00:56:40 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 00:56:40 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30736 samples)
+2025-08-01 00:56:40 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30736,)
+2025-08-01 00:56:40 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 00:56:40 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 00:56:41 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 00:56:41 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 00:56:41 - app.services.agent_execution_service - INFO - Performing internet search for query: What is truck?...
+2025-08-01 00:56:41 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 00:56:41 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 00:56:41 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 00:56:41 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 00:56:41 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 00:56:52 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 00:56:52 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 00:56:52 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I need to figure out what a truck...
+2025-08-01 00:56:52 - app.services.voice_service - INFO - 🔊 Generating TTS for: A truck is a large vehicle designed to transport h... (Total length: 482 chars)
+2025-08-01 00:56:52 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 00:56:52 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-01 00:56:52 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: A truck is a large vehicle designed to transport h...
+2025-08-01 00:56:57 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: Today, a truck is widely used across industries li...
+2025-08-01 00:56:58 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 2038564 chars for full text (482 input chars)
+2025-08-01 00:56:58 - app.routers.voice_processing - INFO - ✅ TTS Success: 2038564 chars
+2025-08-01 00:56:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 00:57:04 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:57:05 - app - INFO - Logging configured successfully
+2025-08-01 00:57:16 - app - INFO - Logging configured successfully
+2025-08-01 00:57:19 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:57:19 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:57:19 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:57:19 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:57:19 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:57:19 - app - INFO - Logging configured successfully
+2025-08-01 00:57:19 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:57:19 - app - INFO - Environment: development
+2025-08-01 00:57:19 - app - INFO - Debug Mode: False
+2025-08-01 00:57:19 - app - INFO - Internet Search: Enabled
+2025-08-01 00:57:19 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:57:19 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:57:29 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:57:30 - app - INFO - Logging configured successfully
+2025-08-01 00:57:32 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:57:32 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:57:32 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:57:32 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:57:32 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:57:32 - app - INFO - Logging configured successfully
+2025-08-01 00:57:32 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:57:32 - app - INFO - Environment: development
+2025-08-01 00:57:32 - app - INFO - Debug Mode: False
+2025-08-01 00:57:32 - app - INFO - Internet Search: Enabled
+2025-08-01 00:57:32 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:57:32 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:57:35 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:57:36 - app - INFO - Logging configured successfully
+2025-08-01 00:57:39 - app - INFO - Logging configured successfully
+2025-08-01 00:57:45 - app - INFO - Logging configured successfully
+2025-08-01 00:57:50 - app - INFO - Logging configured successfully
+2025-08-01 00:57:53 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:57:53 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:57:53 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:57:53 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:57:53 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:57:53 - app - INFO - Logging configured successfully
+2025-08-01 00:57:53 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:57:53 - app - INFO - Environment: development
+2025-08-01 00:57:53 - app - INFO - Debug Mode: False
+2025-08-01 00:57:53 - app - INFO - Internet Search: Enabled
+2025-08-01 00:57:53 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:57:53 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:58:09 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:58:09 - app - INFO - Logging configured successfully
+2025-08-01 00:58:12 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:12 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:12 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:58:12 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:12 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:12 - app - INFO - Logging configured successfully
+2025-08-01 00:58:12 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:58:12 - app - INFO - Environment: development
+2025-08-01 00:58:12 - app - INFO - Debug Mode: False
+2025-08-01 00:58:12 - app - INFO - Internet Search: Enabled
+2025-08-01 00:58:12 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:58:12 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:58:18 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:58:19 - app - INFO - Logging configured successfully
+2025-08-01 00:58:21 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:21 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:21 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:58:21 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:21 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:21 - app - INFO - Logging configured successfully
+2025-08-01 00:58:22 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:58:22 - app - INFO - Environment: development
+2025-08-01 00:58:22 - app - INFO - Debug Mode: False
+2025-08-01 00:58:22 - app - INFO - Internet Search: Enabled
+2025-08-01 00:58:22 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:58:22 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:58:33 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:58:33 - app - INFO - Logging configured successfully
+2025-08-01 00:58:36 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:36 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:36 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:58:36 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:36 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:36 - app - INFO - Logging configured successfully
+2025-08-01 00:58:36 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:58:36 - app - INFO - Environment: development
+2025-08-01 00:58:36 - app - INFO - Debug Mode: False
+2025-08-01 00:58:36 - app - INFO - Internet Search: Enabled
+2025-08-01 00:58:36 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:58:36 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:58:41 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:58:41 - app - INFO - Logging configured successfully
+2025-08-01 00:58:44 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:44 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:44 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:58:44 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:44 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:44 - app - INFO - Logging configured successfully
+2025-08-01 00:58:44 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:58:44 - app - INFO - Environment: development
+2025-08-01 00:58:44 - app - INFO - Debug Mode: False
+2025-08-01 00:58:44 - app - INFO - Internet Search: Enabled
+2025-08-01 00:58:44 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:58:44 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:58:51 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:58:52 - app - INFO - Logging configured successfully
+2025-08-01 00:58:54 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:54 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:54 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:58:54 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:58:54 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:58:54 - app - INFO - Logging configured successfully
+2025-08-01 00:58:54 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:58:54 - app - INFO - Environment: development
+2025-08-01 00:58:54 - app - INFO - Debug Mode: False
+2025-08-01 00:58:54 - app - INFO - Internet Search: Enabled
+2025-08-01 00:58:54 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:58:54 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:59:08 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:59:09 - app - INFO - Logging configured successfully
+2025-08-01 00:59:16 - app - INFO - Logging configured successfully
+2025-08-01 00:59:18 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:18 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:18 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:59:18 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:18 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:18 - app - INFO - Logging configured successfully
+2025-08-01 00:59:18 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:59:18 - app - INFO - Environment: development
+2025-08-01 00:59:18 - app - INFO - Debug Mode: False
+2025-08-01 00:59:18 - app - INFO - Internet Search: Enabled
+2025-08-01 00:59:18 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:59:18 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:59:42 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:59:43 - app - INFO - Logging configured successfully
+2025-08-01 00:59:46 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:46 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:46 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:59:46 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:46 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:46 - app - INFO - Logging configured successfully
+2025-08-01 00:59:46 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:59:46 - app - INFO - Environment: development
+2025-08-01 00:59:46 - app - INFO - Debug Mode: False
+2025-08-01 00:59:46 - app - INFO - Internet Search: Enabled
+2025-08-01 00:59:46 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:59:46 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:59:47 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:59:48 - app - INFO - Logging configured successfully
+2025-08-01 00:59:51 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:51 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:51 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:59:51 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:51 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:51 - app - INFO - Logging configured successfully
+2025-08-01 00:59:51 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:59:51 - app - INFO - Environment: development
+2025-08-01 00:59:51 - app - INFO - Debug Mode: False
+2025-08-01 00:59:51 - app - INFO - Internet Search: Enabled
+2025-08-01 00:59:51 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:59:51 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 00:59:55 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 00:59:55 - app - INFO - Logging configured successfully
+2025-08-01 00:59:58 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:58 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:58 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 00:59:58 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 00:59:58 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 00:59:58 - app - INFO - Logging configured successfully
+2025-08-01 00:59:58 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 00:59:58 - app - INFO - Environment: development
+2025-08-01 00:59:58 - app - INFO - Debug Mode: False
+2025-08-01 00:59:58 - app - INFO - Internet Search: Enabled
+2025-08-01 00:59:58 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 00:59:58 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 01:00:11 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 01:00:11 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753989946414_axt73ew7t
+2025-08-01 01:00:11 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 01:00:11 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 01:00:11 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 01:00:11 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 01:00:11 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 01:00:14 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 01:00:15 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 01:00:15 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 01:00:15 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 01:00:15 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (29200 samples)
+2025-08-01 01:00:15 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (29200,)
+2025-08-01 01:00:15 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 01:00:15 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 01:00:15 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 01:00:15 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 01:00:15 - app.services.agent_execution_service - INFO - Performing internet search for query: What is car?...
+2025-08-01 01:00:15 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 01:00:16 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 01:00:16 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 01:00:16 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 01:00:16 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 01:00:34 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 01:00:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 01:00:34 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what thi...
+2025-08-01 01:00:34 - app.services.voice_service - INFO - 🔊 Generating TTS for: The query "What is car?" does not provide sufficie... (Total length: 2250 chars)
+2025-08-01 01:00:34 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 01:00:34 - app.services.voice_service - INFO - Processing 7 text chunks for TTS
+2025-08-01 01:00:34 - app.services.voice_service - INFO - Generating TTS for chunk 1/7: The query "What is car?" does not provide sufficie...
+2025-08-01 01:00:38 - app.services.voice_service - INFO - Generating TTS for chunk 2/7: Components of a Car: Typically includes a framewor...
+2025-08-01 01:00:43 - app.services.voice_service - INFO - Generating TTS for chunk 3/7: Maintenance and Maintenance Schedule: Regular main...
+2025-08-01 01:00:47 - app.services.voice_service - INFO - Generating TTS for chunk 4/7: Benefits of a Car: Safety features, comfort, ergon...
+2025-08-01 01:00:51 - app.services.voice_service - INFO - Generating TTS for chunk 5/7: Future Trends: As technology advances, electric ve...
+2025-08-01 01:00:55 - app.services.voice_service - INFO - Generating TTS for chunk 6/7: Personal preferences: The ideal car depends on ind...
+2025-08-01 01:00:58 - app.services.voice_service - INFO - Generating TTS for chunk 7/7: In conclusion, while the user's question lacks spe...
+2025-08-01 01:01:01 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 11040000 chars for full text (2250 input chars)
+2025-08-01 01:01:01 - app.routers.voice_processing - INFO - ✅ TTS Success: 11040000 chars
+2025-08-01 01:01:01 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 01:08:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 01:08:48 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753990725721_gwyj8os5a
+2025-08-01 01:08:49 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 01:08:49 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-08-01 01:08:49 - app.services.agent_execution_service - INFO - Performing internet search for query: What is car?...
+2025-08-01 01:08:49 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 01:08:50 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 01:08:50 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 01:08:50 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 01:08:50 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 01:08:53 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 01:08:53 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753990731369_xezizoq33
+2025-08-01 01:08:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 01:08:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88
+2025-08-01 01:08:54 - app.services.agent_execution_service - INFO - Performing internet search for query: What is truck?...
+2025-08-01 01:08:54 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 01:08:54 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 01:08:54 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 01:08:54 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 01:08:54 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 01:08:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 01:08:58 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753990736134_jusenadyp
+2025-08-01 01:08:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 01:08:59 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-08-01 01:08:59 - app.services.agent_execution_service - INFO - Performing internet search for query: What is tractor?...
+2025-08-01 01:08:59 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 01:09:00 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 01:09:00 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 01:09:00 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 01:09:00 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 01:09:10 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-08-01 01:09:10 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 01:09:10 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I'm trying to figure out how t...
+2025-08-01 01:09:10 - app.services.voice_service - INFO - 🔊 Generating TTS for: Answer: A car is a wheeled vehicle used for transp... (Total length: 1154 chars)
+2025-08-01 01:09:10 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 01:09:10 - app.services.voice_service - INFO - Processing 4 text chunks for TTS
+2025-08-01 01:09:10 - app.services.voice_service - INFO - Generating TTS for chunk 1/4: Answer: A car is a wheeled vehicle used for transp...
+2025-08-01 01:09:13 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/798e721c-b980-4b44-8efd-e4cbdd3a0e88 - Status: 200
+2025-08-01 01:09:13 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 01:09:13 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what a t...
+2025-08-01 01:09:13 - app.services.voice_service - INFO - 🔊 Generating TTS for: A truck is a wheeled vehicle primarily used for tr... (Total length: 476 chars)
+2025-08-01 01:09:13 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 01:09:13 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-01 01:09:13 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: A truck is a wheeled vehicle primarily used for tr...
+2025-08-01 01:09:13 - app.services.voice_service - ERROR - Coqui TTS generation error: stack expects each tensor to be equal size, but got [1, 120] at entry 0 and [1, 203] at entry 297
+2025-08-01 01:09:13 - app.services.voice_service - WARNING - Coqui TTS failed: stack expects each tensor to be equal size, but got [1, 120] at entry 0 and [1, 203] at entry 297, trying system TTS...
+2025-08-01 01:09:13 - app.services.voice_service - INFO - Generating system TTS for chunk 1/4
+2025-08-01 01:09:16 - app.services.voice_service - INFO - Generating system TTS for chunk 2/4
+2025-08-01 01:09:16 - app.services.voice_service - ERROR - System TTS error: System TTS failed: say: invalid option --  
+Usage: say [-v voice] [-o out] [-f in | message]
+
+2025-08-01 01:09:16 - app.services.voice_service - ERROR - All TTS methods failed: System TTS failed: say: invalid option --  
+Usage: say [-v voice] [-o out] [-f in | message]
+
+2025-08-01 01:09:16 - app.routers.voice_processing - ERROR - ❌ TTS Error: 
+2025-08-01 01:09:16 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 500
+2025-08-01 01:09:17 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: While there are interesting references and humor i...
+2025-08-01 01:09:22 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1908088 chars for full text (476 input chars)
+2025-08-01 01:09:22 - app.routers.voice_processing - INFO - ✅ TTS Success: 1908088 chars
+2025-08-01 01:09:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 01:09:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-08-01 01:09:22 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 01:09:22 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I need to figure out what "tra...
+2025-08-01 01:09:22 - app.services.voice_service - INFO - 🔊 Generating TTS for: In different contexts, the word "tract" can have v... (Total length: 636 chars)
+2025-08-01 01:09:22 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 01:09:22 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-01 01:09:22 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: In different contexts, the word "tract" can have v...
+2025-08-01 01:09:28 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: It acts as a filter that removes irrelevant inform...
+2025-08-01 01:09:31 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 3082448 chars for full text (636 input chars)
+2025-08-01 01:09:31 - app.routers.voice_processing - INFO - ✅ TTS Success: 3082448 chars
+2025-08-01 01:09:31 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 01:28:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 01:28:58 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753991930601_z16bbb8u3
+2025-08-01 01:28:59 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 01:29:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 01:29:48 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1753991982242_zxvkllxia
+2025-08-01 01:29:49 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 01:29:49 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-08-01 01:29:49 - app.services.agent_execution_service - INFO - Performing internet search for query: Today, some truckers have taken the truck to the r...
+2025-08-01 01:29:49 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 01:29:51 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 01:29:51 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 01:29:51 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 01:29:51 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 01:30:03 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-08-01 01:30:03 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 01:30:03 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I'm trying to figure out why t...
+2025-08-01 01:30:03 - app.services.voice_service - INFO - 🔊 Generating TTS for: The provided news content discusses a meme-related... (Total length: 515 chars)
+2025-08-01 01:30:03 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 01:30:03 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-01 01:30:03 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: The provided news content discusses a meme-related...
+2025-08-01 01:30:07 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: Answer: There is no specific information provided ...
+2025-08-01 01:30:08 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1952548 chars for full text (515 input chars)
+2025-08-01 01:30:08 - app.routers.voice_processing - INFO - ✅ TTS Success: 1952548 chars
+2025-08-01 01:30:09 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-01 23:55:41 - app - INFO - Shutting down AI Agent Platform...
+2025-08-01 23:55:44 - app - INFO - Logging configured successfully
+2025-08-01 23:55:48 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 23:55:48 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 23:55:48 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 23:55:48 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 23:55:48 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 23:55:48 - app - INFO - Logging configured successfully
+2025-08-01 23:55:48 - app - ERROR - Startup failed: [Errno 61] Connection refused
+2025-08-01 23:55:58 - app - INFO - Logging configured successfully
+2025-08-01 23:56:02 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 23:56:02 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 23:56:02 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-01 23:56:02 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-01 23:56:02 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-01 23:56:02 - app - INFO - Logging configured successfully
+2025-08-01 23:56:02 - app - INFO - === AI Agent Platform Started ===
+2025-08-01 23:56:02 - app - INFO - Environment: development
+2025-08-01 23:56:02 - app - INFO - Debug Mode: False
+2025-08-01 23:56:02 - app - INFO - Internet Search: Enabled
+2025-08-01 23:56:02 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-01 23:56:02 - app - INFO - === Ready to Accept Requests ===
+2025-08-01 23:56:56 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-01 23:56:56 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754072809771_sfg1ab3bd
+2025-08-01 23:56:56 - app.services.voice_service - INFO - Loading voice models...
+2025-08-01 23:56:56 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-01 23:56:56 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-01 23:56:56 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-01 23:56:56 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-01 23:56:59 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 23:56:59 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-01 23:56:59 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-01 23:57:00 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-01 23:57:00 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (29200 samples)
+2025-08-01 23:57:00 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (29200,)
+2025-08-01 23:57:00 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-01 23:57:00 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-01 23:57:00 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-01 23:57:00 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8
+2025-08-01 23:57:00 - app.services.agent_execution_service - INFO - Performing internet search for query: Hi agent, how are you doing?...
+2025-08-01 23:57:00 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-01 23:57:01 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-01 23:57:01 - app.services.llm_service - INFO - Found 1 models
+2025-08-01 23:57:01 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-01 23:57:01 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-01 23:57:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/d17cec24-143b-4d9b-aa31-b2f65710b7e8 - Status: 200
+2025-08-01 23:57:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-01 23:57:15 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, let's figure out what the user is...
+2025-08-01 23:57:15 - app.services.voice_service - INFO - 🔊 Generating TTS for: You’re in a unique situation with multiple online ... (Total length: 1725 chars)
+2025-08-01 23:57:15 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-01 23:57:15 - app.services.voice_service - INFO - Processing 5 text chunks for TTS
+2025-08-01 23:57:15 - app.services.voice_service - INFO - Generating TTS for chunk 1/5: Youre in a unique situation with multiple online d...
+2025-08-01 23:57:19 - app.services.voice_service - INFO - Generating TTS for chunk 2/5: - Respectfully, I will let you know how I can assi...
+2025-08-01 23:57:23 - app.services.voice_service - INFO - Generating TTS for chunk 3/5: ALT (AI Travel Agency) Waking Up Tourist: - The le...
+2025-08-01 23:57:27 - app.services.voice_service - INFO - Generating TTS for chunk 4/5: General Emotional Response: - Your emotions are va...
+2025-08-01 23:57:31 - app.services.voice_service - INFO - Generating TTS for chunk 5/5: Resolute Action: - If these are separate issues no...
+2025-08-01 23:57:37 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 8821212 chars for full text (1725 input chars)
+2025-08-01 23:57:37 - app.routers.voice_processing - INFO - ✅ TTS Success: 8821212 chars
+2025-08-01 23:57:37 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-02 00:00:26 - app.middleware.logging_middleware - INFO - Incoming request: DELETE http://localhost:8000/api/v1/agents/3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-08-02 00:00:30 - app.services.rag_service - INFO - Initialized cross-encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+2025-08-02 00:00:30 - app.utils.qdrant_async - INFO - AsyncQdrantClient initialized with URL: http://localhost:6333/
+2025-08-02 00:00:30 - app.utils.qdrant_async - INFO - Qdrant connection verified - 1 collections found
+2025-08-02 00:00:30 - app.utils.qdrant_async - INFO - Qdrant connection verified successfully
+2025-08-02 00:00:30 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-08-02 00:00:31 - app.services.rag_service - INFO - Verified embedding dimension: 1536
+2025-08-02 00:00:31 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-08-02 00:00:31 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-08-02 00:00:31 - app.services.rag_service - INFO - Training TF-IDF on 4 documents...
+2025-08-02 00:00:31 - app.services.rag_service - INFO - TF-IDF vectorizer trained with 41 features
+2025-08-02 00:00:31 - app.services.rag_service - INFO - RAGService initialized successfully
+2025-08-02 00:00:31 - app.utils.qdrant_async - INFO - AsyncQdrant client initialized and verified
+2025-08-02 00:00:31 - app.utils.qdrant_async - INFO - Delete operation completed for collection documents
+2025-08-02 00:00:31 - app.services.rag_service - INFO - Successfully deleted RAG data for agent 3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-08-02 00:00:31 - app.routers.agents - INFO - Successfully deleted agent 3d767064-6a47-4e9c-9405-80bd76c32fe0
+2025-08-02 00:00:31 - app.utils.qdrant_async - INFO - AsyncQdrant executor shutdown completed
+2025-08-02 00:00:31 - app.utils.qdrant_async - INFO - AsyncQdrant client closed
+2025-08-02 00:00:31 - app.services.rag_service - INFO - RAG service closed successfully
+2025-08-02 00:00:31 - app.middleware.logging_middleware - INFO - Request completed: DELETE http://localhost:8000/api/v1/agents/3d767064-6a47-4e9c-9405-80bd76c32fe0 - Status: 200
+2025-08-02 00:08:16 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-08-02 00:08:16 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 422
+2025-08-02 00:08:54 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-08-02 00:08:54 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 422
+2025-08-02 00:10:14 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-08-02 00:10:14 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 422
+2025-08-02 00:10:25 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/agents
+2025-08-02 00:10:25 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/agents - Status: 201
+2025-08-02 00:10:37 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:10:37 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 00:10:37 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 00:10:37 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 00:10:42 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 00:11:06 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:11:07 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 00:11:07 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 00:11:07 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 00:11:18 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 00:11:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:11:57 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 00:11:57 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 00:11:57 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 00:12:22 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 00:13:34 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-02 00:13:34 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754073809875_pv6tgkx8u
+2025-08-02 00:13:35 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-02 00:13:35 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:13:35 - app.services.agent_execution_service - INFO - Performing internet search for query: Hi, what's your name?...
+2025-08-02 00:13:35 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-02 00:13:36 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-02 00:13:36 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 00:13:36 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 00:13:36 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 00:13:47 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 00:13:47 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-02 00:13:47 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I'm trying to figure out how t...
+2025-08-02 00:13:47 - app.services.voice_service - INFO - 🔊 Generating TTS for: I'm sorry for the confusion in your initial messag... (Total length: 915 chars)
+2025-08-02 00:13:47 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-02 00:13:47 - app.services.voice_service - INFO - Processing 3 text chunks for TTS
+2025-08-02 00:13:47 - app.services.voice_service - INFO - Generating TTS for chunk 1/3: I'm sorry for the confusion in your initial messag...
+2025-08-02 00:13:50 - app.services.voice_service - INFO - Generating TTS for chunk 2/3: Based on the recent internet sources, I can offer ...
+2025-08-02 00:13:54 - app.services.voice_service - INFO - Generating TTS for chunk 3/3: Introducing Your New Best Friend - "Meet My New Fr...
+2025-08-02 00:13:58 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 4117472 chars for full text (915 input chars)
+2025-08-02 00:13:58 - app.routers.voice_processing - INFO - ✅ TTS Success: 4117472 chars
+2025-08-02 00:13:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-02 00:14:57 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-02 00:14:57 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754073890369_ffexczeu5
+2025-08-02 00:14:58 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-02 00:14:58 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:14:58 - app.services.agent_execution_service - INFO - Performing internet search for query: Can you book an appointment to your organization?...
+2025-08-02 00:14:58 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-02 00:14:59 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-02 00:14:59 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 00:14:59 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 00:14:59 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 00:15:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 00:15:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-02 00:15:05 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I need to figure out how to book ...
+2025-08-02 00:15:05 - app.services.voice_service - INFO - 🔊 Generating TTS for: It is not appropriate or advisable to seek assista... (Total length: 196 chars)
+2025-08-02 00:15:05 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-02 00:15:05 - app.services.voice_service - INFO - Processing 1 text chunks for TTS
+2025-08-02 00:15:05 - app.services.voice_service - INFO - Generating TTS for chunk 1/1: It is not appropriate or advisable to seek assista...
+2025-08-02 00:15:07 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 764732 chars for full text (196 input chars)
+2025-08-02 00:15:07 - app.routers.voice_processing - INFO - ✅ TTS Success: 764732 chars
+2025-08-02 00:15:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-02 00:31:43 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:31:43 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 401
+2025-08-02 00:31:48 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/auth/token
+2025-08-02 00:31:48 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/auth/token - Status: 200
+2025-08-02 00:32:16 - app.middleware.logging_middleware - INFO - Incoming request: GET http://localhost:8000/api/v1/agents/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 00:32:16 - app.middleware.logging_middleware - INFO - Request completed: GET http://localhost:8000/api/v1/agents/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 01:39:30 - app - INFO - Shutting down AI Agent Platform...
+2025-08-02 11:02:35 - app - INFO - Logging configured successfully
+2025-08-02 11:02:39 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-02 11:02:39 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-02 11:02:39 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-02 11:02:39 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-02 11:02:39 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-02 11:02:39 - app - INFO - Logging configured successfully
+2025-08-02 11:02:40 - app - INFO - === AI Agent Platform Started ===
+2025-08-02 11:02:40 - app - INFO - Environment: development
+2025-08-02 11:02:40 - app - INFO - Debug Mode: False
+2025-08-02 11:02:40 - app - INFO - Internet Search: Enabled
+2025-08-02 11:02:40 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-02 11:02:40 - app - INFO - === Ready to Accept Requests ===
+2025-08-02 11:18:23 - app - INFO - Shutting down AI Agent Platform...
+2025-08-02 14:29:25 - app - INFO - Logging configured successfully
+2025-08-02 14:29:29 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-02 14:29:29 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-02 14:29:29 - app.utils.performance_monitor - INFO - Ultra-fast performance monitor initialized
+2025-08-02 14:29:29 - app.services.connection_manager - INFO - Enhanced Connection Manager initialized
+2025-08-02 14:29:29 - app.services.voice_session_manager - INFO - Enhanced Voice Session Manager initialized
+2025-08-02 14:29:29 - app - INFO - Logging configured successfully
+2025-08-02 14:29:29 - app - INFO - === AI Agent Platform Started ===
+2025-08-02 14:29:29 - app - INFO - Environment: development
+2025-08-02 14:29:29 - app - INFO - Debug Mode: False
+2025-08-02 14:29:29 - app - INFO - Internet Search: Enabled
+2025-08-02 14:29:29 - app - INFO - Search Sources: duckduckgo, reddit, hackernews, wikipedia
+2025-08-02 14:29:29 - app - INFO - === Ready to Accept Requests ===
+2025-08-02 14:30:01 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-02 14:30:01 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754125191109_tktfronwl
+2025-08-02 14:30:01 - app.services.voice_service - INFO - Loading voice models...
+2025-08-02 14:30:01 - app.services.voice_service - INFO - ✅ Loaded Whisper model: base
+2025-08-02 14:30:01 - app.services.voice_service - INFO - ✅ Found espeak
+2025-08-02 14:30:01 - app.services.voice_service - WARNING - ❌ Missing espeak-ng
+2025-08-02 14:30:01 - app.services.voice_service - INFO - ✅ Found ffmpeg
+2025-08-02 14:30:04 - app.services.voice_service - INFO - Trying to load Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-02 14:30:05 - app.services.voice_service - INFO - Testing model tts_models/en/ljspeech/tacotron2-DDC with text: 'Hello world'
+2025-08-02 14:30:05 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC is single-speaker
+2025-08-02 14:30:05 - app.services.voice_service - INFO - Model tts_models/en/ljspeech/tacotron2-DDC test output type: <class 'list'>, shape: N/A
+2025-08-02 14:30:05 - app.services.voice_service - INFO - ✅ Model tts_models/en/ljspeech/tacotron2-DDC produced list of audio samples (30224 samples)
+2025-08-02 14:30:05 - app.services.voice_service - INFO - ✅ Successfully converted to numpy array with shape: (30224,)
+2025-08-02 14:30:05 - app.services.voice_service - INFO - ✅ Successfully loaded Coqui TTS model: tts_models/en/ljspeech/tacotron2-DDC
+2025-08-02 14:30:05 - app.services.voice_service - INFO - ✅ Voice models loaded successfully
+2025-08-02 14:30:05 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-02 14:30:05 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 14:30:05 - app.services.agent_execution_service - INFO - Performing internet search for query: What is truck?...
+2025-08-02 14:30:06 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-02 14:30:06 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-02 14:30:06 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 14:30:06 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 14:30:06 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 14:30:16 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 14:30:16 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-02 14:30:16 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out what a "...
+2025-08-02 14:30:16 - app.services.voice_service - INFO - 🔊 Generating TTS for: The provided URLs do not offer specific informatio... (Total length: 423 chars)
+2025-08-02 14:30:16 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-02 14:30:16 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-02 14:30:16 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: The provided URLs do not offer specific informatio...
+2025-08-02 14:30:20 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: They discuss various topics without providing cont...
+2025-08-02 14:30:21 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1788068 chars for full text (423 input chars)
+2025-08-02 14:30:21 - app.routers.voice_processing - INFO - ✅ TTS Success: 1788068 chars
+2025-08-02 14:30:21 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-02 14:31:00 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-02 14:31:00 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754125191109_tktfronwl
+2025-08-02 14:31:01 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-02 14:31:01 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 14:31:01 - app.services.agent_execution_service - INFO - Performing internet search for query: How much you can help me to create a agent AI?...
+2025-08-02 14:31:01 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-02 14:31:02 - app.services.agent_execution_service - INFO - Search completed: 0 results from 2 sources
+2025-08-02 14:31:02 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 14:31:02 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 14:31:02 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 14:31:25 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 14:31:25 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-02 14:31:25 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Okay, so I'm trying to figure out how much...
+2025-08-02 14:31:25 - app.services.voice_service - INFO - 🔊 Generating TTS for: To address the requirement of creating an AI for b... (Total length: 1914 chars)
+2025-08-02 14:31:25 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-02 14:31:25 - app.services.voice_service - INFO - Processing 6 text chunks for TTS
+2025-08-02 14:31:25 - app.services.voice_service - INFO - Generating TTS for chunk 1/6: To address the requirement of creating an AI for b...
+2025-08-02 14:31:27 - app.services.voice_service - INFO - Generating TTS for chunk 2/6: Database Creation: - Dances Database: Develop two ...
+2025-08-02 14:31:31 - app.services.voice_service - INFO - Generating TTS for chunk 3/6: User Input Handling: - Implement voice commands or...
+2025-08-02 14:31:35 - app.services.voice_service - INFO - Generating TTS for chunk 4/6: Time Slot Selection and Management: - After select...
+2025-08-02 14:31:38 - app.services.voice_service - INFO - Generating TTS for chunk 5/6: User Feedback: - Provide clear options, errors, an...
+2025-08-02 14:31:43 - app.services.voice_service - INFO - Generating TTS for chunk 6/6: Testing and Expansion: - Test across different use...
+2025-08-02 14:31:47 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 9082608 chars for full text (1914 input chars)
+2025-08-02 14:31:47 - app.routers.voice_processing - INFO - ✅ TTS Success: 9082608 chars
+2025-08-02 14:31:47 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-02 14:33:53 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-02 14:33:53 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754125428046_phz4f30pt
+2025-08-02 14:33:53 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-02 14:33:53 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 14:33:53 - app.services.agent_execution_service - INFO - Performing internet search for query: How to create a Agendic AI?...
+2025-08-02 14:33:53 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-02 14:33:54 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-02 14:33:54 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 14:33:54 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 14:33:54 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 14:34:07 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200
+2025-08-02 14:34:07 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/tts
+2025-08-02 14:34:07 - app.routers.voice_processing - INFO - 🔊 TTS Request: <think>
+Alright, so I need to figure out how to cr...
+2025-08-02 14:34:07 - app.services.voice_service - INFO - 🔊 Generating TTS for: Based on the thought process explored, it appears ... (Total length: 418 chars)
+2025-08-02 14:34:07 - app.services.voice_service - INFO - Attempting Coqui TTS generation...
+2025-08-02 14:34:07 - app.services.voice_service - INFO - Processing 2 text chunks for TTS
+2025-08-02 14:34:07 - app.services.voice_service - INFO - Generating TTS for chunk 1/2: Based on the thought process explored, it appears ...
+2025-08-02 14:34:10 - app.services.voice_service - INFO - Generating TTS for chunk 2/2: If further clarification is sought, it would be be...
+2025-08-02 14:34:12 - app.services.voice_service - INFO - ✅ Coqui TTS generated: 1721080 chars for full text (418 input chars)
+2025-08-02 14:34:12 - app.routers.voice_processing - INFO - ✅ TTS Success: 1721080 chars
+2025-08-02 14:34:12 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/tts - Status: 200
+2025-08-02 14:34:25 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/voice/process-streaming
+2025-08-02 14:34:25 - app.routers.voice_processing - INFO - Processing streaming audio for session voice_1754125428046_phz4f30pt
+2025-08-02 14:34:26 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/voice/process-streaming - Status: 200
+2025-08-02 14:34:26 - app.middleware.logging_middleware - INFO - Incoming request: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842
+2025-08-02 14:34:26 - app.services.agent_execution_service - INFO - Performing internet search for query: What is your track?...
+2025-08-02 14:34:26 - app.services.multi_search_service - ERROR - DuckDuckGo search failed: 202
+2025-08-02 14:34:27 - app.services.agent_execution_service - INFO - Search completed: 3 results from 2 sources
+2025-08-02 14:34:27 - app.services.llm_service - INFO - Found 1 models
+2025-08-02 14:34:27 - app.services.llm_service - INFO - Model deepseek-r1:1.5b availability: True
+2025-08-02 14:34:27 - app.services.llm_service - INFO - Attempting async chat request with model: deepseek-r1:1.5b
+2025-08-02 14:34:36 - app.middleware.logging_middleware - INFO - Request completed: POST http://localhost:8000/api/v1/execute/f30e876c-0ae4-42f5-ad8d-025bc29b7842 - Status: 200

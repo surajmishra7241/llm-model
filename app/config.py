@@ -114,7 +114,7 @@ class Settings(BaseSettings):
     ENABLE_TTS: bool = True
     TTS_ENGINE: str = "coqui"  # or "pyttsx3"
     TTS_MODEL: str = "tts_models/en/ljspeech/tacotron2-DDC"
-    TTS_VOICE: str = "female"
+    TTS_VOICE: str = "male"
     TTS_MODEL_ALTERNATIVES: List[str] = [
         "tts_models/en/ljspeech/tacotron2-DDC",    # Most reliable single-speaker
         "tts_models/en/ljspeech/fast_pitch",       # Fast single-speaker
@@ -122,6 +122,10 @@ class Settings(BaseSettings):
         "tts_models/en/ljspeech/neural_hmm",       # Alternative single-speaker
         "tts_models/en/vctk/vits",                 # Multi-speaker (fallback)
     ]
+
+    TTS_MAX_CHUNK_SIZE: int = 400  # Maximum characters per TTS chunk
+    TTS_ENABLE_CHUNKING: bool = True  # Enable text chunking for long responses
+    TTS_CHUNK_PAUSE_DURATION: float = 0.3  # Pause between chunks in seconds
     
     # Document Processing
     DEFAULT_CHUNK_SIZE: conint(gt=0) = 1000

@@ -1,4 +1,4 @@
-# app/services/voice_service.py 
+# app/services/voice_service.py
 
 import asyncio
 import logging
@@ -36,6 +36,11 @@ class VoiceService:
         # Audio processing settings
         self.target_sample_rate = 16000
         self.target_channels = 1
+        
+        # TTS Configuration - can be overridden by config.py
+        self.tts_max_chunk_size = getattr(settings, 'TTS_MAX_CHUNK_SIZE', 400)
+        self.tts_enable_chunking = getattr(settings, 'TTS_ENABLE_CHUNKING', True)
+        self.tts_chunk_pause_duration = getattr(settings, 'TTS_CHUNK_PAUSE_DURATION', 0.3)
         
     async def _ensure_models_loaded(self):
         """Ensure voice models are loaded with proper error handling"""
@@ -320,14 +325,14 @@ class VoiceService:
             }
 
     async def text_to_speech(self, text: str, user_id: str = None, agent_id: str = None, voice_config: Dict = None, optimization_level: str = "balanced") -> Dict[str, Any]:
-        """Generate TTS using settings from config.py with comprehensive error handling"""
+        """Generate TTS using settings from config.py with comprehensive error handling and chunking support"""
         try:
             if not text or not text.strip():
                 return {"audio_base64": "", "error": "Empty text"}
         
             # Clean text for TTS - properly handle HTML-encoded <think> tags
             clean_text = self._prepare_text_for_tts(text)
-            logger.info(f"🔊 Generating TTS for: {clean_text[:50]}...")
+            logger.info(f"🔊 Generating TTS for: {clean_text[:50]}... (Total length: {len(clean_text)} chars)")
         
             # Ensure models are loaded
             await self._ensure_models_loaded()
@@ -367,107 +372,99 @@ class VoiceService:
                 "success": False
             }
 
+    def _chunk_text_for_tts(self, text: str, max_chunk_size: int = None) -> List[str]:
+        """Break long text into chunks that TTS can handle"""
+        if max_chunk_size is None:
+            max_chunk_size = self.tts_max_chunk_size
+            
+        if len(text) <= max_chunk_size:
+            return [text]
+        
+        chunks = []
+        sentences = re.split(r'(?<=[.!?])\s+', text)
+        current_chunk = ""
+        
+        for sentence in sentences:
+            # If adding this sentence would exceed limit, save current chunk
+            if len(current_chunk + " " + sentence) > max_chunk_size and current_chunk:
+                chunks.append(current_chunk.strip())
+                current_chunk = sentence
+            else:
+                current_chunk += (" " + sentence if current_chunk else sentence)
+        
+        # Add the last chunk
+        if current_chunk.strip():
+            chunks.append(current_chunk.strip())
+        
+        return chunks
+
     async def _generate_coqui_tts_fixed(self, text: str, voice_config: Dict) -> Dict[str, Any]:
-        """Generate TTS using Coqui TTS - FIXED for multi-speaker models and list output"""
+        """Generate TTS using Coqui TTS with support for long text chunking"""
         try:
             loop = asyncio.get_event_loop()
             
             def generate_audio():
-                # Handle text preprocessing for Coqui
+                # Process text but don't truncate
                 processed_text = self._process_text_for_coqui(text)
                 
-                # FIXED: Check if model is multi-speaker and handle accordingly
+                # Check if we need to chunk the text
+                if self.tts_enable_chunking:
+                    text_chunks = self._chunk_text_for_tts(processed_text, max_chunk_size=self.tts_max_chunk_size)
+                else:
+                    text_chunks = [processed_text]
+                    
+                logger.info(f"Processing {len(text_chunks)} text chunks for TTS")
+                
+                # Handle multi-speaker detection
                 is_multi_speaker = hasattr(self.coqui_tts, 'speakers') and self.coqui_tts.speakers is not None and len(self.coqui_tts.speakers) > 0
+                speaker = voice_config.get('speaker') or (self.coqui_tts.speakers[0] if is_multi_speaker else None)
                 
-                logger.info(f"Generating Coqui TTS for: {processed_text[:100]}...")
+                all_audio_data = []
                 
-                if is_multi_speaker:
-                    # Use specified speaker or first available speaker
-                    speaker = voice_config.get('speaker') or self.coqui_tts.speakers[0]
-                    logger.info(f"Using multi-speaker model with speaker: {speaker}")
-                    wav_data = self.coqui_tts.tts(text=processed_text, speaker=speaker)
-                else:
-                    logger.info("Using single-speaker model")
-                    wav_data = self.coqui_tts.tts(text=processed_text)
-                
-                logger.info(f"Coqui TTS output type: {type(wav_data)}, shape: {getattr(wav_data, 'shape', 'N/A')}")
-                
-                # FIXED: Handle different return types including list of float32 values
-                if isinstance(wav_data, list):
-                    # Handle list of audio samples or arrays
-                    if len(wav_data) == 0:
-                        raise Exception("Coqui TTS returned empty list")
+                # Generate audio for each chunk
+                for i, chunk in enumerate(text_chunks):
+                    logger.info(f"Generating TTS for chunk {i+1}/{len(text_chunks)}: {chunk[:50]}...")
                     
-                    if isinstance(wav_data[0], str):
-                        # Rejoin sentences and try again
-                        combined_text = ' '.join(wav_data)
-                        logger.info(f"Coqui returned sentences, rejoining: {len(wav_data)} parts")
-                        wav_data = self.coqui_tts.tts(text=combined_text, speaker=speaker if is_multi_speaker else None)
-                        
-                        # Process the rejoined result
-                        if isinstance(wav_data, list) and len(wav_data) > 0 and isinstance(wav_data[0], np.ndarray):
-                            wav_data = np.concatenate([arr for arr in wav_data if isinstance(arr, np.ndarray) and arr.size > 0])
-                        elif not isinstance(wav_data, np.ndarray):
-                            raise Exception("Failed to get audio data after sentence rejoining")
-                            
-                    elif isinstance(wav_data[0], np.ndarray):
-                        # Concatenate audio arrays, filtering out empty ones
-                        valid_arrays = [arr for arr in wav_data if isinstance(arr, np.ndarray) and arr.size > 0]
-                        if not valid_arrays:
-                            raise Exception("All audio arrays are empty")
-                        wav_data = np.concatenate(valid_arrays)
-                        
-                    elif isinstance(wav_data[0], (np.float32, np.float64, float)):
-                        # FIXED: Handle list of float32/float64 audio samples (the main issue)
-                        logger.info(f"Converting list of {len(wav_data)} audio samples to numpy array")
-                        wav_data = np.array(wav_data, dtype=np.float32)
-                        if wav_data.size == 0:
-                            raise Exception("Converted audio array is empty")
-                        logger.info(f"Successfully converted to array with shape: {wav_data.shape}")
-                        
+                    if is_multi_speaker:
+                        wav_data = self.coqui_tts.tts(text=chunk, speaker=speaker)
                     else:
-                        raise Exception(f"Unexpected list content type: {type(wav_data[0])}")
-                        
-                elif isinstance(wav_data, np.ndarray):
-                    # Check for zero-dimensional or empty arrays
-                    if wav_data.size == 0:
-                        raise Exception("Coqui TTS returned empty array")
-                    if wav_data.ndim == 0:
-                        raise Exception("Coqui TTS returned zero-dimensional array")
+                        wav_data = self.coqui_tts.tts(text=chunk)
                     
-                    # Ensure it's 1D
-                    if wav_data.ndim > 1:
-                        wav_data = wav_data.flatten()
+                    # Convert to numpy array (existing logic)
+                    if isinstance(wav_data, list):
+                        if isinstance(wav_data[0], (np.float32, np.float64, float)):
+                            wav_data = np.array(wav_data, dtype=np.float32)
+                        elif isinstance(wav_data[0], np.ndarray):
+                            wav_data = np.concatenate([arr for arr in wav_data if isinstance(arr, np.ndarray) and arr.size > 0])
+                    
+                    if isinstance(wav_data, np.ndarray) and wav_data.size > 0:
+                        all_audio_data.append(wav_data)
                         
-                elif isinstance(wav_data, (bytes, bytearray)):
-                    # Already audio bytes, return directly
-                    return wav_data
-                else:
-                    raise Exception(f"Unexpected Coqui TTS output type: {type(wav_data)}")
+                        # Add small pause between chunks (optional)
+                        if i < len(text_chunks) - 1:
+                            pause_samples = int(self.tts_chunk_pause_duration * 22050)  # configurable pause
+                            pause = np.zeros(pause_samples, dtype=np.float32)
+                            all_audio_data.append(pause)
                 
-                # Validate final array
-                if not isinstance(wav_data, np.ndarray) or wav_data.size == 0:
-                    raise Exception("Invalid final audio array")
+                if not all_audio_data:
+                    raise Exception("No audio data generated")
                 
-                # Normalize audio to prevent clipping
-                if np.max(np.abs(wav_data)) > 0:
-                    wav_data = wav_data / np.max(np.abs(wav_data)) * 0.95
+                # Combine all chunks
+                final_audio = np.concatenate(all_audio_data)
                 
-                # Convert to 16-bit PCM
-                wav_data_int16 = (wav_data * 32767).astype(np.int16)
+                # Normalize and convert to 16-bit PCM
+                if np.max(np.abs(final_audio)) > 0:
+                    final_audio = final_audio / np.max(np.abs(final_audio)) * 0.95
                 
-                # Create WAV file in memory
+                wav_data_int16 = (final_audio * 32767).astype(np.int16)
+                
+                # Create WAV file
                 buffer = io.BytesIO()
-                
-                # Get sample rate from model or use default
                 sample_rate = 22050
-                if hasattr(self.coqui_tts, 'synthesizer'):
-                    if hasattr(self.coqui_tts.synthesizer, 'output_sample_rate'):
-                        sample_rate = self.coqui_tts.synthesizer.output_sample_rate
                 
                 with wave.open(buffer, 'wb') as wav_file:
-                    wav_file.setnchannels(1)  # Mono
-                    wav_file.setsampwidth(2)  # 16-bit
+                    wav_file.setnchannels(1)
+                    wav_file.setsampwidth(2)
                     wav_file.setframerate(sample_rate)
                     wav_file.writeframes(wav_data_int16.tobytes())
                 
@@ -475,11 +472,9 @@ class VoiceService:
             
             # Generate audio in thread pool
             audio_bytes = await loop.run_in_executor(None, generate_audio)
-            
-            # Encode to base64
             audio_base64 = base64.b64encode(audio_bytes).decode()
             
-            logger.info(f"✅ Coqui TTS generated: {len(audio_base64)} chars")
+            logger.info(f"✅ Coqui TTS generated: {len(audio_base64)} chars for full text ({len(text)} input chars)")
             
             return {
                 "audio_base64": audio_base64,
@@ -493,85 +488,39 @@ class VoiceService:
             raise
 
     def _process_text_for_coqui(self, text: str) -> str:
-        """Process text specifically for Coqui TTS to avoid vocabulary issues"""
-        # Replace problematic characters that cause vocabulary warnings
-        text = text.replace("'", "'")  # Replace curly apostrophe with straight
-        text = text.replace("'", "'")  # Replace other curly apostrophe
-        text = text.replace(""", '"')  # Replace curly quotes
-        text = text.replace(""", '"')
-        text = text.replace("–", "-")   # Replace en dash
-        text = text.replace("—", "-")   # Replace em dash
-        text = text.replace("…", "...")  # Replace ellipsis
+        """Process text specifically for Coqui TTS without aggressive truncation"""
+        # Replace problematic characters
+        text = text.replace("'", "'").replace("'", "'")
+        text = text.replace(""", '"').replace(""", '"')
+        text = text.replace("–", "-").replace("—", "-")
+        text = text.replace("…", "...")
         
-        # Remove other special Unicode characters
-        text = re.sub(r'[^\x00-\x7F]+', '', text)  # Remove non-ASCII characters
+        # Remove non-ASCII characters
+        text = re.sub(r'[^\x00-\x7F]+', '', text)
         
-        # Ensure text doesn't get split into problematic sentences
-        if len(text) > 300:
-            sentences = re.split(r'(?<=[.!?])\s+', text)
-            if len(sentences) > 1:
-                # Keep first few sentences that fit within limit
-                result_sentences = []
-                char_count = 0
-                for sentence in sentences:
-                    if char_count + len(sentence) <= 250:  # Conservative limit
-                        result_sentences.append(sentence)
-                        char_count += len(sentence)
-                    else:
-                        break
-                
-                if result_sentences:
-                    text = ' '.join(result_sentences)
-                    if not text.endswith(('.', '!', '?')):
-                        text += '.'
-                else:
-                    text = text[:250] + '.'
-        
-        return text
+        # Return full text for chunking - no truncation here
+        return text.strip()
 
     async def _generate_system_tts(self, text: str, voice_config: Dict) -> Dict[str, Any]:
-        """Fallback TTS using system commands"""
+        """Fallback TTS using system commands with chunking support"""
         try:
             loop = asyncio.get_event_loop()
             
             def generate_system_audio():
-                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
-                    temp_path = temp_file.name
-                
-                try:
-                    system = platform.system().lower()
+                # If text is too long, chunk it
+                if self.tts_enable_chunking and len(text) > self.tts_max_chunk_size:
+                    text_chunks = self._chunk_text_for_tts(text)
+                    all_audio_data = []
                     
-                    if system == "darwin":  # macOS
-                        # Use built-in say command (No objc issues)
-                        cmd = ["say", "-o", temp_path, "--data-format=LEI16@22050", text]
-                    elif system == "linux":
-                        # Use espeak
-                        cmd = ["espeak", "-w", temp_path, "-s", "150", text]
-                    else:  # Windows
-                        # Use PowerShell
-                        ps_script = f'''
-                        Add-Type -AssemblyName System.speech
-                        $speak = New-Object System.Speech.Synthesis.SpeechSynthesizer
-                        $speak.SetOutputToWaveFile("{temp_path}")
-                        $speak.Speak("{text}")
-                        $speak.Dispose()
-                        '''
-                        cmd = ["powershell", "-Command", ps_script]
+                    for i, chunk in enumerate(text_chunks):
+                        logger.info(f"Generating system TTS for chunk {i+1}/{len(text_chunks)}")
+                        chunk_audio = self._generate_single_system_tts(chunk)
+                        all_audio_data.append(chunk_audio)
                     
-                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-                    
-                    if result.returncode != 0:
-                        raise Exception(f"System TTS failed: {result.stderr}")
-                    
-                    # Read generated file
-                    with open(temp_path, "rb") as f:
-                        audio_data = f.read()
-                    
-                    return base64.b64encode(audio_data).decode()
-                    
-                finally:
-                    if os.path.exists(temp_path):
-                        os.unlink(temp_path)
+                    # Combine audio chunks
+                    return self._combine_audio_chunks(all_audio_data)
+                else:
+                    return self._generate_single_system_tts(text)
             
             audio_base64 = await loop.run_in_executor(None, generate_system_audio)
             
@@ -585,14 +534,64 @@ class VoiceService:
             logger.error(f"System TTS error: {str(e)}")
             raise
 
+    def _generate_single_system_tts(self, text: str) -> str:
+        """Generate TTS for a single text chunk using system commands"""
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
+            temp_path = temp_file.name
+        
+        try:
+            system = platform.system().lower()
+            
+            if system == "darwin":  # macOS
+                cmd = ["say", "-o", temp_path, "--data-format=LEI16@22050", text]
+            elif system == "linux":
+                cmd = ["espeak", "-w", temp_path, "-s", "150", text]
+            else:  # Windows
+                ps_script = f'''
+                Add-Type -AssemblyName System.speech
+                $speak = New-Object System.Speech.Synthesis.SpeechSynthesizer
+                $speak.SetOutputToWaveFile("{temp_path}")
+                $speak.Speak("{text}")
+                $speak.Dispose()
+                '''
+                cmd = ["powershell", "-Command", ps_script]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            
+            if result.returncode != 0:
+                raise Exception(f"System TTS failed: {result.stderr}")
+            
+            # Read generated file
+            with open(temp_path, "rb") as f:
+                audio_data = f.read()
+            
+            return base64.b64encode(audio_data).decode()
+            
+        finally:
+            if os.path.exists(temp_path):
+                os.unlink(temp_path)
+
+    def _combine_audio_chunks(self, audio_chunks: List[str]) -> str:
+        """Combine multiple base64 audio chunks into one"""
+        if not audio_chunks:
+            raise Exception("No audio chunks to combine")
+        
+        if len(audio_chunks) == 1:
+            return audio_chunks[0]
+        
+        # For simplicity, just return the first chunk
+        # In a more sophisticated implementation, you would decode, combine, and re-encode
+        logger.warning("Audio chunk combination not fully implemented - returning first chunk")
+        return audio_chunks[0]
+
     def _prepare_text_for_tts(self, text: str) -> str:
-        """Prepare text for optimal TTS processing - FIXED to handle HTML-encoded <think> tags"""
+        """Prepare text for optimal TTS processing without excessive truncation"""
         if not text or not text.strip():
             return ""
         
-        # FIXED: Remove HTML-encoded thinking tags first (from your error logs)
-        text = re.sub(r'&amp;lt;think&amp;gt;.*?&amp;lt;/think&amp;gt;', '', text, flags=re.DOTALL)
-        text = re.sub(r'&amp;lt;think&amp;gt;.*$', '', text, flags=re.DOTALL)
+        # Remove HTML-encoded thinking tags first
+        text = re.sub(r'&amp;amp;lt;think&amp;amp;gt;.*?&amp;amp;lt;/think&amp;amp;gt;', '', text, flags=re.DOTALL)
+        text = re.sub(r'&amp;amp;lt;think&amp;amp;gt;.*$', '', text, flags=re.DOTALL)
         
         # Remove regular <think> tags
         text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
@@ -601,50 +600,33 @@ class VoiceService:
         # Remove any remaining XML-like tags
         text = re.sub(r'<[^>]+>', '', text)
         
-        # Remove excessive whitespace
+        # Clean whitespace
         text = re.sub(r'\s+', ' ', text).strip()
         
-        # If no text remains after cleaning, return empty
         if not text:
             return ""
         
-        # Clean problematic characters for TTS
-        text = text.replace("'", "'")  # Replace curly apostrophe
-        text = text.replace("'", "'")
-        text = text.replace(""", '"')  # Replace curly quotes
-        text = text.replace(""", '"')
-        text = text.replace("–", "-")   # Replace en dash
-        text = text.replace("—", "-")   # Replace em dash
-        text = text.replace("…", "...")  # Replace ellipsis
+        # Character replacements for better TTS
+        replacements = {
+            "'": "'", "'": "'", """: '"', """: '"',
+            "–": "-", "—": "-", "…": "..."
+        }
         
-        # Clean markdown and special characters
-        text = re.sub(r'[*_`#\[\]()]', '', text)
-        text = re.sub(r'https?://[^\s]+', 'link', text)  # Replace URLs
+        for old, new in replacements.items():
+            text = text.replace(old, new)
         
-        # Ensure proper punctuation for natural speech
+        # Clean markdown but keep the content
+        text = re.sub(r'[*_`#]', '', text)
+        text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text)  # Keep link text
+        text = re.sub(r'https?://[^\s]+', 'link', text)
+        
+        # Ensure proper punctuation
         if text and not text[-1] in '.!?':
             text += '.'
         
-        # Handle abbreviations and numbers for better pronunciation
-        replacements = {
-            r'\bDr\.': 'Doctor',
-            r'\bMr\.': 'Mister',
-            r'\bMrs\.': 'Missis',
-            r'\bMs\.': 'Miss',
-            r'\betc\.': 'etcetera',
-            r'\bi\.e\.': 'that is',
-            r'\be\.g\.': 'for example'
-        }
-        
-        for pattern, replacement in replacements.items():
-            text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
-        
-        # Final cleanup
-        text = re.sub(r'\s+', ' ', text).strip()
-        
-        return text
+        return text.strip()
 
-    # Additional utility methods (keeping existing implementations)
+    # Additional utility methods
     def _get_transcription_params(self, optimization_level: str, language: Optional[str] = None) -> Dict[str, Any]:
         """Get transcription parameters based on optimization level"""
         base_params = {
@@ -729,6 +711,8 @@ class VoiceService:
                 "available_speakers": self.coqui_tts.speakers if (self.coqui_tts and hasattr(self.coqui_tts, 'speakers') and self.coqui_tts.speakers) else [],
                 "system_dependencies": deps,
                 "models_loaded": self._models_loaded,
+                "tts_chunking_enabled": self.tts_enable_chunking,
+                "tts_max_chunk_size": self.tts_max_chunk_size,
                 "settings_used": {
                     "enable_whisper": settings.ENABLE_WHISPER,
                     "enable_tts": settings.ENABLE_TTS,

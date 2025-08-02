@@ -1570,215 +1570,6 @@ async def test_voice_processing():
             detail=f"Voice test failed: {str(e)}"
         )
 
-===== ./app/routers/voice_websocket_streaming.py =====
-# app/routers/voice_websocket_streaming.py
-import asyncio
-import json
-import logging
-import time
-from typing import Dict, Any
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-
-from app.services.streaming_stt_service import StreamingSTTService
-from app.services.streaming_tts_service import StreamingTTSService
-from app.services.llm_service import OllamaService
-
-router = APIRouter()
-logger = logging.getLogger(__name__)
-
-class StreamingVoiceHandler:
-    def __init__(self):
-        self.stt_service = StreamingSTTService()
-        self.tts_service = StreamingTTSService()
-        self.llm_service = OllamaService()
-        self.active_sessions = {}
-
-    async def initialize(self):
-        """Initialize all services"""
-        await self.stt_service.initialize()
-        await self.tts_service.initialize()
-
-    async def handle_websocket_connection(self, websocket: WebSocket, session_id: str):
-        """Handle streaming voice WebSocket connection"""
-        try:
-            await websocket.accept()
-            logger.info(f"Voice streaming session started: {session_id}")
-            
-            # Store session
-            self.active_sessions[session_id] = {
-                'websocket': websocket,
-                'start_time': time.time(),
-                'message_count': 0
-            }
-
-            await websocket.send_text(json.dumps({
-                'type': 'session_started',
-                'session_id': session_id,
-                'timestamp': time.time()
-            }))
-
-            # Message loop
-            async for message in websocket.iter_text():
-                try:
-                    data = json.loads(message)
-                    await self._handle_message(websocket, session_id, data)
-                except json.JSONDecodeError:
-                    await self._send_error(websocket, "Invalid JSON format")
-                except Exception as e:
-                    logger.error(f"Message handling error: {e}")
-                    await self._send_error(websocket, str(e))
-
-        except WebSocketDisconnect:
-            logger.info(f"Voice session disconnected: {session_id}")
-        except Exception as e:
-            logger.error(f"WebSocket error: {e}")
-        finally:
-            await self._cleanup_session(session_id)
-
-    async def _handle_message(self, websocket: WebSocket, session_id: str, data: Dict[str, Any]):
-        """Handle incoming WebSocket messages"""
-        message_type = data.get('type')
-
-        if message_type == 'audio_chunk':
-            await self._handle_audio_chunk(websocket, session_id, data)
-        elif message_type == 'text_input':
-            await self._handle_text_input(websocket, session_id, data)
-        elif message_type == 'ping':
-            await websocket.send_text(json.dumps({
-                'type': 'pong',
-                'timestamp': time.time()
-            }))
-        else:
-            await self._send_error(websocket, f"Unknown message type: {message_type}")
-
-    async def _handle_audio_chunk(self, websocket: WebSocket, session_id: str, data: Dict[str, Any]):
-        """Handle streaming audio chunk"""
-        try:
-            audio_data = data.get('audio_data')
-            if not audio_data:
-                await self._send_error(websocket, "No audio data provided")
-                return
-
-            # Process STT
-            stt_result = await self.stt_service.process_audio_chunk(audio_data, session_id)
-            
-            # Send transcription result
-            await websocket.send_text(json.dumps({
-                'type': 'transcription',
-                'transcription': stt_result.get('text', ''),
-                'is_final': stt_result.get('type') == 'final',
-                'confidence': stt_result.get('confidence', 0),
-                'session_id': session_id,
-                'timestamp': time.time()
-            }))
-
-            # If final transcription and has text, generate response
-            if stt_result.get('type') == 'final' and stt_result.get('text', '').strip():
-                await self._generate_agent_response(websocket, session_id, stt_result.get('text'))
-
-        except Exception as e:
-            logger.error(f"Audio chunk handling error: {e}")
-            await self._send_error(websocket, str(e))
-
-    async def _handle_text_input(self, websocket: WebSocket, session_id: str, data: Dict[str, Any]):
-        """Handle direct text input"""
-        try:
-            text = data.get('text', '').strip()
-            if not text:
-                await self._send_error(websocket, "No text provided")
-                return
-
-            await self._generate_agent_response(websocket, session_id, text)
-
-        except Exception as e:
-            logger.error(f"Text input handling error: {e}")
-            await self._send_error(websocket, str(e))
-
-    async def _generate_agent_response(self, websocket: WebSocket, session_id: str, user_text: str):
-        """Generate and stream agent response"""
-        try:
-            # Send processing started
-            await websocket.send_text(json.dumps({
-                'type': 'processing_started',
-                'session_id': session_id,
-                'timestamp': time.time()
-            }))
-
-            # Generate LLM response
-            messages = [
-                {"role": "system", "content": "You are a helpful voice assistant. Keep responses conversational and under 100 words."},
-                {"role": "user", "content": user_text}
-            ]
-
-            llm_response = await self.llm_service.chat(
-                messages=messages,
-                model="deepseek-r1:1.5b",
-                options={"temperature": 0.7, "max_tokens": 150}
-            )
-
-            response_text = llm_response.get("message", {}).get("content", "I'm sorry, I couldn't generate a response.")
-
-            # Send text response
-            await websocket.send_text(json.dumps({
-                'type': 'agent_response',
-                'text': response_text,
-                'session_id': session_id,
-                'timestamp': time.time()
-            }))
-
-            # Generate and stream TTS
-            await websocket.send_text(json.dumps({
-                'type': 'tts_started',
-                'session_id': session_id
-            }))
-
-            async for audio_chunk in self.tts_service.text_to_speech_stream(
-                response_text, 
-                session_id=session_id
-            ):
-                await websocket.send_text(json.dumps(audio_chunk))
-
-            await websocket.send_text(json.dumps({
-                'type': 'tts_completed',
-                'session_id': session_id,
-                'timestamp': time.time()
-            }))
-
-        except Exception as e:
-            logger.error(f"Agent response generation error: {e}")
-            await self._send_error(websocket, str(e))
-
-    async def _send_error(self, websocket: WebSocket, error_message: str):
-        """Send error message"""
-        try:
-            await websocket.send_text(json.dumps({
-                'type': 'error',
-                'message': error_message,
-                'timestamp': time.time()
-            }))
-        except Exception as e:
-            logger.error(f"Failed to send error: {e}")
-
-    async def _cleanup_session(self, session_id: str):
-        """Cleanup session resources"""
-        if session_id in self.active_sessions:
-            del self.active_sessions[session_id]
-        logger.info(f"Session cleaned up: {session_id}")
-
-# Global handler instance
-streaming_handler = StreamingVoiceHandler()
-
-@router.on_event("startup")
-async def startup_event():
-    await streaming_handler.initialize()
-
-@router.websocket("/voice/stream")
-async def voice_streaming_endpoint(websocket: WebSocket):
-    """Streaming voice WebSocket endpoint"""
-    import uuid
-    session_id = f"voice_stream_{int(time.time())}_{uuid.uuid4().hex[:8]}"
-    await streaming_handler.handle_websocket_connection(websocket, session_id)
-
 ===== ./app/routers/training.py =====
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks, status, Form
 from fastapi.responses import JSONResponse
@@ -2632,8 +2423,19 @@ class Settings(BaseSettings):
     WHISPER_MODEL: str = "base"  # or "small", "medium", "large"
     ENABLE_TTS: bool = True
     TTS_ENGINE: str = "coqui"  # or "pyttsx3"
-    TTS_MODEL: str = "tts_models/en/ljspeech/glow-tts"
-    TTS_VOICE: str = "female"
+    TTS_MODEL: str = "tts_models/en/ljspeech/tacotron2-DDC"
+    TTS_VOICE: str = "male"
+    TTS_MODEL_ALTERNATIVES: List[str] = [
+        "tts_models/en/ljspeech/tacotron2-DDC",    # Most reliable single-speaker
+        "tts_models/en/ljspeech/fast_pitch",       # Fast single-speaker
+        "tts_models/en/ljspeech/glow-tts",         # Good quality single-speaker
+        "tts_models/en/ljspeech/neural_hmm",       # Alternative single-speaker
+        "tts_models/en/vctk/vits",                 # Multi-speaker (fallback)
+    ]
+
+    TTS_MAX_CHUNK_SIZE: int = 400  # Maximum characters per TTS chunk
+    TTS_ENABLE_CHUNKING: bool = True  # Enable text chunking for long responses
+    TTS_CHUNK_PAUSE_DURATION: float = 0.3  # Pause between chunks in seconds
     
     # Document Processing
     DEFAULT_CHUNK_SIZE: conint(gt=0) = 1000
@@ -3020,6 +2822,142 @@ def record_agent_execution(agent_id: str, success: bool):
 def record_rag_request(success: bool):
     status = "success" if success else "failure"
     RAG_REQUESTS.labels(status).inc()
+===== ./app/utils/tts_model_manager.py =====
+# app/utils/tts_model_manager.py
+import logging
+import numpy as np
+from typing import Optional, Dict, Any, List
+from TTS.api import TTS
+
+logger = logging.getLogger(__name__)
+
+class TTSModelManager:
+    """Utility class to manage TTS model loading and validation"""
+    
+    RELIABLE_MODELS = [
+        "tts_models/en/ljspeech/tacotron2-DDC",    # Most reliable single-speaker
+        "tts_models/en/ljspeech/fast_pitch",       # Fast single-speaker
+        "tts_models/en/ljspeech/glow-tts",         # Good quality single-speaker
+        "tts_models/en/ljspeech/neural_hmm",       # Alternative single-speaker
+    ]
+    
+    MULTI_SPEAKER_MODELS = [
+        "tts_models/en/vctk/vits",                 # Multi-speaker
+        "tts_models/multilingual/multi-dataset/your_tts",  # Multi-lingual multi-speaker
+    ]
+    
+    @staticmethod
+    def load_best_available_model(preferred_models: List[str] = None) -> Optional[TTS]:
+        """Load the best available TTS model"""
+        models_to_try = preferred_models or (TTSModelManager.RELIABLE_MODELS + TTSModelManager.MULTI_SPEAKER_MODELS)
+        
+        for model_name in models_to_try:
+            try:
+                logger.info(f"Attempting to load TTS model: {model_name}")
+                tts = TTS(model_name=model_name)
+                
+                if TTSModelManager.validate_model(tts, model_name):
+                    logger.info(f"✅ Successfully loaded and validated: {model_name}")
+                    return tts
+                else:
+                    logger.warning(f"Model {model_name} failed validation")
+                    
+            except Exception as e:
+                logger.warning(f"Failed to load {model_name}: {str(e)}")
+                continue
+        
+        logger.error("No TTS models could be loaded")
+        return None
+    
+    @staticmethod
+    def validate_model(tts: TTS, model_name: str) -> bool:
+        """Validate that a TTS model works correctly"""
+        try:
+            test_text = "Hello world"
+            is_multi_speaker = hasattr(tts, 'speakers') and tts.speakers and len(tts.speakers) > 0
+            
+            # Generate test audio
+            if is_multi_speaker:
+                speaker = tts.speakers[0]
+                wav_data = tts.tts(text=test_text, speaker=speaker)
+            else:
+                wav_data = tts.tts(text=test_text)
+            
+            # Validate output
+            return TTSModelManager._validate_audio_output(wav_data, model_name)
+            
+        except Exception as e:
+            logger.error(f"Model validation failed for {model_name}: {str(e)}")
+            return False
+    
+    @staticmethod
+    def _validate_audio_output(wav_data: Any, model_name: str) -> bool:
+        """Validate the audio output from TTS"""
+        try:
+            # Handle list of float32 values (common Coqui output)
+            if isinstance(wav_data, list):
+                if len(wav_data) == 0:
+                    return False
+                
+                # Check if it's a list of audio samples
+                if isinstance(wav_data[0], (np.float32, np.float64, float)):
+                    # Convert to numpy array
+                    audio_array = np.array(wav_data, dtype=np.float32)
+                    return audio_array.size > 0
+                
+                # Check if it's a list of numpy arrays
+                elif isinstance(wav_data[0], np.ndarray):
+                    return all(arr.size > 0 for arr in wav_data)
+                
+                # Check if it's a list of sentences (needs rejoining)
+                elif isinstance(wav_data[0], str):
+                    return True  # Valid but needs special handling
+                
+            # Handle numpy arrays
+            elif isinstance(wav_data, np.ndarray):
+                return wav_data.size > 0 and wav_data.ndim >= 1
+            
+            # Handle bytes
+            elif isinstance(wav_data, (bytes, bytearray)):
+                return len(wav_data) > 0
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"Audio validation error: {str(e)}")
+            return False
+    
+    @staticmethod  
+    def convert_to_numpy_array(wav_data: Any) -> np.ndarray:
+        """Convert various TTS output formats to numpy array"""
+        if isinstance(wav_data, list):
+            if len(wav_data) == 0:
+                raise ValueError("Empty audio data")
+            
+            # Handle list of float32 values
+            if isinstance(wav_data[0], (np.float32, np.float64, float)):
+                return np.array(wav_data, dtype=np.float32)
+            
+            # Handle list of numpy arrays
+            elif isinstance(wav_data[0], np.ndarray):
+                valid_arrays = [arr for arr in wav_data if arr.size > 0]
+                if not valid_arrays:
+                    raise ValueError("No valid audio arrays")
+                return np.concatenate(valid_arrays)
+            
+            else:
+                raise ValueError(f"Unsupported list content type: {type(wav_data[0])}")
+        
+        elif isinstance(wav_data, np.ndarray):
+            if wav_data.size == 0:
+                raise ValueError("Empty numpy array")
+            if wav_data.ndim > 1:
+                wav_data = wav_data.flatten()
+            return wav_data.astype(np.float32)
+        
+        else:
+            raise ValueError(f"Unsupported audio data type: {type(wav_data)}")
+
 ===== ./app/utils/performance_monitor.py =====
 # app/utils/performance_monitor.py - Real-time performance monitoring
 import time
@@ -7320,256 +7258,6 @@ Use the following context if relevant to provide a helpful response.{context_tex
 # Global instance
 enhanced_executor = EnhancedAgentExecutor()
 
-===== ./app/services/ultra_fast_llm.py =====
-# app/services/ultra_fast_llm.py - Ultra-fast LLM processing with <500ms target
-import asyncio
-import time
-import logging
-from typing import Dict, Any, List, Optional
-import requests
-import json
-from concurrent.futures import ThreadPoolExecutor
-import threading
-from functools import lru_cache
-from dataclasses import dataclass
-
-@dataclass
-class LLMConfig:
-    model_name: str = 'deepseek-r1:1.5b'
-    max_tokens: int = 100
-    temperature: float = 0.7
-    top_p: float = 0.9
-    frequency_penalty: float = 0.1
-    presence_penalty: float = 0.1
-    timeout: float = 5.0
-
-class UltraFastLLM:
-    """Ultra-fast LLM processing with <500ms target response time"""
-    
-    def __init__(self, model_name: str = 'deepseek-r1:1.5b', max_tokens: int = 100, target_time: float = 0.5):
-        self.config = LLMConfig(
-            model_name=model_name,
-            max_tokens=max_tokens
-        )
-        self.target_time = target_time
-        self.logger = logging.getLogger(__name__)
-        
-        # Ollama configuration
-        self.ollama_url = "http://localhost:11434"
-        self.executor = ThreadPoolExecutor(max_workers=8)
-        
-        # Performance tracking
-        self.processing_times = []
-        self.success_rate = 100.0
-        self.cache = {}  # Simple response cache
-        
-        # Connection pooling
-        self.session = requests.Session()
-        self.session.timeout = self.config.timeout
-    
-    async def initialize_model(self):
-        """Initialize and warm up the LLM model"""
-        try:
-            # Pull model if not exists
-            await self.ensure_model_available()
-            
-            # Warm up model
-            await self.warmup_model()
-            
-            self.logger.info(f"LLM model {self.config.model_name} initialized")
-            
-        except Exception as e:
-            self.logger.error(f"LLM initialization failed: {e}")
-            raise
-    
-    async def ensure_model_available(self):
-        """Ensure model is available in Ollama"""
-        loop = asyncio.get_event_loop()
-        
-        def _check_model():
-            try:
-                response = self.session.get(f"{self.ollama_url}/api/tags")
-                if response.status_code == 200:
-                    models = response.json().get('models', [])
-                    model_names = [model['name'] for model in models]
-                    
-                    if self.config.model_name not in model_names:
-                        self.logger.info(f"Pulling model {self.config.model_name}")
-                        pull_response = self.session.post(
-                            f"{self.ollama_url}/api/pull",
-                            json={'name': self.config.model_name}
-                        )
-                        if pull_response.status_code != 200:
-                            raise Exception(f"Failed to pull model: {pull_response.text}")
-                    
-                    return True
-                else:
-                    raise Exception(f"Ollama not available: {response.status_code}")
-                    
-            except Exception as e:
-                self.logger.error(f"Model availability check failed: {e}")
-                raise
-        
-        await loop.run_in_executor(self.executor, _check_model)
-    
-    async def warmup_model(self):
-        """Warm up model with dummy request"""
-        try:
-            dummy_messages = [
-                {'role': 'system', 'content': 'You are a helpful assistant.'},
-                {'role': 'user', 'content': 'Hello'}
-            ]
-            
-            await self.generate_async(
-                messages=dummy_messages,
-                max_tokens=10,
-                temperature=0.0
-            )
-            
-            self.logger.info("LLM warmup completed")
-            
-        except Exception as e:
-            self.logger.warning(f"LLM warmup failed: {e}")
-    
-    async def generate_async(self, messages: List[Dict[str, str]], max_tokens: Optional[int] = None,
-                           temperature: Optional[float] = None, stream: bool = False) -> Dict[str, Any]:
-        """Generate response asynchronously with ultra-fast processing"""
-        start_time = time.time()
-        
-        try:
-            # Use cache key for repeated requests
-            cache_key = self.generate_cache_key(messages, max_tokens, temperature)
-            if cache_key in self.cache:
-                cached_result = self.cache[cache_key]
-                self.logger.debug("Using cached LLM response")
-                return cached_result
-            
-            # Generate response
-            result = await self.call_ollama_async(messages, max_tokens, temperature, stream)
-            
-            processing_time = time.time() - start_time
-            self.processing_times.append(processing_time)
-            
-            # Update success rate
-            if processing_time <= self.target_time:
-                self.success_rate = (self.success_rate * 0.9) + 10.0
-            else:
-                self.success_rate = (self.success_rate * 0.9) + 0.0
-            
-            # Cache successful results
-            if result and len(self.cache) < 100:  # Limit cache size
-                self.cache[cache_key] = result
-            
-            return result
-            
-        except Exception as e:
-            processing_time = time.time() - start_time
-            self.logger.error(f"LLM failed in {processing_time:.3f}s: {e}")
-            raise Exception(f"LLM generation failed: {str(e)}")
-    
-    async def call_ollama_async(self, messages: List[Dict[str, str]], max_tokens: Optional[int],
-                              temperature: Optional[float], stream: bool) -> Dict[str, Any]:
-        """Call Ollama API asynchronously"""
-        loop = asyncio.get_event_loop()
-        
-        def _call_ollama():
-            try:
-                # Prepare request payload
-                payload = {
-                    'model': self.config.model_name,
-                    'messages': messages,
-                    'stream': stream,
-                    'options': {
-                        'num_predict': max_tokens or self.config.max_tokens,
-                        'temperature': temperature or self.config.temperature,
-                        'top_p': self.config.top_p,
-                        'frequency_penalty': self.config.frequency_penalty,
-                        'presence_penalty': self.config.presence_penalty,
-                        
-                        # Ultra-fast optimizations
-                        'num_ctx': 2048,  # Reduced context window
-                        'num_batch': 512,
-                        'num_gpu_layers': -1,  # Use all GPU layers
-                        'use_mmap': True,
-                        'use_mlock': False,
-                    }
-                }
-                
-                # Make request
-                response = self.session.post(
-                    f"{self.ollama_url}/api/chat",
-                    json=payload,
-                    timeout=self.config.timeout
-                )
-                
-                if response.status_code != 200:
-                    raise Exception(f"Ollama API error: {response.status_code} - {response.text}")
-                
-                result = response.json()
-                
-                return {
-                    'content': result['message']['content'],
-                    'tokens_used': result.get('eval_count', 0),
-                    'model': self.config.model_name,
-                    'finish_reason': 'completed'
-                }
-                
-            except Exception as e:
-                self.logger.error(f"Ollama API call failed: {e}")
-                raise
-        
-        return await loop.run_in_executor(self.executor, _call_ollama)
-    
-    def generate_cache_key(self, messages: List[Dict[str, str]], max_tokens: Optional[int],
-                          temperature: Optional[float]) -> str:
-        """Generate cache key for request"""
-        import hashlib
-        
-        # Create hash from messages and parameters
-        content = json.dumps({
-            'messages': messages[-2:],  # Only last 2 messages for cache
-            'max_tokens': max_tokens or self.config.max_tokens,
-            'temperature': temperature or self.config.temperature,
-            'model': self.config.model_name
-        }, sort_keys=True)
-        
-        return hashlib.md5(content.encode()).hexdigest()
-    
-    def get_performance_stats(self) -> Dict[str, Any]:
-        """Get performance statistics"""
-        if not self.processing_times:
-            return {
-                'average_time': 0.0,
-                'success_rate': 100.0,
-                'target_achievement': 100.0,
-                'total_requests': 0,
-                'cache_size': len(self.cache)
-            }
-        
-        avg_time = sum(self.processing_times) / len(self.processing_times)
-        within_target = sum(1 for t in self.processing_times if t <= self.target_time)
-        target_achievement = (within_target / len(self.processing_times)) * 100
-        
-        return {
-            'average_time': avg_time,
-            'success_rate': self.success_rate,
-            'target_achievement': target_achievement,
-            'total_requests': len(self.processing_times),
-            'min_time': min(self.processing_times),
-            'max_time': max(self.processing_times),
-            'cache_size': len(self.cache)
-        }
-    
-    async def cleanup(self):
-        """Cleanup resources"""
-        try:
-            self.session.close()
-            self.executor.shutdown(wait=False)
-            self.cache.clear()
-            self.logger.info("LLM cleanup completed")
-        except Exception as e:
-            self.logger.error(f"LLM cleanup error: {e}")
-
 ===== ./app/services/training_service.py =====
 import os
 import asyncio
@@ -7976,286 +7664,6 @@ class TrainingService:
         except Exception as e:
             logger.error(f"Error processing image {file_path}: {str(e)}")
             return []
-===== ./app/services/ultra_fast_tts.py =====
-# app/services/ultra_fast_tts.py - Ultra-fast Text-to-Speech with <400ms target
-import asyncio
-import time
-import logging
-import base64
-import io
-import os
-from typing import Dict, Any, Optional
-import requests
-import json
-from concurrent.futures import ThreadPoolExecutor
-import numpy as np
-from pydub import AudioSegment
-from pydub.effects import normalize
-import threading
-
-class UltraFastTTS:
-    """Ultra-fast TTS with <400ms target processing time"""
-    
-    def __init__(self, model: str = 'neural-voice-fast', sample_rate: int = 24000, target_time: float = 0.4):
-        self.model = model
-        self.sample_rate = sample_rate
-        self.target_time = target_time
-        self.logger = logging.getLogger(__name__)
-        
-        # OpenAI TTS configuration (fastest option)
-        self.openai_api_key = os.getenv('OPENAI_API_KEY')
-        self.openai_url = "https://api.openai.com/v1/audio/speech"
-        
-        # Performance settings
-        self.executor = ThreadPoolExecutor(max_workers=6)
-        self.session = requests.Session()
-        
-        # Voice configurations
-        self.voice_models = {
-            'alloy': {'speed': 'fast', 'personality': 'neutral'},
-            'echo': {'speed': 'fast', 'personality': 'friendly'},
-            'fable': {'speed': 'medium', 'personality': 'warm'},
-            'onyx': {'speed': 'fast', 'personality': 'professional'},
-            'nova': {'speed': 'fast', 'personality': 'energetic'},
-            'shimmer': {'speed': 'fast', 'personality': 'calm'}
-        }
-        
-        # Performance tracking
-        self.processing_times = []
-        self.success_rate = 100.0
-        self.cache = {}  # Audio cache
-    
-    async def initialize_tts(self):
-        """Initialize TTS system"""
-        try:
-            # Test TTS endpoint
-            await self.test_tts_connection()
-            
-            # Warm up with short text
-            await self.warmup_tts()
-            
-            self.logger.info("TTS system initialized")
-            
-        except Exception as e:
-            self.logger.error(f"TTS initialization failed: {e}")
-            raise
-    
-    async def test_tts_connection(self):
-        """Test TTS connection"""
-        loop = asyncio.get_event_loop()
-        
-        def _test():
-            if not self.openai_api_key:
-                raise Exception("OpenAI API key not found")
-            
-            # Test with minimal request
-            headers = {
-                'Authorization': f'Bearer {self.openai_api_key}',
-                'Content-Type': 'application/json'
-            }
-            
-            payload = {
-                'model': 'tts-1',
-                'input': 'test',
-                'voice': 'alloy',
-                'response_format': 'opus',
-                'speed': 1.0
-            }
-            
-            response = self.session.post(
-                self.openai_url,
-                headers=headers,
-                json=payload,
-                timeout=5.0
-            )
-            
-            if response.status_code != 200:
-                raise Exception(f"TTS test failed: {response.status_code}")
-            
-            return True
-        
-        await loop.run_in_executor(self.executor, _test)
-    
-    async def warmup_tts(self):
-        """Warm up TTS with dummy request"""
-        try:
-            await self.synthesize_async("Hello", {'voice': 'alloy'})
-            self.logger.info("TTS warmup completed")
-        except Exception as e:
-            self.logger.warning(f"TTS warmup failed: {e}")
-    
-    async def synthesize_async(self, text: str, voice_config: Dict[str, Any]) -> Dict[str, Any]:
-        """Synthesize speech asynchronously with ultra-fast processing"""
-        start_time = time.time()
-        
-        try:
-            # Validate and prepare text
-            clean_text = self.prepare_text(text)
-            if not clean_text:
-                raise ValueError("Empty or invalid text")
-            
-            # Check cache
-            cache_key = self.generate_cache_key(clean_text, voice_config)
-            if cache_key in self.cache:
-                cached_result = self.cache[cache_key]
-                self.logger.debug("Using cached TTS audio")
-                return cached_result
-            
-            # Synthesize audio
-            result = await self.call_tts_api(clean_text, voice_config)
-            
-            processing_time = time.time() - start_time
-            self.processing_times.append(processing_time)
-            
-            # Update success rate
-            if processing_time <= self.target_time:
-                self.success_rate = (self.success_rate * 0.9) + 10.0
-            else:
-                self.success_rate = (self.success_rate * 0.9) + 0.0
-            
-            # Cache result (limit cache size)
-            if len(self.cache) < 50:
-                self.cache[cache_key] = result
-            
-            result['processing_time'] = processing_time
-            result['within_target'] = processing_time <= self.target_time
-            
-            return result
-            
-        except Exception as e:
-            processing_time = time.time() - start_time
-            self.logger.error(f"TTS failed in {processing_time:.3f}s: {e}")
-            raise Exception(f"Text-to-speech failed: {str(e)}")
-    
-    def prepare_text(self, text: str) -> str:
-        """Prepare text for TTS optimization"""
-        if not text or not text.strip():
-            return ""
-        
-        # Clean text
-        clean_text = text.strip()
-        
-        # Limit length for speed (keep under 500 characters)
-        if len(clean_text) > 500:
-            clean_text = clean_text[:497] + "..."
-        
-        # Remove problematic characters
-        clean_text = clean_text.replace('\n', ' ').replace('\r', ' ')
-        clean_text = ' '.join(clean_text.split())  # Normalize whitespace
-        
-        return clean_text
-    
-    async def call_tts_api(self, text: str, voice_config: Dict[str, Any]) -> Dict[str, Any]:
-        """Call TTS API with optimization"""
-        loop = asyncio.get_event_loop()
-        
-        def _call_tts():
-            try:
-                # Prepare voice settings
-                voice = voice_config.get('voice', 'alloy')
-                if voice not in self.voice_models:
-                    voice = 'alloy'
-                
-                speaking_rate = voice_config.get('speaking_rate', 1.0)
-                # Clamp speaking rate for quality
-                speaking_rate = max(0.7, min(1.5, speaking_rate))
-                
-                # Use fastest model for speed
-                model = 'tts-1'  # Faster than tts-1-hd
-                
-                headers = {
-                    'Authorization': f'Bearer {self.openai_api_key}',
-                    'Content-Type': 'application/json'
-                }
-                
-                payload = {
-                    'model': model,
-                    'input': text,
-                    'voice': voice,
-                    'response_format': 'opus',  # Most efficient format
-                    'speed': speaking_rate
-                }
-                
-                # Make request with timeout
-                response = self.session.post(
-                    self.openai_url,
-                    headers=headers,
-                    json=payload,
-                    timeout=3.0  # 3 second timeout
-                )
-                
-                if response.status_code != 200:
-                    raise Exception(f"TTS API error: {response.status_code} - {response.text}")
-                
-                # Process audio data
-                audio_data = response.content
-                
-                # Convert to base64 for transmission
-                audio_base64 = base64.b64encode(audio_data).decode('utf-8')
-                
-                return {
-                    'audio_data': audio_base64,
-                    'format': 'opus',
-                    'sample_rate': 24000,
-                    'channels': 1,
-                    'voice': voice,
-                    'model': model
-                }
-                
-            except Exception as e:
-                self.logger.error(f"TTS API call failed: {e}")
-                raise
-        
-        return await loop.run_in_executor(self.executor, _call_tts)
-    
-    def generate_cache_key(self, text: str, voice_config: Dict[str, Any]) -> str:
-        """Generate cache key for TTS request"""
-        import hashlib
-        
-        # Create hash from text and voice config
-        content = json.dumps({
-            'text': text,
-            'voice': voice_config.get('voice', 'alloy'),
-            'speaking_rate': voice_config.get('speaking_rate', 1.0)
-        }, sort_keys=True)
-        
-        return hashlib.md5(content.encode()).hexdigest()
-    
-    def get_performance_stats(self) -> Dict[str, Any]:
-        """Get performance statistics"""
-        if not self.processing_times:
-            return {
-                'average_time': 0.0,
-                'success_rate': 100.0,
-                'target_achievement': 100.0,
-                'total_requests': 0,
-                'cache_size': len(self.cache)
-            }
-        
-        avg_time = sum(self.processing_times) / len(self.processing_times)
-        within_target = sum(1 for t in self.processing_times if t <= self.target_time)
-        target_achievement = (within_target / len(self.processing_times)) * 100
-        
-        return {
-            'average_time': avg_time,
-            'success_rate': self.success_rate,
-            'target_achievement': target_achievement,
-            'total_requests': len(self.processing_times),
-            'min_time': min(self.processing_times),
-            'max_time': max(self.processing_times),
-            'cache_size': len(self.cache)
-        }
-    
-    async def cleanup(self):
-        """Cleanup resources"""
-        try:
-            self.session.close()
-            self.executor.shutdown(wait=False)
-            self.cache.clear()
-            self.logger.info("TTS cleanup completed")
-        except Exception as e:
-            self.logger.error(f"TTS cleanup error: {e}")
-
 ===== ./app/services/rag_service.py =====
 # app/services/rag_service.py
 import logging
@@ -10363,211 +9771,6 @@ class OllamaService:
         except Exception as e:
             logger.error(f"Error ensuring embedding model: {str(e)}")
             return False
-===== ./app/services/streaming_stt_service.py =====
-# app/services/streaming_stt_service.py
-import asyncio
-import logging
-import base64
-import io
-import numpy as np
-import torch
-import whisper
-import librosa
-from typing import Dict, Any, Optional, AsyncGenerator
-from concurrent.futures import ThreadPoolExecutor
-import threading
-from collections import deque
-import time
-
-logger = logging.getLogger(__name__)
-
-class StreamingSTTService:
-    def __init__(self):
-        self.model = None
-        self.executor = ThreadPoolExecutor(max_workers=2, thread_name_prefix="stt")
-        self.audio_buffer = deque(maxlen=10)  # Store recent audio chunks
-        self.overlap_duration = 0.5  # 500ms overlap
-        self.chunk_duration = 2.0    # 2 second chunks
-        self.sample_rate = 16000
-        self.initialized = False
-        
-    async def initialize(self):
-        """Initialize Whisper model"""
-        if self.initialized:
-            return
-            
-        try:
-            loop = asyncio.get_event_loop()
-            self.model = await loop.run_in_executor(
-                self.executor,
-                lambda: whisper.load_model("base", device="cuda" if torch.cuda.is_available() else "cpu")
-            )
-            self.initialized = True
-            logger.info("STT service initialized with Whisper")
-        except Exception as e:
-            logger.error(f"Failed to initialize STT: {e}")
-            raise
-
-    async def process_audio_chunk(self, audio_data: bytes, session_id: str) -> Dict[str, Any]:
-        """Process streaming audio chunk with overlap handling"""
-        try:
-            # Decode audio from base64 if needed
-            if isinstance(audio_data, str):
-                audio_bytes = base64.b64decode(audio_data)
-            else:
-                audio_bytes = audio_data
-
-            # Convert to numpy array
-            audio_array = await self._bytes_to_audio_array(audio_bytes)
-            
-            # Add to buffer for overlap processing
-            self.audio_buffer.append({
-                'audio': audio_array,
-                'timestamp': time.time(),
-                'session_id': session_id
-            })
-
-            # Create overlapping segment
-            combined_audio = await self._create_overlapping_segment()
-            
-            if combined_audio is None or len(combined_audio) < self.sample_rate * 0.5:
-                return {
-                    'type': 'interim',
-                    'text': '',
-                    'confidence': 0.0,
-                    'session_id': session_id
-                }
-
-            # Transcribe with Whisper
-            result = await self._transcribe_audio(combined_audio)
-            
-            # Determine if this is interim or final
-            is_final = len(combined_audio) > self.sample_rate * 1.5  # More than 1.5s of audio
-            
-            return {
-                'type': 'final' if is_final else 'interim',
-                'text': result.get('text', '').strip(),
-                'confidence': 0.95,  # Whisper doesn't provide confidence
-                'language': result.get('language', 'en'),
-                'session_id': session_id,
-                'processing_time': result.get('processing_time', 0)
-            }
-
-        except Exception as e:
-            logger.error(f"Error processing audio chunk: {e}")
-            return {
-                'type': 'error',
-                'error': str(e),
-                'session_id': session_id
-            }
-
-    async def _bytes_to_audio_array(self, audio_bytes: bytes) -> np.ndarray:
-        """Convert audio bytes to numpy array"""
-        loop = asyncio.get_event_loop()
-        
-        def convert():
-            try:
-                # Try different formats
-                audio_io = io.BytesIO(audio_bytes)
-                
-                # Use librosa for robust audio loading
-                audio, sr = librosa.load(audio_io, sr=self.sample_rate, mono=True)
-                return audio
-            except Exception as e:
-                logger.warning(f"Librosa failed, trying raw PCM: {e}")
-                # Fallback: assume raw PCM 16-bit
-                audio = np.frombuffer(audio_bytes, dtype=np.int16).astype(np.float32) / 32768.0
-                return audio
-
-        return await loop.run_in_executor(self.executor, convert)
-
-    async def _create_overlapping_segment(self) -> Optional[np.ndarray]:
-        """Create overlapping audio segment from buffer"""
-        if len(self.audio_buffer) < 1:
-            return None
-
-        try:
-            # Combine recent chunks with overlap
-            combined = []
-            overlap_samples = int(self.overlap_duration * self.sample_rate)
-            
-            for i, chunk_data in enumerate(self.audio_buffer):
-                audio = chunk_data['audio']
-                if i == 0:
-                    combined.append(audio)
-                else:
-                    # Add with overlap
-                    if len(combined) > 0:
-                        overlap_start = max(0, len(combined[-1]) - overlap_samples)
-                        combined.append(audio)
-                    else:
-                        combined.append(audio)
-
-            if combined:
-                return np.concatenate(combined)
-            return None
-
-        except Exception as e:
-            logger.error(f"Error creating overlapping segment: {e}")
-            return None
-
-    async def _transcribe_audio(self, audio: np.ndarray) -> Dict[str, Any]:
-        """Transcribe audio using Whisper"""
-        if not self.initialized:
-            await self.initialize()
-
-        loop = asyncio.get_event_loop()
-        start_time = time.time()
-
-        def transcribe():
-            try:
-                # Ensure audio is the right format for Whisper
-                if len(audio.shape) > 1:
-                    audio_mono = audio.mean(axis=1)
-                else:
-                    audio_mono = audio
-
-                # Whisper expects audio length of at most 30 seconds
-                max_samples = 30 * self.sample_rate
-                if len(audio_mono) > max_samples:
-                    audio_mono = audio_mono[:max_samples]
-
-                result = self.model.transcribe(
-                    audio_mono,
-                    language='en',  # Set to auto-detect if needed
-                    task='transcribe',
-                    fp16=torch.cuda.is_available()
-                )
-                
-                return {
-                    'text': result['text'],
-                    'language': result.get('language', 'en'),
-                    'processing_time': time.time() - start_time
-                }
-
-            except Exception as e:
-                logger.error(f"Whisper transcription error: {e}")
-                return {
-                    'text': '',
-                    'language': 'en',
-                    'processing_time': time.time() - start_time,
-                    'error': str(e)
-                }
-
-        return await loop.run_in_executor(self.executor, transcribe)
-
-    async def cleanup(self):
-        """Cleanup resources"""
-        try:
-            if self.model:
-                del self.model
-                if torch.cuda.is_available():
-                    torch.cuda.empty_cache()
-            self.executor.shutdown(wait=False)
-            logger.info("STT service cleaned up")
-        except Exception as e:
-            logger.error(f"STT cleanup error: {e}")
-
 ===== ./app/services/ultra_fast_voice_service.py =====
 # app/services/ultra_fast_voice_service.py - Optimized voice processing
 import asyncio
@@ -11660,306 +10863,9 @@ def _build_search_context(results: List) -> str:
     
     return "\n".join(context_parts)
 
-===== ./app/services/ultra_fast_stt.py =====
-# ultra_fast_stt.py - Ultra-fast Speech-to-Text with Whisper optimization
-import asyncio
-import time
-import logging
-import base64
-import io
-import numpy as np
-from typing import Dict, Any, Optional
-import torch
-import whisper
-from whisper import load_model
-import librosa
-from concurrent.futures import ThreadPoolExecutor
-import threading
-from functools import lru_cache
-
-class UltraFastSTT:
-    """Ultra-fast STT with <300ms target processing time"""
-    
-    def __init__(self, model_size: str = 'base', language: str = 'auto', target_time: float = 0.3):
-        self.model_size = model_size
-        self.language = language
-        self.target_time = target_time
-        self.logger = logging.getLogger(__name__)
-        
-        # Performance optimizations
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = None
-        self.executor = ThreadPoolExecutor(max_workers=4)
-        
-        # Audio preprocessing settings
-        self.sample_rate = 16000
-        self.chunk_duration = 30  # seconds
-        
-        # Performance tracking
-        self.processing_times = []
-        self.success_rate = 100.0
-        
-        # Initialize model
-        asyncio.create_task(self.initialize_model())
-    
-    async def initialize_model(self):
-        """Initialize Whisper model with optimizations"""
-        try:
-            self.logger.info(f"Loading Whisper {self.model_size} model on {self.device}")
-            
-            # Load model with optimizations
-            loop = asyncio.get_event_loop()
-            self.model = await loop.run_in_executor(
-                self.executor,
-                self._load_model_sync
-            )
-            
-            # Warm up model
-            await self.warmup_model()
-            
-            self.logger.info("Whisper model initialized and warmed up")
-            
-        except Exception as e:
-            self.logger.error(f"Model initialization failed: {e}")
-            raise
-    
-    def _load_model_sync(self):
-        """Synchronous model loading"""
-        model = load_model(
-            self.model_size,
-            device=self.device,
-            download_root=None,
-            in_memory=True
-        )
-        
-        # Optimize for inference
-        if self.device == "cuda":
-            model = model.half()  # Use FP16 for speed
-        
-        model.eval()
-        return model
-    
-    async def warmup_model(self):
-        """Warm up model with dummy audio"""
-        dummy_audio = np.zeros(16000, dtype=np.float32)  # 1 second of silence
-        
-        try:
-            await self.transcribe_audio_array(dummy_audio)
-            self.logger.info("Model warmup completed")
-        except Exception as e:
-            self.logger.warning(f"Model warmup failed: {e}")
-    
-    async def transcribe_async(self, audio_content: str, audio_format: str) -> Dict[str, Any]:
-        """Asynchronous transcription with ultra-fast processing"""
-        start_time = time.time()
-        
-        try:
-            # Decode audio data
-            audio_data = base64.b64decode(audio_content)
-            
-            # Convert to numpy array
-            audio_array = await self.convert_audio_to_array(audio_data, audio_format)
-            
-            # Transcribe
-            result = await self.transcribe_audio_array(audio_array)
-            
-            processing_time = time.time() - start_time
-            self.processing_times.append(processing_time)
-            
-            # Update success rate
-            if processing_time <= self.target_time:
-                self.success_rate = (self.success_rate * 0.9) + 10.0
-            else:
-                self.success_rate = (self.success_rate * 0.9) + 0.0
-            
-            self.logger.debug(f"STT completed in {processing_time:.3f}s (target: {self.target_time:.3f}s)")
-            
-            return {
-                'text': result['text'].strip(),
-                'confidence': self.calculate_confidence(result),
-                'language': result.get('language', 'en'),
-                'processing_time': processing_time,
-                'within_target': processing_time <= self.target_time
-            }
-            
-        except Exception as e:
-            processing_time = time.time() - start_time
-            self.logger.error(f"STT failed in {processing_time:.3f}s: {e}")
-            raise Exception(f"Speech-to-text failed: {str(e)}")
-    
-    async def convert_audio_to_array(self, audio_data: bytes, audio_format: str) -> np.ndarray:
-        """Convert audio data to numpy array optimized for Whisper"""
-        loop = asyncio.get_event_loop()
-        
-        def _convert():
-            try:
-                # Handle different audio formats
-                if audio_format.lower() in ['webm', 'ogg']:
-                    # Use librosa for WebM/OGG
-                    audio_array, sr = librosa.load(
-                        io.BytesIO(audio_data),
-                        sr=self.sample_rate,
-                        mono=True,
-                        dtype=np.float32
-                    )
-                elif audio_format.lower() in ['wav', 'wave']:
-                    # Use librosa for WAV
-                    audio_array, sr = librosa.load(
-                        io.BytesIO(audio_data),
-                        sr=self.sample_rate,
-                        mono=True,
-                        dtype=np.float32
-                    )
-                elif audio_format.lower() == 'mp3':
-                    # Use librosa for MP3
-                    audio_array, sr = librosa.load(
-                        io.BytesIO(audio_data),
-                        sr=self.sample_rate,
-                        mono=True,
-                        dtype=np.float32
-                    )
-                else:
-                    raise ValueError(f"Unsupported audio format: {audio_format}")
-                
-                # Normalize audio
-                if len(audio_array) > 0:
-                    audio_array = audio_array / np.max(np.abs(audio_array))
-                
-                # Ensure minimum length
-                if len(audio_array) < self.sample_rate * 0.1:  # Less than 100ms
-                    raise ValueError("Audio too short for processing")
-                
-                # Limit max length for speed
-                max_samples = self.sample_rate * self.chunk_duration
-                if len(audio_array) > max_samples:
-                    audio_array = audio_array[:max_samples]
-                
-                return audio_array
-                
-            except Exception as e:
-                self.logger.error(f"Audio conversion error: {e}")
-                raise
-        
-        return await loop.run_in_executor(self.executor, _convert)
-    
-    async def transcribe_audio_array(self, audio_array: np.ndarray) -> Dict[str, Any]:
-        """Transcribe audio array with optimized Whisper"""
-        if self.model is None:
-            raise RuntimeError("Model not initialized")
-        
-        loop = asyncio.get_event_loop()
-        
-        def _transcribe():
-            try:
-                # Optimize transcription options for speed
-                options = {
-                    'language': None if self.language == 'auto' else self.language,
-                    'task': 'transcribe',
-                    'fp16': self.device == 'cuda',
-                    'beam_size': 1,  # Fastest beam search
-                    'best_of': 1,    # No multiple samples
-                    'temperature': [0.0],  # Deterministic
-                    'compression_ratio_threshold': 2.4,
-                    'logprob_threshold': -1.0,
-                    'no_speech_threshold': 0.6,
-                    'condition_on_previous_text': False  # Disable for speed
-                }
-                
-                # Transcribe
-                result = self.model.transcribe(
-                    audio_array,
-                    **options
-                )
-                
-                return result
-                
-            except Exception as e:
-                self.logger.error(f"Whisper transcription error: {e}")
-                raise
-        
-        return await loop.run_in_executor(self.executor, _transcribe)
-    
-    def calculate_confidence(self, result: Dict[str, Any]) -> float:
-        """Calculate confidence score from Whisper result"""
-        try:
-            # Extract confidence from segments
-            segments = result.get('segments', [])
-            if not segments:
-                return 0.8  # Default confidence
-            
-            confidences = []
-            for segment in segments:
-                # Use average log probability as confidence proxy
-                if 'avg_logprob' in segment:
-                    # Convert log prob to confidence (0-1)
-                    confidence = min(1.0, max(0.0, (segment['avg_logprob'] + 5) / 5))
-                    confidences.append(confidence)
-            
-            if confidences:
-                return sum(confidences) / len(confidences)
-            else:
-                return 0.8
-                
-        except Exception:
-            return 0.8
-    
-    @lru_cache(maxsize=128)
-    def get_language_info(self, language_code: str) -> Dict[str, str]:
-        """Get language information with caching"""
-        language_map = {
-            'en': {'name': 'English', 'native': 'English'},
-            'es': {'name': 'Spanish', 'native': 'Español'},
-            'fr': {'name': 'French', 'native': 'Français'},
-            'de': {'name': 'German', 'native': 'Deutsch'},
-            'it': {'name': 'Italian', 'native': 'Italiano'},
-            'pt': {'name': 'Portuguese', 'native': 'Português'},
-            'ru': {'name': 'Russian', 'native': 'Русский'},
-            'ja': {'name': 'Japanese', 'native': '日本語'},
-            'ko': {'name': 'Korean', 'native': '한국어'},
-            'zh': {'name': 'Chinese', 'native': '中文'},
-        }
-        
-        return language_map.get(language_code, {'name': 'Unknown', 'native': 'Unknown'})
-    
-    def get_performance_stats(self) -> Dict[str, Any]:
-        """Get performance statistics"""
-        if not self.processing_times:
-            return {
-                'average_time': 0.0,
-                'success_rate': 100.0,
-                'target_achievement': 100.0,
-                'total_requests': 0
-            }
-        
-        avg_time = sum(self.processing_times) / len(self.processing_times)
-        within_target = sum(1 for t in self.processing_times if t <= self.target_time)
-        target_achievement = (within_target / len(self.processing_times)) * 100
-        
-        return {
-            'average_time': avg_time,
-            'success_rate': self.success_rate,
-            'target_achievement': target_achievement,
-            'total_requests': len(self.processing_times),
-            'min_time': min(self.processing_times),
-            'max_time': max(self.processing_times)
-        }
-    
-    async def cleanup(self):
-        """Cleanup resources"""
-        try:
-            if self.model is not None:
-                del self.model
-                if torch.cuda.is_available():
-                    torch.cuda.empty_cache()
-            
-            self.executor.shutdown(wait=False)
-            self.logger.info("STT cleanup completed")
-            
-        except Exception as e:
-            self.logger.error(f"STT cleanup error: {e}")
-
 ===== ./app/services/voice_service.py =====
 # app/services/voice_service.py
+
 import asyncio
 import logging
 import base64
@@ -11968,6 +10874,11 @@ import tempfile
 import os
 import time
 import hashlib
+import wave
+import re
+import subprocess
+import platform
+import shutil
 from typing import Optional, Dict, Any, List, Union
 import numpy as np
 from pathlib import Path
@@ -11982,8 +10893,7 @@ logger = logging.getLogger(__name__)
 class VoiceService:
     def __init__(self):
         self.whisper_model = None
-        self.tts_model = None
-        self.tts_engine = None
+        self.coqui_tts = None
         self._models_loaded = False
         self._load_lock = asyncio.Lock()
         self._model_cache = {}
@@ -11992,6 +10902,11 @@ class VoiceService:
         # Audio processing settings
         self.target_sample_rate = 16000
         self.target_channels = 1
+        
+        # TTS Configuration - can be overridden by config.py
+        self.tts_max_chunk_size = getattr(settings, 'TTS_MAX_CHUNK_SIZE', 400)
+        self.tts_enable_chunking = getattr(settings, 'TTS_ENABLE_CHUNKING', True)
+        self.tts_chunk_pause_duration = getattr(settings, 'TTS_CHUNK_PAUSE_DURATION', 0.3)
         
     async def _ensure_models_loaded(self):
         """Ensure voice models are loaded with proper error handling"""
@@ -12018,19 +10933,19 @@ class VoiceService:
                 
             except Exception as e:
                 logger.error(f"❌ Failed to load voice models: {str(e)}")
-                # Don't raise exception - allow service to work with fallbacks
+                # Allow service to work with fallbacks
                 self._models_loaded = True
                 
     async def _load_whisper_model(self):
-        """Load Whisper model with optimization"""
+        """Load Whisper model using settings from config.py"""
         try:
             import whisper
             
-            # Load model in thread pool to avoid blocking
             loop = asyncio.get_event_loop()
             
             def load_model():
-                return whisper.load_model(settings.WHISPER_MODEL)
+                model_name = settings.WHISPER_MODEL
+                return whisper.load_model(model_name)
             
             self.whisper_model = await loop.run_in_executor(None, load_model)
             logger.info(f"✅ Loaded Whisper model: {settings.WHISPER_MODEL}")
@@ -12040,69 +10955,210 @@ class VoiceService:
         except Exception as e:
             logger.error(f"Failed to load Whisper: {str(e)}")
             
-    async def _load_tts_model(self):
-        """Load TTS model with fallback options"""
+    def _check_system_dependencies(self) -> Dict[str, bool]:
+        """Check if required system dependencies are available"""
         try:
-            # Try Coqui TTS first
+            dependencies = {
+                "espeak": shutil.which("espeak") is not None,
+                "espeak-ng": shutil.which("espeak-ng") is not None,
+                "ffmpeg": shutil.which("ffmpeg") is not None
+            }
+            
+            # Log dependency status
+            for dep, available in dependencies.items():
+                if available:
+                    logger.info(f"✅ Found {dep}")
+                else:
+                    logger.warning(f"❌ Missing {dep}")
+            
+            return dependencies
+            
+        except Exception as e:
+            logger.error(f"Error checking system dependencies: {str(e)}")
+            return {}
+            
+    async def _load_tts_model(self):
+        """Load TTS model based on settings from config.py"""
+        try:
+            # Check system dependencies first
+            deps = self._check_system_dependencies()
+            if not any(deps.get(dep, False) for dep in ["espeak", "espeak-ng"]):
+                logger.warning("No espeak backend found - Coqui TTS may fail. Install: sudo apt-get install espeak-ng")
+            
+            # Use TTS engine from settings
             if settings.TTS_ENGINE == "coqui":
-                await self._load_coqui_tts()
+                await self._load_coqui_tts_model()
             else:
-                await self._load_fallback_tts()
+                logger.warning(f"Unknown TTS engine: {settings.TTS_ENGINE}, using system fallback")
                 
         except Exception as e:
             logger.error(f"TTS loading failed: {str(e)}")
-            await self._load_fallback_tts()
+            # Don't raise - allow fallback to system TTS
             
-    async def _load_coqui_tts(self):
-        """Load Coqui TTS model"""
+    async def _load_coqui_tts_model(self):
+        """Load Coqui TTS model with FIXED multi-speaker support"""
         try:
             from TTS.api import TTS
             
             loop = asyncio.get_event_loop()
             
             def load_coqui():
-                # Use a faster, lightweight model
-                model_name = getattr(settings, 'TTS_MODEL', "tts_models/en/ljspeech/glow-tts")
-                return TTS(model_name=model_name)
+                # FIXED: Better model selection prioritizing single-speaker models
+                models_to_try = [
+                    # Single-speaker models (more reliable)
+                    "tts_models/en/ljspeech/tacotron2-DDC",    # Most reliable single-speaker
+                    "tts_models/en/ljspeech/fast_pitch",       # Fast single-speaker
+                    "tts_models/en/ljspeech/glow-tts",         # Good quality single-speaker
+                    "tts_models/en/ljspeech/neural_hmm",       # Alternative single-speaker
+                    # Multi-speaker models (with proper handling)
+                    "tts_models/en/vctk/vits",                 # Multi-speaker (needs speaker)
+                    settings.TTS_MODEL,                        # User configured (if different)
+                ]
+                
+                # Remove duplicates while preserving order
+                models_to_try = list(dict.fromkeys(models_to_try))
+                
+                last_error = None
+                
+                for model_name in models_to_try:
+                    try:
+                        logger.info(f"Trying to load Coqui TTS model: {model_name}")
+                        
+                        # Initialize the model
+                        tts = TTS(model_name=model_name)
+                        
+                        # FIXED: Test with proper multi-speaker handling
+                        test_result = self._validate_coqui_model_fixed(tts, model_name)
+                        if test_result:
+                            logger.info(f"✅ Successfully loaded Coqui TTS model: {model_name}")
+                            return tts
+                        else:
+                            logger.warning(f"Model {model_name} failed validation")
+                            continue
+                            
+                    except Exception as e:
+                        last_error = e
+                        if "espeak" in str(e).lower():
+                            logger.error(f"❌ Model {model_name} failed due to missing espeak: {str(e)}")
+                        elif "speaker" in str(e).lower():
+                            logger.error(f"❌ Model {model_name} failed due to speaker issue: {str(e)}")
+                        else:
+                            logger.warning(f"Failed to load model {model_name}: {str(e)}")
+                        continue
+                
+                # Provide helpful error message based on last error
+                if last_error:
+                    if "espeak" in str(last_error).lower():
+                        raise Exception(
+                            "All Coqui TTS models failed due to missing espeak. "
+                            "Install: sudo apt-get install espeak-ng espeak-ng-data"
+                        )
+                    else:
+                        raise Exception(f"All Coqui TTS models failed. Last error: {str(last_error)}")
+                else:
+                    raise Exception("All Coqui TTS models failed to load")
             
-            self.tts_model = await loop.run_in_executor(None, load_coqui)
-            logger.info("✅ Loaded Coqui TTS model")
+            self.coqui_tts = await loop.run_in_executor(None, load_coqui)
             
         except ImportError:
-            logger.warning("Coqui TTS not available")
+            logger.error("Coqui TTS not available. Install with: pip install TTS")
             raise
         except Exception as e:
             logger.error(f"Coqui TTS loading failed: {str(e)}")
             raise
-            
-    async def _load_fallback_tts(self):
-        """Load fallback TTS using pyttsx3"""
-        try:
-            import pyttsx3
-            
-            loop = asyncio.get_event_loop()
-            
-            def init_pyttsx3():
-                engine = pyttsx3.init()
-                engine.setProperty('rate', 150)  # Speaking rate
-                engine.setProperty('volume', 0.9)  # Volume level
-                return engine
-            
-            self.tts_engine = await loop.run_in_executor(None, init_pyttsx3)
-            logger.info("✅ Using pyttsx3 as TTS fallback")
-            
-        except ImportError:
-            logger.warning("pyttsx3 not available. Text-to-speech disabled")
-        except Exception as e:
-            logger.error(f"Fallback TTS initialization failed: {str(e)}")
 
-    async def speech_to_text(self, audio_data: bytes, format: str = "webm", user_id: str = None) -> Dict[str, Any]:
-        """Convert speech to text using Whisper"""
+    def _validate_coqui_model_fixed(self, tts, model_name: str) -> bool:
+        """FIXED: Validate Coqui TTS model with proper multi-speaker handling"""
+        try:
+            test_text = "Hello world"
+            logger.info(f"Testing model {model_name} with text: '{test_text}'")
+            
+            # FIXED: Check if model is multi-speaker and handle accordingly
+            is_multi_speaker = hasattr(tts, 'speakers') and tts.speakers is not None and len(tts.speakers) > 0
+            
+            if is_multi_speaker:
+                logger.info(f"Model {model_name} is multi-speaker with {len(tts.speakers)} speakers")
+                # Use first available speaker for multi-speaker models
+                speaker = tts.speakers[0] if tts.speakers else None
+                if speaker:
+                    logger.info(f"Using speaker: {speaker}")
+                    test_output = tts.tts(text=test_text, speaker=speaker)
+                else:
+                    logger.warning(f"Multi-speaker model {model_name} has no available speakers")
+                    return False
+            else:
+                logger.info(f"Model {model_name} is single-speaker")
+                test_output = tts.tts(text=test_text)
+            
+            logger.info(f"Model {model_name} test output type: {type(test_output)}, shape: {getattr(test_output, 'shape', 'N/A')}")
+            
+            # FIXED: Handle the specific case where Coqui returns list of float32 values
+            if isinstance(test_output, list):
+                if len(test_output) > 0:
+                    # Check if it's a list of numpy scalars (float32)
+                    if isinstance(test_output[0], (np.float32, np.float64, float)):
+                        logger.info(f"✅ Model {model_name} produced list of audio samples ({len(test_output)} samples)")
+                        # Convert to proper numpy array
+                        try:
+                            audio_array = np.array(test_output, dtype=np.float32)
+                            if audio_array.size > 0:
+                                logger.info(f"✅ Successfully converted to numpy array with shape: {audio_array.shape}")
+                                return True
+                            else:
+                                logger.warning(f"Model {model_name} produced empty audio array")
+                                return False
+                        except Exception as conv_error:
+                            logger.error(f"Failed to convert audio samples to array: {conv_error}")
+                            return False
+                    elif isinstance(test_output[0], np.ndarray):
+                        logger.info(f"✅ Model {model_name} produced valid list of audio arrays")
+                        return True
+                    elif isinstance(test_output[0], str):
+                        logger.info(f"⚠️ Model {model_name} produced sentences - may need special handling but is valid")
+                        return True
+                    else:
+                        logger.warning(f"Model {model_name} produced list with unknown content type: {type(test_output[0])}")
+                        return False
+                else:
+                    logger.warning(f"Model {model_name} produced empty list")
+                    return False
+                    
+            elif isinstance(test_output, np.ndarray):
+                if test_output.size > 0 and test_output.ndim >= 1:
+                    logger.info(f"✅ Model {model_name} produced valid numpy array")
+                    return True
+                else:
+                    logger.warning(f"Model {model_name} produced empty or invalid array")
+                    return False
+                    
+            elif isinstance(test_output, (bytes, bytearray)):
+                logger.info(f"✅ Model {model_name} produced audio bytes")
+                return True
+                
+            else:
+                logger.warning(f"Model {model_name} produced unexpected output type: {type(test_output)}")
+                return False
+                
+        except Exception as e:
+            if "speaker" in str(e).lower():
+                logger.error(f"Model {model_name} validation failed due to speaker issue: {str(e)}")
+            elif "espeak" in str(e).lower():
+                logger.error(f"Model {model_name} validation failed due to espeak: {str(e)}")
+            else:
+                logger.error(f"Model {model_name} validation failed: {str(e)}")
+            return False
+
+    async def speech_to_text(self, audio_data: bytes, format: str = "webm", user_id: str = None, language: str = "en", optimization_level: str = "balanced") -> Dict[str, Any]:
+        """Convert speech to text using Whisper with settings from config.py"""
         try:
             # Initialize Whisper if not loaded
             if self.whisper_model is None:
+                await self._ensure_models_loaded()
+                
+            if self.whisper_model is None:
                 import whisper
-                self.whisper_model = whisper.load_model("base")
+                # Use model from settings as fallback
+                self.whisper_model = whisper.load_model(settings.WHISPER_MODEL)
                 
             # Save audio to temporary file
             with tempfile.NamedTemporaryFile(suffix=f".{format}", delete=False) as temp_file:
@@ -12110,13 +11166,14 @@ class VoiceService:
                 temp_path = temp_file.name
             
             try:
-                # Transcribe
-                result = self.whisper_model.transcribe(temp_path)
+                # Transcribe with optimization settings
+                transcribe_params = self._get_transcription_params(optimization_level, language)
+                result = self.whisper_model.transcribe(temp_path, **transcribe_params)
                 
                 return {
                     "text": result["text"].strip(),
-                    "confidence": 0.95,  # Whisper doesn't provide confidence scores
-                    "language": result.get("language", "en"),
+                    "confidence": self._calculate_confidence(result),
+                    "language": result.get("language", language),
                     "processing_time": 0.5
                 }
                 
@@ -12132,56 +11189,22 @@ class VoiceService:
                 "confidence": 0.0,
                 "error": str(e)
             }
-    
-    async def text_to_speech(self, text: str, user_id: str = None, agent_id: str = None, voice_config: Dict = None) -> Dict[str, Any]:
-        """Generate TTS with proper audio format"""
+
+    async def text_to_speech(self, text: str, user_id: str = None, agent_id: str = None, voice_config: Dict = None, optimization_level: str = "balanced") -> Dict[str, Any]:
+        """Generate TTS using settings from config.py with comprehensive error handling and chunking support"""
         try:
             if not text or not text.strip():
                 return {"audio_base64": "", "error": "Empty text"}
         
-        # Clean text for TTS
+            # Clean text for TTS - properly handle HTML-encoded <think> tags
             clean_text = self._prepare_text_for_tts(text)
-            logger.info(f"🔊 Generating TTS for: {clean_text[:50]}...")
+            logger.info(f"🔊 Generating TTS for: {clean_text[:50]}... (Total length: {len(clean_text)} chars)")
         
-        # Use simple TTS approach
-            import pyttsx3
-            import tempfile
-            import os
-        
-        # Initialize engine if needed
-            if self.tts_engine is None:
-                self.tts_engine = pyttsx3.init()
-                self.tts_engine.setProperty('rate', 150)
-                self.tts_engine.setProperty('volume', 0.9)
-        
-        # Generate audio to temporary file
-            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
-                temp_path = temp_file.name
-        
-            try:
-            # Generate speech
-                self.tts_engine.save_to_file(clean_text, temp_path)
-                self.tts_engine.runAndWait()
+            # Ensure models are loaded
+            await self._ensure_models_loaded()
             
-            # Read audio file
-                with open(temp_path, "rb") as f:
-                    audio_data = f.read()
-            
-            # Encode to base64
-                audio_base64 = base64.b64encode(audio_data).decode()
-            
-                logger.info(f"✅ TTS generated: {len(audio_base64)} chars")
-            
-                return {
-                    "audio_base64": audio_base64,
-                    "format": "wav",
-                    "success": True
-                }
-            
-            finally:
-            # Cleanup temp file
-                if os.path.exists(temp_path):
-                    os.unlink(temp_path)
+            # Try TTS generation with fallbacks
+            return await self._generate_tts_with_fallbacks(clean_text, voice_config or {})
                 
         except Exception as e:
             logger.error(f"❌ TTS Error: {str(e)}")
@@ -12191,116 +11214,285 @@ class VoiceService:
                 "success": False
             }
 
+    async def _generate_tts_with_fallbacks(self, text: str, voice_config: Dict) -> Dict[str, Any]:
+        """Try multiple TTS methods based on settings with proper fallbacks"""
+        
+        # Method 1: Try Coqui TTS if configured and loaded
+        if settings.TTS_ENGINE == "coqui" and self.coqui_tts:
+            try:
+                logger.info("Attempting Coqui TTS generation...")
+                return await self._generate_coqui_tts_fixed(text, voice_config)
+            except Exception as e:
+                logger.warning(f"Coqui TTS failed: {str(e)}, trying system TTS...")
+        else:
+            logger.info("Coqui TTS not available, using system TTS fallback")
+        
+        # Method 2: Try system TTS as fallback
+        try:
+            return await self._generate_system_tts(text, voice_config)
+        except Exception as e:
+            logger.error(f"All TTS methods failed: {str(e)}")
+            return {
+                "audio_base64": "",
+                "error": "TTS generation failed - all methods unavailable",
+                "success": False
+            }
 
-    async def _preprocess_audio(self, audio_data: bytes, format: str) -> np.ndarray:
-        """Preprocess audio for optimal Whisper input"""
+    def _chunk_text_for_tts(self, text: str, max_chunk_size: int = None) -> List[str]:
+        """Break long text into chunks that TTS can handle"""
+        if max_chunk_size is None:
+            max_chunk_size = self.tts_max_chunk_size
+            
+        if len(text) <= max_chunk_size:
+            return [text]
+        
+        chunks = []
+        sentences = re.split(r'(?<=[.!?])\s+', text)
+        current_chunk = ""
+        
+        for sentence in sentences:
+            # If adding this sentence would exceed limit, save current chunk
+            if len(current_chunk + " " + sentence) > max_chunk_size and current_chunk:
+                chunks.append(current_chunk.strip())
+                current_chunk = sentence
+            else:
+                current_chunk += (" " + sentence if current_chunk else sentence)
+        
+        # Add the last chunk
+        if current_chunk.strip():
+            chunks.append(current_chunk.strip())
+        
+        return chunks
+
+    async def _generate_coqui_tts_fixed(self, text: str, voice_config: Dict) -> Dict[str, Any]:
+        """Generate TTS using Coqui TTS with support for long text chunking"""
         try:
-            # Convert format if needed
-            if format.lower() in ["webm", "ogg", "mp4", "m4a"]:
-                audio_data = await self._convert_audio_format(audio_data, format, "wav")
+            loop = asyncio.get_event_loop()
             
-            # Create temporary file
-            with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
-                temp_file.write(audio_data)
-                temp_path = temp_file.name
-            
-            try:
-                # Load with torchaudio
-                waveform, sample_rate = torchaudio.load(temp_path)
+            def generate_audio():
+                # Process text but don't truncate
+                processed_text = self._process_text_for_coqui(text)
                 
-                # Convert to mono if stereo
-                if waveform.shape[0] > 1:
-                    waveform = torch.mean(waveform, dim=0, keepdim=True)
-                
-                # Resample to target sample rate
-                if sample_rate != self.target_sample_rate:
-                    resampler = torchaudio.transforms.Resample(
-                        orig_freq=sample_rate,
-                        new_freq=self.target_sample_rate
-                    )
-                    waveform = resampler(waveform)
-                
-                # Convert to numpy and normalize
-                audio_np = waveform.numpy().squeeze()
-                
-                # Normalize audio levels
-                if np.max(np.abs(audio_np)) > 0:
-                    audio_np = audio_np / np.max(np.abs(audio_np)) * 0.95
-                
-                return audio_np
-                
-            finally:
-                if os.path.exists(temp_path):
-                    os.unlink(temp_path)
+                # Check if we need to chunk the text
+                if self.tts_enable_chunking:
+                    text_chunks = self._chunk_text_for_tts(processed_text, max_chunk_size=self.tts_max_chunk_size)
+                else:
+                    text_chunks = [processed_text]
                     
-        except Exception as e:
-            logger.error(f"Audio preprocessing error: {str(e)}")
-            raise
-            
-    async def _convert_audio_format(self, audio_data: bytes, input_format: str, output_format: str = "wav") -> bytes:
-        """Convert audio format using FFmpeg with error handling"""
-        try:
-            import subprocess
-            
-            with tempfile.NamedTemporaryFile(suffix=f".{input_format}", delete=False) as input_file:
-                input_file.write(audio_data)
-                input_path = input_file.name
-            
-            with tempfile.NamedTemporaryFile(suffix=f".{output_format}", delete=False) as output_file:
-                output_path = output_file.name
-            
-            try:
-                # FFmpeg command with optimization
-                cmd = [
-                    "ffmpeg", "-i", input_path,
-                    "-ar", str(self.target_sample_rate),
-                    "-ac", str(self.target_channels),
-                    "-f", output_format,
-                    "-acodec", "pcm_s16le" if output_format == "wav" else "libmp3lame",
-                    "-y", output_path
-                ]
+                logger.info(f"Processing {len(text_chunks)} text chunks for TTS")
                 
-                # Run with timeout
-                result = subprocess.run(
-                    cmd,
-                    capture_output=True,
-                    text=True,
-                    timeout=30
-                )
+                # Handle multi-speaker detection
+                is_multi_speaker = hasattr(self.coqui_tts, 'speakers') and self.coqui_tts.speakers is not None and len(self.coqui_tts.speakers) > 0
+                speaker = voice_config.get('speaker') or (self.coqui_tts.speakers[0] if is_multi_speaker else None)
                 
-                if result.returncode != 0:
-                    logger.error(f"FFmpeg conversion failed: {result.stderr}")
-                    raise RuntimeError(f"Audio conversion failed: {result.stderr}")
+                all_audio_data = []
                 
-                # Read converted audio
-                with open(output_path, "rb") as f:
-                    converted_data = f.read()
-                
-                return converted_data
-                
-            finally:
-                # Cleanup
-                for path in [input_path, output_path]:
-                    if os.path.exists(path):
-                        os.unlink(path)
+                # Generate audio for each chunk
+                for i, chunk in enumerate(text_chunks):
+                    logger.info(f"Generating TTS for chunk {i+1}/{len(text_chunks)}: {chunk[:50]}...")
+                    
+                    if is_multi_speaker:
+                        wav_data = self.coqui_tts.tts(text=chunk, speaker=speaker)
+                    else:
+                        wav_data = self.coqui_tts.tts(text=chunk)
+                    
+                    # Convert to numpy array (existing logic)
+                    if isinstance(wav_data, list):
+                        if isinstance(wav_data[0], (np.float32, np.float64, float)):
+                            wav_data = np.array(wav_data, dtype=np.float32)
+                        elif isinstance(wav_data[0], np.ndarray):
+                            wav_data = np.concatenate([arr for arr in wav_data if isinstance(arr, np.ndarray) and arr.size > 0])
+                    
+                    if isinstance(wav_data, np.ndarray) and wav_data.size > 0:
+                        all_audio_data.append(wav_data)
                         
-        except subprocess.TimeoutExpired:
-            logger.error("Audio conversion timeout")
-            raise RuntimeError("Audio conversion timed out")
+                        # Add small pause between chunks (optional)
+                        if i < len(text_chunks) - 1:
+                            pause_samples = int(self.tts_chunk_pause_duration * 22050)  # configurable pause
+                            pause = np.zeros(pause_samples, dtype=np.float32)
+                            all_audio_data.append(pause)
+                
+                if not all_audio_data:
+                    raise Exception("No audio data generated")
+                
+                # Combine all chunks
+                final_audio = np.concatenate(all_audio_data)
+                
+                # Normalize and convert to 16-bit PCM
+                if np.max(np.abs(final_audio)) > 0:
+                    final_audio = final_audio / np.max(np.abs(final_audio)) * 0.95
+                
+                wav_data_int16 = (final_audio * 32767).astype(np.int16)
+                
+                # Create WAV file
+                buffer = io.BytesIO()
+                sample_rate = 22050
+                
+                with wave.open(buffer, 'wb') as wav_file:
+                    wav_file.setnchannels(1)
+                    wav_file.setsampwidth(2)
+                    wav_file.setframerate(sample_rate)
+                    wav_file.writeframes(wav_data_int16.tobytes())
+                
+                return buffer.getvalue()
+            
+            # Generate audio in thread pool
+            audio_bytes = await loop.run_in_executor(None, generate_audio)
+            audio_base64 = base64.b64encode(audio_bytes).decode()
+            
+            logger.info(f"✅ Coqui TTS generated: {len(audio_base64)} chars for full text ({len(text)} input chars)")
+            
+            return {
+                "audio_base64": audio_base64,
+                "format": "wav",
+                "sample_rate": 22050,
+                "success": True
+            }
+            
         except Exception as e:
-            logger.error(f"Audio conversion error: {str(e)}")
-            # Return original data as fallback
-            return audio_data
+            logger.error(f"Coqui TTS generation error: {str(e)}")
+            raise
+
+    def _process_text_for_coqui(self, text: str) -> str:
+        """Process text specifically for Coqui TTS without aggressive truncation"""
+        # Replace problematic characters
+        text = text.replace("'", "'").replace("'", "'")
+        text = text.replace(""", '"').replace(""", '"')
+        text = text.replace("–", "-").replace("—", "-")
+        text = text.replace("…", "...")
+        
+        # Remove non-ASCII characters
+        text = re.sub(r'[^\x00-\x7F]+', '', text)
+        
+        # Return full text for chunking - no truncation here
+        return text.strip()
+
+    async def _generate_system_tts(self, text: str, voice_config: Dict) -> Dict[str, Any]:
+        """Fallback TTS using system commands with chunking support"""
+        try:
+            loop = asyncio.get_event_loop()
             
-    def _get_model_size_for_optimization(self, optimization_level: str) -> str:
-        """Get appropriate model size based on optimization level"""
-        if optimization_level == "fast":
-            return "tiny"
-        elif optimization_level == "quality":
-            return getattr(settings, 'WHISPER_MODEL', 'base')
-        else:  # balanced
-            return "base"
+            def generate_system_audio():
+                # If text is too long, chunk it
+                if self.tts_enable_chunking and len(text) > self.tts_max_chunk_size:
+                    text_chunks = self._chunk_text_for_tts(text)
+                    all_audio_data = []
+                    
+                    for i, chunk in enumerate(text_chunks):
+                        logger.info(f"Generating system TTS for chunk {i+1}/{len(text_chunks)}")
+                        chunk_audio = self._generate_single_system_tts(chunk)
+                        all_audio_data.append(chunk_audio)
+                    
+                    # Combine audio chunks
+                    return self._combine_audio_chunks(all_audio_data)
+                else:
+                    return self._generate_single_system_tts(text)
             
+            audio_base64 = await loop.run_in_executor(None, generate_system_audio)
+            
+            return {
+                "audio_base64": audio_base64,
+                "format": "wav",
+                "success": True
+            }
+                
+        except Exception as e:
+            logger.error(f"System TTS error: {str(e)}")
+            raise
+
+    def _generate_single_system_tts(self, text: str) -> str:
+        """Generate TTS for a single text chunk using system commands"""
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
+            temp_path = temp_file.name
+        
+        try:
+            system = platform.system().lower()
+            
+            if system == "darwin":  # macOS
+                cmd = ["say", "-o", temp_path, "--data-format=LEI16@22050", text]
+            elif system == "linux":
+                cmd = ["espeak", "-w", temp_path, "-s", "150", text]
+            else:  # Windows
+                ps_script = f'''
+                Add-Type -AssemblyName System.speech
+                $speak = New-Object System.Speech.Synthesis.SpeechSynthesizer
+                $speak.SetOutputToWaveFile("{temp_path}")
+                $speak.Speak("{text}")
+                $speak.Dispose()
+                '''
+                cmd = ["powershell", "-Command", ps_script]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            
+            if result.returncode != 0:
+                raise Exception(f"System TTS failed: {result.stderr}")
+            
+            # Read generated file
+            with open(temp_path, "rb") as f:
+                audio_data = f.read()
+            
+            return base64.b64encode(audio_data).decode()
+            
+        finally:
+            if os.path.exists(temp_path):
+                os.unlink(temp_path)
+
+    def _combine_audio_chunks(self, audio_chunks: List[str]) -> str:
+        """Combine multiple base64 audio chunks into one"""
+        if not audio_chunks:
+            raise Exception("No audio chunks to combine")
+        
+        if len(audio_chunks) == 1:
+            return audio_chunks[0]
+        
+        # For simplicity, just return the first chunk
+        # In a more sophisticated implementation, you would decode, combine, and re-encode
+        logger.warning("Audio chunk combination not fully implemented - returning first chunk")
+        return audio_chunks[0]
+
+    def _prepare_text_for_tts(self, text: str) -> str:
+        """Prepare text for optimal TTS processing without excessive truncation"""
+        if not text or not text.strip():
+            return ""
+        
+        # Remove HTML-encoded thinking tags first
+        text = re.sub(r'&amp;amp;lt;think&amp;amp;gt;.*?&amp;amp;lt;/think&amp;amp;gt;', '', text, flags=re.DOTALL)
+        text = re.sub(r'&amp;amp;lt;think&amp;amp;gt;.*$', '', text, flags=re.DOTALL)
+        
+        # Remove regular <think> tags
+        text = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+        text = re.sub(r'<think>.*$', '', text, flags=re.DOTALL)
+        
+        # Remove any remaining XML-like tags
+        text = re.sub(r'<[^>]+>', '', text)
+        
+        # Clean whitespace
+        text = re.sub(r'\s+', ' ', text).strip()
+        
+        if not text:
+            return ""
+        
+        # Character replacements for better TTS
+        replacements = {
+            "'": "'", "'": "'", """: '"', """: '"',
+            "–": "-", "—": "-", "…": "..."
+        }
+        
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+        
+        # Clean markdown but keep the content
+        text = re.sub(r'[*_`#]', '', text)
+        text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text)  # Keep link text
+        text = re.sub(r'https?://[^\s]+', 'link', text)
+        
+        # Ensure proper punctuation
+        if text and not text[-1] in '.!?':
+            text += '.'
+        
+        return text.strip()
+
+    # Additional utility methods
     def _get_transcription_params(self, optimization_level: str, language: Optional[str] = None) -> Dict[str, Any]:
         """Get transcription parameters based on optimization level"""
         base_params = {
@@ -12335,7 +11527,7 @@ class VoiceService:
             })
             
         return base_params
-        
+
     def _calculate_confidence(self, whisper_result: Dict) -> float:
         """Calculate confidence score from Whisper result"""
         try:
@@ -12366,254 +11558,33 @@ class VoiceService:
             logger.warning(f"Confidence calculation error: {str(e)}")
             return 0.7
 
-    async def _generate_tts_coqui(self, text: str, config: Dict, optimization_level: str) -> Dict[str, Any]:
-        """Generate TTS using Coqui TTS"""
-        try:
-            loop = asyncio.get_event_loop()
-            
-            def generate_audio():
-                # Generate audio array
-                audio_array = self.tts_model.tts(text)
-                
-                # Apply voice modifications
-                if config.get("speaking_rate", 1.0) != 1.0 or config.get("pitch", 0.0) != 0.0:
-                    audio_array = self._apply_voice_effects(
-                        audio_array,
-                        speaking_rate=config.get("speaking_rate", 1.0),
-                        pitch=config.get("pitch", 0.0)
-                    )
-                
-                return audio_array
-            
-            audio_array = await loop.run_in_executor(None, generate_audio)
-            
-            # Convert to bytes and encode
-            audio_bytes = self._audio_array_to_bytes(audio_array)
-            audio_base64 = base64.b64encode(audio_bytes).decode('utf-8')
-            
-            return {
-                "audio_base64": audio_base64,
-                "format": "wav",
-                "sample_rate": 22050
-            }
-            
-        except Exception as e:
-            logger.error(f"Coqui TTS generation error: {str(e)}")
-            raise
-
-    async def _generate_tts_pyttsx3(self, text: str, config: Dict) -> Dict[str, Any]:
-        """Generate TTS using pyttsx3 fallback"""
-        try:
-            loop = asyncio.get_event_loop()
-            
-            def generate_pyttsx3():
-                with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
-                    temp_path = temp_file.name
-                
-                try:
-                    # Configure engine
-                    rate = int(150 * config.get("speaking_rate", 1.0))
-                    self.tts_engine.setProperty('rate', rate)
-                    
-                    volume = config.get("volume_gain", 0.0)
-                    volume_level = max(0.0, min(1.0, 0.9 + (volume / 10.0)))
-                    self.tts_engine.setProperty('volume', volume_level)
-                    
-                    # Generate speech
-                    self.tts_engine.save_to_file(text, temp_path)
-                    self.tts_engine.runAndWait()
-                    
-                    # Read generated file
-                    with open(temp_path, "rb") as f:
-                        audio_data = f.read()
-                    
-                    return base64.b64encode(audio_data).decode('utf-8')
-                    
-                finally:
-                    if os.path.exists(temp_path):
-                        os.unlink(temp_path)
-            
-            audio_base64 = await loop.run_in_executor(None, generate_pyttsx3)
-            
-            return {
-                "audio_base64": audio_base64,
-                "format": "wav",
-                "sample_rate": 16000
-            }
-            
-        except Exception as e:
-            logger.error(f"pyttsx3 TTS generation error: {str(e)}")
-            raise
-
-    def _prepare_text_for_tts(self, text: str) -> str:
-        """Prepare text for optimal TTS processing"""
-        import re
-        
-        if not text or not text.strip():
-            return ""
-        
-        # Remove excessive whitespace
-        text = re.sub(r'\s+', ' ', text).strip()
-        
-        # Handle long text by breaking at natural boundaries
-        if len(text) > 500:
-            sentences = re.split(r'[.!?]+', text)
-            if len(sentences) > 1:
-                selected_sentences = []
-                char_count = 0
-                
-                for sentence in sentences:
-                    sentence = sentence.strip()
-                    if not sentence:
-                        continue
-                        
-                    if char_count + len(sentence) <= 400:
-                        selected_sentences.append(sentence)
-                        char_count += len(sentence)
-                    else:
-                        break
-                
-                if selected_sentences:
-                    text = '. '.join(selected_sentences)
-                    if text and not text[-1] in '.!?':
-                        text += '.'
-            else:
-                text = text[:400] + '...'
-        
-        # Clean markdown and special characters
-        text = re.sub(r'[*_`#\[\]()]', '', text)
-        text = re.sub(r'https?://[^\s]+', 'link', text)  # Replace URLs
-        
-        # Ensure proper punctuation for natural speech
-        if text and not text[-1] in '.!?':
-            text += '.'
-        
-        # Handle abbreviations and numbers for better pronunciation
-        replacements = {
-            r'\bDr\.': 'Doctor',
-            r'\bMr\.': 'Mister',
-            r'\bMrs\.': 'Missis',
-            r'\bMs\.': 'Miss',
-            r'\betc\.': 'etcetera',
-            r'\bi\.e\.': 'that is',
-            r'\be\.g\.': 'for example'
-        }
-        
-        for pattern, replacement in replacements.items():
-            text = re.sub(pattern, replacement, text, flags=re.IGNORECASE)
-        
-        return text
-
-    def _apply_voice_effects(self, audio_array: np.ndarray, speaking_rate: float, pitch: float) -> np.ndarray:
-        """Apply voice effects like speed and pitch changes"""
-        try:
-            # Speed modification (simple time stretching)
-            if speaking_rate != 1.0:
-                new_length = int(len(audio_array) / speaking_rate)
-                audio_array = np.interp(
-                    np.linspace(0, len(audio_array), new_length),
-                    np.arange(len(audio_array)),
-                    audio_array
-                )
-            
-            # Basic pitch shifting (simplified approach)
-            if pitch != 0.0:
-                pitch_factor = 2 ** (pitch / 12.0)
-                # Simple pitch shifting by changing playback speed and resampling
-                if pitch_factor != 1.0:
-                    audio_array = audio_array * min(pitch_factor, 2.0)  # Prevent distortion
-            
-            return audio_array
-            
-        except Exception as e:
-            logger.warning(f"Voice effects error: {str(e)}")
-            return audio_array
-
-    def _audio_array_to_bytes(self, audio_array: Union[np.ndarray, List]) -> bytes:
-        """Convert audio array to WAV bytes"""
-        try:
-            import wave
-            
-            # Ensure numpy array
-            if not isinstance(audio_array, np.ndarray):
-                audio_array = np.array(audio_array)
-            
-            # Normalize audio to prevent clipping
-            if audio_array.max() > 1.0 or audio_array.min() < -1.0:
-                audio_array = audio_array / np.max(np.abs(audio_array))
-            
-            # Convert to 16-bit PCM
-            audio_int16 = (audio_array * 32767).astype(np.int16)
-            
-            # Create WAV file in memory
-            buffer = io.BytesIO()
-            
-            with wave.open(buffer, 'wb') as wav_file:
-                wav_file.setnchannels(1)  # Mono
-                wav_file.setsampwidth(2)  # 16-bit
-                wav_file.setframerate(22050)  # Sample rate
-                wav_file.writeframes(audio_int16.tobytes())
-            
-            return buffer.getvalue()
-            
-        except Exception as e:
-            logger.error(f"Audio array conversion error: {str(e)}")
-            raise
-
-    async def _fallback_speech_to_text(self, audio_data: bytes, format: str) -> Dict[str, Any]:
-        """Fallback STT implementation when Whisper is not available"""
-        try:
-            # This is a placeholder - in a real implementation you might:
-            # 1. Use cloud STT services (Google, Azure, AWS)
-            # 2. Use other local STT libraries
-            # 3. Return an error indicating STT is unavailable
-            
-            logger.warning("Whisper not available, using fallback STT")
-            
-            # For demo purposes, return a placeholder response
-            return {
-                "text": "Speech recognition not available - please install Whisper",
-                "confidence": 0.0,
-                "processing_time": 0.1,
-                "fallback": True,
-                "success": False
-            }
-            
-        except Exception as e:
-            logger.error(f"Fallback STT error: {str(e)}")
-            return {
-                "text": "",
-                "confidence": 0.0,
-                "error": str(e),
-                "success": False
-            }
-
-    def _generate_audio_cache_key(self, audio_data: bytes, optimization_level: str) -> str:
-        """Generate cache key for audio data"""
-        audio_hash = hashlib.md5(audio_data).hexdigest()[:8]
-        return f"stt_{audio_hash}_{optimization_level}"
-        
-    def _generate_text_cache_key(self, text: str, voice_config: Optional[Dict], optimization_level: str) -> str:
-        """Generate cache key for text data"""
-        text_hash = hashlib.md5(text.encode()).hexdigest()[:8]
-        config_hash = hashlib.md5(str(voice_config or {}).encode()).hexdigest()[:4]
-        return f"tts_{text_hash}_{config_hash}_{optimization_level}"
-
     async def get_health_status(self) -> Dict[str, Any]:
-        """Get health status of voice service"""
+        """Get health status of voice service using settings"""
         try:
             await self._ensure_models_loaded()
+            
+            deps = self._check_system_dependencies()
             
             return {
                 "status": "healthy",
                 "whisper_available": self.whisper_model is not None,
-                "tts_available": (self.tts_model is not None) or (self.tts_engine is not None),
-                "tts_engine": "coqui" if self.tts_model else "pyttsx3" if self.tts_engine else "none",
+                "tts_available": self.coqui_tts is not None,
+                "tts_engine": settings.TTS_ENGINE,
                 "whisper_model": settings.WHISPER_MODEL if self.whisper_model else "none",
+                "tts_model": settings.TTS_MODEL if settings.TTS_ENGINE == "coqui" else "system",
+                "coqui_loaded": self.coqui_tts is not None,
+                "coqui_is_multi_speaker": hasattr(self.coqui_tts, 'speakers') and self.coqui_tts.speakers is not None and len(self.coqui_tts.speakers) > 0 if self.coqui_tts else False,
+                "available_speakers": self.coqui_tts.speakers if (self.coqui_tts and hasattr(self.coqui_tts, 'speakers') and self.coqui_tts.speakers) else [],
+                "system_dependencies": deps,
                 "models_loaded": self._models_loaded,
-                "cache_size": {
-                    "stt_cache": len(self._model_cache),
-                    "tts_cache": len(self._response_cache)
+                "tts_chunking_enabled": self.tts_enable_chunking,
+                "tts_max_chunk_size": self.tts_max_chunk_size,
+                "settings_used": {
+                    "enable_whisper": settings.ENABLE_WHISPER,
+                    "enable_tts": settings.ENABLE_TTS,
+                    "tts_engine": settings.TTS_ENGINE,
+                    "whisper_model": settings.WHISPER_MODEL,
+                    "tts_model": settings.TTS_MODEL
                 }
             }
             
@@ -12636,10 +11607,11 @@ class VoiceService:
             self._model_cache.clear()
             self._response_cache.clear()
             
-            # Cleanup models if needed
-            if hasattr(self, 'tts_engine') and self.tts_engine:
+            # Cleanup Coqui TTS if needed
+            if hasattr(self, 'coqui_tts') and self.coqui_tts:
                 try:
-                    self.tts_engine.stop()
+                    del self.coqui_tts
+                    self.coqui_tts = None
                 except:
                     pass
                     
@@ -12647,568 +11619,6 @@ class VoiceService:
             
         except Exception as e:
             logger.error(f"Voice service cleanup error: {str(e)}")
-
-    # Optimized versions for WebSocket usage
-    async def speech_to_text_optimized(
-        self,
-        audio_data: bytes,
-        format: str = "webm",
-        user_id: Optional[str] = None,
-        optimization_settings: Optional[Dict] = None
-    ) -> Dict[str, Any]:
-        """Optimized STT for real-time WebSocket usage"""
-        settings_dict = optimization_settings or {}
-        
-        optimization_level = "fast" if settings_dict.get("fast_mode", False) else "balanced"
-        language = settings_dict.get("language", "en")
-        
-        return await self.speech_to_text(
-            audio_data=audio_data,
-            format=format,
-            user_id=user_id,
-            language=language,
-            optimization_level=optimization_level
-        )
-
-    async def text_to_speech_optimized(
-        self,
-        text: str,
-        user_id: Optional[str] = None,
-        voice_config: Optional[Dict] = None,
-        optimization_settings: Optional[Dict] = None
-    ) -> Dict[str, Any]:
-        """Optimized TTS for real-time WebSocket usage"""
-        settings_dict = optimization_settings or {}
-        
-        optimization_level = "fast" if settings_dict.get("speed", False) else "balanced"
-        
-        # Adjust voice config for optimization
-        config = voice_config or {}
-        if settings_dict.get("quality") == "low":
-            config["speaking_rate"] = config.get("speaking_rate", 1.2)  # Slightly faster
-        
-        return await self.text_to_speech(
-            text=text,
-            user_id=user_id,
-            voice_config=config,
-            optimization_level=optimization_level
-        )
-
-===== ./app/services/streaming_tts_service.py =====
-# app/services/streaming_tts_service.py
-import asyncio
-import logging
-import base64
-import io
-import time
-from typing import Dict, Any, Optional, AsyncGenerator
-from concurrent.futures import ThreadPoolExecutor
-import numpy as np
-
-# TTS imports
-try:
-    from TTS.api import TTS
-    TTS_AVAILABLE = True
-except ImportError:
-    TTS_AVAILABLE = False
-    logging.warning("Coqui TTS not available")
-
-try:
-    import pyttsx3
-    PYTTSX3_AVAILABLE = True
-except ImportError:
-    PYTTSX3_AVAILABLE = False
-
-logger = logging.getLogger(__name__)
-
-class StreamingTTSService:
-    def __init__(self):
-        self.tts_model = None
-        self.pyttsx3_engine = None
-        self.executor = ThreadPoolExecutor(max_workers=2, thread_name_prefix="tts")
-        self.initialized = False
-        self.chunk_size = 4096  # Audio chunk size for streaming
-        
-    async def initialize(self):
-        """Initialize TTS models"""
-        if self.initialized:
-            return
-            
-        try:
-            loop = asyncio.get_event_loop()
-            
-            if TTS_AVAILABLE:
-                # Use Coqui TTS for better quality
-                self.tts_model = await loop.run_in_executor(
-                    self.executor,
-                    lambda: TTS(model_name="tts_models/en/ljspeech/glow-tts")
-                )
-                logger.info("Initialized Coqui TTS")
-            elif PYTTSX3_AVAILABLE:
-                # Fallback to pyttsx3
-                self.pyttsx3_engine = await loop.run_in_executor(
-                    self.executor,
-                    self._init_pyttsx3
-                )
-                logger.info("Initialized pyttsx3 TTS")
-            else:
-                raise Exception("No TTS engine available")
-                
-            self.initialized = True
-            
-        except Exception as e:
-            logger.error(f"Failed to initialize TTS: {e}")
-            raise
-
-    def _init_pyttsx3(self):
-        """Initialize pyttsx3 engine"""
-        engine = pyttsx3.init()
-        engine.setProperty('rate', 180)  # Speaking rate
-        engine.setProperty('volume', 0.9)  # Volume
-        
-        # Set voice if available
-        voices = engine.getProperty('voices')
-        if voices:
-            engine.setProperty('voice', voices[0].id)
-        
-        return engine
-
-    async def text_to_speech_stream(
-        self, 
-        text: str, 
-        voice_config: Dict[str, Any] = None,
-        session_id: str = None
-    ) -> AsyncGenerator[Dict[str, Any], None]:
-        """Convert text to speech and yield audio chunks"""
-        
-        if not self.initialized:
-            await self.initialize()
-
-        try:
-            voice_config = voice_config or {}
-            
-            # Generate audio
-            if self.tts_model:
-                audio_data = await self._generate_with_coqui(text, voice_config)
-            elif self.pyttsx3_engine:
-                audio_data = await self._generate_with_pyttsx3(text, voice_config)
-            else:
-                raise Exception("No TTS engine available")
-
-            # Stream audio in chunks
-            async for chunk in self._stream_audio_chunks(audio_data, session_id):
-                yield chunk
-
-        except Exception as e:
-            logger.error(f"TTS error: {e}")
-            yield {
-                'type': 'error',
-                'error': str(e),
-                'session_id': session_id
-            }
-
-    async def _generate_with_coqui(self, text: str, voice_config: Dict[str, Any]) -> bytes:
-        """Generate audio using Coqui TTS"""
-        loop = asyncio.get_event_loop()
-        
-        def generate():
-            try:
-                # Generate audio to numpy array
-                wav = self.tts_model.tts(text)
-                
-                # Convert to bytes (16-bit PCM)
-                wav_int16 = (wav * 32767).astype(np.int16)
-                return wav_int16.tobytes()
-                
-            except Exception as e:
-                logger.error(f"Coqui TTS generation error: {e}")
-                raise
-
-        return await loop.run_in_executor(self.executor, generate)
-
-    async def _generate_with_pyttsx3(self, text: str, voice_config: Dict[str, Any]) -> bytes:
-        """Generate audio using pyttsx3"""
-        loop = asyncio.get_event_loop()
-        
-        def generate():
-            try:
-                import tempfile
-                import wave
-                
-                # Configure voice settings
-                speaking_rate = voice_config.get('speaking_rate', 1.0)
-                self.pyttsx3_engine.setProperty('rate', int(180 * speaking_rate))
-                
-                # Generate to temporary file
-                with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as temp_file:
-                    temp_path = temp_file.name
-                
-                self.pyttsx3_engine.save_to_file(text, temp_path)
-                self.pyttsx3_engine.runAndWait()
-                
-                # Read the audio file
-                with wave.open(temp_path, 'rb') as wav_file:
-                    audio_data = wav_file.readframes(wav_file.getnframes())
-                
-                # Cleanup
-                import os
-                os.unlink(temp_path)
-                
-                return audio_data
-                
-            except Exception as e:
-                logger.error(f"pyttsx3 TTS generation error: {e}")
-                raise
-
-        return await loop.run_in_executor(self.executor, generate)
-
-    async def _stream_audio_chunks(
-        self, 
-        audio_data: bytes, 
-        session_id: str
-    ) -> AsyncGenerator[Dict[str, Any], None]:
-        """Stream audio data in chunks"""
-        try:
-            total_chunks = len(audio_data) // self.chunk_size + (1 if len(audio_data) % self.chunk_size else 0)
-            
-            for i in range(0, len(audio_data), self.chunk_size):
-                chunk = audio_data[i:i + self.chunk_size]
-                chunk_base64 = base64.b64encode(chunk).decode('utf-8')
-                
-                chunk_info = {
-                    'type': 'audio_chunk',
-                    'audio_data': chunk_base64,
-                    'chunk_index': i // self.chunk_size,
-                    'total_chunks': total_chunks,
-                    'format': 'pcm',
-                    'sample_rate': 22050,
-                    'channels': 1,
-                    'session_id': session_id,
-                    'is_final': (i + self.chunk_size) >= len(audio_data)
-                }
-                
-                yield chunk_info
-                
-                # Small delay to prevent overwhelming the network
-                await asyncio.sleep(0.01)
-
-        except Exception as e:
-            logger.error(f"Error streaming audio chunks: {e}")
-            yield {
-                'type': 'error',
-                'error': str(e),
-                'session_id': session_id
-            }
-
-    async def cleanup(self):
-        """Cleanup resources"""
-        try:
-            if self.tts_model:
-                del self.tts_model
-            if self.pyttsx3_engine:
-                del self.pyttsx3_engine
-            self.executor.shutdown(wait=False)
-            logger.info("TTS service cleaned up")
-        except Exception as e:
-            logger.error(f"TTS cleanup error: {e}")
-
-===== ./app/services/voice_agent_service.py =====
-# app/services/voice_websocket_service.py
-import asyncio
-import logging
-import base64
-import json
-import time
-from typing import Dict, Any, Optional
-from fastapi import WebSocket, WebSocketDisconnect
-from app.services.voice_service import VoiceService
-from app.services.llm_service import OllamaService
-from app.services.rag_service import RAGService
-
-logger = logging.getLogger(__name__)
-
-class VoiceWebSocketService:
-    def __init__(self):
-        self.voice_service = VoiceService()
-        self.llm_service = OllamaService()
-        self.rag_service = RAGService()
-        self.active_connections: Dict[str, WebSocket] = {}
-        
-    async def handle_voice_websocket(self, websocket: WebSocket, connection_id: str):
-        """Handle WebSocket voice interaction with optimized processing"""
-        try:
-            await websocket.accept()
-            self.active_connections[connection_id] = websocket
-            logger.info(f"Voice WebSocket connected: {connection_id}")
-            
-            while True:
-                # Receive message with timeout
-                try:
-                    message = await asyncio.wait_for(
-                        websocket.receive_text(), 
-                        timeout=300.0  # 5 minutes timeout
-                    )
-                    data = json.loads(message)
-                    
-                    await self.process_voice_message(websocket, connection_id, data)
-                    
-                except asyncio.TimeoutError:
-                    logger.warning(f"WebSocket timeout for {connection_id}")
-                    break
-                except WebSocketDisconnect:
-                    break
-                except json.JSONDecodeError:
-                    await self.send_error(websocket, "Invalid JSON format")
-                    
-        except Exception as e:
-            logger.error(f"Voice WebSocket error for {connection_id}: {str(e)}")
-        finally:
-            self.active_connections.pop(connection_id, None)
-            logger.info(f"Voice WebSocket disconnected: {connection_id}")
-
-    async def process_voice_message(self, websocket: WebSocket, connection_id: str, data: Dict[str, Any]):
-        """Process voice message with optimized pipeline"""
-        message_type = data.get("type")
-        
-        if message_type == "voice_input":
-            await self.process_voice_input(websocket, connection_id, data)
-        elif message_type == "ping":
-            await websocket.send_text(json.dumps({"type": "pong"}))
-        else:
-            await self.send_error(websocket, f"Unknown message type: {message_type}")
-
-    async def process_voice_input(self, websocket: WebSocket, connection_id: str, data: Dict[str, Any]):
-        """Optimized voice input processing with parallel operations"""
-        start_time = time.time()
-        
-        try:
-            # Extract data
-            audio_data = data.get("audio_data", {})
-            user_id = data.get("user_id")
-            agent_id = data.get("agent_id")
-            voice_config = data.get("voice_config", {})
-            personality = data.get("personality", {})
-            system_prompt = data.get("system_prompt", "")
-            optimization = data.get("optimization", {})
-            
-            # Validate required fields
-            if not audio_data.get("content"):
-                await self.send_error(websocket, "No audio data provided")
-                return
-                
-            # Send processing status
-            await websocket.send_text(json.dumps({
-                "type": "processing",
-                "step": "transcribing"
-            }))
-            
-            # Step 1: Speech to Text (optimized)
-            stt_start = time.time()
-            audio_content = base64.b64decode(audio_data["content"])
-            
-            stt_result = await self.voice_service.speech_to_text_optimized(
-                audio_data=audio_content,
-                format=audio_data.get("format", "webm"),
-                user_id=user_id,
-                optimization_settings={
-                    "fast_mode": optimization.get("reduce_latency", True),
-                    "language": "en-US",
-                    "model_size": "base"  # Use smaller model for speed
-                }
-            )
-            
-            transcription = stt_result.get("text", "").strip()
-            confidence = stt_result.get("confidence", 0.0)
-            stt_time = time.time() - stt_start
-            
-            # Send transcription immediately
-            await websocket.send_text(json.dumps({
-                "type": "transcription",
-                "text": transcription,
-                "confidence": confidence,
-                "processing_time": round(stt_time, 3)
-            }))
-            
-            if not transcription:
-                await self.send_error(websocket, "Could not transcribe audio")
-                return
-            
-            # Send processing status
-            await websocket.send_text(json.dumps({
-                "type": "processing",
-                "step": "generating_response"
-            }))
-            
-            # Step 2: Parallel RAG and LLM processing
-            llm_start = time.time()
-            
-            # Start RAG search and LLM processing in parallel
-            rag_task = self.get_rag_context(transcription, user_id, agent_id)
-            llm_task = self.generate_base_response(transcription, system_prompt, personality)
-            
-            # Wait for both tasks with timeout
-            try:
-                rag_context, base_response = await asyncio.wait_for(
-                    asyncio.gather(rag_task, llm_task, return_exceptions=True),
-                    timeout=10.0  # 10 second timeout for LLM+RAG
-                )
-            except asyncio.TimeoutError:
-                logger.warning(f"LLM/RAG processing timeout for {connection_id}")
-                rag_context = ""
-                base_response = "I apologize, but I'm experiencing some delays. Please try again."
-            
-            # Handle exceptions from parallel tasks
-            if isinstance(rag_context, Exception):
-                logger.error(f"RAG processing error: {str(rag_context)}")
-                rag_context = ""
-                
-            if isinstance(base_response, Exception):
-                logger.error(f"LLM processing error: {str(base_response)}")
-                base_response = "I apologize, but I'm having trouble generating a response right now."
-            
-            # Step 3: Enhance response with RAG context if available
-            if rag_context:
-                enhanced_response = await self.enhance_response_with_rag(
-                    base_response, rag_context, transcription
-                )
-            else:
-                enhanced_response = base_response
-                
-            llm_time = time.time() - llm_start
-            
-            # Step 4: Text to Speech (optimized)
-            await websocket.send_text(json.dumps({
-                "type": "processing",
-                "step": "generating_speech"
-            }))
-            
-            tts_start = time.time()
-            tts_result = await self.voice_service.text_to_speech_optimized(
-                text=enhanced_response,
-                user_id=user_id,
-                voice_config=voice_config,
-                optimization_settings={
-                    "quality": optimization.get("audio_quality", "balanced"),
-                    "speed": optimization.get("reduce_latency", True)
-                }
-            )
-            tts_time = time.time() - tts_start
-            
-            # Step 5: Send complete response
-            total_time = time.time() - start_time
-            
-            await websocket.send_text(json.dumps({
-                "type": "agent_response",
-                "text": enhanced_response,
-                "audio": tts_result.get("audio_base64"),
-                "processing_time": {
-                    "total": round(total_time, 3),
-                    "stt": round(stt_time, 3),
-                    "llm": round(llm_time, 3),
-                    "tts": round(tts_time, 3)
-                },
-                "transcription": transcription,
-                "confidence": confidence,
-                "sources": rag_context.get("sources", []) if isinstance(rag_context, dict) else []
-            }))
-            
-            logger.info(f"Voice interaction completed in {total_time:.3f}s for {connection_id}")
-            
-        except Exception as e:
-            logger.error(f"Voice processing error for {connection_id}: {str(e)}")
-            await self.send_error(websocket, "Voice processing failed")
-
-    async def get_rag_context(self, query: str, user_id: str, agent_id: str) -> Dict[str, Any]:
-        """Get RAG context with timeout"""
-        try:
-            rag_results = await asyncio.wait_for(
-                self.rag_service.query_optimized(
-                    query=query,
-                    user_id=user_id,
-                    agent_id=agent_id,
-                    max_results=3,
-                    optimization={"fast_mode": True}
-                ),
-                timeout=5.0
-            )
-            return rag_results
-        except asyncio.TimeoutError:
-            logger.warning("RAG query timeout")
-            return {}
-        except Exception as e:
-            logger.error(f"RAG query error: {str(e)}")
-            return {}
-
-    async def generate_base_response(self, query: str, system_prompt: str, personality: Dict) -> str:
-        """Generate base LLM response"""
-        try:
-            messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": query}
-            ]
-            
-            response = await self.llm_service.chat_optimized(
-                messages=messages,
-                model="deepseek-r1:1.5b",
-                options={
-                    "temperature": personality.get("base_tone_temperature", 0.7),
-                    "max_tokens": 150,  # Shorter responses for voice
-                    "stream": False
-                }
-            )
-            
-            return response.get("message", {}).get("content", "I apologize, I couldn't generate a response.")
-            
-        except Exception as e:
-            logger.error(f"LLM generation error: {str(e)}")
-            return "I'm experiencing some technical difficulties. Please try again."
-
-    async def enhance_response_with_rag(self, base_response: str, rag_context: Dict, query: str) -> str:
-        """Enhance response with RAG context"""
-        try:
-            if not rag_context.get("documents"):
-                return base_response
-                
-            context_text = "\n".join(rag_context["documents"][:2])  # Limit context
-            
-            enhancement_prompt = f"""
-            Original response: {base_response}
-            
-            Additional context: {context_text}
-            
-            User question: {query}
-            
-            Enhance the original response with relevant information from the context, but keep it concise for voice conversation:
-            """
-            
-            enhanced = await self.llm_service.chat_optimized(
-                messages=[{"role": "user", "content": enhancement_prompt}],
-                model="deepseek-r1:1.5b",
-                options={"temperature": 0.3, "max_tokens": 200}
-            )
-            
-            return enhanced.get("message", {}).get("content", base_response)
-            
-        except Exception as e:
-            logger.error(f"Response enhancement error: {str(e)}")
-            return base_response
-
-    async def send_error(self, websocket: WebSocket, message: str):
-        """Send error message via WebSocket"""
-        try:
-            await websocket.send_text(json.dumps({
-                "type": "error",
-                "message": message
-            }))
-        except Exception as e:
-            logger.error(f"Failed to send error message: {str(e)}")
-
-# Updated WebSocket endpoint
-@router.websocket("/ws")
-async def voice_websocket_endpoint(websocket: WebSocket):
-    connection_id = f"voice_{int(time.time())}_{hash(websocket) % 10000}"
-    voice_service = VoiceWebSocketService()
-    await voice_service.handle_voice_websocket(websocket, connection_id)
 
 ===== ./app/dependencies.py =====
 from fastapi import Depends
